@@ -1,0 +1,6 @@
+assets:
+    js:
+        app:
+            - bootstrap.min.js
+            - app.js
+        admin:

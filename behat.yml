@@ -1,0 +1,18 @@
+default:
+    autoload: src/
+    extensions:
+        Behat\Symfony2Extension: ~
+        Behat\MinkExtension:
+            default_session: selenium2
+            goutte:
+                guzzle_parameters:
+                    verify: false
+            selenium2: ~
+            base_url: https://billeterie.sf/app_dev.php/
+            files_path: './src/AppBundle/Features/Data/'
+    suites:
+        default:
+            contexts:
+                - AppBundle\Features\Context\FeatureContext
+            type: symfony_bundle
+            bundle: AppBundle
