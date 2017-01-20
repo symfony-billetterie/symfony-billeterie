@@ -5,3 +5,4 @@ assets:
             - app.js
         admin:
             - bootstrap.min.js
+            - admin.js
