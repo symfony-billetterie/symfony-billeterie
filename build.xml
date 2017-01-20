@@ -62,7 +62,10 @@
     <target name="tests:schema-validate" description="Validate that the database schema is in sync with the entity classes">
         <exec command="php bin/console doctrine:schema:validate -e test" checkreturn="true" logoutput="true"/>
     </target>
-
+    <target name="remote:update:preprod" description="Remotely update the preprod">
+        <exec command="cd /var/www/html/symfony-billeterie/; vendor/bin/phing update:preprod" passthru="true"
+              checkreturn="true"/>
+    </target>
     <target name="tests:run-selenium" description="Run Selenium Server">
         <exec command="vendor/bin/selenium-server-standalone" spawn="true"/>
         <echo msg="Selenium Server started"/>
