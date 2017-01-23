@@ -5,16 +5,7 @@
         <exec command="vendor/bin/phing -l" passthru="true"/>
     </target>
 
-    <target name="maintenance:on" description="Set maintenance on">
-        <exec command="cp web/maintenance.php web/app.php" logoutput="true" checkreturn="true"/>
-    </target>
-
-    <target name="maintenance:off" description="Set maintenance on">
-        <exec command="git checkout web/app.php" logoutput="true" checkreturn="true"/>
-    </target>
-
     <target name="update:preprod" description="Update project on preprod">
-        <phingcall target="maintenance:on"/>
         <property name="env" value="prod" override="true"/>
 
         <echo message="Fetch git..."/>
@@ -28,7 +19,6 @@
         <exec command="php bin/console doctrine:schema:update --force -e=prod" passthru="true"/>
         <echo message="Disable index..."/>
         <exec command="echo 'User-agent: *${line.separator}Disallow: /' > web/robots.txt" passthru="true"/>
-        <phingcall target="maintenance:off"/>
     </target>
 
     <target name="update:dev" description="Update project in dev">
