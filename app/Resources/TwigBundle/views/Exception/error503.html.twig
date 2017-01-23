@@ -1,0 +1,6 @@
+{% extends 'TwigBundle:Exception:error.html.twig' %}
+
+{% block error %}
+    <h3 class="text-center bold">{{ 'error.503.title'|trans }}</h3>
+    <p class="intro text-center">{{ 'error.503.content'|trans|raw }}</p>
+{% endblock %}
