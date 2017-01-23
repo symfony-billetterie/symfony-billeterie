@@ -1,10 +1,11 @@
 {
-    "name": "cocokrl/skeleton",
+    "name": "symfony-billeterie/symfony-billeterie",
+    "description": "Symfony project Licence Lycée Saint Vincent 2016/2017",
     "license": "proprietary",
     "type": "project",
     "autoload": {
         "psr-4": {
-            "": "src/"
+            "AppBundle\\": "src/AppBundle/"
         },
         "classmap": [
             "app/AppKernel.php",
@@ -34,7 +35,8 @@
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
-        "symfony/phpunit-bridge": "^3.0"
+        "symfony/phpunit-bridge": "^2.7",
+        "composer/composer": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
