@@ -54,7 +54,7 @@
     </target>
     <target name="remote:update:preprod" description="Remotely update the preprod">
         <exec
-                command="ssh billeterie@151.80.43.132 'vendor/bin/phing update:preprod'" passthru="true"
+                command="ssh billeterie@151.80.43.132 'cd symfony-billeterie/ ; vendor/bin/phing update:preprod'" passthru="true"
               checkreturn="true"/>
     </target>
     <target name="tests:run-selenium" description="Run Selenium Server">
