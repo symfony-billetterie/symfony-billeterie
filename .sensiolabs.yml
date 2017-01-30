@@ -1,0 +1,18 @@
+php_version: 7
+global_exclude_dirs:
+    - vendor
+    - vendors
+    - test
+    - tests
+    - Tests
+    - lib/vendor
+    - deploy
+    - var
+
+exclude_patterns:
+    - web/config.php
+    - web/app_*.php
+    - web/maintenance.php
+    - app/.htaccess
+    - src/.htaccess
+    - web/.htaccess
