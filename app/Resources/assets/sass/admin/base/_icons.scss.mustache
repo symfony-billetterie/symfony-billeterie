@@ -1,0 +1,15 @@
+.icons- {
+    display: inline-block;
+    vertical-align: middle;
+    background-image: url('{{{spritesheet.escaped_image}}}-{{spritesheet_name}}.png');
+    background-repeat: no-repeat;
+}
+
+{{#items}}
+.icons-{{name}} {
+    @extend .icons-;
+    width: {{px.width}};
+    height: {{px.height}};
+    background-position: {{px.offset_x}} {{px.offset_y}};
+}
+{{/items}}

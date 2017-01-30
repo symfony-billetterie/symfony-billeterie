@@ -1,0 +1,141 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,700,700italic,400italic,300italic);
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,700,700italic,400italic,300italic);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+
+
+/* ==========================================================================
+	 Roboto
+	 -
+	 https://www.google.com/fonts#UsePlace:use/Collection:Roboto
+	 ========================================================================== */
+
+@mixin roboto($font-weight:false, $font-style:false) {
+	font-family: $font-family-roboto;
+
+	@if($font-weight) {
+		font-weight: $font-weight;
+	}
+	@else {
+		font-weight: 400;
+	}
+	@if($font-style) {
+		font-style: $font-style;
+	}
+}
+
+.roboto-l { // light
+	@include roboto(300);
+}
+.roboto-li { // light + italic
+	@include roboto(300,italic);
+}
+.roboto { // regular
+	@include roboto();
+}
+.roboto-i { // regular + italic
+	@include roboto(400,italic);
+}
+.roboto-b { // bold
+	@include roboto(700);
+}
+.roboto-bi { // bold + italic
+	@include roboto(700,italic);
+}
+
+
+
+/* ==========================================================================
+	 Montserrat :: sans serif
+	 -
+	 https://www.google.com/fonts#UsePlace:use/Collection:Montserrat
+	 ========================================================================== */
+
+@mixin montserrat($font-weight:false, $font-style:false) {
+	font-family: $font-family-montserrat;
+
+	@if($font-weight) {
+		font-weight: $font-weight;
+	}
+	@else {
+		font-weight: 400;
+	}
+	@if($font-style) {
+		font-style: $font-style;
+	}
+}
+
+@font-face {
+    font-family: 'montserratlight';
+    src: url('#{$font-path}montserrat-light-webfont.eot');
+    src: url('#{$font-path}montserrat-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('#{$font-path}montserrat-light-webfont.woff2') format('woff2'),
+         url('#{$font-path}montserrat-light-webfont.woff') format('woff'),
+         url('#{$font-path}montserrat-light-webfont.ttf') format('truetype'),
+         url('#{$font-path}montserrat-light-webfont.svg#montserratlight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+.montserrat { // regular
+	@include montserrat();
+}
+.montserrat-i { // regular + italic
+	@include montserrat(400,italic);
+}
+.montserrat-l { // light
+	font-family: $font-family-montserrat-light;
+	font-weight: 400;
+}
+.montserrat-b { // bold
+	@include montserrat(700);
+}
+.montserrat-bi { // bold + italic
+	@include montserrat(700,italic);
+}
+
+/* ==========================================================================
+	 Open Sans
+	 -
+	 https://www.google.com/fonts#UsePlace:use/Collection:Open+Sans
+	 ========================================================================== */
+
+@mixin open-s($font-weight:false, $font-style:false) {
+	font-family: $font-family-open-s;
+
+	@if($font-weight) {
+		font-weight: $font-weight;
+	}
+	@else {
+		font-weight: 400;
+	}
+	@if($font-style) {
+		font-style: $font-style;
+	}
+}
+
+.open-s-l { // light
+	@include open-s(300);
+}
+.open-s-li { // light + italic
+	@include open-s(300,italic);
+}
+.open-s { // regular
+	@include open-s();
+}
+.open-s-i { // regular + italic
+	@include open-s(400,italic);
+}
+.open-s-sb { // semibold
+	@include open-s(600);
+}
+.open-s-sbi { // semibold + italic
+	@include open-s(600,italic);
+}
+.open-s-b { // bold
+	@include open-s(700);
+}
+.open-s-bi { // bold + italic
+	@include open-s(700,italic);
+}
