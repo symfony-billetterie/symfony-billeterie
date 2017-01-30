@@ -16,6 +16,8 @@ parameters:
     mailer_password:   ~
     mailer_port:       25
 
+    session_prefix:    billeterie
+
     # A secret key that's used to generate certain security-related tokens
     secret:            3vmtPv4N9MVv58w6pJ9AfGB92ky22dDT
 
