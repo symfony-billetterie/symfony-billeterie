@@ -4,7 +4,7 @@
 
 - in your project folder run `composer install`
 
-- add `192.168.33.94    billeterie.sf` in your hosts file
+- add `192.168.33.33    billeterie.sf` in your hosts file
     - `/etc/hosts` on Linux
     - `C:\WINDOWS\system32\drivers\etc\hosts` on Windows
 
