@@ -21,5 +21,4 @@ node_modules/
 .vagrant/
 *.js.map
 .idea/
-/app/config/routing_dev.yml
 ubuntu-xenial-16.04-cloudimg-console.log
