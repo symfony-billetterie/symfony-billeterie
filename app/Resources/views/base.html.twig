@@ -1,13 +1,34 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="Admin">
+    <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}" type="image/ico">
+    {% block stylesheets %}
+        {% block stylesheets_lib %}{% endblock %}
+        {% block current_stylesheet %}{% endblock %}
+    {% endblock %}
+</head>
+<body>
+<main id="main">
+    {% block header %}{% endblock %}
+    <div class="container container-reset" id="container">
+        {% block flash_message %}
+            {% include 'common/_flash.html.twig' %}
+        {% endblock %}
+        {% block container_before %}{% endblock %}
+        {% block container %}
+
+        {% endblock %}
+
+        {% block container_after %}{% endblock %}
+        {% block footer %}{% endblock %}
+    </div>
+</main>
+{% block current_script %}{% endblock %}
+{% block view_js %}{% endblock %}
+</body>
 </html>

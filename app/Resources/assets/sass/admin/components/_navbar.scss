@@ -1,0 +1,23 @@
+/**
+    NAVBAR
+ */
+
+/** navbar-nav */
+.navbar {
+    background: $gray;
+    margin: 0;
+    border-radius: 0px;
+}
+
+@media (min-width: $screen-tablet) {
+
+    .navbar-nav > li > a {
+        padding-top: 20%;
+        padding-bottom: 22%;
+    }
+}
+
+/** dropdown-menu */
+.dropdown-menu {
+    min-width: 100%;
+}

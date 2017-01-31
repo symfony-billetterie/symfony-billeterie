@@ -12,29 +12,40 @@ var gulp = require('gulp'), //== https://github.com/gulpjs/gulp
     concat = require('gulp-concat'), //== https://github.com/contra/gulp-concat
     sourcemaps = require('gulp-sourcemaps'), //== https://github.com/floridoo/gulp-sourcemaps
     yaml = require("js-yaml"), //== https://github.com/nodeca/js-yaml
-    fs = require("fs"),
+    fs = require("fs"), //== https://nodejs.org/dist/latest-v7.x/docs/api/fs.html
+
+    projectProtocol = 'https',
+    projectHost = 'smart-starter.mw.sf',
+
+    srcAssets = './app/Resources/assets',
+    distAssets = './web',
 
     source = {
-        img: './web/img',
-        sprites: './web/img/sprites',
-        sass: './app/Resources/assets/sass',
-        sassWatch: './app/Resources/assets/sass/**/**/*.scss',
-        jsWatch: './app/Resources/assets/js/app/app.js',
-        js: './app/Resources/assets/js',
+        img: distAssets + '/img',
+        sprites: distAssets + '/img/sprites',
+        sass: srcAssets + '/sass',
+        js: srcAssets + '/js',
         yml: './app/config/assets.yml'
+    },
+    watch = {
+        sass: srcAssets + '/sass/**/**/*.scss',
+        css: distAssets + '/css/*.css',
+        js: srcAssets + '/js/**/*.js',
+        twig: './app/Resources/views/**/**/**/*.html.twig'
+    },
+    dist = {
+        css: distAssets + '/css',
+        img: distAssets + '/img',
+        sprites: distAssets + '/img/sprites',
+        js: distAssets + '/js'
     };
 
-dist = {
-    css: './web/css',
-    img: './web/img',
-    sprites: './web/img/sprites',
-    js: './web/js'
-};
 
 //== sprites :: gulp icons or logos (sprite alone), gulp icons-sass gulp logos-sass (sprite + sass)
-var hashName = '', hash = '', hashPattern = "abcdefghijklmnopqrstuvwxyz0123456789";
+var hash = '', hashPattern = "abcdefghijklmnopqrstuvwxyz0123456789";
 
 function makeHash(hashName) {
+    var hashName = '';
 
     for (var i = 0; i < 11; i++) {
         hashName += hashPattern.charAt(Math.floor(Math.random() * hashPattern.length));
@@ -57,7 +68,7 @@ function makeSprite(spriteVar, name) {
         chalk.white('hash generated ')
         + chalk.cyan.bold(hash)
     );
-    spriteVar = gulp.src(source.img + '/sprites/' + name + '/*.png').pipe(spritesmith({
+    spriteVar = gulp.src(source.sprites + '/' + name + '/*.png').pipe(spritesmith({
         cssSpritesheetName: hash,
         imgName: name + '.png',
         imgPath: '../img/sprites/' + name, // css write
@@ -72,27 +83,14 @@ function makeSprite(spriteVar, name) {
 gulp.task('icons', function () {
     var icons = '';
     makeSprite(icons, 'icons');
+    //var icons2x = '';
+    //makeSprite(icons2x, 'icons2x');
 });
-/*
- gulp.task('logos', function() {
- var logos = '';
- makeSprite(logos, 'logos');
- });
- */
-
-gulp.task('sass-after-sprite', function () {
-    setTimeout(function () {
-        gulp.start('sass');
-    }, 1500);
-});
-gulp.task('icons-sass', ['icons', 'sass-after-sprite']);
-//gulp.task('logos-sass', ['logos', 'sass-after-sprite']);
 
 
 //== sass :: gulp sass
 gulp.task('sass', function () {
-    gulp.src([source.sassWatch])
-        .pipe(sourcemaps.init())
+    gulp.src([watch.sass])
         .pipe(plumber({
             errorHandler: notify.onError({
                 message: "Error: <%= error.message %>",
@@ -101,15 +99,19 @@ gulp.task('sass', function () {
         }))
         .pipe(sass({
             outputStyle: 'compressed',
+            precision: 7,
             includePaths: [source.sass],
             errLogToConsole: true
         }))
-        .pipe(rename({extname: '.css'}))
+        .pipe(rename({
+            extname: '.css'
+        }))
         .pipe(plumber.stop())
-        .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(dist.css));
 });
 
+
+//== js-xxx (js-folderName => js-app, js-admin)
 loadJsTasks();
 
 function loadJsTasks() {
@@ -148,11 +150,14 @@ function createJsTask(name, sources) {
 
 
 //== shell :: gulp bs (browsersync)
+var hasOpenUi = projectProtocol === 'http' ? '--open ui' : '';
+
 gulp.task('bs', shell.task([
     'browser-sync start --proxy \
-    "https://skeleton.sf" \
+    ' + projectProtocol + '://' + projectHost + ' \
+    ' + hasOpenUi + ' \
     --startPath "app_dev.php/" \
-    --files "./web/css/*.css, ./web/js/*.js, app/Resources/views/**/**/**/*.html.twig"'
+    --files "' + watch.css + ', ' + watch.js + ', ' + watch.twig + '"'
 ]));
 
 //== watch
@@ -172,6 +177,6 @@ gulp.task('watch', function () {
         );
     }
 
-    logWatch(source.sassWatch, 'sass');
-    logWatch(source.jsWatch, 'js-app');
+    logWatch(watch.sass, 'sass');
+    logWatch(watch.js, 'js-app');
 });

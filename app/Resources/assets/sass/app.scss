@@ -2,14 +2,17 @@
 @import 'app/base/variables';
 
 //== BOOTSTRAP CORE
-@import 'app/bootstrap/bootstrap';
+@import 'bootstrap/bootstrap';
 
 //== BASE
 @import 'app/base/mixins';
 @import 'app/base/icons';
 @import 'app/base/fonts';
 @import 'app/base/utilities';
+@import 'admin/base/typographie';
 
 //== LAYOUT
 @import 'app/layout/header';
 @import 'app/layout/footer';
+
+//== COMPONENTS

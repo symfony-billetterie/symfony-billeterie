@@ -2,11 +2,50 @@
    Project variables
    ========================================================================== */
 
+//** Path
 $img-path: '../img/';
 $sprite-path: '#{$img-path}sprites/';
 $font-path: '../fonts/';
 
+//** Police
 $font-family-roboto: "Roboto", Arial, Helvetica, sans-serif;
-$font-family-montserrat: "Montserrat", Arial, Helvetica, sans-serif; 
+$font-family-montserrat: "Montserrat", Arial, Helvetica, sans-serif;
 $font-family-montserrat-light: "montserratlight", Arial, Helvetica, sans-serif;
 $font-family-open-s: 'Open Sans', Arial, Helvetica, sans-serif;
+
+//** Color theme shading
+$color-base: #FF9609;
+$color-darker: lighten($color-base, 13.5%);
+$color-dark: lighten($color-base, 20%);
+$color: lighten($color-base, 33.5%);
+$color-light: lighten($color-base, 46.7%);
+$color-lighter: lighten($color-base, 93.5%);
+
+//** Gray color shading
+$gray-base: #000;
+$gray-darker: lighten($gray-base, 13.5%); // #222
+$gray-dark: lighten($gray-base, 20%); // #333
+$gray: lighten($gray-base, 33.5%); // #555
+$gray-light: lighten($gray-base, 46.7%); // #777
+$gray-lighter: lighten($gray-base, 93.5%); // #eee
+
+//** Background color for `<body>`.
+$body-bg: $color-light;
+
+//** Nav link hover background
+$nav-link-hover-bg: $gray;
+
+//** Dropdown link text color.
+$dropdown-link-color: $color-base;
+
+//** Hover color for dropdown links.
+$dropdown-link-hover-color: darken($color-base, 5%);
+
+//** Hover background for dropdown links.
+$dropdown-link-hover-bg: $color;
+
+//** Global textual link color.
+$link-color: $color-base;
+
+//** Link hover color set via `darken()` function.
+$link-hover-color: darken($link-color, 15%);

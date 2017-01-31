@@ -1,15 +1,20 @@
 //== VARIABLES
-@import 'app/base/variables';
+@import 'admin/base/variables';
 
 //== BOOTSTRAP CORE
-@import 'app/bootstrap/bootstrap';
+@import 'bootstrap/bootstrap';
 
 //== BASE
-@import 'app/base/mixins';
-@import 'app/base/icons';
-@import 'app/base/fonts';
-@import 'app/base/utilities';
+@import 'admin/base/mixins';
+@import 'admin/base/icons';
+@import 'admin/base/fonts';
+@import 'admin/base/utilities';
+@import 'admin/base/typographie';
 
 //== LAYOUT
-@import 'app/layout/header';
-@import 'app/layout/footer';
+@import 'admin/layout/header';
+@import 'admin/layout/footer';
+
+//== COMPONENTS
+@import 'admin/components/navbar';
+@import 'admin/components/container';
