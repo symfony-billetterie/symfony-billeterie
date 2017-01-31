@@ -15,7 +15,7 @@ var gulp = require('gulp'), //== https://github.com/gulpjs/gulp
     fs = require("fs"), //== https://nodejs.org/dist/latest-v7.x/docs/api/fs.html
 
     projectProtocol = 'https',
-    projectHost = 'smart-starter.mw.sf',
+    projectHost = 'billeterie.sf',
 
     srcAssets = './app/Resources/assets',
     distAssets = './web',
