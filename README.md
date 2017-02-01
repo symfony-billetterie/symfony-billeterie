@@ -13,3 +13,6 @@
 - in your project folder run `vendor/bin/phing update:dev`
 
 - go to http://billeterie.sf/app_dev.php/
+
+### Preproduction
+- go to http://billeterie.corentinregnier.fr
