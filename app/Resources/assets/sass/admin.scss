@@ -1,20 +1,17 @@
 //== VARIABLES
 @import 'admin/base/variables';
-
 //== BOOTSTRAP CORE
 @import 'bootstrap/bootstrap';
-
 //== BASE
 @import 'admin/base/mixins';
 @import 'admin/base/icons';
 @import 'admin/base/fonts';
 @import 'admin/base/utilities';
 @import 'admin/base/typographie';
-
 //== LAYOUT
 @import 'admin/layout/header';
 @import 'admin/layout/footer';
-
 //== COMPONENTS
 @import 'admin/components/navbar';
 @import 'admin/components/container';
+@import 'admin/components/panel';

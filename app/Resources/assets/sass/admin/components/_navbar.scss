@@ -4,9 +4,24 @@
 
 /** navbar-nav */
 .navbar {
-    background: $gray;
+    background: $gray-dark;
+    height: 100%;
     margin: 0;
-    border-radius: 0px;
+    border-radius: 0;
+    border: 0;
+    position: fixed;
+    z-index: 1001;
+    top: 10.5%;
+
+    .nav > li {
+        border-bottom: 1px $color-base solid;
+        text-transform: uppercase;
+        font-weight: bold;
+
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
 }
 
 @media (min-width: $screen-tablet) {
@@ -17,7 +32,23 @@
     }
 }
 
+.navbar-collapse {
+    padding: 0;
+    border-top: 0;
+}
+
 /** dropdown-menu */
 .dropdown-menu {
     min-width: 100%;
+    padding: 0;
+}
+
+/** li nav link*/
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    background-color: $color-base;
+    border-radius: 0;
+}
+
+.nav-stacked > li + li {
+    margin-top: 0;
 }

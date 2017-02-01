@@ -21,19 +21,11 @@ $color: lighten($color-base, 33.5%);
 $color-light: lighten($color-base, 46.7%);
 $color-lighter: lighten($color-base, 93.5%);
 
-//** Gray color shading
-$gray-base: #000;
-$gray-darker: lighten($gray-base, 13.5%); // #222
-$gray-dark: lighten($gray-base, 20%); // #333
-$gray: lighten($gray-base, 33.5%); // #555
-$gray-light: lighten($gray-base, 46.7%); // #777
-$gray-lighter: lighten($gray-base, 93.5%); // #eee
-
 //** Background color for `<body>`.
 $body-bg: $color-light;
 
 //** Nav link hover background
-$nav-link-hover-bg: $gray;
+$nav-link-hover-bg: $color;
 
 //** Dropdown link text color.
 $dropdown-link-color: $color-base;

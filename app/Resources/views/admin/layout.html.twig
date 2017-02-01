@@ -17,13 +17,11 @@
     </header>
 {% endblock %}
 {% block container %}
-    <div class="col-md-2 navbar">
-        {% include 'admin/common/content/_sidebar.html.twig' %}
-    </div>
-    <div class="col-md-10">
-        <div class="content">
-            {% block content %}{% endblock %}
-        </div>
+    {% block sidebare %}
+        {% include 'admin/common/sidebar/_sidebar.html.twig' %}
+    {% endblock %}
+    <div class="content">
+        {% block content %}{% endblock %}
     </div>
 {% endblock %}
 
