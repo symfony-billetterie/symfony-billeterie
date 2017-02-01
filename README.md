@@ -1,6 +1,10 @@
 ## BILLETERIE (SYMFONY 3)
 
-### Install
+### Wiki and Post-installation
+
+- go to https://github.com/symfony-billetterie/symfony-billeterie/wiki
+
+### Installattion
 
 - in your project folder run `composer install`
 
@@ -14,5 +18,6 @@
 
 - go to http://billeterie.sf/app_dev.php/
 
-### Preproduction
+### Pre-production
+
 - go to http://billeterie.corentinregnier.fr
