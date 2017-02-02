@@ -25,7 +25,9 @@ $color-lighter: lighten($color-base, 93.5%);
 $body-bg: $color-light;
 
 //** Nav link hover background
-$nav-link-hover-bg: $color;
+$nav-link-hover-bg: $color-base;
+
+$nav-tabs-link-hover-border-color: #fff;
 
 //** Dropdown link text color.
 $dropdown-link-color: $color-base;

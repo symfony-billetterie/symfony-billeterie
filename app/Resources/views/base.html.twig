@@ -5,10 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
-    <meta name="description" content="Admin">
+    <meta name="description" content="{% block meta_description %}{% endblock %}">
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/ico">
     {% block stylesheets %}
-        {% block stylesheets_lib %}{% endblock %}
+        {% block stylesheets_lib %}
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+        {% endblock %}
         {% block current_stylesheet %}{% endblock %}
     {% endblock %}
 </head>

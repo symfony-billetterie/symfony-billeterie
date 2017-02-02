@@ -7,11 +7,11 @@
     background: $gray-dark;
     height: 100%;
     margin: 0;
+    min-width: auto;
     border-radius: 0;
     border: 0;
     position: fixed;
-    z-index: 1001;
-    top: 10.5%;
+    top: 70.5px;
 
     .nav > li {
         border-bottom: 1px $color-base solid;
@@ -24,11 +24,25 @@
     }
 }
 
-@media (min-width: $screen-tablet) {
+.navbar-nav > li > a {
+    padding-top: 20%;
+    padding-bottom: 22%;
 
-    .navbar-nav > li > a {
-        padding-top: 20%;
-        padding-bottom: 22%;
+    &:hover, &:focus {
+        color: $color-lighter;
+    }
+}
+
+@media (max-width: $screen-tablet) {
+    .navbar {
+        top: 85.4px;
+
+        li > a {
+
+            .text-sidebar {
+                display: none;
+            }
+        }
     }
 }
 
@@ -41,12 +55,28 @@
 .dropdown-menu {
     min-width: 100%;
     padding: 0;
+
+    li {
+
+        a:hover, a:focus {
+            color: $color-lighter;
+            background-color: $color-base;
+        }
+    }
 }
 
 /** li nav link*/
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
     background-color: $color-base;
     border-radius: 0;
+}
+
+.nav-pills > li > a {
+    border-radius: 0;
+
+    &:hover, &:focus {
+        color: $color-lighter;
+    }
 }
 
 .nav-stacked > li + li {
