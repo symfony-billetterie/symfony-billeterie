@@ -10,3 +10,8 @@ services:
             - '@translator.default'
         tags:
             - { name: twig.extension }
+
+    twig.extension.html:
+        class: AppBundle\Twig\HtmlSafeExtension
+        tags:
+            - { name: twig.extension, alias: twig_extension_html }
