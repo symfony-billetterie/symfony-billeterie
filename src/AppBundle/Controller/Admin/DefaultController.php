@@ -18,6 +18,7 @@ class DefaultController extends Controller
 {
     /**
      * @Route("/", name="admin_homepage")
+     * @Method({"GET", "POST"})
      *
      * @param Request $request
      *
