@@ -2,9 +2,11 @@
 
 ### Wiki and Post-installation
 
-- go to https://github.com/symfony-billetterie/symfony-billeterie/wiki
+   go to https://github.com/symfony-billetterie/symfony-billeterie/wiki
 
 ### Installattion
+
+- $git clone git@github.com:symfony-billetterie/symfony-billeterie.git
 
 - in your project folder run `composer install`
 
@@ -20,4 +22,4 @@
 
 ### Pre-production
 
-- go to http://billeterie.corentinregnier.fr
+    go to http://billeterie.corentinregnier.fr

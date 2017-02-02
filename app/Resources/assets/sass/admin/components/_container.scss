@@ -9,5 +9,12 @@
 
 /** content */
 .content {
-    margin: 100px 30px 30px 120px;
+    margin: 100px 30px 30px 180px;
+}
+
+@media(max-width: $screen-tablet) {
+
+    .content {
+        margin-left: 80px;
+    }
 }
