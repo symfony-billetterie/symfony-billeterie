@@ -1,0 +1,3 @@
+@function image-url($string) {
+	@return url('#{$img-path}#{$string}');
+}

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block title%}
+Billeterie | Administration
+{% endblock %}
+{% block meta_description %}
+    Billeterie Symfony projet scolaire, partie administration
+{% endblock %}
+{% block current_stylesheet %}
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block header %}
+    <header id="header">
+        <div class="container">
+            {% include 'admin/common/header/_header.html.twig' %}
+        </div>
+    </header>
+{% endblock %}
+{% block container %}
+    {% block sidebare %}
+        {% include 'admin/common/sidebar/_sidebar.html.twig' %}
+    {% endblock %}
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+{% endblock %}
+
+{% block current_script %}
+    <script src="{{ asset('js/admin.min.js') }}"></script>
+{% endblock %}

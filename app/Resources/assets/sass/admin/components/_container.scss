@@ -1,0 +1,20 @@
+/**
+    CONTAINER
+ */
+
+/** container */
+.container {
+    width: auto !important;
+}
+
+/** content */
+.content {
+    margin: 100px 30px 30px 180px;
+}
+
+@media(max-width: $screen-tablet) {
+
+    .content {
+        margin-left: 80px;
+    }
+}

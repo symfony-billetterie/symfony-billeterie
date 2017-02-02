@@ -20,6 +20,7 @@
 node_modules/
 .vagrant/
 *.js.map
+*.css.map
 ubuntu-xenial-16.04-cloudimg-console.log
 apache2.conf
 web/config.php

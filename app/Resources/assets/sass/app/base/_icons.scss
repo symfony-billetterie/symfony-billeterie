@@ -1,0 +1,13 @@
+.icons- {
+    display: inline-block;
+    vertical-align: middle;
+    background-image: url('../img/sprites/icons-ijags59thvd.png');
+    background-repeat: no-repeat;
+}
+
+.icons-favicon {
+    @extend .icons-;
+    width: 48px;
+    height: 48px;
+    background-position: 0px 0px;
+}

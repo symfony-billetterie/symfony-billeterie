@@ -1,0 +1,30 @@
+/**
+    Panel
+ */
+
+/** Panel item */
+.panel {
+    border: 1px solid $color;
+    border-radius: 10px;
+}
+
+/** Panel Header  */
+.panel-heading {
+    padding-bottom: 0px;
+}
+
+/** Panel Title  */
+.panel-title {
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 15px;
+    border-bottom: 1px solid $color;
+}
+
+/** Panel Footer */
+.panel-footer {
+    padding: 10px 0;
+    margin: 0 15px;
+    background-color: #fff;
+    border-top: 1px solid $color;
+}

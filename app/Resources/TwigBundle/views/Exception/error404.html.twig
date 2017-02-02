@@ -1,6 +1,14 @@
-{% extends 'TwigBundle:Exception:error.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block error %}
-    <h3 class="text-center bold">{{ 'error.404.title'|trans }}</h3>
-    <p class="intro text-center">{{ 'error.404.content'|trans|raw }}</p>
+{% block body %}
+    <h1>Page not found</h1>
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {# ... #}
+    {% endif %}
+
+    <p>
+        The requested page couldn't be located. Checkout for any URL
+        misspelling or <a href="{{ path('homepage') }}">return to the homepage</a>.
+    </p>
 {% endblock %}
