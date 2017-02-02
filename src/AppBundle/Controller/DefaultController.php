@@ -23,11 +23,11 @@ class DefaultController extends Controller
      * @param Request $request
      *
      * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * Retourne la page d'accueil du Front Office
      */
     public function indexAction(Request $request)
     {
-        return $this->render('app/default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
-        ]);
+        return $this->render('app/default/index.html.twig');
     }
 }
