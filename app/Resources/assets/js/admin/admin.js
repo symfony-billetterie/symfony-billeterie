@@ -25,7 +25,7 @@ jQuery.fn.animateAuto = function (prop, speed, callback) {
 $(document).ready(function () {
 
     /** Définition des variables */
-    var $textSidebar = $('#text-sidebar');
+    var $textSidebar = $('.text-sidebar');
     var $content = $('.content');
     var $navbar = $('.navbar');
 
@@ -38,13 +38,11 @@ $(document).ready(function () {
             $content.animate({'margin-left': '180px'}, 50);
             $textSidebar.fadeIn(50);
         }
-
         /** Disparition du texte de la sidebar, décalage à droite de la navbar, décalage à droite du contenu */
         if ($content.css('margin-left') == '180px') {
-            $textSidebar.fadeOut(50, function () {
+            $textSidebar.fadeOut(50).promise().done(function () {
                 $navbar.animateAuto('width', 1);
                 $content.animate({'margin-left': '80px'}, 50);
-                console.log('test');
             });
         }
     });

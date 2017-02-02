@@ -112,7 +112,8 @@
 /** Redéfinition de la navbar pour les médias en dessous de la tablette incluse */
 @media (max-width: $screen-tablet) {
     .navbar {
-        width: auto;
+        width: auto !important;
+
         top: 52px;
 
         li > a {

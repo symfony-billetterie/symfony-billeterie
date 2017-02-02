@@ -1,0 +1,78 @@
+<?php
+
+namespace AppBundle\Menu;
+
+use Knp\Menu\FactoryInterface;
+use Knp\Menu\ItemInterface;
+use AppBundle\Menu\Builder as BaseBuilder;
+
+/**
+ * Class AdminBuilder
+ *
+ * @package AppBundle\Menu
+ */
+class AdminBuilder extends BaseBuilder
+{
+    /**
+     * @param FactoryInterface $factory
+     * @param array            $options
+     *
+     * @return ItemInterface
+     */
+    public function mainMenu(FactoryInterface $factory, array $options)
+    {
+        $menu = $factory->createItem('root');
+
+        $this->addItem($menu, 'admin.nav.home', 'admin_homepage', 'home');
+
+//        $candidatures = $this->addItem($menu, 'nav.admin.candidate', null, 'question-circle');
+//        $this->addItem($candidatures, 'nav.admin.candidate_index', 'admin_candidature_index');
+//        if (strpos($routeName, 'admin_candidature') === 0) {
+//            $candidatures->setCurrent(true);
+//        }
+
+        return $menu;
+    }
+
+    /**
+     * @param FactoryInterface $factory
+     * @param array            $options
+     *
+     * @return \Knp\Menu\ItemInterface
+     */
+    public function breadcrumb(FactoryInterface $factory, array $options)
+    {
+        $menu = $factory->createItem('root');
+
+        $this->addItemIfRouteMatch('homepage', $menu, 'homepage', 'admin.nav.home',
+            'file');
+
+        return $menu;
+    }
+
+    /**
+     * @param               $prefix
+     * @param ItemInterface $menuItem
+     * @param               $route
+     * @param               $label
+     * @param null          $icon
+     * @param array         $routeParameters
+     *
+     * @return bool|ItemInterface
+     */
+    public function addItemIfRouteMatch(
+        $prefix,
+        ItemInterface $menuItem,
+        $route,
+        $label,
+        $icon = null,
+        $routeParameters = []
+    ) {
+        $routeName = $this->getRequest()->get('_route');
+        if (strpos($routeName, $prefix) === 0) {
+            $menuItem = $this->addItem($menuItem, $label, $route, $icon, $routeParameters);
+        }
+
+        return $menuItem;
+    }
+}
