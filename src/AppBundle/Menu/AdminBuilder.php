@@ -25,12 +25,6 @@ class AdminBuilder extends BaseBuilder
 
         $this->addItem($menu, 'admin.nav.home', 'admin_homepage', 'home');
 
-//        $candidatures = $this->addItem($menu, 'nav.admin.candidate', null, 'question-circle');
-//        $this->addItem($candidatures, 'nav.admin.candidate_index', 'admin_candidature_index');
-//        if (strpos($routeName, 'admin_candidature') === 0) {
-//            $candidatures->setCurrent(true);
-//        }
-
         return $menu;
     }
 
