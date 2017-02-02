@@ -2,62 +2,64 @@
     NAVBAR
  */
 
-/** navbar-nav */
+/** Marge de la navbar */
 .navbar-nav {
     margin: 0;
 }
 
+/** Espacement intérieur du liens de la navbar-nav */
 .navbar-nav > li > a {
-    padding-top: 20%;
-    padding-bottom: 22%;
+    padding-top: 16.5px;
+    padding-bottom: 16.5px;
 
+    /** Couleur de ces liens lorsqu'on les survoles ou qu'on les focus */
     &:hover, &:focus {
         color: $color-lighter;
     }
 }
 
-/** navbar */
+/** Réécriture de la navbar par défaut de bootstrap */
 .navbar {
     background: $gray-dark;
     height: 100%;
     margin: 0;
     max-width: 150px;
+    width: 150px;
     min-width: auto;
     border-radius: 0;
     border: 0;
     position: fixed;
-    top: 70.5px;
+    top: 52.5px;
 
+    /** Réécriture des éléments de la navbar par défaut */
     .nav > li {
         border-bottom: 1px $color-base solid;
         text-transform: uppercase;
         font-weight: bold;
 
+        /** Aucune bordure (du bas) pour le dernière éléments de la navbar */
         &:last-child {
             border-bottom: 0;
         }
     }
 }
 
-
-
-
-
-
-/** Navbar Collapsable */
+/** Réécriture de la Navbar Collapsable */
 .navbar-collapse {
     padding: 0;
     border-top: 0;
 }
 
-
-
-/** li nav link sidebar(nav-pills)*/
+/**
+*Définir les couleurs et du radius des bordures des liens de la navbar par défaut
+*lors que on suvolle ou qu'elle est active ou qu'on focus
+*/
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
     background-color: $color-base;
     border-radius: 0;
 }
 
+/** Par défaut aucune border-radius pour les liens de menus */
 .nav-pills > li > a {
     border-radius: 0;
 
@@ -66,11 +68,10 @@
     }
 }
 
+/** Lorsque deux éléments li se superpose, on enlève la marge du dessus */
 .nav-stacked > li + li {
     margin-top: 0;
 }
-
-
 
 /** dropdown-menu */
 .dropdown-menu {
@@ -85,12 +86,13 @@
         }
     }
 }
-/** Open dropdown menu */
+
+/** Lorsque le menu dropdown est ouvert, on definit la couleur du texte du dropdown parent */
 .open > a {
     color: $color-lighter;
 }
 
-/** Responsive Media */
+/** Définition responsive de dropdown menu (tout les médias en dessous de la tablette incluse) */
 @media (max-width: $screen-tablet) {
     .navbar-nav .open .dropdown-menu {
         position: absolute;
@@ -107,14 +109,17 @@
     }
 }
 
+/** Redéfinition de la navbar pour les médias en dessous de la tablette incluse */
 @media (max-width: $screen-tablet) {
     .navbar {
-        top: 70px;
+        width: auto;
+        top: 52px;
 
         li > a {
 
+            /** Disparition du texte du menu (on ne laisse que les icones */
             .text-sidebar {
-                display: none;
+                display: none !important;
             }
         }
     }

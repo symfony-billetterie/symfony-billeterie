@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
-{% block title%}
-Billeterie | Administration
+{% block title %}
+    Billeterie | Administration
 {% endblock %}
 {% block meta_description %}
     Billeterie Symfony projet scolaire, partie administration
@@ -12,16 +12,26 @@ Billeterie | Administration
 {% block header %}
     <header id="header">
         <div class="container">
+
+            {# Inclusion du template pour le tête de la page #}
             {% include 'admin/common/header/_header.html.twig' %}
+
         </div>
     </header>
 {% endblock %}
 {% block container %}
-    {% block sidebare %}
+
+    {# Block pour le menu de droite #}
+    {% block sidebar %}
+        {# Inclusion du template pour le menu#}
         {% include 'admin/common/sidebar/_sidebar.html.twig' %}
     {% endblock %}
+
     <div class="content">
+
+        {# Block pour le contenu d'une vue #}
         {% block content %}{% endblock %}
+
     </div>
 {% endblock %}
 

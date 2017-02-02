@@ -1,3 +1,4 @@
+{# Template de base pour les deux thèmes #}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,32 +8,61 @@
     <title>{% block title %}{% endblock %}</title>
     <meta name="description" content="{% block meta_description %}{% endblock %}">
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/ico">
+
+    {# Block de tout les css #}
     {% block stylesheets %}
+
+        {# Block des librairies css externe #}
         {% block stylesheets_lib %}
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
         {% endblock %}
+
+        {# Block des librairies css du thème #}
         {% block current_stylesheet %}{% endblock %}
+
     {% endblock %}
+
 </head>
 <body>
 <main id="main">
+
+    {# Block du template de l'entête de page #}
     {% block header %}{% endblock %}
+
     <div class="container container-reset" id="container">
+
+        {# Block du template des messages flash #}
         {% block flash_message %}
             {% include 'common/_flash.html.twig' %}
         {% endblock %}
+
+        {# Block du template avant le contenant #}
         {% block container_before %}{% endblock %}
+
+        {# Block du template du contenant #}
         {% block container %}
 
         {% endblock %}
 
+        {# Block du template après le contenant #}
         {% block container_after %}{% endblock %}
+
+        {# Block pour le pied de la page #}
         {% block footer %}{% endblock %}
+
     </div>
 </main>
+
+{# Block pour les librairies javascript externe#}
+{% block script_lib %}{% endblock %}
+
+{# Block pour la librairie du thème javascript #}
 {% block current_script %}{% endblock %}
+
+{# Block du js d'une vue en particulier #}
 {% block view_js %}{% endblock %}
+
 </body>
 </html>

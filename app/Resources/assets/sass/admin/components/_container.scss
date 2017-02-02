@@ -2,16 +2,17 @@
     CONTAINER
  */
 
-/** container */
+/** Définir la taille du contenant */
 .container {
     width: auto !important;
 }
 
-/** content */
+/** Définir les marges du contenu */
 .content {
     margin: 100px 30px 30px 180px;
 }
 
+/** Définir la marge de gauche du contenu pour tout les médias plus petits que la tablette incluse */
 @media(max-width: $screen-tablet) {
 
     .content {
