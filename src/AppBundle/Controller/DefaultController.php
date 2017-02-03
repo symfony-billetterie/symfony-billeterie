@@ -10,14 +10,12 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Class DefaultController
  *
- * @Route("/app")
- *
  * @package AppBundle\Controller
  */
 class DefaultController extends Controller
 {
     /**
-     * @Route("/app", name="homepage")
+     * @Route("/", name="homepage")
      * @Method({"GET"})
      *
      * @param Request $request

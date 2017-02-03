@@ -13,7 +13,7 @@
     <header id="header">
         <div class="container">
 
-            {# Inclusion du template pour le tête de la page #}
+            {# Inclusion du template pour entête de la page #}
             {% include 'admin/common/header/_header.html.twig' %}
 
         </div>
@@ -28,7 +28,10 @@
     {% endblock %}
 
     <div class="content">
+
+        {# Template Knp du breadcrumb #}
         {{ knp_menu_render('AppBundle:AdminBuilder:breadcrumb', {'template': 'admin/common/_breadcrumb.html.twig', 'currentClass': 'active'}) }}
+
         {# Block pour le contenu d'une vue #}
         {% block content %}
         {% endblock %}

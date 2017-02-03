@@ -3,7 +3,6 @@ assets:
         app:
             - jquery-1.11.3.min.js
             - bootstrap.min.js
-            - jquery.bxslider.min.js
             - app.js
         admin:
             - jquery-1.11.3.min.js

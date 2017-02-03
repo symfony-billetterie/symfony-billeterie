@@ -30,3 +30,11 @@ admin:
         description: Billeterie Symfony projet scolaire, partie administration
     nav:
         home: Accueil
+
+app:
+    title: Billeterie
+    seo:
+        title: Billeterie | Accueil
+        description: Billeterie Symfony projet scolaire
+    nav:
+        home: Accueil

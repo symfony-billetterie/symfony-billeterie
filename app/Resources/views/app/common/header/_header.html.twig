@@ -1,0 +1,65 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{ path('homepage') }}">Billeterie</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Lien<span class="sr-only">(current)</span></a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false"><span class="caret"></span></a>
+
+                    {% if app.user %}
+                        <ul class="dropdown-menu">
+
+                            <li><a href="#">Déconnexion</a></li>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <li><a href="{{ path('admin_homepage') }}">Administration</a></li>
+                            {% endif %}
+                        </ul>
+                    {% else %}
+                        <div class="dropdown-menu">
+                            <form action="" method="post">
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                        <input class="form-control input-sm" type="text" id="username" name="_username"
+                                               value="" required="required" placeholder="Username">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-lock"></i>
+                                    </span>
+                                        <input class="form-control input-sm" type="password" id="password"
+                                               name="_password" required="required" placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="form-group text-center">
+                                    <button type="submit" id="_submit" name="_submit" class="btn btn-sm">
+                                        Connexion
+                                    </button>
+                                </div>
+                                <div class="row row-reset">
+                                    <div class="text-center">
+                                        <a href="#">
+                                            Mot de passe perdu
+                                        </a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
