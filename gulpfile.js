@@ -178,5 +178,5 @@ gulp.task('watch', function () {
     }
 
     logWatch(watch.sass, 'sass');
-    logWatch(watch.js, 'js-app');
+    logWatch(watch.js, ['app.js', 'admin.js']);
 });
