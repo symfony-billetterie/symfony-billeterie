@@ -3,7 +3,7 @@
 {% block list %}
     {% if item.hasChildren and options.depth is not same as(0) and item.displayChildren %}
         {% import _self as knp_menu %}
-        <ul{{ knp_menu.attributes(listAttributes) }} id="sidebar" class="nav nav-pills nav-stacked collapse in">
+        <ul{{ knp_menu.attributes(listAttributes) }} id="sidebar" class="nav nav-pills nav-stacked">
             {{ block('children') }}
         </ul>
     {% endif %}
@@ -16,68 +16,6 @@
         {%- endif -%}
     {%- endfor -%}
 {% endmacro %}
-
-{% block item %}
-    {% if item.displayed %}
-        {# building the class of the item #}
-        {%- set classes = item.attribute('class') is not empty ? [item.attribute('class')] : [] %}
-        {%- if matcher.isCurrent(item) %}
-            {%- set classes = classes|merge([options.currentClass]) %}
-        {%- elseif matcher.isAncestor(item, options.matchingDepth) %}
-            {%- set classes = classes|merge([options.ancestorClass]) %}
-        {%- endif %}
-        {%- if item.actsLikeFirst %}
-            {%- set classes = classes|merge([options.firstClass]) %}
-        {%- endif %}
-        {%- if item.actsLikeLast %}
-            {%- set classes = classes|merge([options.lastClass]) %}
-        {%- endif %}
-
-        {# Mark item as "leaf" (no children) or as "branch" (has children that are displayed) #}
-        {% if item.hasChildren and options.depth is not same as(0) %}
-            {% if options.branch_class is not empty and item.displayChildren %}
-                {%- set classes = classes|merge([options.branch_class]) %}
-            {% endif %}
-        {% elseif options.leaf_class is not empty %}
-            {%- set classes = classes|merge([options.leaf_class]) %}
-        {%- endif %}
-
-        {%- set attributes = item.attributes %}
-        {%- if classes is not empty %}
-            {%- set attributes = attributes|merge({'class': classes|join(' ')}) %}
-        {%- endif %}
-        {# displaying the item #}
-        {% import _self as knp_menu %}
-        {%- if item.uri is not empty and (not matcher.isCurrent(item) or options.currentAsLink) %}
-        <li {{ knp_menu.attributes(attributes) }} >
-            {{ block('linkElement') }}
-        {%- elseif item.attribute('isTitle') == true %}
-            {{ block('titleElement') }}
-        {%- else %}
-            {# If one of children is active, we set parent to active class for unroll the menu #}
-            {% set childIsActive = false %}
-            {% for child in item.children if matcher.isCurrent(child) %}
-                {% set childIsActive = true %}
-            {% endfor %}
-            {% if childIsActive == true or matcher.isCurrent(item) %}
-                <li class="nav-parent active">
-            {% else %}
-                <li class="nav-parent">
-            {% endif %}
-            {{ block('spanElement') }}
-        {%- endif %}
-        {# render the list of children#}
-        {% if item.attribute('isTitle') != true %}
-            {%- set childrenClasses = item.childrenAttribute('class') is not empty ? [item.childrenAttribute('class')] : [] %}
-            {%- set childrenClasses = childrenClasses|merge(['children dropdown-menu']) %}
-            {%- set listAttributes = item.childrenAttributes|merge({'class': childrenClasses|join(' ') }) %}
-        {% endif %}
-        {{ block('list') }}
-        {% if item.attribute('isTitle') != true %}
-            </li>
-        {% endif %}
-    {% endif %}
-{% endblock %}
 
 {% block linkElement %}{% import _self as knp_menu %}
     <a title="{{ item.name }}" href="{{ item.uri }}" {{ knp_menu.attributes(item.linkAttributes) }}>
