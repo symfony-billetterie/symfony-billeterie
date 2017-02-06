@@ -1,5 +1,35 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}
+    {{ 'app.seo.title'|trans }}
+{% endblock %}
+{% block meta_description %}
+    {{ 'app.seo.description'|trans }}
+{% endblock %}
 {% block current_stylesheet %}
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block header %}
+    <header id="header">
+        <div class="container">
+
+            {# Inclusion du template pour l'entête de la page #}
+            {% include 'app/common/header/_header.html.twig' %}
+
+        </div>
+    </header>
+{% endblock %}
+{% block container %}
+
+    <div class="content">
+
+        {# Block pour le contenu d'une vue #}
+        {% block content %}
+        {% endblock %}
+
+    </div>
+{% endblock %}
+
+{% block current_script %}
+    <script src="{{ asset('js/app.min.js') }}"></script>
 {% endblock %}

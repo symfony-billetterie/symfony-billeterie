@@ -1,0 +1,37 @@
+// Typography
+// -----------------------------------------------------------------------------
+
+/** Couleur de base pour les éléments spécifique */
+h1, h2, h3, h4, h5, h6, .nav > li, a, a:hover, a:focus, .panel-title {
+    color: $color-base;
+    text-decoration: none;
+}
+
+/** Taille des icones FontAwesome du menu sur le côté gauche */
+#sidebar > li > a > .fa {
+    font-size: 20px;
+}
+
+/** Taille et marge (du haut et du bas) du titre de la page  */
+header {
+
+    h1 {
+        font-size: 20px;
+        margin-top: 15.5px;
+        margin-bottom: 15.5px;
+    }
+}
+
+/** Couleur du texte lorsqu'on survole ou qu'on focus un lien dans un titre */
+h1 > a:hover, h1 > a:focus {
+    color: #fff;
+}
+
+/** Médias en dessous de la tablette */
+@media(max-width: $screen-tablet) {
+
+    /** Désactivation de l'icone permettant de aggrandir ou rétrécir la sidebar */
+    #sidebar-collapsed {
+        display: none
+    }
+}

@@ -1,0 +1,15 @@
+{% macro button(route) %}
+    <div class="row mt20">
+        <div class="col-md-2">
+            <a href="{{ route }}" class="btn btn-default btn-quirk btn-sm"
+               title="{{ 'common.submit.back_without_save'|trans }}">
+                <i class="fa fa-arrow-left"></i> {{ 'common.back'|trans }}
+            </a>
+        </div>
+        <div class="col-md-10">
+            <button type="submit" class="btn btn-primary btn-quirk btn-sm mr5 pull-right" name="submit">
+                {{ 'common.submit.save'|trans }}
+            </button>
+        </div>
+    </div>
+{% endmacro %}

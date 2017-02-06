@@ -2,18 +2,18 @@
     Panel
  */
 
-/** Panel item */
+/** Défiir les bordures d'un panel */
 .panel {
     border: 1px solid $color;
     border-radius: 10px;
 }
 
-/** Panel Header  */
+/** Définir l'espacement intérieur du bas pour l'entête d'un panel  */
 .panel-heading {
     padding-bottom: 0px;
 }
 
-/** Panel Title  */
+/** Réécriture du titre d'un panel  */
 .panel-title {
     font-size: 18px;
     font-weight: bold;
@@ -21,7 +21,7 @@
     border-bottom: 1px solid $color;
 }
 
-/** Panel Footer */
+/** Réécriture du pied d'un panel */
 .panel-footer {
     padding: 10px 0;
     margin: 0 15px;

@@ -2,7 +2,7 @@
    Project variables
    ========================================================================== */
 
-//** Path
+//** Chemin de dossier et fichiers
 $img-path: '../img/';
 $sprite-path: '#{$img-path}sprites/';
 $font-path: '../fonts/';
@@ -13,7 +13,7 @@ $font-family-montserrat: "Montserrat", Arial, Helvetica, sans-serif;
 $font-family-montserrat-light: "montserratlight", Arial, Helvetica, sans-serif;
 $font-family-open-s: 'Open Sans', Arial, Helvetica, sans-serif;
 
-//** Color theme shading
+//** Nuance de couleur du thème (Orange)
 $color-base: #FF9609;
 $color-darker: lighten($color-base, 13.5%);
 $color-dark: lighten($color-base, 20%);
@@ -21,25 +21,27 @@ $color: lighten($color-base, 33.5%);
 $color-light: lighten($color-base, 46.7%);
 $color-lighter: lighten($color-base, 93.5%);
 
-//** Background color for `<body>`.
+//** Couleur de base pour l'arrière plan du body
 $body-bg: $color-light;
 
-//** Nav link hover background
+//** Couleur de l'arrière plan des liens de la barre de navigation lorsqu'on les survole
 $nav-link-hover-bg: $color-base;
-//** Nav tabs link hover border color white
+
+//** Couleur de bordure des liens des éléments de navigation lorsqu'on les survole
 $nav-tabs-link-hover-border-color: #fff;
 
-//** Dropdown link text color.
+//** Couleur de texte des liens du menu déroulant en haut à droit
 $dropdown-link-color: $color-base;
 
-//** Hover color for dropdown links.
+//** Couleur de texte des liens du menu déroulant en haut à droit lorsqu'on les survole
 $dropdown-link-hover-color: darken($color-base, 5%);
 
-//** Hover background for dropdown links.
+//** Couleur d'arrière plan des liens du menu déroulant en haut à droit lorsqu'on les survole
+
 $dropdown-link-hover-bg: $color;
 
-//** Global textual link color.
+//** Couleur de texte des liens
 $link-color: $color-base;
 
-//** Link hover color set via `darken()` function.
+//** Couleur de texte des liens lorsqu'on les survole
 $link-hover-color: darken($link-color, 15%);
