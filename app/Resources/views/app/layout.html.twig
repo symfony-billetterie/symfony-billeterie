@@ -12,14 +12,18 @@
 {% block header %}
     <header id="header">
 
-        {# Inclusion du template pour l'entête de la page #}
-        {% include 'app/common/header/_header.html.twig' %}
+        {# Inclusion du template pour le menu de l'entête #}
+        {% include 'app/common/_sidebar.html.twig' %}
 
     </header>
 {% endblock %}
 {% block container %}
 
+
     <div class="content">
+        {# Template Knp du breadcrumb #}
+        {{ knp_menu_render('AppBundle:AppBuilder:breadcrumb', {'template': 'app/common/_breadcrumb.html.twig',
+            'currentClass': 'active'}) }}
 
         {# Block pour le contenu d'une vue #}
         {% block content %}

@@ -4,9 +4,8 @@
             <a class="navbar-brand" href="{{ path('homepage') }}">{{ 'app.title'|trans }}</a>
         </div>
         <div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Lien</a></li>
-            </ul>
+                {{ knp_menu_render('AppBundle:AppBuilder:mainMenu', {'template': 'app/menu/main_menu.html.twig',
+                    'currentClass': 'active'}) }}
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
