@@ -20,6 +20,7 @@
 
 - go to http://billeterie.sf/app_dev.php/
 
+- accces to vm phpmyadmin : http://billeterie.sf/phpmyadmin
 ### Pre-production
 
     go to http://billeterie.corentinregnier.fr

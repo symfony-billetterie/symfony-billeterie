@@ -7,11 +7,11 @@ use Knp\Menu\ItemInterface;
 use AppBundle\Menu\Builder as BaseBuilder;
 
 /**
- * Class AdminBuilder
+ * Class AppBuilder
  *
  * @package AppBundle\Menu
  */
-class AdminBuilder extends BaseBuilder
+class AppBuilder extends BaseBuilder
 {
     /**
      * @param FactoryInterface $factory
@@ -23,7 +23,7 @@ class AdminBuilder extends BaseBuilder
     {
         $menu = $factory->createItem('root');
 
-        $this->addItem($menu, 'admin.nav.home', 'admin_homepage', 'home');
+        $this->addItem($menu, 'app.nav.home', 'homepage');
 
         return $menu;
     }
@@ -37,6 +37,7 @@ class AdminBuilder extends BaseBuilder
     public function breadcrumb(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root');
+
 
         return $menu;
     }
