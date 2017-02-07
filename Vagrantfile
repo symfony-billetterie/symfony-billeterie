@@ -37,6 +37,8 @@ Vagrant.configure(2) do |config|
         }
         # For more information please check http://docs.vagrantup.com/v2/synced-folders/basic_usage.html
       end
+  if Vagrant::Util::Platform.mac ? then
+
   else
     config.vm.synced_folder ".", "/var/www", type: "nfs", :linux__nfs_options => ["rw", "no_root_squash", "no_subtree_check"], nfs_version: "4", nfs_udp: false
   end
