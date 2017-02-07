@@ -10,3 +10,14 @@ $font-family-roboto: "Roboto", Arial, Helvetica, sans-serif;
 $font-family-montserrat: "Montserrat", Arial, Helvetica, sans-serif; 
 $font-family-montserrat-light: "montserratlight", Arial, Helvetica, sans-serif;
 $font-family-open-s: 'Open Sans', Arial, Helvetica, sans-serif;
+
+//** Nuance de couleur du thème (Orange)
+$color-base: #FF9609;
+$color-darker: lighten($color-base, 13.5%);
+$color-dark: lighten($color-base, 20%);
+$color: lighten($color-base, 33.5%);
+$color-light: lighten($color-base, 46.7%);
+$color-lighter: lighten($color-base, 93.5%);
+
+//** Couleur de base pour l'arrière plan du body
+$body-bg: $color-light;
