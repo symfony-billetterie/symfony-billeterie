@@ -8,3 +8,33 @@
 .navbar {
     border-radius: 0px;
 }
+
+.navbar-default {
+    background-color: $gray-darker;
+    border-color: $gray-base;
+}
+
+.navbar-default .navbar-brand {
+    color: $color-base;
+
+    &:hover {
+        color: $gray-darker;
+        background-color: $color-base;
+    }
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus,
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: $gray-darker;
+    background-color: $color-base;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: $color-base;
+}
