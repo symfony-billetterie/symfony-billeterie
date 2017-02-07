@@ -28,6 +28,15 @@
     </div>
 {% endblock %}
 
+{% block footer %}
+    <footer class="footer">
+
+        {# Inclusion du template pour le pied de la page #}
+        {% include 'app/common/footer/_footer.html.twig' %}
+
+    </footer>
+{% endblock %}
+
 {% block current_script %}
     <script src="{{ asset('js/app.min.js') }}"></script>
 {% endblock %}

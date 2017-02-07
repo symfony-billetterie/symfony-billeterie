@@ -11,10 +11,10 @@ parameters:
     # database_path: "%kernel.root_dir%/data.db3"
 
     mailer_transport:  smtp
-    mailer_host:       smtp.gmail.com
-    mailer_user:       corentin.regnier59@gmail.com
-    mailer_password:   ~
-    mailer_port:       25
+    mailer_host:       smtp.sendgrid.net
+    mailer_user:       cocokrl
+    mailer_password:   DoTjcgdPubEo8vWB
+    mailer_port:       587
 
     session_prefix:    billeterie
 
