@@ -8,6 +8,7 @@ global_exclude_dirs:
     - lib/vendor
     - deploy
     - var
+    - helper
 
 exclude_patterns:
     - web/config.php
