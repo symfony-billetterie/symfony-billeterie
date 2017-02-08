@@ -14,6 +14,8 @@
     - `/etc/hosts` on Linux and MAC
     - `C:\WINDOWS\system32\drivers\etc\hosts` on Windows
 
+- in your project folder run `git submodule add https://github.com/deseretdigital/vagrant-helper.git helper`
+
 - in your project folder run `vagrant up`
 
 - in your project folder run `vendor/bin/phing update:dev`
