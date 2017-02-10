@@ -18,7 +18,7 @@
     color: $color-base;
 
     &:hover {
-        color: $gray-darker;
+        color: #fff;
         background-color: $color-base;
     }
 }
@@ -31,10 +31,39 @@
 .navbar-default .navbar-nav > .open > a:focus,
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-    color: $gray-darker;
+    color: #fff;
     background-color: $color-base;
 }
 
 .navbar-default .navbar-nav > li > a {
     color: $color-base;
+}
+
+.block-nav-brand {
+    display: none;
+}
+
+@media(min-width: $screen-tablet) {
+
+    .block-nav {
+        display: block !important;
+    }
+}
+
+@media(max-width: $screen-tablet - 1) {
+
+    .block-nav {
+        display: none;
+    }
+    .block-nav-brand {
+        display: block;
+        color: $color-base;
+        font-size: 20px;
+        padding: 11px;
+
+        &:hover, &:hover {
+            background-color: $color-base;
+            color: #fff;
+        }
+    }
 }
