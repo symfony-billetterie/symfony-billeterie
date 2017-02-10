@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class TypeEvent
+ *
  * @package AppBundle\Entity
  * @ORM\Table(name="type_event")
  * @ORM\Entity(repositoryClass="")
@@ -46,12 +47,13 @@ class TypeEvent
 
     /**
      * @param string $name
+     *
      * @return TypeEvent
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 }
-
