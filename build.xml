@@ -36,6 +36,12 @@
         <exec command="php bin/console doctrine:schema:update --force" passthru="true"/>
     </target>
 
+    <target name="remote:update:preprod" description="Remotely update the preprod">
+        <exec
+                command="ssh billeterie@151.80.43.132 'cd site; vendor/bin/phing update:preprod'" passthru="true"
+                checkreturn="true"/>
+    </target>
+
     <target name="ci" depends="ci:update,tests:schema-validate,tests:behat" description="Run ci build"/>
 
     <target name="ci:update" description="Update project from CI server">
@@ -52,18 +58,13 @@
     <target name="tests:schema-validate" description="Validate that the database schema is in sync with the entity classes">
         <exec command="php bin/console doctrine:schema:validate -e test" checkreturn="true" logoutput="true"/>
     </target>
-    <target name="remote:update:preprod" description="Remotely update the preprod">
-        <exec
-                command="ssh billeterie@151.80.43.132 'cd site; vendor/bin/phing update:preprod'" passthru="true"
-              checkreturn="true"/>
-    </target>
     <target name="tests:run-selenium" description="Run Selenium Server">
         <exec command="vendor/bin/selenium-server-standalone" spawn="true"/>
         <echo msg="Selenium Server started"/>
     </target>
 
     <target name="tests:behat" description="Run behat tests">
-        <exec command="php bin/console mw:fixtures:load --force" passthru="true"/>
+        <exec command="php bin/console doctrine:fixtures:load --force" passthru="true"/>
         <phingcall target="tests:run-selenium"/>
         <exec command="sleep 1"/>
         <exec command="vendor/bin/behat" passthru="true" checkreturn="true"/>

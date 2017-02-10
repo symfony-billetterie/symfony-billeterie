@@ -2,9 +2,18 @@
 // -----------------------------------------------------------------------------
 
 /** Couleur de base pour les éléments spécifique */
-h1, h2, h3, h4, h5, h6, .nav > li, a, a:hover, a:focus, .panel-title {
+h1, h2, h3, h4, h5, h6, .nav > li, .panel-title {
     color: $color-base;
     text-decoration: none;
+}
+
+a {
+    color: $color-base;
+
+    &:hover, &:focus {
+        color: $color-darker;
+        text-decoration: none;
+    }
 }
 
 /** Taille des icones FontAwesome du menu sur le côté gauche */
