@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Controller\Traits\UtilitiesTrait;
 
 /**
  * Class DefaultController
@@ -16,6 +17,8 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class DefaultController extends Controller
 {
+    use UtilitiesTrait;
+
     /**
      * @Route("/", name="admin_homepage")
      * @Method({"GET"})
@@ -28,6 +31,8 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $this->addFlash('danger', 'translation');
+
         return $this->render('admin/default/index.html.twig');
     }
 }

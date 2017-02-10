@@ -25,6 +25,11 @@
         {{ knp_menu_render('AppBundle:AppBuilder:breadcrumb', {'template': 'app/common/_breadcrumb.html.twig',
             'currentClass': 'active'}) }}
 
+        {# Template flash message #}
+        {% block flash_message %}
+            {% include 'app/common/_flash.html.twig' %}
+        {% endblock %}
+
         {# Block pour le contenu d'une vue #}
         {% block content %}
         {% endblock %}

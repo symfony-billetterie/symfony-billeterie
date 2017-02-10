@@ -20,23 +20,24 @@
     </header>
 {% endblock %}
 {% block container %}
-    <div class="col-md-2">
-        {# Block pour le menu de droite #}
-        {% block sidebar %}
-            {# Inclusion du template pour le menu#}
-            {% include 'admin/common/sidebar/_sidebar.html.twig' %}
+    {# Block pour le menu de droite #}
+    {% block sidebar %}
+        {# Inclusion du template pour le menu#}
+        {% include 'admin/common/sidebar/_sidebar.html.twig' %}
+    {% endblock %}
+    <div class="content">
+
+        {# Template Knp du breadcrumb #}
+        {{ knp_menu_render('AppBundle:AdminBuilder:breadcrumb', {'template': 'admin/common/_breadcrumb.html.twig', 'currentClass': 'active'}) }}
+
+        {# Template flash message #}
+        {% block flash_message %}
+            {% include 'admin/common/_flash.html.twig' %}
         {% endblock %}
-    </div>
-    <div class="col-md-10">
-        <div class="content">
 
-            {# Template Knp du breadcrumb #}
-            {{ knp_menu_render('AppBundle:AdminBuilder:breadcrumb', {'template': 'admin/common/_breadcrumb.html.twig', 'currentClass': 'active'}) }}
-
-            {# Block pour le contenu d'une vue #}
-            {% block content %}
-            {% endblock %}
-        </div>
+        {# Block pour le contenu d'une vue #}
+        {% block content %}
+        {% endblock %}
     </div>
 {% endblock %}
 

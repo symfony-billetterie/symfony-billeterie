@@ -24,11 +24,11 @@
     height: 100%;
     margin: 0;
     max-width: 150px;
-    width: auto;
+    width: 150px;
     min-width: auto;
     border-radius: 0;
     border: 0;
-    position: relative;
+    position: fixed;
     top: 52.5px;
 
     /** Réécriture des éléments de la navbar par défaut */

@@ -76,3 +76,12 @@ stof_doctrine_extensions:
             uploadable: true
             timestampable: true
             sluggable: true
+
+# FOSUserBundle Configuration
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: AppBundle\Entity\User
+    from_email:
+        address: '%smart_developper_email%'
+        sender_name: '%smart_developper_email%'
