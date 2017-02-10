@@ -39,6 +39,7 @@ class TypeEvent
 
     /**
      * @param $name
+     *
      * @return $this
      */
     public function setName($name)
