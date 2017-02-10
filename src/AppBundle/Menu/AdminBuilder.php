@@ -15,7 +15,7 @@ class AdminBuilder extends BaseBuilder
 {
     /**
      * @param FactoryInterface $factory
-     * @param array            $options
+     * @param array $options
      *
      * @return ItemInterface
      */
@@ -24,13 +24,14 @@ class AdminBuilder extends BaseBuilder
         $menu = $factory->createItem('root');
 
         $this->addItem($menu, 'admin.nav.home', 'admin_homepage', 'home');
+        $this->addItem($menu, 'admin.nav.event_type', 'index_event_type', 'list');
 
         return $menu;
     }
 
     /**
      * @param FactoryInterface $factory
-     * @param array            $options
+     * @param array $options
      *
      * @return \Knp\Menu\ItemInterface
      */
@@ -46,8 +47,8 @@ class AdminBuilder extends BaseBuilder
      * @param ItemInterface $menuItem
      * @param               $route
      * @param               $label
-     * @param null          $icon
-     * @param array         $routeParameters
+     * @param null $icon
+     * @param array $routeParameters
      *
      * @return bool|ItemInterface
      */
@@ -58,7 +59,8 @@ class AdminBuilder extends BaseBuilder
         $label,
         $icon = null,
         $routeParameters = []
-    ) {
+    )
+    {
         $routeName = $this->getRequest()->get('_route');
         if (strpos($routeName, $prefix) === 0) {
             $menuItem = $this->addItem($menuItem, $label, $route, $icon, $routeParameters);

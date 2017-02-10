@@ -1,19 +1,51 @@
-{% extends '/app/layout.html.twig' %}
-
+{% extends 'admin/layout.html.twig' %}
+{% block stylesheets_lib %}
+    {{ parent() }}
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
+{% endblock %}
 {% block content %}
-    <h1>Types d'évènements</h1>
-    <table>
-        <tr>
-            <td>Type d'évènement</td>
-            <td>Modifier</td>
-            <td>Supprimer</td>
-        </tr>
-    {% for eventType in eventTypes %}
-        <tr>
-            <td>{{ eventType.getName() }}</td>
-            <td><a href="{{ path('edit_event_type', {'eventType':eventType.id}) }}" class="btn btn-info">Modifier</a></td>
-            <td><a href="{{ path('delete_event_type', {'eventType':eventType.id}) }}" class="btn btn-danger">Supprimer</a></td>
-        </tr>
-    {% endfor %}
-    </table>
+    <div class="panel">
+        <div class="panel-heading">
+            <div class="panel-title">Types d'évènement</div>
+        </div>
+        <div class="panel-body">
+            <a href="{{ path('add_event_type') }}" class="btn btn-info btn-ajouter">Ajouter</a>
+            <table id="event-types" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                <th>Type d'évènement</th>
+                <th>Actions</th>
+                </thead>
+                {% for eventType in eventTypes %}
+                    <tr>
+                        <td width="80%">{{ eventType.getName() }}</td>
+                        <td width="20%" style="text-align: center;"><a href="{{ path('edit_event_type', {'eventType':eventType.id}) }}"
+                               class="btn btn-info" title="Modifier"><i class="fa fa-edit"></i></a>
+                            <a href="{{ path('delete_event_type', {'eventType':eventType.id}) }}" class="btn btn-danger"
+                               onclick="return confirm('Etes-vous sûr de vouloir supprimer le type d\'evènement selectionné ?')"
+                               title="Supprimer"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}
+{% block view_js %}
+    {{ parent() }}
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#event-types').DataTable( {
+                "columnDefs": [
+                    { "orderable": false, "targets": 1 }
+                ],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                }
+            } );
+        });
+    </script>
 {% endblock %}

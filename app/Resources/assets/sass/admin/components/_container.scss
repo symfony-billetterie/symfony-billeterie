@@ -12,6 +12,10 @@
     margin: 70px 30px 30px 180px;
 }
 
+.btn-ajouter{
+    margin-bottom: 14px !important;
+}
+
 /** Définir la marge de gauche du contenu pour tout les médias plus petits que la tablette incluse */
 @media(max-width: $screen-tablet) {
 

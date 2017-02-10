@@ -1,0 +1,15 @@
+/**
+    DATATABLE
+ */
+
+/* Modification couleur page active pagination */
+.dataTables_wrapper{
+  .pagination{
+    .paginate_button.active{
+      a{
+        background-color: $color-base;
+        border-color: $color-base;
+      }
+    }
+  }
+}

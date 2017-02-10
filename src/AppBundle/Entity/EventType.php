@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="type_event")
  * @ORM\Entity(repositoryClass="")
  */
-class TypeEvent
+class EventType
 {
     /**
      * @var int

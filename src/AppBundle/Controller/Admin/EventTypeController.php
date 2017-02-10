@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Admin;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -27,9 +27,8 @@ class EventTypeController extends Controller
     public function indexAction()
     {
         $eventTypes = $this->getDoctrine()->getRepository('AppBundle:EventType')->findAll();
-        /*dump($eventTypes);die;*/
 
-        return $this->render('app/event_type/index.html.twig', [
+        return $this->render('admin/event_type/index.html.twig', [
             'eventTypes' => $eventTypes,
         ]);
     }
@@ -43,7 +42,9 @@ class EventTypeController extends Controller
      */
     public function editAction(Request $request, EventType $eventType = null)
     {
+        $edit = true;
         if (is_null($eventType)) {
+            $edit = false;
             $eventType = new EventType();
         }
 
@@ -55,20 +56,41 @@ class EventTypeController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $form->getData() holds the submitted values
             $eventType = $form->getData();
-
             // Save
             $em = $this->getDoctrine()->getManager();
-            $em->persist($eventType);
-            $em->flush();
+
+            try {
+                $em->persist($eventType);
+                $em->flush();
+
+                if ($edit) {
+                    $this->addFlash('success', 'flash.admin.event_type.edit.success');
+                } else {
+                    $this->addFlash('success', 'flash.admin.event_type.add.success');
+                }
+            } catch (\Exception $e) {
+                if ($edit) {
+                    $this->addFlash('danger', 'flash.admin.event_type.edit.danger');
+                } else {
+                    $this->addFlash('danger', 'flash.admin.event_type.add.danger');
+                }
+            }
+
+            // Flash message
+            if ($edit) {
+                $this->addFlash('success', 'flash.admin.event_type.edit.success');
+            } else {
+                $this->addFlash('success', 'flash.admin.event_type.add.success');
+            }
+
 
             return $this->redirectToRoute('index_event_type');
         }
 
-        return $this->render(':app/event_type:edit.html.twig', array(
+        return $this->render('admin/event_type/edit.html.twig', [
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -80,7 +102,12 @@ class EventTypeController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $em->remove($eventType);
-        $em->flush();
+        try {
+            $em->flush();
+            $this->addFlash('success', 'flash.admin.event_type.delete.success');
+        } catch (\Exception $e) {
+            $this->addFlash('danger', 'flash.admin.event_type.delete.danger');
+        }
 
         return $this->redirectToRoute('index_event_type');
     }
