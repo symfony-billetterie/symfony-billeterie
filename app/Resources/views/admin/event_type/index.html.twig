@@ -1,0 +1,19 @@
+{% extends '/app/layout.html.twig' %}
+
+{% block content %}
+    <h1>Types d'évènements</h1>
+    <table>
+        <tr>
+            <td>Type d'évènement</td>
+            <td>Modifier</td>
+            <td>Supprimer</td>
+        </tr>
+    {% for eventType in eventTypes %}
+        <tr>
+            <td>{{ eventType.getName() }}</td>
+            <td><a href="{{ path('edit_event_type', {'eventType':eventType.id}) }}" class="btn btn-info">Modifier</a></td>
+            <td><a href="{{ path('delete_event_type', {'eventType':eventType.id}) }}" class="btn btn-danger">Supprimer</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}
