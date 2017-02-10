@@ -19,15 +19,14 @@ class TypeEvent
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="Name", type="string", length=255)
      */
-    private $name;
-
+    protected $name;
 
     /**
      * @return int
@@ -38,23 +37,21 @@ class TypeEvent
     }
 
     /**
-     * @param $name
-     *
-     * @return $this
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * @return TypeEvent
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
     }
 }
 
