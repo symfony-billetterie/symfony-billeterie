@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\EventType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use AppBundle\Controller\Traits\UtilitiesTrait;
 
 /**
  * Class EventTypeController
@@ -18,11 +19,15 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
  */
 class EventTypeController extends Controller
 {
+    use UtilitiesTrait;
+
     /**
      * @Route("/index", name="index_event_type")
      * @Method({"GET"})
      *
      * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * Liste des types d'évènement
      */
     public function indexAction()
     {
@@ -39,6 +44,8 @@ class EventTypeController extends Controller
      * @param Request $request
      * @param EventType|null $eventType
      * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * Modification et Ajout d'un type d'évènement
      */
     public function editAction(Request $request, EventType $eventType = null)
     {
@@ -77,14 +84,6 @@ class EventTypeController extends Controller
                 }
             }
 
-            // Flash message
-            if ($edit) {
-                $this->addFlash('success', 'flash.admin.event_type.edit.success');
-            } else {
-                $this->addFlash('success', 'flash.admin.event_type.add.success');
-            }
-
-
             return $this->redirectToRoute('index_event_type');
         }
 
@@ -97,6 +96,8 @@ class EventTypeController extends Controller
      * @Route("/delete/{eventType}", name="delete_event_type")
      * @param EventType $eventType
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     *
+     * Suppression d'un type d'évènement
      */
     public function deleteAction(EventType $eventType)
     {

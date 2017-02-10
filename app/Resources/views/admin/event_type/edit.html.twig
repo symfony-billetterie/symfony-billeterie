@@ -1,7 +1,14 @@
 {% extends 'admin/layout.html.twig' %}
 
 {% block content %}
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
+    <div class="panel">
+        <div class="panel-heading">
+            <div class="panel-title">Types d'évènement</div>
+        </div>
+        <div class="panel-body">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}
