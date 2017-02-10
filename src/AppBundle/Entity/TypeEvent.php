@@ -19,14 +19,14 @@ class TypeEvent
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="Name", type="string", length=255)
      */
-    protected $name;
+    private $name;
 
     /**
      * @return int
