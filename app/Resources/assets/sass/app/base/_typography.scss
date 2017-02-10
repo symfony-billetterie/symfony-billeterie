@@ -2,7 +2,16 @@
 // -----------------------------------------------------------------------------
 
 /** Couleur de base pour les éléments spécifique */
-h1, h2, h3, h4, h5, h6, a:hover, a:focus, .panel-title {
+h1, h2, h3, h4, h5, h6, .panel-title {
     color: $color-base;
     text-decoration: none;
+}
+
+a {
+    color: $color-base;
+
+    &:hover, &:focus {
+        color: $color-darker;
+        text-decoration: none;
+    }
 }
