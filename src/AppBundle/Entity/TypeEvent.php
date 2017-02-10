@@ -5,8 +5,8 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TypeEvent
- *
+ * Class TypeEvent
+ * @package AppBundle\Entity
  * @ORM\Table(name="type_event")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TypeEventRepository")
  */
@@ -30,8 +30,6 @@ class TypeEvent
 
 
     /**
-     * Get id
-     *
      * @return int
      */
     public function getId()
@@ -40,11 +38,8 @@ class TypeEvent
     }
 
     /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return TypeEvent
+     * @param $name
+     * @return $this
      */
     public function setName($name)
     {
@@ -54,8 +49,6 @@ class TypeEvent
     }
 
     /**
-     * Get name
-     *
      * @return string
      */
     public function getName()
