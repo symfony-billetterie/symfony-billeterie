@@ -34,8 +34,7 @@
     /** Réécriture des éléments de la navbar par défaut */
     .nav > li {
         border-bottom: 1px $color-base solid;
-        text-transform: uppercase;
-        font-weight: bold;
+        font-weight: 16px;
 
         /** Aucune bordure (du bas) pour le dernière éléments de la navbar */
         &:last-child {

@@ -28,5 +28,5 @@
 ### Pull Request
     Pour mettre votre PR sur github il faut avant tout, tester les fonctionnalités, avoir faits toutes les 
     traductions de vos pages, avoir faire un jeu d'essai, et des controles de validations pour les formulaires. Quand
-     une PR est faites et que c'est la votre consulter 
-    le Insight pour voir cest votre branche en sort indemne, c'est à dire Platinium
+    une PR est faites et que c'est la votre consulter le Insight pour voir cest votre branche en sort indemne, 
+    c'est à dire Platinium.
