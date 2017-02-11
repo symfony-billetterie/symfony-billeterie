@@ -4,16 +4,14 @@
             <a class="navbar-brand" href="{{ path('homepage') }}">{{ 'app.title'|trans }}</a>
         </div>
         <div>
-                {{ knp_menu_render('AppBundle:AppBuilder:mainMenu', {'template': 'app/menu/main_menu.html.twig',
-                    'currentClass': 'active'}) }}
+            {{ knp_menu_render('AppBundle:AppBuilder:mainMenu', {'template': 'app/menu/main_menu.html.twig',
+                'currentClass': 'active'}) }}
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Connexion <span class="caret"></span></a>
-
                     {% if app.user %}
                         <ul class="dropdown-menu">
-
                             <li><a href="#">Déconnexion</a></li>
                             {% if is_granted('ROLE_ADMIN') %}
                                 <li><a href="{{ path('admin_homepage') }}">Administration</a></li>
@@ -22,7 +20,6 @@
                     {% else %}
                         <div class="dropdown-menu">
                             <form action="" method="post">
-
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon">

@@ -6,6 +6,7 @@ common:
     button:
         save: Enregistrer
         back: Retour
+        connection: Connexion
     error:
         403:
             title: Erreur 403 Forbidden
@@ -38,3 +39,9 @@ app:
         description: Billeterie Symfony projet scolaire
     nav:
         home: Accueil
+    user:
+        login:
+            title: Se connecter
+            username: Identifiant
+            password: Mot de passe
+            remember_me: Se souvenir de moi
