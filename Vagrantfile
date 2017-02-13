@@ -21,9 +21,7 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 3306, host: 3360
   config.vm.network "private_network", ip: ip
 
-  if Vagrant::Util::Platform.windows? then
-    config.vm.synced_folder ".", "/var/www", type: "nfs"
-  else if Vagrant::Util::Platform::mac? then
+  if Vagrant::Util::Platform.windows? or Vagrant::Util::Platform::mac? then
     config.vm.synced_folder ".", "/var/www", type: "nfs"
   else
     config.vm.synced_folder ".", "/var/www", type: "nfs", :linux__nfs_options => ["rw", "no_root_squash", "no_subtree_check"], nfs_version: "4", nfs_udp: false
