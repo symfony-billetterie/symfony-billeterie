@@ -1,4 +1,24 @@
-php_version: 7
+ignore_branches:
+    - gh-pages
+
+pre_composer_script: |
+    #!/bin/bash
+
+    cp app/config/parameters.yml.dist app/config/parameters.yml
+    sed -i -e "s/database_user:.*/database_user: root/" app/config/parameters.yml
+    sed -i -e "s/database_password:.*/database_password: Secr3t/" app/config/parameters.yml
+
+post_composer_script: |
+    #!/bin/bash
+
+    ./app/console doctrine:database:create --no-interaction
+    ./app/console doctrine:schema:create --no-interaction
+    ./app/console doctrine:fixtures:load --no-interaction
+
+php_ini: |
+    extension=openssl.so
+    extension=mcrypt.so
+
 global_exclude_dirs:
     - vendor
     - vendors
@@ -17,3 +37,10 @@ exclude_patterns:
     - app/.htaccess
     - src/.htaccess
     - web/.htaccess
+
+
+rules:
+    web.missing_robots_txt:
+        enabled: true
+
+php_version: 7

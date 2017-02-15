@@ -44,6 +44,7 @@ doctrine:
         driver:   pdo_mysql
         host:     "%database_host%"
         port:     "%database_port%"
+        server_version: 5.5
         dbname:   "%database_name%"
         user:     "%database_user%"
         password: "%database_password%"
@@ -76,11 +77,11 @@ stof_doctrine_extensions:
             timestampable: true
             sluggable: true
 
-# app/config/config.yml
+# FOSUserBundle Configuration
 fos_user:
     db_driver: orm
     firewall_name: main
     user_class: AppBundle\Entity\User
     from_email:
-        address: "%smart_developper_email%"
-        sender_name: "%smart_developper_email%"
+        address: '%smart_developper_email%'
+        sender_name: '%smart_developper_email%'

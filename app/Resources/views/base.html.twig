@@ -33,18 +33,11 @@
 
     <div class="container container-reset" id="container">
 
-        {# Block du template des messages flash #}
-        {% block flash_message %}
-            {% include 'common/_flash.html.twig' %}
-        {% endblock %}
-
         {# Block du template avant le contenant #}
         {% block container_before %}{% endblock %}
 
         {# Block du template du contenant #}
-        {% block container %}
-
-        {% endblock %}
+        {% block container %}{% endblock %}
 
         {# Block du template après le contenant #}
         {% block container_after %}{% endblock %}
