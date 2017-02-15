@@ -1,5 +1,5 @@
 {
-  "name": "skeleton",
+  "name": "billeterie",
   "version": "1.0.0",
   "description": "-----------------------------------------------",
   "main": "gulpfile.js",
@@ -29,10 +29,10 @@
   "dependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MWCorentin/MyDeveloperPortfolio.git"
+    "url": "git+https://github.com/symfony-billetterie/symfony-billeterie.git"
   },
   "bugs": {
-    "url": "https://github.com/MWCorentin/MyDeveloperPortfolio/issues"
+    "url": "https://github.com/symfony-billetterie/symfony-billeterie/issues"
   },
-  "homepage": "https://github.com/MWCorentin/MyDeveloperPortfolio#readme"
+  "homepage": "https://github.com/symfony-billetterie/symfony-billeterie#readme"
 }
