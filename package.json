@@ -26,9 +26,7 @@
   "directories": {
     "test": "tests"
   },
-  "dependencies": {
-    "gulp-install": "^0.6.0"
-  },
+  "dependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MWCorentin/MyDeveloperPortfolio.git"

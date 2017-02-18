@@ -2,7 +2,7 @@
     Panel
  */
 
-/** Défiir les bordures d'un panel */
+/** Définir les bordures d'un panel */
 .panel {
     border: 1px solid $color;
     border-radius: 10px;
@@ -27,4 +27,9 @@
     margin: 0 15px;
     background-color: #fff;
     border-top: 1px solid $color;
+}
+
+.column-actions{
+    width: 20%;
+    text-align: center;
 }

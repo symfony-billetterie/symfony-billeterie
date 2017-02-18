@@ -6,6 +6,7 @@ common:
     button:
         save: Enregistrer
         back: Retour
+        delete: Supprimer
     error:
         403:
             title: Erreur 403 Forbidden
@@ -30,7 +31,9 @@ admin:
         description: Billeterie Symfony projet scolaire, partie administration
     nav:
         home: Accueil
-
+    event_type:
+        title : Type d'évènement
+        delete_confirm : Etes-vous sûr de vouloir supprimer le type d\'evènement selectionné ?
 app:
     title: Billeterie
     seo:

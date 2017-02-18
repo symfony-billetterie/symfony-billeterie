@@ -7,23 +7,23 @@
 {% block content %}
     <div class="panel">
         <div class="panel-heading">
-            <div class="panel-title">Types d'évènement</div>
+            <div class="panel-title">{{ 'admin.event_type.title'|trans }}</div>
         </div>
         <div class="panel-body">
             <a href="{{ path('add_event_type') }}" class="btn btn-info btn-ajouter">Ajouter</a>
             <table id="event-types" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
-                <th>Type d'évènement</th>
+                <th>{{ 'admin.event_type.title'|trans }}</th>
                 <th>Actions</th>
                 </thead>
                 {% for eventType in eventTypes %}
                     <tr>
-                        <td width="80%">{{ eventType.getName() }}</td>
-                        <td width="20%" style="text-align: center;"><a href="{{ path('edit_event_type', {'eventType':eventType.id}) }}"
+                        <td>{{ eventType.getName() }}</td>
+                        <td class="column-actions"><a href="{{ path('edit_event_type', {'eventType':eventType.id}) }}"
                                class="btn btn-info" title="Modifier"><i class="fa fa-edit"></i></a>
                             <a href="{{ path('delete_event_type', {'eventType':eventType.id}) }}" class="btn btn-danger"
-                               onclick="return confirm('Etes-vous sûr de vouloir supprimer le type d\'evènement selectionné ?')"
-                               title="Supprimer"><i class="fa fa-trash"></i></a>
+                               onclick="return confirm('{{ 'admin.event_type.delete_confirm'|trans }}')"
+                               title="{{ 'common.button.delete'|trans }}"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -33,7 +33,6 @@
 {% endblock %}
 {% block view_js %}
     {{ parent() }}
-    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
     <script>
