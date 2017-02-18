@@ -5,29 +5,30 @@ namespace AppBundle\Controller\Admin;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\EventDispatcher\Event;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\EventType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use AppBundle\Form\Type\EventTypeType;
 use AppBundle\Controller\Traits\UtilitiesTrait;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class EventTypeController
- * @Route("/type-evenement")
  *
- * @package AppBundle\Controller
+ * @Route("/type-evenement")
  */
 class EventTypeController extends Controller
 {
     use UtilitiesTrait;
 
     /**
+     * Liste des types d'événement
+     *
      * @Route("/index", name="index_event_type")
      * @Method({"GET"})
      *
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
-     * Liste des types d'évènement
+     * @return Response
      */
     public function indexAction()
     {
@@ -39,13 +40,14 @@ class EventTypeController extends Controller
     }
 
     /**
+     * Modification et Ajout d'un type d'événement
+     *
      * @Route("/add", name="add_event_type")
      * @Route("/edit/{eventType}", name="edit_event_type")
      * @param Request $request
      * @param EventType|null $eventType
-     * @return \Symfony\Component\HttpFoundation\Response
      *
-     * Modification et Ajout d'un type d'évènement
+     * @return Response
      */
     public function editAction(Request $request, EventType $eventType = null)
     {
@@ -55,16 +57,11 @@ class EventTypeController extends Controller
             $eventType = new EventType();
         }
 
-        $form = $this->createFormBuilder($eventType)
-            ->add('name', TextType::class)
-            ->add('save', SubmitType::class, array('label' => 'Créer'))
-            ->getForm();
+        $form = $this->createForm(EventTypeType::class, $eventType);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $eventType = $form->getData();
-            // Save
             $em = $this->getDoctrine()->getManager();
 
             try {
@@ -93,11 +90,12 @@ class EventTypeController extends Controller
     }
 
     /**
+     * Suppression d'un type d'événement
+     *
      * @Route("/delete/{eventType}", name="delete_event_type")
      * @param EventType $eventType
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      *
-     * Suppression d'un type d'évènement
+     * @return RedirectResponse
      */
     public function deleteAction(EventType $eventType)
     {

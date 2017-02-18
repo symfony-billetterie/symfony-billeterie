@@ -3,11 +3,12 @@
 {% block content %}
     <div class="panel">
         <div class="panel-heading">
-            <div class="panel-title">Types d'évènement</div>
+            <div class="panel-title">{{ 'admin.event_type.title'|trans }}</div>
         </div>
         <div class="panel-body">
             {{ form_start(form) }}
-            {{ form_widget(form) }}
+            {{ form_widget(form.name) }}
+            {{ form_widget(form.save, { 'label': 'common.button.save'|trans }) }}
             {{ form_end(form) }}
         </div>
     </div>
