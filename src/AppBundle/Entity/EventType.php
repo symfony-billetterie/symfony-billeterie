@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Class TypeEvent
  *
  * @package AppBundle\Entity
- * @ORM\Table(name="type_event")
+ * @ORM\Table(name="event_type")
  * @ORM\Entity(repositoryClass="")
  */
 class EventType

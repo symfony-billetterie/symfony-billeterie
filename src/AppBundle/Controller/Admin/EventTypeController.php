@@ -40,22 +40,17 @@ class EventTypeController extends Controller
     }
 
     /**
-     * Modification et Ajout d'un type d'événement
+     * Ajout d'un type d'événement
      *
      * @Route("/add", name="add_event_type")
-     * @Route("/edit/{eventType}", name="edit_event_type")
      * @param Request $request
-     * @param EventType|null $eventType
      *
      * @return Response
      */
-    public function editAction(Request $request, EventType $eventType = null)
+    public function addAction(Request $request)
     {
-        $edit = true;
-        if (is_null($eventType)) {
-            $edit = false;
-            $eventType = new EventType();
-        }
+
+        $eventType = new EventType();
 
         $form = $this->createForm(EventTypeType::class, $eventType);
 
@@ -67,18 +62,43 @@ class EventTypeController extends Controller
             try {
                 $em->persist($eventType);
                 $em->flush();
-
-                if ($edit) {
-                    $this->addFlash('success', 'flash.admin.event_type.edit.success');
-                } else {
-                    $this->addFlash('success', 'flash.admin.event_type.add.success');
-                }
+                $this->addFlash('success', 'flash.admin.event_type.add.success');
             } catch (\Exception $e) {
-                if ($edit) {
-                    $this->addFlash('danger', 'flash.admin.event_type.edit.danger');
-                } else {
-                    $this->addFlash('danger', 'flash.admin.event_type.add.danger');
-                }
+                $this->addFlash('danger', 'flash.admin.event_type.add.danger');
+            }
+
+            return $this->redirectToRoute('index_event_type');
+        }
+
+        return $this->render('admin/event_type/edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * Modification d'un type d'événement
+     *
+     * @Route("/edit/{eventType}", name="edit_event_type")
+     * @param Request $request
+     * @param EventType|null $eventType
+     *
+     * @return Response
+     */
+    public function editAction(Request $request, EventType $eventType)
+    {
+        $form = $this->createForm(EventTypeType::class, $eventType);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            try {
+                $em->persist($eventType);
+                $em->flush();
+                $this->addFlash('success', 'flash.admin.event_type.edit.success');
+            } catch (\Exception $e) {
+                $this->addFlash('danger', 'flash.admin.event_type.edit.danger');
             }
 
             return $this->redirectToRoute('index_event_type');

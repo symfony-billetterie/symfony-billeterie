@@ -43,7 +43,7 @@ app:
         home: Accueil
 flash:
     admin:
-        event_type:
+        eventtype:
             delete:
                 success: Le type d'évènement a bien été supprimé
                 danger: Erreur, le type d'évènement n'a pas pu être supprimé

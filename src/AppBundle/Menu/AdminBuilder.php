@@ -43,10 +43,10 @@ class AdminBuilder extends BaseBuilder
     }
 
     /**
-     * @param               $prefix
+     * @param $prefix
      * @param ItemInterface $menuItem
-     * @param               $route
-     * @param               $label
+     * @param $route
+     * @param $label
      * @param null $icon
      * @param array $routeParameters
      *
