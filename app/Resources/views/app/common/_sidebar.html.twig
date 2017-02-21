@@ -18,7 +18,7 @@
                         <ul class="dropdown-menu">
 
                             <li><a href="#">{{ 'common.menu.logout'|trans }}</a></li>
-                            {% if is_granted('ROLE_ADMIN') %}
+                            {% if is_granted('ROLE_OBSERVATOR') %}
                                 <li>
                                     <a href="{{ path('admin_homepage') }}">{{ 'admin.sidebar.administration'|trans }}</a>
                                 </li>

@@ -88,6 +88,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
     {
         $now = new \DateTime();
         foreach ($this->users as $user) {
+            /** @var User $thisUser */
             $thisUser = new User();
             $thisUser->addRole($user['role'])
                 ->setCivility($user['civility'])
