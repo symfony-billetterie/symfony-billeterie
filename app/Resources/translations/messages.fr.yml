@@ -1,11 +1,11 @@
 common:
     menu:
-        profil: Profile
         logout: Déconnexion
         back_homepage: Retour sur le site
     button:
         save: Enregistrer
         back: Retour
+        connection: Connexion
     error:
         403:
             title: Erreur 403 Forbidden
@@ -30,6 +30,9 @@ admin:
         description: Billeterie Symfony projet scolaire, partie administration
     nav:
         home: Accueil
+    sidebar:
+        administration: Administration
+
 
 app:
     title: Billeterie
@@ -38,3 +41,12 @@ app:
         description: Billeterie Symfony projet scolaire
     nav:
         home: Accueil
+    user:
+        login:
+            title: Se connecter
+            username: Identifiant
+            password: Mot de passe
+            remember_me: Se souvenir de moi
+            forgotten_password: Mot de passe oublié
+        register:
+            title: S'enregistrer

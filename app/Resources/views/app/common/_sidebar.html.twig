@@ -12,14 +12,16 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Connexion <span class="caret"></span></a>
+                       aria-expanded="false">{{ 'app.user.login.title'|trans }} <span class="caret"></span></a>
 
                     {% if app.user %}
                         <ul class="dropdown-menu">
 
-                            <li><a href="#">Déconnexion</a></li>
-                            {% if is_granted('ROLE_ADMIN') %}
-                                <li><a href="{{ path('admin_homepage') }}">Administration</a></li>
+                            <li><a href="#">{{ 'common.menu.logout'|trans }}</a></li>
+                            {% if is_granted('ROLE_OBSERVATOR') %}
+                                <li>
+                                    <a href="{{ path('admin_homepage') }}">{{ 'admin.sidebar.administration'|trans }}</a>
+                                </li>
                             {% endif %}
                         </ul>
                     {% else %}
@@ -32,7 +34,8 @@
                                             <i class="fa fa-user"></i>
                                         </span>
                                         <input class="form-control input-sm" type="text" id="username" name="_username"
-                                               value="" required="required" placeholder="Username">
+                                               value="" required="required"
+                                               placeholder={{ 'app.user.login.username'|trans }}>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -42,18 +45,20 @@
                                         <i class="fa fa-lock"></i>
                                     </span>
                                         <input class="form-control input-sm" type="password" id="password"
-                                               name="_password" required="required" placeholder="Password">
+                                               name="_password" required="required"
+                                               placeholder="{{ 'app.user.login.password'|trans }}
+                                        }}">
                                     </div>
                                 </div>
                                 <div class="form-group text-center">
                                     <button type="submit" id="_submit" name="_submit" class="btn btn-sm">
-                                        Connexion
+                                        {{ 'common.button.connection'|trans }}
                                     </button>
                                 </div>
                                 <div class="row row-reset">
                                     <div class="text-center">
                                         <a href="#">
-                                            Mot de passe perdu
+                                            {{ 'app.user.login.forgotten_password'|trans }}
                                         </a>
                                     </div>
                                 </div>

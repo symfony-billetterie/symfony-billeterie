@@ -12,7 +12,8 @@
         <exec command="git pull origin master" passthru="true" checkreturn="true"/>
         <exec command="rm -rf var/cache/*" passthru="true" checkreturn="true"/>
         <echo message="Composer install..."/>
-        <exec command="SYMFONY_ENV=prod composer install --no-dev --optimize-autoloader" passthru="true" checkreturn="true"/>
+        <exec command="SYMFONY_ENV=prod composer install --no-dev --optimize-autoloader" passthru="true"
+              checkreturn="true"/>
         <echo message="Clear cache..."/>
         <exec command="rm -rf var/cache/*" passthru="true" checkreturn="true"/>
         <echo message="Reset database..."/>
@@ -34,6 +35,8 @@
         <exec command="rm -rf var/cache/*" passthru="true" checkreturn="true"/>
         <echo message="Reset database..."/>
         <exec command="php bin/console doctrine:schema:update --force" passthru="true"/>
+        <echo message="Load fixtures..."/>
+        <exec command="php bin/console doctrine:fixtures:load" passthru="true" checkreturn="true"/>
     </target>
 
     <target name="remote:update:preprod" description="Remotely update the preprod">
@@ -55,7 +58,8 @@
 
     <target name="tests" depends="tests:schema-validate,tests:behat" description="Run tests"/>
 
-    <target name="tests:schema-validate" description="Validate that the database schema is in sync with the entity classes">
+    <target name="tests:schema-validate"
+            description="Validate that the database schema is in sync with the entity classes">
         <exec command="php bin/console doctrine:schema:validate -e test" checkreturn="true" logoutput="true"/>
     </target>
     <target name="tests:run-selenium" description="Run Selenium Server">
