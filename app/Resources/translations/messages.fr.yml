@@ -1,6 +1,5 @@
 common:
     menu:
-        profil: Profile
         logout: Déconnexion
         back_homepage: Retour sur le site
     button:
@@ -31,6 +30,9 @@ admin:
         description: Billeterie Symfony projet scolaire, partie administration
     nav:
         home: Accueil
+    sidebar:
+        administration: Administration
+
 
 app:
     title: Billeterie
@@ -45,5 +47,6 @@ app:
             username: Identifiant
             password: Mot de passe
             remember_me: Se souvenir de moi
+            forgotten_password: Mot de passe oublié
         register:
             title: S'enregistrer

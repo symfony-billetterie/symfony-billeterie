@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class User
+ *
  * @package AppBundle\Entity
  *
  * @ORM\Entity
@@ -15,6 +16,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User extends BaseUser
 {
+    const USER_ROLE_SUPER_ADMIN = "ROLE_SUPER_ADMIN";
+    const USER_ROLE_OBSERVATOR  = "ROLE_OBSERVATOR";
+    const USER_ROLE_AGENT       = "ROLE_AGENT";
+    const USER_ROLE_BENEFICIARY = "ROLE_BENEFICIARY";
+
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
@@ -44,7 +50,7 @@ class User extends BaseUser
      * @var string
      * @ORM\Column(type="string")
      */
-    protected $name;
+    protected $lastName;
 
     /**
      * @var string
@@ -81,6 +87,214 @@ class User extends BaseUser
      * @ORM\Column(type="string")
      */
     protected $idNumber;
+
+    /**
+     * @return string
+     */
+    public function getCivility(): string
+    {
+        return $this->civility;
+    }
+
+    /**
+     * @param string $civility
+     *
+     * @return User
+     */
+    public function setCivility(string $civility): User
+    {
+        $this->civility = $civility;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getBirthdayDate(): \DateTime
+    {
+        return $this->birthdayDate;
+    }
+
+    /**
+     * @param \DateTime $birthdayDate
+     *
+     * @return User
+     */
+    public function setBirthdayDate(\DateTime $birthdayDate): User
+    {
+        $this->birthdayDate = $birthdayDate;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAddress(): string
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param string $address
+     *
+     * @return User
+     */
+    public function setAddress(string $address): User
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCity(): string
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param string $city
+     *
+     * @return User
+     */
+    public function setCity(string $city): User
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @param mixed $firstName
+     *
+     * @return User
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastName(): string
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param string $lastName
+     *
+     * @return User
+     */
+    public function setLastName(string $lastName): User
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getZipCode(): string
+    {
+        return $this->zipCode;
+    }
+
+    /**
+     * @param string $zipCode
+     *
+     * @return User
+     */
+    public function setZipCode(string $zipCode): User
+    {
+        $this->zipCode = $zipCode;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhone(): string
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @param string $phone
+     *
+     * @return User
+     */
+    public function setPhone(string $phone): User
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIdCard(): string
+    {
+        return $this->idCard;
+    }
+
+    /**
+     * @param string $idCard
+     *
+     * @return User
+     */
+    public function setIdCard(string $idCard): User
+    {
+        $this->idCard = $idCard;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIdNumber(): string
+    {
+        return $this->idNumber;
+    }
+
+    /**
+     * @param string $idNumber
+     *
+     * @return User
+     */
+    public function setIdNumber(string $idNumber): User
+    {
+        $this->idNumber = $idNumber;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * User constructor.
