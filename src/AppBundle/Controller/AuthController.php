@@ -24,7 +24,7 @@ class AuthController extends Controller
      *
      * @return Response
      * @Route("/auth/login", name="auth_login")
-     * @Method({"POST"})
+     * @Method({"GET"})
      */
     public function loginAction(Request $request)
     {
