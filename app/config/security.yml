@@ -4,8 +4,8 @@ security:
         FOS\UserBundle\Model\UserInterface: bcrypt
     role_hierarchy:
         ROLE_BENEFICIARY: ROLE_USER
-        ROLE_OBSERVATOR: ROLE_BENEFICIARY
-        ROLE_AGENT: ROLE_OBSERVATOR
+        ROLE_OBSERVATORY: ROLE_BENEFICIARY
+        ROLE_AGENT: ROLE_OBSERVATORY
         ROLE_SUPER_ADMIN: ROLE_AGENT
     providers:
         fos_userbundle:
@@ -30,4 +30,4 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin, role: ROLE_OBSERVATOR }
+        - { path: ^/admin, role: ROLE_OBSERVATORY }

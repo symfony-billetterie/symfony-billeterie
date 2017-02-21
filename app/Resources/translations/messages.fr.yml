@@ -60,3 +60,9 @@ app:
             forgotten_password: Mot de passe oublié
         register:
             title: S'enregistrer
+
+log:
+    user:
+        login:
+            title: Connexion
+            message: C'est connecté à la billeterie

@@ -31,7 +31,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
             'enabled'   => true,
         ],
         [
-            'role'      => User::USER_ROLE_OBSERVATOR,
+            'role'      => User::USER_ROLE_OBSERVATORY,
             'civility'  => 'Mr',
             'firstName' => 'Fred',
             'lastName'  => 'Genouvrier',

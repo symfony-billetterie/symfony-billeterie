@@ -3,6 +3,7 @@
 namespace AppBundle\Manager;
 
 use AppBundle\Entity\Log;
+use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Translation\TranslatorInterface;
 
@@ -29,15 +30,20 @@ class LogManager
     /**
      * @param string $type
      * @param string $message
-     * @param        $user
+     * @param User   $user
+     *
+     * @return Log
      */
-    public function logAction(string $type, string $message, $user)
+    public function logAction(string $type, string $message, User $user)
     {
         /** @var Log $log */
         $log = new Log();
-        $log->setType($type)
-            ->setUser($this->translator->trans($message))
-            ->setMessage($user);
+        $log->setType($this->translator->trans($type))
+            ->setMessage($this->translator->trans($message))
+            ->setUser($user);
         $this->em->persist($log);
+        $this->em->flush();
+
+        return $log;
     }
 }

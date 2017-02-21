@@ -18,8 +18,8 @@
                         <th>{{ 'admin.log.type'|trans }}</th>
                         <th>{{ 'admin.log.message'|trans }}</th>
                         <th>{{ 'admin.log.created_at'|trans }}</th>
-                        {#<th>{{ 'admin.log.user_id'|trans }}</th>#}
-                        {#<th>{{ 'admin.log.user'|trans }}</th>#}
+                        <th>{{ 'admin.log.user_id'|trans }}</th>
+                        <th>{{ 'admin.log.user'|trans }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -28,8 +28,8 @@
                             <td>{{ log.type }}</td>
                             <td>{{ log.message }}</td>
                             <td>{{ log.createdAt|date('d/m/Y H:i') }}</td>
-                            {#<td>{{ log.user.id }}</td>#}
-                            {#<td>{{ log.user.firstName }} {{ log.user.lastName }}</td>#}
+                            <td>{{ log.user.id }}</td>
+                            <td>{{ log.user.firstName }} {{ log.user.lastName }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>

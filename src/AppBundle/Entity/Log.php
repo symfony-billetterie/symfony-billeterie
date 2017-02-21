@@ -37,13 +37,13 @@ class Log
      */
     private $message;
 
-//    /**
-//     * @var User
-//     *
-//     * @ORM\ManyToOne(targetEntity="User")
-//     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-//     */
-//    private $user;
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
 
     /**
      * @return int
@@ -66,9 +66,8 @@ class Log
      *
      * @return Log
      */
-    public function setType(
-        string $type
-    ): Log {
+    public function setType(string $type): Log
+    {
         $this->type = $type;
 
         return $this;
@@ -87,31 +86,30 @@ class Log
      *
      * @return Log
      */
-    public function setMessage(
-        string $message
-    ): Log {
+    public function setMessage(string $message): Log
+    {
         $this->message = $message;
 
         return $this;
     }
 
-//    /**
-//     * @return string
-//     */
-//    public function getUser(): string
-//    {
-//        return $this->user;
-//    }
-//
-//    /**
-//     * @param string $user
-//     *
-//     * @return Log
-//     */
-//    public function setUser(string $user): Log
-//    {
-//        $this->user = $user;
-//
-//        return $this;
-//    }
+    /**
+     * @return User
+     */
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     *
+     * @return Log
+     */
+    public function setUser(User $user): Log
+    {
+        $this->user = $user;
+
+        return $this;
+    }
 }
