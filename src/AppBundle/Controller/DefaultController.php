@@ -17,11 +17,13 @@ class DefaultController extends Controller
      * @Route("/", name="homepage")
      * @Method({"GET"})
      *
+     * @param Request $request
+     *
      * @return Response
      *
      * Retourne la page d'accueil du Front Office
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         return $this->render('app/default/index.html.twig');
     }

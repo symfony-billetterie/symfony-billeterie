@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Controller\Traits\UtilitiesTrait;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,6 +24,7 @@ class AuthController extends Controller
      *
      * @return Response
      * @Route("/auth/login", name="auth_login")
+     * @Method({"POST"})
      */
     public function loginAction(Request $request)
     {
