@@ -40,7 +40,7 @@
     
 ####observator
     email: observatory@gmail.com
-    username: observator
+    username: observatory
     password: 1234
     
 ####agent

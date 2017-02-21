@@ -6,7 +6,6 @@ use AppBundle\Entity\User;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 use AppBundle\Menu\Builder as BaseBuilder;
-use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 
 /**
  * Class AdminBuilder
