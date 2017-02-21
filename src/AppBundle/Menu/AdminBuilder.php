@@ -2,9 +2,11 @@
 
 namespace AppBundle\Menu;
 
+use AppBundle\Entity\User;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 use AppBundle\Menu\Builder as BaseBuilder;
+use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 
 /**
  * Class AdminBuilder
@@ -22,7 +24,10 @@ class AdminBuilder extends BaseBuilder
         $menu = $factory->createItem('root');
 
         $this->addItem($menu, 'admin.nav.home', 'admin_homepage', 'home');
-        $this->addItem($menu, 'admin.nav.log', 'admin_log_index', 'file-text');
+
+        if ($this->getAuthorization()->isGranted(User::USER_ROLE_SUPER_ADMIN)) {
+            $this->addItem($menu, 'admin.nav.log', 'admin_log_index', 'file-text');
+        }
 
         return $menu;
     }
@@ -35,7 +40,9 @@ class AdminBuilder extends BaseBuilder
     public function breadcrumb(FactoryInterface $factory)
     {
         $menu = $factory->createItem('root');
-        $this->addItemIfRouteMatch('admin_log_index', $menu, 'admin_log_index', 'admin.nav.log', 'file-text');
+        if ($this->getAuthorization()->isGranted(User::USER_ROLE_SUPER_ADMIN)) {
+            $this->addItemIfRouteMatch('admin_log_index', $menu, 'admin_log_index', 'admin.nav.log', 'file-text');
+        }
 
         return $menu;
     }

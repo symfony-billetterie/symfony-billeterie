@@ -7,7 +7,7 @@ imports:
     - { resource: form.yml }
 
 services:
-   login_success_handler:
+    login_success_handler:
         class:      AppBundle\Security\Authentication\Handler\LoginSuccessHandler
         arguments:
             - "@router"

@@ -1,7 +1,6 @@
 <?php
 namespace AppBundle\Security\Authentication\Handler;
 
-use AppBundle\Entity\Log;
 use AppBundle\Entity\User;
 use AppBundle\Manager\LogManager;
 use Symfony\Component\HttpFoundation\Request;
