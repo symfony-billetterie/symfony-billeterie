@@ -1,11 +1,11 @@
 common:
     menu:
-        profil: Profile
         logout: Déconnexion
         back_homepage: Retour sur le site
     button:
         save: Enregistrer
         back: Retour
+        connection: Connexion
         back_without_save: Retour sans sauvegarder
     error:
         403:
@@ -40,6 +40,9 @@ admin:
         created_at: Créer à
         user_id: Id Utilisateur
         user: Nom - Prénom Utilisateur
+    sidebar:
+        administration: Administration
+
 
 app:
     title: Billeterie
@@ -48,3 +51,12 @@ app:
         description: Billeterie Symfony projet scolaire
     nav:
         home: Accueil
+    user:
+        login:
+            title: Se connecter
+            username: Identifiant
+            password: Mot de passe
+            remember_me: Se souvenir de moi
+            forgotten_password: Mot de passe oublié
+        register:
+            title: S'enregistrer

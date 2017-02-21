@@ -34,6 +34,8 @@
         <exec command="rm -rf var/cache/*" passthru="true" checkreturn="true"/>
         <echo message="Reset database..."/>
         <exec command="php bin/console doctrine:schema:update --force" passthru="true"/>
+        <echo message="Load fixtures..."/>
+        <exec command="php bin/console doctrine:fixtures:load" passthru="true" checkreturn="true"/>
     </target>
 
     <target name="remote:update:preprod" description="Remotely update the preprod">
