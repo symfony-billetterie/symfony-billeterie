@@ -8,8 +8,6 @@ use AppBundle\Menu\Builder as BaseBuilder;
 
 /**
  * Class AdminBuilder
- *
- * @package AppBundle\Menu
  */
 class AdminBuilder extends BaseBuilder
 {
@@ -24,19 +22,20 @@ class AdminBuilder extends BaseBuilder
         $menu = $factory->createItem('root');
 
         $this->addItem($menu, 'admin.nav.home', 'admin_homepage', 'home');
+        $this->addItem($menu, 'admin.nav.log', 'admin_log_index', 'file-text');
 
         return $menu;
     }
 
     /**
      * @param FactoryInterface $factory
-     * @param array            $options
      *
-     * @return \Knp\Menu\ItemInterface
+     * @return ItemInterface
      */
-    public function breadcrumb(FactoryInterface $factory, array $options)
+    public function breadcrumb(FactoryInterface $factory)
     {
         $menu = $factory->createItem('root');
+        $this->addItemIfRouteMatch('admin_log_index', $menu, 'admin_log_index', 'admin.nav.log', 'file-text');
 
         return $menu;
     }

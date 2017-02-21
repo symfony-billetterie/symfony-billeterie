@@ -10,24 +10,28 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Controller\Traits\UtilitiesTrait;
 
 /**
- * Class DefaultController
+ * Class LogController
+ *
+ * @Route("/log")
  */
-class DefaultController extends Controller
+class LogController extends Controller
 {
     use UtilitiesTrait;
 
     /**
-     * @Route("/", name="admin_homepage")
+     * @Route("/index", name="admin_log_index")
      * @Method({"GET"})
-     *
-     * @param Request $request
      *
      * @return Response
      *
-     * Retourne la page d'accueil du Back Office
+     * Retourne la page d'index des logs du Back Office
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
-        return $this->render('admin/default/index.html.twig');
+        $logs = $this->getDoctrine()->getRepository('AppBundle:Log')->findBy([], ['createdAt' => 'Desc']);
+
+        return $this->render('admin/log/index.html.twig', [
+            'logs' => $logs,
+        ]);
     }
 }
