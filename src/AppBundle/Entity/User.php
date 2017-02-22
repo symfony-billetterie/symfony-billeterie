@@ -17,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
 class User extends BaseUser
 {
     const USER_ROLE_SUPER_ADMIN = "ROLE_SUPER_ADMIN";
-    const USER_ROLE_OBSERVATOR  = "ROLE_OBSERVATOR";
+    const USER_ROLE_OBSERVATORY = "ROLE_OBSERVATORY";
     const USER_ROLE_AGENT       = "ROLE_AGENT";
     const USER_ROLE_BENEFICIARY = "ROLE_BENEFICIARY";
 

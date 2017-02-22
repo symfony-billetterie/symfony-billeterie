@@ -39,8 +39,8 @@
     password: 1234
     
 ####observator
-    email: observator@gmail.com
-    username: observator
+    email: observatory@gmail.com
+    username: observatory
     password: 1234
     
 ####agent

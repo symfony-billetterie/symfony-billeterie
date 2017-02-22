@@ -19,3 +19,12 @@
         margin-left: 80px !important;
     }
 }
+
+/** Définir la marge de gauche du contenu pour tout les médias plus petits que la tablette incluse */
+@media(max-width: $screen-phone) {
+
+    .content {
+        margin-left: 50px !important;
+        margin-right: 4px !important;
+    }
+}

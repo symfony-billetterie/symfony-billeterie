@@ -1,0 +1,19 @@
+/**
+ *  Datatable overwrite
+ */
+
+table.dataTable.nowrap th, table.dataTable.nowrap td {
+    white-space: normal !important;
+}
+
+div.dataTables_wrapper div.dataTables_info {
+    white-space: normal !important;
+}
+
+div.dataTables_wrapper div.dataTables_filter label {
+    white-space: normal !important;
+}
+
+div.dataTables_wrapper div.dataTables_filter input {
+    width: 147px !important;
+}

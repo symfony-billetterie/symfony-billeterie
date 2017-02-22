@@ -2,7 +2,7 @@
 namespace AppBundle\Security\Authentication\Handler;
 
 use AppBundle\Entity\User;
-use Doctrine\ORM\EntityManager;
+use AppBundle\Manager\LogManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Router;
@@ -17,23 +17,23 @@ class LoginSuccessHandler implements AuthenticationSuccessHandlerInterface
 {
     private $router;
     private $security;
-    private $entityManager;
+    private $logManager;
 
     /**
      * LoginSuccessHandler constructor.
      *
      * @param Router               $router
      * @param AuthorizationChecker $authorizationChecker
-     * @param EntityManager        $entityManager
+     * @param LogManager           $logManager
      */
     public function __construct(
         Router $router,
         AuthorizationChecker $authorizationChecker,
-        EntityManager $entityManager
+        LogManager $logManager
     ) {
-        $this->router        = $router;
-        $this->security      = $authorizationChecker;
-        $this->entityManager = $entityManager;
+        $this->router     = $router;
+        $this->security   = $authorizationChecker;
+        $this->logManager = $logManager;
     }
 
     /**
@@ -47,11 +47,12 @@ class LoginSuccessHandler implements AuthenticationSuccessHandlerInterface
         if (!empty($securityLogin)) {
             $request->getSession()->remove('login');
         }
-        if ($this->security->isGranted(User::USER_ROLE_OBSERVATOR)) {
+        if ($this->security->isGranted(User::USER_ROLE_OBSERVATORY)) {
             $routeName = 'admin_homepage';
         } else {
             $routeName = 'homepage';
         }
+        $this->logManager->logAction('log.user.login.title', 'log.user.login.message', $token->getUser());
         $response = new RedirectResponse($this->router->generate($routeName));
 
         return $response;

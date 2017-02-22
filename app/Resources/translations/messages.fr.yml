@@ -6,6 +6,7 @@ common:
         save: Enregistrer
         back: Retour
         connection: Connexion
+        back_without_save: Retour sans sauvegarder
     error:
         403:
             title: Erreur 403 Forbidden
@@ -25,11 +26,20 @@ common:
 
 admin:
     title: Billeterie Admin
+    actions: Actions
     seo:
         title: Billeterie | Administration
         description: Billeterie Symfony projet scolaire, partie administration
     nav:
         home: Accueil
+        log: Registre
+    log:
+        title: Registre
+        type: Type
+        message: Message
+        created_at: Créer à
+        user_id: Id Utilisateur
+        user: Nom - Prénom Utilisateur
     sidebar:
         administration: Administration
 
@@ -50,3 +60,9 @@ app:
             forgotten_password: Mot de passe oublié
         register:
             title: S'enregistrer
+
+log:
+    user:
+        login:
+            title: Connexion
+            message: C'est connecté à la billeterie

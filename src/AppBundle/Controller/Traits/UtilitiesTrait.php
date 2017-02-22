@@ -7,13 +7,13 @@ use FOS\UserBundle\Model\UserInterface as User;
 
 /**
  * Class UtilitiesTrait
- *
- * @package AppBundle\Controller\Traits
  */
 trait UtilitiesTrait
 {
     /**
      * @param bool $strict
+     *
+     * @return null
      */
     public function getUser($strict = true)
     {
@@ -62,8 +62,8 @@ trait UtilitiesTrait
         $translationDomain = null
     ) {
         if ($translate) {
-            $message = $this->container->get('translator')->trans($message, $parameters, $translationDomain);
+            $message = $this->get('translator')->trans($message, $parameters, $translationDomain);
         }
-        $this->container->get('session')->getFlashBag()->add($type, $message);
+        $this->get('session')->getFlashBag()->add($type, $message);
     }
 }

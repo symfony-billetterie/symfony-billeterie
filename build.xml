@@ -12,8 +12,7 @@
         <exec command="git pull origin master" passthru="true" checkreturn="true"/>
         <exec command="rm -rf var/cache/*" passthru="true" checkreturn="true"/>
         <echo message="Composer install..."/>
-        <exec command="SYMFONY_ENV=prod composer install --no-dev --optimize-autoloader" passthru="true"
-              checkreturn="true"/>
+        <exec command="SYMFONY_ENV=prod composer install --no-dev --optimize-autoloader" passthru="true" checkreturn="true"/>
         <echo message="Clear cache..."/>
         <exec command="rm -rf var/cache/*" passthru="true" checkreturn="true"/>
         <echo message="Reset database..."/>
@@ -45,32 +44,7 @@
                 checkreturn="true"/>
     </target>
 
-    <target name="ci" depends="ci:update,tests:schema-validate,tests:behat" description="Run ci build"/>
-
-    <target name="ci:update" description="Update project from CI server">
-        <exec command="cp app/config/parameters.yml.test app/config/parameters.yml" checkreturn="true" passthru="true"/>
-        <exec command="composer install --no-interaction" checkreturn="true" passthru="true"/>
-        <exec command="php bin/console cache:clear -e test" checkreturn="true" passthru="true"/>
-        <exec command="php bin/console doctrine:database:drop -e test --force" passthru="true"/>
-        <exec command="php bin/console doctrine:database:create -e test" passthru="true"/>
-        <exec command="php bin/console doctrine:schema:create -e test" passthru="true"/>
-    </target>
-
-    <target name="tests" depends="tests:schema-validate,tests:behat" description="Run tests"/>
-
-    <target name="tests:schema-validate"
-            description="Validate that the database schema is in sync with the entity classes">
-        <exec command="php bin/console doctrine:schema:validate -e test" checkreturn="true" logoutput="true"/>
-    </target>
-    <target name="tests:run-selenium" description="Run Selenium Server">
-        <exec command="vendor/bin/selenium-server-standalone" spawn="true"/>
-        <echo msg="Selenium Server started"/>
-    </target>
-
-    <target name="tests:behat" description="Run behat tests">
-        <exec command="php bin/console doctrine:fixtures:load --force" passthru="true"/>
-        <phingcall target="tests:run-selenium"/>
-        <exec command="sleep 1"/>
-        <exec command="vendor/bin/behat" passthru="true" checkreturn="true"/>
+    <target name="tests:schema-validate" description="Validate that the database schema is in sync with the entity classes">
+        <exec command="php bin/console doctrine:schema:validate" checkreturn="true" logoutput="true"/>
     </target>
 </project>
