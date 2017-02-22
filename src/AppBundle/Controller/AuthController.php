@@ -24,7 +24,7 @@ class AuthController extends Controller
      *
      * @return Response
      * @Route("/auth/login", name="auth_login")
-     * @Method({"GET"})
+     * @Method({"PUT"})
      */
     public function loginAction(Request $request)
     {
@@ -45,9 +45,7 @@ class AuthController extends Controller
         }
 
         $lastUsername = (null === $session) ? '' : $session->get($lastUsernameKey);
-        $csrfToken    = $this->has('security.csrf.token_manager')
-            ? $this->get('security.csrf.token_manager')->getToken('authenticate')->getValue()
-            : null;
+        $csrfToken    = $this->has('security.csrf.token_manager') ? $this->get('security.csrf.token_manager')->getToken('authenticate')->getValue() : null;
 
         return $this->render('app/auth/login.html.twig', [
             'last_username' => $lastUsername,
