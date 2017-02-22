@@ -12,6 +12,7 @@ security:
             id: fos_user.user_provider.username_email
     firewalls:
         main:
+            access_denied_handler: app.security.access_denied_handler
             pattern: ^/
             form_login:
                 provider: fos_userbundle
