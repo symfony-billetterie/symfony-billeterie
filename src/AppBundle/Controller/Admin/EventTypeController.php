@@ -49,7 +49,7 @@ class EventTypeController extends Controller
      */
     public function addAction(Request $request)
     {
-
+        /** @var EventType $eventType */
         $eventType = new EventType();
 
         $form = $this->createForm(EventTypeType::class, $eventType);
@@ -80,7 +80,7 @@ class EventTypeController extends Controller
      *
      * @Route("/edit/{eventType}", name="edit_event_type")
      * @param Request $request
-     * @param EventType|null $eventType
+     * @param EventType $eventType
      *
      * @return Response
      */
