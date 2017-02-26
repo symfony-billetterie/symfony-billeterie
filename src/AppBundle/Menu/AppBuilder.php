@@ -30,7 +30,7 @@ class AppBuilder extends BaseBuilder
      * @param FactoryInterface $factory
      * @param array            $options
      *
-     * @return \Knp\Menu\ItemInterface
+     * @return ItemInterface
      */
     public function breadcrumb(FactoryInterface $factory, array $options)
     {
