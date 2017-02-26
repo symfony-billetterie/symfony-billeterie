@@ -1,0 +1,4 @@
+form:
+    event_type:
+        name:
+            NotNull: Le nom du type d'évènement ne peut pas être nul

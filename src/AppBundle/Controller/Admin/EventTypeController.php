@@ -25,7 +25,7 @@ class EventTypeController extends Controller
     /**
      * Liste des types d'événement
      *
-     * @Route("/index", name="index_event_type")
+     * @Route("/", name="admin_event_type_index")
      * @Method({"GET"})
      *
      * @return Response
@@ -42,7 +42,7 @@ class EventTypeController extends Controller
     /**
      * Ajout d'un type d'événement
      *
-     * @Route("/add", name="add_event_type")
+     * @Route("/ajouter", name="admin_event_type_add")
      * @param Request $request
      *
      * @return Response
@@ -67,7 +67,7 @@ class EventTypeController extends Controller
                 $this->addFlash('danger', 'flash.admin.event_type.add.danger');
             }
 
-            return $this->redirectToRoute('index_event_type');
+            return $this->redirectToRoute('admin_event_type_index');
         }
 
         return $this->render('admin/event_type/edit.html.twig', [
@@ -78,7 +78,7 @@ class EventTypeController extends Controller
     /**
      * Modification d'un type d'événement
      *
-     * @Route("/edit/{eventType}", name="edit_event_type")
+     * @Route("/editer/{id}", name="admin_event_type_edit")
      * @param Request $request
      * @param EventType $eventType
      *
@@ -101,7 +101,7 @@ class EventTypeController extends Controller
                 $this->addFlash('danger', 'flash.admin.event_type.edit.danger');
             }
 
-            return $this->redirectToRoute('index_event_type');
+            return $this->redirectToRoute('admin_event_type_index');
         }
 
         return $this->render('admin/event_type/edit.html.twig', [
@@ -112,7 +112,7 @@ class EventTypeController extends Controller
     /**
      * Suppression d'un type d'événement
      *
-     * @Route("/delete/{eventType}", name="delete_event_type")
+     * @Route("/supprimer/{eventType}", name="admin_event_type_delete")
      * @param EventType $eventType
      *
      * @return RedirectResponse
@@ -128,6 +128,6 @@ class EventTypeController extends Controller
             $this->addFlash('danger', 'flash.admin.event_type.delete.danger');
         }
 
-        return $this->redirectToRoute('index_event_type');
+        return $this->redirectToRoute('admin_event_type_index');
     }
 }

@@ -1,0 +1,4 @@
+AppBundle\Entity\EventType:
+    properties:
+        name:
+            - NotNull: ~

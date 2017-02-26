@@ -34,6 +34,11 @@ admin:
     nav:
         home: Accueil
         log: Registre
+        event_type:
+            title: Types d'évènement
+            index: Liste des types
+            create: Ajouter un type
+            edit: Modifier un type
     log:
         title: Registre
         type: Type
@@ -43,11 +48,13 @@ admin:
         user: Nom - Prénom Utilisateur
     sidebar:
         administration: Administration
-
-
     event_type:
         title : Type d'évènement
         delete_confirm : Etes-vous sûr de vouloir supprimer le type d\'evènement selectionné ?
+    form:
+        event_type:
+            name: Nom du type d'évènement
+
 app:
     title: Billeterie
     seo:

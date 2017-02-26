@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Class TypeEvent
  *
  * @package AppBundle\Entity
- * @ORM\Table(name="type_event")
+ * @ORM\Table(name="event_event")
  * @ORM\Entity(repositoryClass="")
  */
 class EventType
@@ -48,7 +48,7 @@ class EventType
     /**
      * @param string $name
      *
-     * @return TypeEvent
+     * @return EventType
      */
     public function setName($name)
     {

@@ -10,7 +10,7 @@
             <div class="panel-title">{{ 'admin.event_type.title'|trans }}</div>
         </div>
         <div class="panel-body">
-            <a href="{{ path('add_event_type') }}" class="btn btn-info add-btn">Ajouter</a>
+            <a href="{{ path('admin_event_type_add') }}" class="btn btn-info add-btn">Ajouter</a>
             <table id="event-types" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                 <th>{{ 'admin.event_type.title'|trans }}</th>
@@ -19,9 +19,11 @@
                 {% for eventType in eventTypes %}
                     <tr>
                         <td>{{ eventType.getName() }}</td>
-                        <td class="column-actions"><a href="{{ path('edit_event_type', {'eventType':eventType.id}) }}"
-                               class="btn btn-info" title="Modifier"><i class="fa fa-edit"></i></a>
-                            <a href="{{ path('delete_event_type', {'eventType':eventType.id}) }}" class="btn btn-danger"
+                        <td class="column-actions"><a href="{{ path('admin_event_type_edit', {'id':eventType.id}) }}"
+                                                      class="btn btn-info" title="Modifier"><i
+                                        class="fa fa-edit"></i></a>
+                            <a href="{{ path('admin_event_type_delete', {'eventType':eventType.id}) }}"
+                               class="btn btn-danger"
                                onclick="return confirm('{{ 'admin.event_type.delete_confirm'|trans }}')"
                                title="{{ 'common.button.delete'|trans }}"><i class="fa fa-trash"></i></a>
                         </td>
@@ -37,14 +39,14 @@
     <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#event-types').DataTable( {
+            $('#event-types').DataTable({
                 "columnDefs": [
-                    { "orderable": false, "targets": 1 }
+                    {"orderable": false, "targets": 1}
                 ],
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
                 }
-            } );
+            });
         });
     </script>
 {% endblock %}
