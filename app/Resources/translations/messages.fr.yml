@@ -37,7 +37,7 @@ admin:
         title: Registre
         type: Type
         message: Message
-        created_at: Créer à
+        created_at: Date - Heure
         user_id: Id Utilisateur
         user: Nom - Prénom Utilisateur
     sidebar:
@@ -65,4 +65,4 @@ log:
     user:
         login:
             title: Connexion
-            message: C'est connecté à la billeterie
+            message: S'est connecté à la billeterie
