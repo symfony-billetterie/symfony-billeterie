@@ -19,7 +19,7 @@ class LogController extends Controller
     use UtilitiesTrait;
 
     /**
-     * @Route("/index", name="admin_log_index")
+     * @Route("/", name="admin_log_index")
      * @Method({"GET"})
      *
      * @return Response
