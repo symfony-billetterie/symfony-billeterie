@@ -4,8 +4,6 @@ namespace AppBundle\Twig;
 
 /**
  * Class HtmlSafeExtension
- *
- * @package AppBundle\Twig
  */
 class HtmlSafeExtension extends \Twig_Extension
 {

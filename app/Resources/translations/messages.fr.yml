@@ -1,12 +1,13 @@
 common:
     menu:
-        profil: Profile
         logout: Déconnexion
         back_homepage: Retour sur le site
     button:
         save: Enregistrer
         back: Retour
         delete: Supprimer
+        connection: Connexion
+        back_without_save: Retour sans sauvegarder
     error:
         403:
             title: Erreur 403 Forbidden
@@ -26,11 +27,24 @@ common:
 
 admin:
     title: Billeterie Admin
+    actions: Actions
     seo:
         title: Billeterie | Administration
         description: Billeterie Symfony projet scolaire, partie administration
     nav:
         home: Accueil
+        log: Registre
+    log:
+        title: Registre
+        type: Type
+        message: Message
+        created_at: Créer à
+        user_id: Id Utilisateur
+        user: Nom - Prénom Utilisateur
+    sidebar:
+        administration: Administration
+
+
     event_type:
         title : Type d'évènement
         delete_confirm : Etes-vous sûr de vouloir supprimer le type d\'evènement selectionné ?
@@ -41,6 +55,21 @@ app:
         description: Billeterie Symfony projet scolaire
     nav:
         home: Accueil
+    user:
+        login:
+            title: Se connecter
+            username: Identifiant
+            password: Mot de passe
+            remember_me: Se souvenir de moi
+            forgotten_password: Mot de passe oublié
+        register:
+            title: S'enregistrer
+
+log:
+    user:
+        login:
+            title: Connexion
+            message: C'est connecté à la billeterie
 flash:
     admin:
         event_type:

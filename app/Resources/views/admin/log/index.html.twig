@@ -1,0 +1,40 @@
+{% extends 'admin/datatable_layout.html.twig' %}
+
+{% block stylesheets_lib %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div class="panel">
+        <div class="panel-heading">
+            <div class="panel-title">{{ 'admin.log.title'|trans }}</div>
+        </div>
+        <div class="panel-body">
+            <div class="col-sm-12">
+                <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0"
+                       width="100%">
+                    <thead>
+                    <tr>
+                        <th>{{ 'admin.log.type'|trans }}</th>
+                        <th>{{ 'admin.log.message'|trans }}</th>
+                        <th>{{ 'admin.log.created_at'|trans }}</th>
+                        <th>{{ 'admin.log.user_id'|trans }}</th>
+                        <th>{{ 'admin.log.user'|trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for log in logs %}
+                        <tr>
+                            <td>{{ log.type }}</td>
+                            <td>{{ log.message }}</td>
+                            <td>{{ log.createdAt|date('d/m/Y H:i') }}</td>
+                            <td>{{ log.user.id }}</td>
+                            <td>{{ log.user.firstName }} {{ log.user.lastName }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

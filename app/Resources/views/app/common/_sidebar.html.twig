@@ -12,52 +12,34 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Connexion <span class="caret"></span></a>
-
+                       aria-expanded="false">
+                        {% if app.user %}
+                            {{ app.user.lastName }} {{ app.user.firstName }}
+                        {% else %}
+                            {{ 'app.user.login.title'|trans }}
+                        {% endif %}
+                        <span class="caret"></span>
+                    </a>
                     {% if app.user %}
                         <ul class="dropdown-menu">
-
-                            <li><a href="#">Déconnexion</a></li>
-                            {% if is_granted('ROLE_ADMIN') %}
-                                <li><a href="{{ path('admin_homepage') }}">Administration</a></li>
+                            {% if is_granted('ROLE_OBSERVATORY') %}
+                                <li>
+                                    <a href="{{ path('admin_homepage') }}">
+                                        <i class="fa fa-lock" aria-hidden="true"></i>
+                                        {{ 'admin.sidebar.administration'|trans }}
+                                    </a>
+                                </li>
                             {% endif %}
+                            <li>
+                                <a href="{{ path('fos_user_security_logout') }}">
+                                    <i class="fa fa-power-off" aria-hidden="true"></i>
+                                    {{ 'common.menu.logout'|trans }}
+                                </a>
+                            </li>
                         </ul>
                     {% else %}
                         <div class="dropdown-menu">
-                            <form action="" method="post">
-
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="fa fa-user"></i>
-                                        </span>
-                                        <input class="form-control input-sm" type="text" id="username" name="_username"
-                                               value="" required="required" placeholder="Username">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-
-                                    <span class="input-group-addon">
-                                        <i class="fa fa-lock"></i>
-                                    </span>
-                                        <input class="form-control input-sm" type="password" id="password"
-                                               name="_password" required="required" placeholder="Password">
-                                    </div>
-                                </div>
-                                <div class="form-group text-center">
-                                    <button type="submit" id="_submit" name="_submit" class="btn btn-sm">
-                                        Connexion
-                                    </button>
-                                </div>
-                                <div class="row row-reset">
-                                    <div class="text-center">
-                                        <a href="#">
-                                            Mot de passe perdu
-                                        </a>
-                                    </div>
-                                </div>
-                            </form>
+                            {{ render(controller('AppBundle:Auth:login')) }}
                         </div>
                     {% endif %}
                 </li>

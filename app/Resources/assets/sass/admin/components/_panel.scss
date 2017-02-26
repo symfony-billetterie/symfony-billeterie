@@ -28,8 +28,13 @@
     background-color: #fff;
     border-top: 1px solid $color;
 }
-
 .column-actions{
     width: 20%;
     text-align: center;
+}
+@media(max-width: $screen-phone) {
+
+    .panel-body {
+        padding: 15px 0px;
+    }
 }

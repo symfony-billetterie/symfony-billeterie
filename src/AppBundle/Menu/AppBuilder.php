@@ -8,8 +8,6 @@ use AppBundle\Menu\Builder as BaseBuilder;
 
 /**
  * Class AppBuilder
- *
- * @package AppBundle\Menu
  */
 class AppBuilder extends BaseBuilder
 {
