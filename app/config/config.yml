@@ -83,5 +83,5 @@ fos_user:
     firewall_name: main
     user_class: AppBundle\Entity\User
     from_email:
-        address: '%smart_developper_email%'
-        sender_name: '%smart_developper_email%'
+        address: '%smart_developer_email%'
+        sender_name: '%smart_developer_email%'
