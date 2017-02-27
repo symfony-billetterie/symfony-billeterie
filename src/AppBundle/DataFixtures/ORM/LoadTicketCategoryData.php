@@ -17,7 +17,7 @@ class LoadTicketCategoryData extends AbstractFixture implements OrderedFixtureIn
             'Tribune',
             'Fosse',
         );
-        
+
         foreach ($data as $item => $value) {
             $ticketCategory = new TicketCategory();
             $ticketCategory->setLabel($value);
