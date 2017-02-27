@@ -19,11 +19,11 @@ common:
             content: Contacter l'administrateur
 
 admin:
-    title: Billeterie Admin
+    title: Billetterie Admin
     actions: Actions
     seo:
-        title: Billeterie | Administration
-        description: Billeterie Symfony projet scolaire, partie administration
+        title: Billetterie | Administration
+        description: Billetterie Symfony projet scolaire, partie administration
     nav:
         home: Accueil
         log: Registre
@@ -39,10 +39,10 @@ admin:
 
 
 app:
-    title: Billeterie
+    title: Billetterie
     seo:
-        title: Billeterie | Accueil
-        description: Billeterie Symfony projet scolaire
+        title: Billetterie | Accueil
+        description: Billetterie Symfony projet scolaire
     nav:
         home: Accueil
     user:
@@ -59,4 +59,4 @@ log:
     user:
         login:
             title: Connexion
-            message: S'est connecté à la billeterie
+            message: S'est connecté à la billetterie
