@@ -1,5 +1,7 @@
 ## BILLETERIE (SYMFONY 3)
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/2ae52ad7-6225-4680-a715-37e8d7ee20fb/mini.png)](https://insight.sensiolabs.com/projects/2ae52ad7-6225-4680-a715-37e8d7ee20fb)
+
 ### Wiki and Post-installation
 
    go to https://github.com/symfony-billetterie/symfony-billeterie/wiki
