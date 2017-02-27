@@ -28,7 +28,7 @@ class LogController extends Controller
      */
     public function indexAction()
     {
-        $logs = $this->getDoctrine()->getRepository('AppBundle:Log')->findBy([], ['createdAt' => 'Desc']);
+        $logs = $this->getDoctrine()->getRepository('AppBundle:Log')->findBy([], ['id' => 'DESC']);
 
         return $this->render('admin/log/index.html.twig', [
             'logs' => $logs,

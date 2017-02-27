@@ -60,3 +60,6 @@ log:
         login:
             title: Connexion
             message: S'est connecté à la billetterie
+        logout:
+            title: Déconnexion
+            message: S'est déconnecté de la billetterie

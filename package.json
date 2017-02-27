@@ -1,5 +1,5 @@
 {
-  "name": "billeterie",
+  "name": "billetterie",
   "version": "1.0.0",
   "description": "-----------------------------------------------",
   "main": "gulpfile.js",
@@ -29,10 +29,10 @@
   "dependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/symfony-billetterie/symfony-billeterie.git"
+    "url": "git+https://github.com/symfony-billetterie/symfony-billetterie.git"
   },
   "bugs": {
-    "url": "https://github.com/symfony-billetterie/symfony-billeterie/issues"
+    "url": "https://github.com/symfony-billetterie/symfony-billetterie/issues"
   },
-  "homepage": "https://github.com/symfony-billetterie/symfony-billeterie#readme"
+  "homepage": "https://github.com/symfony-billetterie/symfony-billetterie#readme"
 }
