@@ -3,6 +3,7 @@
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/2ae52ad7-6225-4680-a715-37e8d7ee20fb/mini.png)](https://insight.sensiolabs.com/projects/2ae52ad7-6225-4680-a715-37e8d7ee20fb)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://github.com/symfony-billetterie/symfony-billetterie/blob/master/LICENSE.md)
 [![Build Status](http://jenkins.corentinregnier.fr/job/Billeterie/badge/icon)](http://jenkins.corentinregnier.fr/job/Billeterie/)
+
 ### Wiki and Post-installation
 
    go to https://github.com/symfony-billetterie/symfony-billetterie/wiki
