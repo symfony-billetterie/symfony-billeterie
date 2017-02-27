@@ -25,7 +25,7 @@ class TicketCategory
     /**
      * @return mixed
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -33,7 +33,7 @@ class TicketCategory
     /**
      * @return mixed
      */
-    public function getLabel()
+    public function getLabel(): string
     {
         return $this->label;
     }
@@ -41,7 +41,7 @@ class TicketCategory
     /**
      * @param mixed $label
      */
-    public function setLabel($label)
+    public function setLabel(string $label): void
     {
         $this->label = $label;
     }
