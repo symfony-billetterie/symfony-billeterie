@@ -32,3 +32,4 @@ security:
         - { path: ^/resetting, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/log, roles: ROLE_SUPER_ADMIN }
         - { path: ^/admin, roles: ROLE_OBSERVATORY }
+        - { path: ^/$, roles: ROLE_BENEFICIARY }
