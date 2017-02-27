@@ -15,6 +15,7 @@
                        width="100%">
                     <thead>
                     <tr>
+                        <th>ID</th>
                         <th>{{ 'admin.log.type'|trans }}</th>
                         <th>{{ 'admin.log.message'|trans }}</th>
                         <th>{{ 'admin.log.created_at'|trans }}</th>
@@ -25,6 +26,7 @@
                     <tbody>
                     {% for log in logs %}
                         <tr>
+                            <td>{{ log.id }}</td>
                             <td>{{ log.type }}</td>
                             <td>{{ log.message }}</td>
                             <td>{{ log.createdAt|date('d/m/Y H:i') }}</td>

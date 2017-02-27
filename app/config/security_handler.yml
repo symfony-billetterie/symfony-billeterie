@@ -1,0 +1,11 @@
+services:
+    app.security.login_success_handler:
+        class:      AppBundle\Security\Authentication\Handler\LoginSuccessHandler
+        arguments:
+            - "@router"
+            - "@security.authorization_checker"
+            - "@app.manager.log"
+    app.security.logout_handler:
+        class:      AppBundle\Security\Logout\Handler\LogoutHandler
+        arguments:
+            - "@app.manager.log"

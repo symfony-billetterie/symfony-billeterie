@@ -5,11 +5,6 @@ imports:
     - { resource: manager.yml }
     - { resource: listener.yml }
     - { resource: form.yml }
+    - { resource: security_handler.yml }
 
 services:
-    login_success_handler:
-        class:      AppBundle\Security\Authentication\Handler\LoginSuccessHandler
-        arguments:
-            - "@router"
-            - "@security.authorization_checker"
-            - "@app.manager.log"

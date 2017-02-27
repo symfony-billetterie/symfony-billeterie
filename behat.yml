@@ -8,7 +8,7 @@ default:
                 guzzle_parameters:
                     verify: false
             selenium2: ~
-            base_url: https://billeterie.sf/app_dev.php/
+            base_url: https://billetterie.sf/app_dev.php/
             files_path: './src/AppBundle/Features/Data/'
     suites:
         default:
