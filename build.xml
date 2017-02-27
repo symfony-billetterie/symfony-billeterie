@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="billeterie" default="help" basedir=".">
+<project name="billetterie" default="help" basedir=".">
     <target name="help" description="show help">
         <exec command="vendor/bin/phing -l" passthru="true"/>
     </target>
@@ -40,7 +40,7 @@
 
     <target name="remote:update:preprod" description="Remotely update the preprod">
         <exec
-                command="ssh billeterie@151.80.43.132 'cd site; vendor/bin/phing update:preprod'" passthru="true"
+                command="ssh billetterie@151.80.43.132 'cd site; vendor/bin/phing update:preprod'" passthru="true"
                 checkreturn="true"/>
     </target>
 
