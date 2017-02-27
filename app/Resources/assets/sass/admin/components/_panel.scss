@@ -10,7 +10,7 @@
 
 /** Définir l'espacement intérieur du bas pour l'entête d'un panel  */
 .panel-heading {
-    padding-bottom: 0px;
+    padding-bottom: 0;
 }
 
 /** Réécriture du titre d'un panel  */
@@ -27,4 +27,11 @@
     margin: 0 15px;
     background-color: #fff;
     border-top: 1px solid $color;
+}
+
+@media(max-width: $screen-phone) {
+
+    .panel-body {
+        padding: 15px 0;
+    }
 }

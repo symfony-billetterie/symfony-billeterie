@@ -1,1 +1,6 @@
 services:
+    app.manager.log:
+        class: AppBundle\Manager\LogManager
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@translator"

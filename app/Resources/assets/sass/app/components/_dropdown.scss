@@ -8,5 +8,16 @@
 .dropdown-menu {
     padding: 10px;
     min-width: 190px;
-    border-radius: 0px;
+    border-radius: 0;
+
+    li {
+
+        a {
+            color: $color-base;
+        }
+        a:hover, a:focus {
+            color: $color-lighter;
+            background-color: $color-base;
+        }
+    }
 }
