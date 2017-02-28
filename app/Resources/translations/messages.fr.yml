@@ -14,6 +14,9 @@ common:
         404:
             title: Erreur 404 Not Found
             content: Page non trouvé
+        500:
+            title: Erreur 500 Internal Server Error
+            content: Erreur interne du serveur, merci de contacter l'administrateur
         other:
             title: Erreur
             content: Contacter l'administrateur
