@@ -87,7 +87,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $now = new \DateTime();
-        foreach ($this->users as $user) {
+        foreach ($this->users as $user => $key) {
             /** @var User $thisUser */
             $thisUser = new User();
             $thisUser->addRole($user['role'])
@@ -106,6 +106,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
                 ->setPlainPassword($user['password'])
                 ->setEnabled($user['enabled']);
             $manager->persist($thisUser);
+            $this->setReference('User-' . $key, $thisUser);
         }
         $manager->flush();
     }

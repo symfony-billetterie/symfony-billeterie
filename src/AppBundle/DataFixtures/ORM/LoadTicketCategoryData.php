@@ -22,7 +22,7 @@ class LoadTicketCategoryData extends AbstractFixture implements OrderedFixtureIn
             $ticketCategory = new TicketCategory();
             $ticketCategory->setLabel($value);
             $manager->persist($ticketCategory);
-            $this->setReference('TicketCategory-' . $ticketCategory, $value);
+            $this->setReference('TicketCategory-' . $value, $ticketCategory);
         }
 
         $manager->flush();
