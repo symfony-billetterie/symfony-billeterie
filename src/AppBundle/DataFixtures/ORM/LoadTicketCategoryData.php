@@ -9,20 +9,26 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadTicketCategoryData extends AbstractFixture implements OrderedFixtureInterface
 {
+    /**
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
-        $data = array(
+        $data = [
             'Gradin',
             'Balcon',
             'Tribune',
             'Fosse',
-        );
+        ];
 
+        /**
+         * jeu d'essai des categories de tickets
+         */
         foreach ($data as $item => $value) {
             $ticketCategory = new TicketCategory();
             $ticketCategory->setLabel($value);
             $manager->persist($ticketCategory);
-            $this->setReference('TicketCategory-' . $value, $ticketCategory);
+            $this->setReference('ticket-category-' . $value, $ticketCategory);
         }
 
         $manager->flush();

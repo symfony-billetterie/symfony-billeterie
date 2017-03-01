@@ -3,12 +3,13 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Class TicketCategory
  *
  * @ORM\Entity
- * @ORM\Table(name="categorie_classe")
+ * @ORM\Table(name="ticket_category")
  */
 class TicketCategory
 {
@@ -24,9 +25,15 @@ class TicketCategory
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string")
+     * @ORM\Column(type="string")
      */
     private $label;
+
+    /**
+     * @Gedmo\Slug(fields={"label"}, separator="-", updatable=true, unique=true)
+     * @ORM\Column(length=255, unique=true)
+     */
+    private $slug;
 
     /**
      * @return mixed
@@ -37,7 +44,7 @@ class TicketCategory
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getLabel(): string
     {
@@ -45,10 +52,18 @@ class TicketCategory
     }
 
     /**
-     * @param mixed $label
+     * @param string $label
      */
     public function setLabel(string $label)
     {
         $this->label = $label;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }
