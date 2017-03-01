@@ -1,15 +1,13 @@
 <?php
-// src/AppBundle/Entity/User.php
 
 namespace AppBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Class User
- *
- * @package AppBundle\Entity
  *
  * @ORM\Entity
  * @ORM\Table(name="user")
@@ -87,6 +85,21 @@ class User extends BaseUser
      * @ORM\Column(type="string")
      */
     protected $idNumber;
+
+    /**
+     * @Gedmo\Slug(fields={"firstName","lastName"}, separator="-", updatable=true, unique=true)
+     * @ORM\Column(length=255, unique=true)
+     */
+    private $slug;
+
+    /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->birthdayDate = new \DateTime();
+    }
 
     /**
      * @return string
@@ -297,11 +310,22 @@ class User extends BaseUser
     }
 
     /**
-     * User constructor.
+     * @return mixed
      */
-    public function __construct()
+    public function getSlug()
     {
-        parent::__construct();
-        $this->birthdayDate = new \DateTime();
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     *
+     * @return User
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 }

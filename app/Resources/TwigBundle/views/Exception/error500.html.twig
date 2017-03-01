@@ -1,0 +1,16 @@
+{% extends 'app/layout.html.twig' %}
+
+{% block content %}
+    <div class="panel text-center">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <h4><strong>{{ 'common.error.500.title'|trans }}</strong></h4>
+            </div>
+        </div>
+        <div class="panel-body">
+            <p class="intro">
+                {{ 'common.error.500.content'|trans }}
+            </p>
+        </div>
+    </div>
+{% endblock %}
