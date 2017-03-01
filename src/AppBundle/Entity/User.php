@@ -20,6 +20,8 @@ class User extends BaseUser
     const USER_ROLE_BENEFICIARY = "ROLE_BENEFICIARY";
 
     /**
+     * @var int
+     *
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
