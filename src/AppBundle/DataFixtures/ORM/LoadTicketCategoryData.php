@@ -7,6 +7,11 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
+/**
+ * Class LoadTicketCategoryData
+ *
+ * jeu d'essai des categories de tickets
+ */
 class LoadTicketCategoryData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
@@ -21,10 +26,8 @@ class LoadTicketCategoryData extends AbstractFixture implements OrderedFixtureIn
             'Fosse',
         ];
 
-        /**
-         * jeu d'essai des categories de tickets
-         */
         foreach ($data as $item => $value) {
+            /** @var  $ticketCategory $ticketCategory */
             $ticketCategory = new TicketCategory();
             $ticketCategory->setLabel($value);
             $manager->persist($ticketCategory);
