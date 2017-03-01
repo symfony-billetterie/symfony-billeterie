@@ -20,6 +20,8 @@ class User extends BaseUser
     const USER_ROLE_BENEFICIARY = "ROLE_BENEFICIARY";
 
     /**
+     * @var int
+     *
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -90,7 +92,7 @@ class User extends BaseUser
      * @Gedmo\Slug(fields={"firstName","lastName"}, separator="-", updatable=true, unique=true)
      * @ORM\Column(length=255, unique=true)
      */
-    private $slug;
+    protected $slug;
 
     /**
      * User constructor.
@@ -315,17 +317,5 @@ class User extends BaseUser
     public function getSlug()
     {
         return $this->slug;
-    }
-
-    /**
-     * @param mixed $slug
-     *
-     * @return User
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
     }
 }
