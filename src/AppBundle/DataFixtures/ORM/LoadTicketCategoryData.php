@@ -27,7 +27,7 @@ class LoadTicketCategoryData extends AbstractFixture implements OrderedFixtureIn
         ];
 
         foreach ($data as $item => $value) {
-            /** @var  $ticketCategory $ticketCategory */
+            /** @var $ticketCategory $ticketCategory */
             $ticketCategory = new TicketCategory();
             $ticketCategory->setLabel($value);
             $manager->persist($ticketCategory);
@@ -37,6 +37,9 @@ class LoadTicketCategoryData extends AbstractFixture implements OrderedFixtureIn
         $manager->flush();
     }
 
+    /**
+     * @return int
+     */
     public function getOrder()
     {
         return 0;
