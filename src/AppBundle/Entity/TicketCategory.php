@@ -41,7 +41,7 @@ class TicketCategory
     /**
      * @param mixed $label
      */
-    public function setLabel(string $label): void
+    public function setLabel(string $label)
     {
         $this->label = $label;
     }
