@@ -13,8 +13,8 @@ parameters:
     mailer_transport:  smtp
     mailer_host:       smtp.sendgrid.net
     mailer_user:       cocokrl
-    mailer_password:   DoTjcgdPubEo8vWB
-    mailer_port:       587
+    mailer_password:   ~
+    mailer_port:       ~
 
     session_prefix:    billetterie
 
