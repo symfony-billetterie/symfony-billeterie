@@ -54,13 +54,7 @@ class UserType extends AbstractType
                 'required' => false,
             ])
             ->add('idNumber', TextType::class, [
-                'label'    => 'app.form.r
-
-use AppBundle\Entity\User;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\FormBuilderInterface;egistration.card',
+                'label'    => 'app.form.registration.card',
                 'required' => false,
             ]);
     }
