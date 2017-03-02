@@ -2,16 +2,10 @@
 
 namespace AppBundle\Form\Type;
 
-use AppBundle\Entity\User;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\FormBuilderInterface;
-
 /**
  * Class RegistrationType
  *
- * Formulaire d'inscription
+ * Formulaire d'inscription qui hérite de la classe UserType
  */
 class RegistrationType extends UserType
 {

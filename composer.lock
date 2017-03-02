@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "28324a15861777a07813d277b70d9a02",
+    "content-hash": "a202b3c96966283fde5d1075bce3442a",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1677,16 +1677,16 @@
         },
         {
             "name": "sensio/framework-extra-bundle",
-            "version": "v3.0.22",
+            "version": "v3.0.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioFrameworkExtraBundle.git",
-                "reference": "1c66c2e3b8f17f06178142386aff5a9f8057a104"
+                "reference": "d3601fd5709168ace7a1ca6eefa2619a1632b7f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/1c66c2e3b8f17f06178142386aff5a9f8057a104",
-                "reference": "1c66c2e3b8f17f06178142386aff5a9f8057a104",
+                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/d3601fd5709168ace7a1ca6eefa2619a1632b7f7",
+                "reference": "d3601fd5709168ace7a1ca6eefa2619a1632b7f7",
                 "shasum": ""
             },
             "require": {
@@ -1743,7 +1743,7 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "2017-02-15T06:52:30+00:00"
+            "time": "2017-03-02T20:17:28+00:00"
         },
         {
             "name": "sensiolabs/security-checker",
@@ -2303,16 +2303,16 @@
         },
         {
             "name": "symfony/swiftmailer-bundle",
-            "version": "v2.5.0",
+            "version": "v2.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/swiftmailer-bundle.git",
-                "reference": "2027daef663f8d50c4dda967633f2e31f894b53c"
+                "reference": "b59a70d03b948e29d070b6c4416b4a03af4748ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/swiftmailer-bundle/zipball/2027daef663f8d50c4dda967633f2e31f894b53c",
-                "reference": "2027daef663f8d50c4dda967633f2e31f894b53c",
+                "url": "https://api.github.com/repos/symfony/swiftmailer-bundle/zipball/b59a70d03b948e29d070b6c4416b4a03af4748ec",
+                "reference": "b59a70d03b948e29d070b6c4416b4a03af4748ec",
                 "shasum": ""
             },
             "require": {
@@ -2358,7 +2358,7 @@
             ],
             "description": "Symfony SwiftmailerBundle",
             "homepage": "http://symfony.com",
-            "time": "2017-02-23T15:49:01+00:00"
+            "time": "2017-03-02T16:47:57+00:00"
         },
         {
             "name": "symfony/symfony",
@@ -2684,12 +2684,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "78d81cc4734e5e50496df070671efc090517152e"
+                "reference": "9e592f5748511d64ad8c909cd242020c434b5537"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/78d81cc4734e5e50496df070671efc090517152e",
-                "reference": "78d81cc4734e5e50496df070671efc090517152e",
+                "url": "https://api.github.com/repos/composer/composer/zipball/9e592f5748511d64ad8c909cd242020c434b5537",
+                "reference": "9e592f5748511d64ad8c909cd242020c434b5537",
                 "shasum": ""
             },
             "require": {
@@ -2753,7 +2753,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2017-03-01 08:13:04"
+            "time": "2017-03-02T09:41:47+00:00"
         },
         {
             "name": "composer/semver",
@@ -3199,7 +3199,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.1.2"
+        "php": ">=7.1"
     },
     "platform-dev": []
 }

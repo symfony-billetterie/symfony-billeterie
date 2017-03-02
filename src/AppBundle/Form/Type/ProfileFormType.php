@@ -2,16 +2,10 @@
 
 namespace AppBundle\Form\Type;
 
-use AppBundle\Entity\User;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\FormBuilderInterface;
-
 /**
  * Class ProfileFormType
  *
- * Formulaire d'édition d'un compte
+ * Formulaire d'édition d'un compte qui hérite de la classe UserType
  */
 class ProfileFormType extends UserType
 {
