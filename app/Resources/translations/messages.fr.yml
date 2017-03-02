@@ -48,15 +48,60 @@ app:
         description: Billetterie Symfony projet scolaire
     nav:
         home: Accueil
+        login: Connexion
+        register: Inscription
+    form:
+        registration:
+            gender: Genre
+            last_name: Nom
+            first_name: Prénom
+            address: Adresse
+            zip_code: Code postale
+            city: Ville
+            phone: Téléphone
+            card: Numéro de pièce d'identité
     user:
         login:
-            title: Se connecter
+            title: Connection
             username: Identifiant
             password: Mot de passe
             remember_me: Se souvenir de moi
             forgotten_password: Mot de passe oublié
+            nav: Connection
         register:
-            title: S'enregistrer
+            title: Inscription
+            confirmed: Félicitations %username%, votre compte est maintenant activé.
+            check_email: >
+                Un e-mail a été envoyé à l'adresse %email%. Il contient un lien d'activation sur lequel il
+                vous faudra cliquer afin d'activer votre compte.
+            back: Retour à la page d'origine.
+        resetting:
+            title: Mot de passe perdu
+            check_email: >
+                Un e-mail a été envoyé. Il contient un lien sur lequel il vous faudra cliquer pour réinitialiser
+                votre mot de passe. Remarque : Vous ne pouvez demander un nouveau mot de passe que toutes les
+                %tokenLifetime% heures.
+
+                Si vous ne recevez pas un email, vérifiez votre dossier spam ou essayez à nouveau.
+            request:
+                username: Nom d'utilisateur ou adresse e-mail
+                submit: Réinitialiser le mot de passe
+            reset: Modifier le mot de passe
+        profile:
+            edit:
+                title: Édition du profil
+            show:
+                title: Votre profil
+                email: Adresse mail
+                phone: N° de téléphone
+                username: Identifiant utilisateur
+                name: Nom complet
+                address: Adresse complète
+                id_number: N° d'identité
+                edit: Éditer votre profil
+    civility:
+        man: Monsieur
+        woman: Madame
 
 log:
     user:

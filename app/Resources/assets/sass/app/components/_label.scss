@@ -1,0 +1,9 @@
+/**
+    Panel
+ */
+
+/** Définir les champs obligatoire */
+.required:after {
+    content: " *";
+    color: red;
+}

@@ -43,4 +43,4 @@ rules:
     web.missing_robots_txt:
         enabled: true
 
-php_version: 7
+php_version: 7.1

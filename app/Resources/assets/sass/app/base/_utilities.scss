@@ -358,3 +358,15 @@ hr.small {
     }
 
 }
+
+/** Vertical séparator */
+.vr {
+    border-right: 1px solid $color;
+}
+
+@media(max-width: $screen-desktop) {
+
+    .vr {
+        border-right: 0;
+    }
+}

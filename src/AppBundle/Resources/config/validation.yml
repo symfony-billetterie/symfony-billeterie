@@ -1,0 +1,8 @@
+AppBundle\Entity\User:
+    properties:
+        lastName:
+            - NotNull:
+                message: form.user.last_name.not_null
+        firstName:
+            - NotNull:
+                message: form.user.first_name.not_null
