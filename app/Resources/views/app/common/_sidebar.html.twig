@@ -2,12 +2,14 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="{{ path('homepage') }}">{{ 'app.title'|trans }}</a>
-            <div class="pull-right block-nav-brand">
-                <i class="fa fa-bars" aria-hidden="true"></i>
-            </div>
+            {% if app.user %}
+                <div class="pull-right block-nav-brand">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </div>
+            {% endif %}
         </div>
-        {% if app.user %}
-            <div class="block-nav">
+        <div class="block-nav">
+            {% if app.user %}
                 {{ knp_menu_render('AppBundle:AppBuilder:mainMenu', {'template': 'app/menu/main_menu.html.twig',
                     'currentClass': 'active'}) }}
                 <ul class="nav navbar-nav navbar-right">
@@ -15,6 +17,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">
                             {{ app.user.lastName }} {{ app.user.firstName }}
+                            <i class="fa fa-user-o" aria-hidden="true"></i>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
@@ -35,7 +38,31 @@
                         </ul>
                     </li>
                 </ul>
-            </div>
-        {% endif %}
+            {% else %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            <i class="fa fa-user-o" aria-hidden="true"></i>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ path('fos_user_security_login') }}">
+                                    <i class="fa fa-sign-in" aria-hidden="true"></i>
+                                    {{ 'app.nav.login'|trans }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('fos_user_registration_register') }}">
+                                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                    {{ 'app.nav.register'|trans }}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            {% endif %}
+        </div>
     </div>
 </nav>

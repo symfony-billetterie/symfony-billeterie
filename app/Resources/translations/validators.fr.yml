@@ -1,0 +1,6 @@
+form:
+    user:
+        last_name:
+            not_null: Veuillez saisir votre nom
+        first_name:
+            not_null: Veuillez saisir votre prénom

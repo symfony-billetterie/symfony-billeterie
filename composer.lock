@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d99f1429fc3e8b308a49cc64dab2177c",
+    "content-hash": "a202b3c96966283fde5d1075bce3442a",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -937,12 +937,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "8a8f79e41277ad78f134578dd05424f7e658925d"
+                "reference": "0d70c918e79ad4108f2d78741cae645408c27f6d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/8a8f79e41277ad78f134578dd05424f7e658925d",
-                "reference": "8a8f79e41277ad78f134578dd05424f7e658925d",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/0d70c918e79ad4108f2d78741cae645408c27f6d",
+                "reference": "0d70c918e79ad4108f2d78741cae645408c27f6d",
                 "shasum": ""
             },
             "require": {
@@ -1006,7 +1006,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2017-02-23 09:20:33"
+            "time": "2017-03-01 13:37:05"
         },
         {
             "name": "gedmo/doctrine-extensions",
@@ -1677,16 +1677,16 @@
         },
         {
             "name": "sensio/framework-extra-bundle",
-            "version": "v3.0.22",
+            "version": "v3.0.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioFrameworkExtraBundle.git",
-                "reference": "1c66c2e3b8f17f06178142386aff5a9f8057a104"
+                "reference": "d3601fd5709168ace7a1ca6eefa2619a1632b7f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/1c66c2e3b8f17f06178142386aff5a9f8057a104",
-                "reference": "1c66c2e3b8f17f06178142386aff5a9f8057a104",
+                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/d3601fd5709168ace7a1ca6eefa2619a1632b7f7",
+                "reference": "d3601fd5709168ace7a1ca6eefa2619a1632b7f7",
                 "shasum": ""
             },
             "require": {
@@ -1743,7 +1743,7 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "2017-02-15T06:52:30+00:00"
+            "time": "2017-03-02T20:17:28+00:00"
         },
         {
             "name": "sensiolabs/security-checker",
@@ -2303,16 +2303,16 @@
         },
         {
             "name": "symfony/swiftmailer-bundle",
-            "version": "v2.4.2",
+            "version": "v2.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/swiftmailer-bundle.git",
-                "reference": "ad751095576ce0c12a284e30e3fff80c91f27225"
+                "reference": "b59a70d03b948e29d070b6c4416b4a03af4748ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/swiftmailer-bundle/zipball/ad751095576ce0c12a284e30e3fff80c91f27225",
-                "reference": "ad751095576ce0c12a284e30e3fff80c91f27225",
+                "url": "https://api.github.com/repos/symfony/swiftmailer-bundle/zipball/b59a70d03b948e29d070b6c4416b4a03af4748ec",
+                "reference": "b59a70d03b948e29d070b6c4416b4a03af4748ec",
                 "shasum": ""
             },
             "require": {
@@ -2334,7 +2334,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4-dev"
+                    "dev-master": "2.5-dev"
                 }
             },
             "autoload": {
@@ -2358,7 +2358,7 @@
             ],
             "description": "Symfony SwiftmailerBundle",
             "homepage": "http://symfony.com",
-            "time": "2016-12-20T04:44:33+00:00"
+            "time": "2017-03-02T16:47:57+00:00"
         },
         {
             "name": "symfony/symfony",
@@ -2684,12 +2684,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "667f1d7815c004b0d50b161fd1582c181435947a"
+                "reference": "9e592f5748511d64ad8c909cd242020c434b5537"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/667f1d7815c004b0d50b161fd1582c181435947a",
-                "reference": "667f1d7815c004b0d50b161fd1582c181435947a",
+                "url": "https://api.github.com/repos/composer/composer/zipball/9e592f5748511d64ad8c909cd242020c434b5537",
+                "reference": "9e592f5748511d64ad8c909cd242020c434b5537",
                 "shasum": ""
             },
             "require": {
@@ -2753,7 +2753,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2017-02-21 12:53:19"
+            "time": "2017-03-02T09:41:47+00:00"
         },
         {
             "name": "composer/semver",
@@ -3199,7 +3199,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7"
+        "php": ">=7.1"
     },
     "platform-dev": []
 }
