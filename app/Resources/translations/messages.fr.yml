@@ -21,6 +21,9 @@ common:
         other:
             title: Erreur
             content: Contacter un administrateur
+    data_table:
+        actions: Actions
+        id : ID
 
 admin:
     title: Billetterie Admin
@@ -122,3 +125,16 @@ log:
         logout:
             title: Déconnexion
             message: S'est déconnecté de la billetterie
+
+flash:
+    admin:
+        event_type:
+            delete:
+                success: Le type d'évènement a bien été supprimé
+                danger: Erreur, le type d'évènement n'a pas pu être supprimé
+            add:
+                success: Le type d'évènement a bien été ajouté
+                danger: Erreur, le type d'évènement n'a pas été ajouté
+            edit:
+                success: Le type d'évènement a bien été modifié
+                danger: Erreur, le type d'évènement n'a pas été modifié

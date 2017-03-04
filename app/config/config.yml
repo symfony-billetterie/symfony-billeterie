@@ -93,5 +93,5 @@ fos_user:
         form:
             type: AppBundle\Form\Type\ProfileFormType
     from_email:
-        address: '%smart_developper_email%'
-        sender_name: '%smart_developper_email%'
+        address: '%smart_contact_email%'
+        sender_name: '%smart_contact_email%'
