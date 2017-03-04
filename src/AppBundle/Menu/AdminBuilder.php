@@ -27,15 +27,15 @@ class AdminBuilder extends BaseBuilder
 
         if ($this->getAuthorization()->isGranted(User::USER_ROLE_SUPER_ADMIN)) {
             $this->addItem($menu, 'admin.nav.log', 'admin_log_index', 'file-text');
-        }
 
-        /** @var Request $request */
-        $request = $this->getRequest();
-        $routeName = $request->get('_route');
+            /** @var Request $request */
+            $request = $this->getRequest();
+            $routeName = $request->get('_route');
 
-        $eventType = $this->addItem($menu, 'admin.nav.event_type.title', 'admin_event_type_index', 'list');
-        if (strpos($routeName, 'admin_event_type') === 0) {
-            $eventType->setCurrent(true);
+            $eventType = $this->addItem($menu, 'admin.nav.event_type.title', 'admin_event_type_index', 'list');
+            if (strpos($routeName, 'admin_event_type') === 0) {
+                $eventType->setCurrent(true);
+            }
         }
 
         return $menu;
@@ -48,24 +48,25 @@ class AdminBuilder extends BaseBuilder
      */
     public function breadcrumb(FactoryInterface $factory)
     {
+        /** @var Request $request */
+
         $menu = $factory->createItem('root');
         if ($this->getAuthorization()->isGranted(User::USER_ROLE_SUPER_ADMIN)) {
             $this->addItemIfRouteMatch('admin_log_index', $menu, 'admin_log_index', 'admin.nav.log', 'file-text');
-        }
 
-        /** @var Request $request */
-        $request = $this->getRequest();
-        $routeName = $request->get('_route');
+            $request = $this->getRequest();
+            $routeName = $request->get('_route');
 
-        $eventType = $this->addItemIfRouteMatch('admin.nav.event_type.title', $menu, 'admin_event_type_index', 'list');
-        if (strpos($routeName, 'admin_event_type') === 0) {
-            $this->addItem($menu, 'admin.nav.event_type.index', 'admin_event_type_index', 'list');
-            if (strpos($routeName, 'admin_event_type_add') === 0) {
-                $this->addItem($menu, 'admin.nav.event_type.create', 'admin_event_type_add', 'plus');
-            }
-            if (strpos($routeName, 'admin_event_type_edit') === 0) {
-                $eventType = $request->get('id');
-                $this->addItem($menu, 'admin.nav.event_type.edit', 'admin_event_type_edit', 'pencil', ['id' => $eventType]);
+            $eventType = $this->addItemIfRouteMatch('admin.nav.event_type.title', $menu, 'admin_event_type_index', 'list');
+            if (strpos($routeName, 'admin_event_type') === 0) {
+                $this->addItem($menu, 'admin.nav.event_type.index', 'admin_event_type_index', 'list');
+                if (strpos($routeName, 'admin_event_type_add') === 0) {
+                    $this->addItem($menu, 'admin.nav.event_type.create', 'admin_event_type_add', 'plus');
+                }
+                if (strpos($routeName, 'admin_event_type_edit') === 0) {
+                    $eventType = $request->get('id');
+                    $this->addItem($menu, 'admin.nav.event_type.edit', 'admin_event_type_edit', 'pencil', ['id' => $eventType]);
+                }
             }
         }
 

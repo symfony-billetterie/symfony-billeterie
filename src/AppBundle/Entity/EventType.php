@@ -7,8 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class TypeEvent
  *
- * @package AppBundle\Entity
- * @ORM\Table(name="event_event")
+ * @ORM\Table(name="event_type")
  * @ORM\Entity(repositoryClass="")
  */
 class EventType
@@ -25,7 +24,7 @@ class EventType
     /**
      * @var string
      *
-     * @ORM\Column(name="Name", type="string", length=255)
+     * @ORM\Column(type="string")
      */
     private $name;
 

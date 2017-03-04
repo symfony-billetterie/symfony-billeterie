@@ -1,8 +1,13 @@
 AppBundle\Entity\User:
     properties:
         lastName:
-            - NotNull:
+            - not_null:
                 message: form.user.last_name.not_null
         firstName:
-            - NotNull:
+            - not_null:
                 message: form.user.first_name.not_null
+AppBundle\Entity\EventType:
+    properties:
+        name:
+            - NotNull:
+                message: form.event_type.name.not_null

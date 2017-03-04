@@ -1,10 +1,10 @@
 form:
     event_type:
         name:
-            NotNull: Le nom du type d'évènement ne peut pas être nul
+            not_null: Le nom du type d'évènement ne peut pas être nul
     user:
-            last_name:
-                not_null: Veuillez saisir votre nom
-            first_name:
-                not_null: Veuillez saisir votre prénom
+        last_name:
+            not_null: Veuillez saisir votre nom
+        first_name:
+            not_null: Veuillez saisir votre prénom
 

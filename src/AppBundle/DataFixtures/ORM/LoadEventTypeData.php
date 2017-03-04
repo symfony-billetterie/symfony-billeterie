@@ -20,34 +20,35 @@ class LoadEventTypeData extends AbstractFixture implements OrderedFixtureInterfa
      */
     public function load(ObjectManager $manager)
     {
-        $datas        = [
+        $datas = [
             [
-                'name'             => 'Handball',
+                'name' => 'Handball',
             ],
             [
-                'name'             => 'Football',
+                'name' => 'Football',
             ],
             [
-                'name'             => 'Basket Ball',
+                'name' => 'Basket Ball',
             ],
             [
-                'name'             => 'Tennis',
+                'name' => 'Tennis',
             ],
             [
-                'name'             => 'Ski',
+                'name' => 'Ski',
             ],
             [
-                'name'             => 'Natation',
+                'name' => 'Natation',
             ],
             [
-                'name'             => 'Ping Pong',
+                'name' => 'Ping Pong',
             ],
             [
-                'name'             => 'Volley Ball',
+                'name' => 'Volley Ball',
             ]
         ];
 
         foreach ($datas as $data) {
+            /** @var EventType $eventType */
             $eventType = new EventType();
             $eventType->setName($data['name']);
 
