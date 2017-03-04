@@ -31,7 +31,7 @@ class EventType
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -39,7 +39,7 @@ class EventType
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -49,7 +49,7 @@ class EventType
      *
      * @return EventType
      */
-    public function setName($name)
+    public function setName(?string $name): EventType
     {
         $this->name = $name;
 

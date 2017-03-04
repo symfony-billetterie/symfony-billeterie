@@ -5,7 +5,6 @@ namespace AppBundle\Controller\Admin;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\EventType;
@@ -70,7 +69,7 @@ class EventTypeController extends Controller
             return $this->redirectToRoute('admin_event_type_index');
         }
 
-        return $this->render('admin/event_type/edit.html.twig', [
+        return $this->render('admin/event_type/create.html.twig', [
             'form' => $form->createView(),
         ]);
     }

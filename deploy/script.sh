@@ -42,14 +42,11 @@ sudo apt-get -y install php php7.1-mysql php7.1-cli php7.1-intl php7.1-curl php7
 
 # Enable PHP7 mod
 sudo phpenmod mcrypt
-sudo a2dismod php7.0
-sudo a2enmod php7.1
 
 # Edit PHP7 Config
 sudo sed -i "s/post_max_size = 8M/post_max_size = 600M/" /etc/php/7.1/apache2/php.ini
 sudo sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 500M/" /etc/php/7.1/apache2/php.ini
 sudo sed -i "s/display_errors = Off/display_errors = On/" /etc/php/7.1/apache2/php.ini
-sudo update-alternatives --set php /usr/bin/php7.1
 
 # Delete default Apache web directory and vhost
 sudo rm -rf /var/www/html
@@ -67,6 +64,9 @@ sudo sed -i "s/export APACHE_RUN_GROUP=www-data/export APACHE_RUN_GROUP=ubuntu/"
 # Enable Apache mod and vhost
 sudo a2enmod rewrite
 sudo a2ensite project
+sudo a2dismod php7.0
+sudo a2enmod php7.1
+sudo update-alternatives --set php /usr/bin/php7.1
 
 # Restart Apache
 sudo service apache2 restart

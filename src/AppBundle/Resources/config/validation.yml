@@ -1,10 +1,10 @@
 AppBundle\Entity\User:
     properties:
         lastName:
-            - not_null:
+            - NotNull:
                 message: form.user.last_name.not_null
         firstName:
-            - not_null:
+            - NotNull:
                 message: form.user.first_name.not_null
 AppBundle\Entity\EventType:
     properties:
