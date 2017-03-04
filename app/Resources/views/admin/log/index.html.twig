@@ -1,9 +1,5 @@
 {% extends 'admin/datatable_layout.html.twig' %}
 
-{% block stylesheets_lib %}
-    {{ parent() }}
-{% endblock %}
-
 {% block content %}
     <div class="panel">
         <div class="panel-heading">
@@ -15,7 +11,7 @@
                        width="100%">
                     <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>{{ 'common.data_table.id'|trans }}</th>
                         <th>{{ 'admin.log.type'|trans }}</th>
                         <th>{{ 'admin.log.message'|trans }}</th>
                         <th>{{ 'admin.log.created_at'|trans }}</th>

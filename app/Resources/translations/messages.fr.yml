@@ -5,6 +5,7 @@ common:
     button:
         save: Enregistrer
         back: Retour
+        delete: Supprimer
         connection: Connexion
         back_without_save: Retour sans sauvegarder
     error:
@@ -20,6 +21,9 @@ common:
         other:
             title: Erreur
             content: Contacter un administrateur
+    data_table:
+        actions: Actions
+        id : ID
 
 admin:
     title: Billetterie Admin
@@ -30,6 +34,11 @@ admin:
     nav:
         home: Accueil
         log: Registre
+        event_type:
+            title: Types d'évènement
+            index: Liste des types
+            create: Ajouter un type
+            edit: Modifier un type
     log:
         title: Registre
         type: Type
@@ -39,7 +48,14 @@ admin:
         user: Nom - Prénom Utilisateur
     sidebar:
         administration: Administration
-
+    event_type:
+        title : Type d'évènement
+        create: Créer un type d'évènement
+        edit: Éditer un type d'évènement
+        delete_confirm : Etes-vous sûr de vouloir supprimer le type d\'evènement selectionné ?
+    form:
+        event_type:
+            name: Nom du type d'évènement
 
 app:
     title: Billetterie
@@ -111,3 +127,16 @@ log:
         logout:
             title: Déconnexion
             message: S'est déconnecté de la billetterie
+
+flash:
+    admin:
+        event_type:
+            delete:
+                success: Le type d'évènement a bien été supprimé
+                danger: Erreur, le type d'évènement n'a pas pu être supprimé
+            add:
+                success: Le type d'évènement a bien été ajouté
+                danger: Erreur, le type d'évènement n'a pas été ajouté
+            edit:
+                success: Le type d'évènement a bien été modifié
+                danger: Erreur, le type d'évènement n'a pas été modifié

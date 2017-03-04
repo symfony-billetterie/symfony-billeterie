@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class TypeEvent
  *
- * @ORM\Table(name="type_event")
+ * @ORM\Table(name="event_type")
  * @ORM\Entity(repositoryClass="")
  */
-class TypeEvent
+class EventType
 {
     /**
      * @var int
@@ -19,19 +19,19 @@ class TypeEvent
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(type="string")
      */
-    protected $name;
+    private $name;
 
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -39,7 +39,7 @@ class TypeEvent
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -47,9 +47,9 @@ class TypeEvent
     /**
      * @param string $name
      *
-     * @return TypeEvent
+     * @return EventType
      */
-    public function setName($name)
+    public function setName(?string $name): EventType
     {
         $this->name = $name;
 

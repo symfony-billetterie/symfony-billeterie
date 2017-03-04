@@ -6,3 +6,8 @@ AppBundle\Entity\User:
         firstName:
             - NotNull:
                 message: form.user.first_name.not_null
+AppBundle\Entity\EventType:
+    properties:
+        name:
+            - NotNull:
+                message: form.event_type.name.not_null
