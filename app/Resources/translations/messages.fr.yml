@@ -52,7 +52,7 @@ admin:
         title: Type d'évènement
         create: Créer un type d'évènement
         edit: Éditer un type d'évènement
-        delete_confirm : Etes-vous sûr de vouloir supprimer le type d'evènement selectionné ?
+        delete_confirm : Etes-vous sûr de vouloir supprimer le type d\'evènement selectionné ?
     form:
         event_type:
             name: Nom du type d'évènement
