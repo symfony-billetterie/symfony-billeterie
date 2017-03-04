@@ -4,7 +4,7 @@
 parameters:
     database_host:     192.168.33.33
     database_port:     3360
-    database_name:     billeterie
+    database_name:     billetterie
     database_user:     root
     database_password: 1234
     # You should uncomment this if you want use pdo_sqlite
@@ -13,13 +13,13 @@ parameters:
     mailer_transport:  smtp
     mailer_host:       smtp.sendgrid.net
     mailer_user:       cocokrl
-    mailer_password:   DoTjcgdPubEo8vWB
-    mailer_port:       587
+    mailer_password:   ~
+    mailer_port:       ~
 
-    session_prefix:    billeterie
+    session_prefix:    billetterie
 
     # A secret key that's used to generate certain security-related tokens
     secret:            3vmtPv4N9MVv58w6pJ9AfGB92ky22dDT
 
-    smart_developper_email: corentin.regnier59@gmail.com
+    smart_developer_email: corentin.regnier59@gmail.com
     smart_contact_email:    corentin.regnier59@gmail.com

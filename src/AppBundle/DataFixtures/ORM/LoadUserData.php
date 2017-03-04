@@ -16,14 +16,13 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
     private $users = [
         [
             'role'      => User::USER_ROLE_SUPER_ADMIN,
-            'civility'  => 'Mr',
+            'civility'  => User::USER_CIVILITY_MAN,
             'firstName' => 'Martin',
             'lastName'  => 'Dulat',
             'address'   => '12 rue de la république',
             'zipCode'   => '60300',
             'city'      => 'Senlis',
             'phone'     => '0612345678',
-            'idCard'    => '4476714',
             'idNumber'  => '8984251',
             'email'     => 'admin@gmail.com',
             'username'  => 'admin',
@@ -32,14 +31,13 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
         ],
         [
             'role'      => User::USER_ROLE_OBSERVATORY,
-            'civility'  => 'Mr',
+            'civility'  => User::USER_CIVILITY_MAN,
             'firstName' => 'Fred',
             'lastName'  => 'Genouvrier',
             'address'   => 'rue de l\'arc de triomphe',
             'zipCode'   => '75000',
             'city'      => 'Paris',
             'phone'     => '0634567891',
-            'idCard'    => '9875125',
             'idNumber'  => '88738777',
             'email'     => 'observatory@gmail.com',
             'username'  => 'observatory',
@@ -48,14 +46,13 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
         ],
         [
             'role'      => User::USER_ROLE_AGENT,
-            'civility'  => 'Mr',
+            'civility'  => User::USER_CIVILITY_WOMAN,
             'firstName' => 'Julie',
             'lastName'  => 'Giry',
             'address'   => '32, rue de l\'apport au pain',
             'zipCode'   => '34000',
             'city'      => 'Montpellier',
             'phone'     => '0645612378',
-            'idCard'    => '1874622',
             'idNumber'  => '5138744',
             'email'     => 'agent@gmail.com',
             'username'  => 'agent',
@@ -64,14 +61,13 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
         ],
         [
             'role'      => User::USER_ROLE_BENEFICIARY,
-            'civility'  => 'Mr',
+            'civility'  => User::USER_CIVILITY_WOMAN,
             'firstName' => 'Agnès',
             'lastName'  => 'Sirven',
             'address'   => '8, rue Descartes ',
             'zipCode'   => '67200',
             'city'      => 'Strasbourg',
             'phone'     => '0612678345',
-            'idCard'    => '41876300',
             'idNumber'  => '02483148',
             'email'     => 'beneficiary@gmail.com',
             'username'  => 'beneficiary',
@@ -87,7 +83,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $now = new \DateTime();
-        foreach ($this->users as $user) {
+        foreach ($this->users as $key => $user) {
             /** @var User $thisUser */
             $thisUser = new User();
             $thisUser->addRole($user['role'])
@@ -99,13 +95,13 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
                 ->setZipCode($user['zipCode'])
                 ->setCity($user['city'])
                 ->setPhone($user['phone'])
-                ->setIdCard($user['idCard'])
                 ->setIdNumber($user['idNumber'])
                 ->setEmail($user['email'])
                 ->setUsername($user['username'])
                 ->setPlainPassword($user['password'])
                 ->setEnabled($user['enabled']);
             $manager->persist($thisUser);
+            $this->setReference('user-'.$key, $thisUser);
         }
         $manager->flush();
     }
@@ -115,6 +111,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 1;
+        return 0;
     }
 }

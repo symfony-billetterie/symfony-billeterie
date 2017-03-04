@@ -1,0 +1,12 @@
+{% extends "app/layout.html.twig" %}
+
+{% block content %}
+    <div class="panel col-md-6 col-md-offset-3">
+        <div class="panel-heading">
+            <div class="panel-title">{{ 'app.user.register.title'|trans }}</div>
+        </div>
+        <div class="panel-body">
+            <p>{{ 'app.user.register.check_email'|trans({'%email%': user.email}) }}</p>
+        </div>
+    </div>
+{% endblock content %}

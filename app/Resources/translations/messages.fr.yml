@@ -10,27 +10,24 @@ common:
         back_without_save: Retour sans sauvegarder
     error:
         403:
-            title: Erreur 403 Forbidden
-            content: Vos droits d'accès ne vous permettent pas d'accèder à cette page
+            title: Erreur 403
+            content: Vos droits d'accès ne vous permettent pas d'accéder à cette page
         404:
-            title: Erreur 404 Not Found
-            content: Page non trouvé
+            title: Erreur 404
+            content: Page non trouvée
         500:
-            title: Erreur 500 Internal Server Error
-            content: Erreur interne du serveur.
-        503:
-            title: Erreur 503 Service Unavailable
-            content: Service temporairement indisponible ou en maintenance.
+            title: Erreur 500
+            content: Erreur interne du serveur, merci de contacter un administrateur
         other:
             title: Erreur
-            content: Contacter l'administrateur
+            content: Contacter un administrateur
 
 admin:
-    title: Billeterie Admin
+    title: Billetterie Admin
     actions: Actions
     seo:
-        title: Billeterie | Administration
-        description: Billeterie Symfony projet scolaire, partie administration
+        title: Billetterie | Administration
+        description: Billetterie Symfony projet scolaire, partie administration
     nav:
         home: Accueil
         log: Registre
@@ -43,7 +40,7 @@ admin:
         title: Registre
         type: Type
         message: Message
-        created_at: Créer à
+        created_at: Date - Heure
         user_id: Id Utilisateur
         user: Nom - Prénom Utilisateur
     sidebar:
@@ -56,36 +53,72 @@ admin:
             name: Nom du type d'évènement
 
 app:
-    title: Billeterie
+    title: Billetterie
     seo:
-        title: Billeterie | Accueil
-        description: Billeterie Symfony projet scolaire
+        title: Billetterie | Accueil
+        description: Billetterie Symfony projet scolaire
     nav:
         home: Accueil
+        login: Connexion
+        register: Inscription
+    form:
+        registration:
+            gender: Genre
+            last_name: Nom
+            first_name: Prénom
+            address: Adresse
+            zip_code: Code postale
+            city: Ville
+            phone: Téléphone
+            card: Numéro de pièce d'identité
     user:
         login:
-            title: Se connecter
+            title: Connection
             username: Identifiant
             password: Mot de passe
             remember_me: Se souvenir de moi
             forgotten_password: Mot de passe oublié
+            nav: Connection
         register:
-            title: S'enregistrer
+            title: Inscription
+            confirmed: Félicitations %username%, votre compte est maintenant activé.
+            check_email: >
+                Un e-mail a été envoyé à l'adresse %email%. Il contient un lien d'activation sur lequel il
+                vous faudra cliquer afin d'activer votre compte.
+            back: Retour à la page d'origine.
+        resetting:
+            title: Mot de passe perdu
+            check_email: >
+                Un e-mail a été envoyé. Il contient un lien sur lequel il vous faudra cliquer pour réinitialiser
+                votre mot de passe. Remarque : Vous ne pouvez demander un nouveau mot de passe que toutes les
+                %tokenLifetime% heures.
+
+                Si vous ne recevez pas un email, vérifiez votre dossier spam ou essayez à nouveau.
+            request:
+                username: Nom d'utilisateur ou adresse e-mail
+                submit: Réinitialiser le mot de passe
+            reset: Modifier le mot de passe
+        profile:
+            edit:
+                title: Édition du profil
+            show:
+                title: Votre profil
+                email: Adresse mail
+                phone: N° de téléphone
+                username: Identifiant utilisateur
+                name: Nom complet
+                address: Adresse complète
+                id_number: N° d'identité
+                edit: Éditer votre profil
+    civility:
+        man: Monsieur
+        woman: Madame
 
 log:
     user:
         login:
             title: Connexion
-            message: C'est connecté à la billeterie
-flash:
-    admin:
-        event_type:
-            delete:
-                success: Le type d'évènement a bien été supprimé
-                danger: Erreur, le type d'évènement n'a pas pu être supprimé
-            add:
-                success: Le type d'évènement a bien été ajouté
-                danger: Erreur, le type d'évènement n'a pas été ajouté
-            edit:
-                success: Le type d'évènement a bien été modifié
-                danger: Erreur, le type d'évènement n'a pas été modifié
+            message: S'est connecté à la billetterie
+        logout:
+            title: Déconnexion
+            message: S'est déconnecté de la billetterie

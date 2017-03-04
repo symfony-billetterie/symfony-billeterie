@@ -12,24 +12,26 @@ security:
             id: fos_user.user_provider.username_email
     firewalls:
         main:
-            access_denied_handler: app.security.access_denied_handler
             pattern: ^/
             form_login:
                 provider: fos_userbundle
                 login_path: fos_user_security_login
                 check_path: fos_user_security_check
                 csrf_token_generator: security.csrf.token_manager
-                success_handler: login_success_handler
+                success_handler: app.security.login_success_handler
             logout:
                 path: fos_user_security_logout
                 target: /
+                handlers: [app.security.logout_handler]
+                invalidate_session: false
             anonymous: true
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
     access_control:
-        - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/resetting, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/connection$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/inscription, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/mot-de-passe-perdu, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/log, roles: ROLE_SUPER_ADMIN }
         - { path: ^/admin, roles: ROLE_OBSERVATORY }
+        - { path: ^/$, roles: ROLE_BENEFICIARY }

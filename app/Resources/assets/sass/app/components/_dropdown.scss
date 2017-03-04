@@ -8,7 +8,7 @@
 .dropdown-menu {
     padding: 10px;
     min-width: 190px;
-    border-radius: 0px;
+    border-radius: 0;
 
     li {
 
@@ -19,5 +19,20 @@
             color: $color-lighter;
             background-color: $color-base;
         }
+    }
+}
+
+@media (max-width: $screen-tablet - 1) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: $color-base;
+    }
+
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #fff;
+        background-color: $color-base;
+    }
+
+    .dropdown-menu {
+        padding: 0;
     }
 }

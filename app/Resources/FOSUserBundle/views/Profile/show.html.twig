@@ -1,0 +1,39 @@
+{% extends "app/layout.html.twig" %}
+
+{% block content %}
+    <div class="panel col-md-12">
+        <div class="panel-heading">
+            <div class="panel-title">{{ 'app.user.profile.show.title'|trans }}</div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4 vr">
+                    <span>{{ 'app.user.profile.show.email'|trans }}: </span>
+                    <p>{{ user.email }}</p>
+                    <span>{{ 'app.user.profile.show.phone'|trans }}: </span>
+                    <p>{{ user.phone }}</p>
+                </div>
+                <div class="col-md-4 vr">
+                    <span>{{ 'app.user.profile.show.username'|trans }}: </span>
+                    <p>{{ user.username }}</p>
+
+                    <span>{{ 'app.user.profile.show.name'|trans }}: </span>
+                    <p>{{ user.civility }} {{ user.lastName|upper }} {{ user.firstName }}</p>
+                </div>
+                <div class="col-md-4">
+                    <span>{{ 'app.user.profile.show.address'|trans }}: </span>
+                    <p>
+                        {{ user.address }}, {{ user.city }} ({{ user.zipCode }})
+                    </p>
+                    <span>{{ 'app.user.profile.show.id_number'|trans }}: </span>
+                    <p>{{ user.idNumber }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer text-center">
+            <a href="{{ path('fos_user_profile_edit') }}"
+               class="btn btn-primary">{{ 'app.user.profile.show.edit'|trans }}
+            </a>
+        </div>
+    </div>
+{% endblock content %}

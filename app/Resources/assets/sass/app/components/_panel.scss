@@ -2,7 +2,7 @@
     Panel
  */
 
-/** Défiir les bordures d'un panel */
+/** Défifir les bordures d'un panel */
 .panel {
     border: 1px solid $color;
     border-radius: 10px;
@@ -10,7 +10,7 @@
 
 /** Définir l'espacement intérieur du bas pour l'entête d'un panel  */
 .panel-heading {
-    padding-bottom: 0px;
+    padding-bottom: 0;
 }
 
 /** Réécriture du titre d'un panel  */

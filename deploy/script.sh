@@ -35,15 +35,21 @@ sudo mv /var/www/config.inc.php /etc/phpmyadmin/config.inc.php
 sudo chmod 644 /etc/phpmyadmin/config.inc.php
 
 # Install PHP7
-sudo apt-get -y install php php7.0-mysql php7.0-cli php7.0-intl php7.0-curl php7.0-gd php-apcu php7.0-mcrypt
+sudo add-apt-repository ppa:ondrej/php
+sudo apt-get update
+sudo apt-get install php7.1
+sudo apt-get -y install php php7.1-mysql php7.1-cli php7.1-intl php7.1-curl php7.1-xml php7.1-gd php-apcu php7.1-mcrypt
 
 # Enable PHP7 mod
 sudo phpenmod mcrypt
+sudo a2dismod php7.0
+sudo a2enmod php7.1
 
 # Edit PHP7 Config
-sudo sed -i "s/post_max_size = 8M/post_max_size = 600M/" /etc/php/7.0/apache2/php.ini
-sudo sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 500M/" /etc/php/7.0/apache2/php.ini
-sudo sed -i "s/display_errors = Off/display_errors = On/" /etc/php/7.0/apache2/php.ini
+sudo sed -i "s/post_max_size = 8M/post_max_size = 600M/" /etc/php/7.1/apache2/php.ini
+sudo sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 500M/" /etc/php/7.1/apache2/php.ini
+sudo sed -i "s/display_errors = Off/display_errors = On/" /etc/php/7.1/apache2/php.ini
+sudo update-alternatives --set php /usr/bin/php7.1
 
 # Delete default Apache web directory and vhost
 sudo rm -rf /var/www/html

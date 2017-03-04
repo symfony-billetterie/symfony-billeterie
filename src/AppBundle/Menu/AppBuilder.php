@@ -28,11 +28,11 @@ class AppBuilder extends BaseBuilder
 
     /**
      * @param FactoryInterface $factory
-     * @param array $options
+     * @param array            $options
      *
      * @return ItemInterface
      */
-    public function breadcrumb(FactoryInterface $factory, array $options)
+    public function breadcrumb(FactoryInterface $factory)
     {
         $menu = $factory->createItem('root');
 

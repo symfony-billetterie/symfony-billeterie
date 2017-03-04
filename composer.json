@@ -1,5 +1,5 @@
 {
-    "name": "symfony-billeterie/symfony-billeterie",
+    "name": "symfony-billetterie/symfony-billetterie",
     "description": "Symfony project Licence Lycée Saint Vincent 2016/2017",
     "license": "proprietary",
     "type": "project",
@@ -18,7 +18,7 @@
         }
     },
     "require": {
-        "php": ">=7",
+        "php": ">=7.1",
         "symfony/symfony": "3.2.*",
         "doctrine/orm": "^2.5",
         "doctrine/doctrine-bundle": "^1.6",

@@ -1,12 +1,12 @@
 parameters:
     smart.host_env: dev
-    smart.project_domain: billeterie.sf
-    smart.project_url: https://billeterie.sf/
-    smart.project_name: billeterie
-    smart.project_title: billeterie
+    smart.project_domain: billetterie.sf
+    smart.project_url: https://billetterie.sf/
+    smart.project_name: billetterie
+    smart.project_title: billetterie
     smart.vagrant_ip: 192.168.33.33
-    smart.email_sender_name: billeterie
-    smart.developer_email: "%smart_developper_email%"
+    smart.email_sender_name: billetterie
+    smart.developer_email: "%smart_developer_email%"
     smart.contact_email: "%smart_contact_email%"
 
 smart_user:

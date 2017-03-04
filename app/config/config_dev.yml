@@ -31,4 +31,4 @@ monolog:
         #    level:  info
 
 swiftmailer:
-    delivery_address: '%smart_developper_email%'
+    delivery_address: '%smart_developer_email%'

@@ -1,7 +1,19 @@
-{% extends 'TwigBundle:Exception:error.html.twig' %}
+{% extends 'app/layout.html.twig' %}
 
-{% block error %}
-    <h3 class="text-center bold">{{ 'common.error.other.title'|trans }}</h3>
-    <p class="intro text-center">{{ 'common.error.other.content'|trans|raw }}</p>
+{% block content %}
+    <div class="panel text-center">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <h4><strong>{{ 'common.error.other.title'|trans }} {{ status_code }}</strong></h4>
+            </div>
+        </div>
+        <div class="panel-body">
+            <p class="intro">
+                {{ status_text }}
+            </p>
+            <p class="intro">
+                {{ 'common.error.other.content'|trans }}
+            </p>
+        </div>
+    </div>
 {% endblock %}
-

@@ -25,7 +25,6 @@
     margin: 0;
     max-width: 150px;
     width: 150px;
-    min-width: auto;
     border-radius: 0;
     border: 0;
     position: fixed;
@@ -34,7 +33,6 @@
     /** Réécriture des éléments de la navbar par défaut */
     .nav > li {
         border-bottom: 1px $color-base solid;
-        font-weight: 16px;
 
         /** Aucune bordure (du bas) pour le dernière éléments de la navbar */
         &:last-child {
@@ -75,7 +73,7 @@
 /** dropdown-menu */
 .dropdown-menu {
     min-width: 100%;
-    padding: 0;
+    padding: 10px;
 
     li {
 
@@ -100,7 +98,6 @@
         background-color: #fff;
         right: 0;
         left: auto;
-        border: 1px solid #ccc;
         border: 1px solid rgba(0, 0, 0, 0.15);
         border-radius: 4px;
         -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);

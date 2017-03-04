@@ -1,0 +1,36 @@
+{% extends "app/layout.html.twig" %}
+
+{% block content %}
+    {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+
+    <div class="panel col-md-6 col-md-offset-3">
+        <div class="panel-heading">
+            <div class="panel-title">{{ 'app.user.profile.edit.title'|trans }}</div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6 vr">
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.username) }}
+                    {{ form_row(form.phone) }}
+                    {{ form_row(form.idNumber) }}
+                    {{ form_row(form.civility) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.lastName) }}
+                    {{ form_row(form.firstName) }}
+                    {{ form_row(form.address) }}
+                    {{ form_row(form.zipCode) }}
+                    {{ form_row(form.city) }}
+                </div>
+                <div class="text-center">
+                    {{ form_row(form.current_password) }}
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer text-center">
+            <input type="submit" class="btn btn-success" value="{{ 'common.button.save'|trans }}"/>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock content %}

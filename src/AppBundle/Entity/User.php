@@ -1,15 +1,13 @@
 <?php
-// src/AppBundle/Entity/User.php
 
 namespace AppBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Class User
- *
- * @package AppBundle\Entity
  *
  * @ORM\Entity
  * @ORM\Table(name="user")
@@ -21,7 +19,12 @@ class User extends BaseUser
     const USER_ROLE_AGENT       = "ROLE_AGENT";
     const USER_ROLE_BENEFICIARY = "ROLE_BENEFICIARY";
 
+    const USER_CIVILITY_MAN   = "man";
+    const USER_CIVILITY_WOMAN = "woman";
+
     /**
+     * @var int
+     *
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -80,18 +83,36 @@ class User extends BaseUser
      * @var string
      * @ORM\Column(type="string")
      */
-    protected $idCard;
+    protected $idNumber;
 
     /**
-     * @var string
-     * @ORM\Column(type="string")
+     * @Gedmo\Slug(fields={"firstName","lastName"}, separator="-", updatable=true, unique=true)
+     * @ORM\Column(length=255, unique=true)
      */
-    protected $idNumber;
+    protected $slug;
+
+    /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->birthdayDate = new \DateTime();
+        $this->roles        = [self::USER_ROLE_BENEFICIARY];
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
     /**
      * @return string
      */
-    public function getCivility(): string
+    public function getCivility(): ?string
     {
         return $this->civility;
     }
@@ -99,9 +120,9 @@ class User extends BaseUser
     /**
      * @param string $civility
      *
-     * @return User
+     * @return $this
      */
-    public function setCivility(string $civility): User
+    public function setCivility($civility)
     {
         $this->civility = $civility;
 
@@ -119,9 +140,9 @@ class User extends BaseUser
     /**
      * @param \DateTime $birthdayDate
      *
-     * @return User
+     * @return $this
      */
-    public function setBirthdayDate(\DateTime $birthdayDate): User
+    public function setBirthdayDate($birthdayDate)
     {
         $this->birthdayDate = $birthdayDate;
 
@@ -131,7 +152,7 @@ class User extends BaseUser
     /**
      * @return string
      */
-    public function getAddress(): string
+    public function getAddress(): ?string
     {
         return $this->address;
     }
@@ -139,9 +160,9 @@ class User extends BaseUser
     /**
      * @param string $address
      *
-     * @return User
+     * @return $this
      */
-    public function setAddress(string $address): User
+    public function setAddress($address)
     {
         $this->address = $address;
 
@@ -151,7 +172,7 @@ class User extends BaseUser
     /**
      * @return string
      */
-    public function getCity(): string
+    public function getCity(): ?string
     {
         return $this->city;
     }
@@ -159,9 +180,9 @@ class User extends BaseUser
     /**
      * @param string $city
      *
-     * @return User
+     * @return $this
      */
-    public function setCity(string $city): User
+    public function setCity($city)
     {
         $this->city = $city;
 
@@ -179,7 +200,7 @@ class User extends BaseUser
     /**
      * @param mixed $firstName
      *
-     * @return User
+     * @return $this
      */
     public function setFirstName($firstName)
     {
@@ -191,27 +212,7 @@ class User extends BaseUser
     /**
      * @return string
      */
-    public function getLastName(): string
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * @param string $lastName
-     *
-     * @return User
-     */
-    public function setLastName(string $lastName): User
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getZipCode(): string
+    public function getZipCode(): ?string
     {
         return $this->zipCode;
     }
@@ -219,9 +220,9 @@ class User extends BaseUser
     /**
      * @param string $zipCode
      *
-     * @return User
+     * @return $this
      */
-    public function setZipCode(string $zipCode): User
+    public function setZipCode($zipCode)
     {
         $this->zipCode = $zipCode;
 
@@ -231,47 +232,7 @@ class User extends BaseUser
     /**
      * @return string
      */
-    public function getPhone(): string
-    {
-        return $this->phone;
-    }
-
-    /**
-     * @param string $phone
-     *
-     * @return User
-     */
-    public function setPhone(string $phone): User
-    {
-        $this->phone = $phone;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getIdCard(): string
-    {
-        return $this->idCard;
-    }
-
-    /**
-     * @param string $idCard
-     *
-     * @return User
-     */
-    public function setIdCard(string $idCard): User
-    {
-        $this->idCard = $idCard;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getIdNumber(): string
+    public function getIdNumber(): ?string
     {
         return $this->idNumber;
     }
@@ -279,9 +240,9 @@ class User extends BaseUser
     /**
      * @param string $idNumber
      *
-     * @return User
+     * @return $this
      */
-    public function setIdNumber(string $idNumber): User
+    public function setIdNumber($idNumber)
     {
         $this->idNumber = $idNumber;
 
@@ -289,19 +250,61 @@ class User extends BaseUser
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getId()
+    public function getLastName(): ?string
     {
-        return $this->id;
+        return $this->lastName;
     }
 
     /**
-     * User constructor.
+     * @param string $lastName
+     *
+     * @return $this
      */
-    public function __construct()
+    public function setLastName($lastName)
     {
-        parent::__construct();
-        $this->birthdayDate = new \DateTime();
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @param string $phone
+     *
+     * @return $this
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getAvailableCivilities()
+    {
+        return [
+            'app.civility.man'   => self::USER_CIVILITY_MAN,
+            'app.civility.woman' => self::USER_CIVILITY_WOMAN,
+        ];
     }
 }

@@ -19,7 +19,14 @@
                     responsive: true,
                     oLanguage: {
                         sUrl: "//cdn.datatables.net/plug-ins/1.10.13/i18n/French.json"
-                    }
+                    },
+                    columnDefs: [
+                        {
+                            targets: [0],
+                            visible: false
+                        }
+                    ],
+                    order: [[0, "desc"]]
                 });
             });
         </script>
