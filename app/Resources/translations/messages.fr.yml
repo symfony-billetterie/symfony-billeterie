@@ -4,8 +4,10 @@ common:
         back_homepage: Retour sur le site
     button:
         save: Enregistrer
+        edit: Modifier
         back: Retour
         delete: Supprimer
+        add: Ajouter
         connection: Connexion
         back_without_save: Retour sans sauvegarder
     error:

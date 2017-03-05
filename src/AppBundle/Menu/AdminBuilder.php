@@ -53,7 +53,6 @@ class AdminBuilder extends BaseBuilder
         if ($this->getAuthorization()->isGranted(User::USER_ROLE_SUPER_ADMIN)) {
             $this->addItemIfRouteMatch('admin_log_index', $menu, 'admin_log_index', 'admin.nav.log', 'file-text');
 
-
             $this->addItemIfRouteMatch('admin.nav.event_type.title', $menu, 'admin_event_type_index', 'list');
             if (strpos($routeName, 'admin_event_type') === 0) {
                 $this->addItem($menu, 'admin.nav.event_type.index', 'admin_event_type_index', 'list');
@@ -61,8 +60,10 @@ class AdminBuilder extends BaseBuilder
                     $this->addItem($menu, 'admin.nav.event_type.create', 'admin_event_type_add', 'plus');
                 }
                 if (strpos($routeName, 'admin_event_type_edit') === 0) {
-                    $eventType = $request->get('id');
-                    $this->addItem($menu, 'admin.nav.event_type.edit', 'admin_event_type_edit', 'pencil', ['id' => $eventType]);
+                    $eventType = $request->get('slug');
+                    $this->addItem($menu, 'admin.nav.event_type.edit', 'admin_event_type_edit', 'pencil',
+                        ['slug' => $eventType]
+                    );
                 }
             }
         }

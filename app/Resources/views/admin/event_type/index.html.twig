@@ -5,7 +5,9 @@
             <div class="panel-title">{{ 'admin.event_type.title'|trans }}</div>
         </div>
         <div class="panel-body">
-            <a href="{{ path('admin_event_type_add') }}" class="btn btn-info add-btn">Ajouter</a>
+            <a href="{{ path('admin_event_type_add') }}" class="btn btn-info add-btn">
+                {{ 'common.button.add'|trans }}
+            </a>
             <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0"
                    width="100%">
                 <thead>
@@ -19,12 +21,13 @@
                 {% for eventType in eventTypes %}
                     <tr>
                         <td>{{ eventType.id }}</td>
-                        <td>{{ eventType.getName() }}</td>
+                        <td>{{ eventType.name }}</td>
                         <td class="column-actions">
                             <div class="btn-group" role="group" aria-label="...">
-                                <a href="{{ path('admin_event_type_edit', {'id':eventType.id}) }}"
-                                   class="btn btn-info" title="Modifier"><i
-                                            class="fa fa-edit"></i></a>
+                                <a href="{{ path('admin_event_type_edit', {'slug':eventType.slug}) }}"
+                                   class="btn btn-info" title="{{ 'common.button.edit'|trans }}">
+                                    <i class="fa fa-edit"></i>
+                                </a>
                                 <a href="{{ path('admin_event_type_delete', {'eventType':eventType.id}) }}"
                                    class="btn btn-danger"
                                    onclick="return confirm('{{ 'admin.event_type.delete_confirm'|trans }}')"

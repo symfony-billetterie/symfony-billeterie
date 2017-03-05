@@ -9,8 +9,6 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 /**
  * Class LoadEventTypeData
- *
- * @package AppBundle\DataFixtures\ORM
  */
 class LoadEventTypeData extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -44,7 +42,7 @@ class LoadEventTypeData extends AbstractFixture implements OrderedFixtureInterfa
             ],
             [
                 'name' => 'Volley Ball',
-            ]
+            ],
         ];
 
         foreach ($datas as $data) {
