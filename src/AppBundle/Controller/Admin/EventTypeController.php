@@ -52,7 +52,6 @@ class EventTypeController extends Controller
         $eventType = new EventType();
 
         $form = $this->createForm(EventTypeType::class, $eventType);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -62,11 +61,11 @@ class EventTypeController extends Controller
                 $em->persist($eventType);
                 $em->flush();
                 $this->addFlash('success', 'flash.admin.event_type.add.success');
+
+                return $this->redirectToRoute('admin_event_type_index');
             } catch (\Exception $e) {
                 $this->addFlash('danger', 'flash.admin.event_type.add.danger');
             }
-
-            return $this->redirectToRoute('admin_event_type_index');
         }
 
         return $this->render('admin/event_type/create.html.twig', [
@@ -77,30 +76,33 @@ class EventTypeController extends Controller
     /**
      * Modification d'un type d'événement
      *
-     * @Route("/editer/{id}", name="admin_event_type_edit")
      * @param Request $request
-     * @param EventType $eventType
+     * @param string  $slug
      *
      * @return Response
+     *
+     * @Route("/editer/{slug}", name="admin_event_type_edit")
      */
-    public function editAction(Request $request, EventType $eventType)
+    public function editAction(Request $request, string $slug)
     {
-        $form = $this->createForm(EventTypeType::class, $eventType);
+        $em = $this->getDoctrine();
 
+        /** @var EventType $eventType */
+        $eventType = $em->getRepository('AppBundle:EventType')->findOneBy(['slug' => $slug]);
+        $form      = $this->createForm(EventTypeType::class, $eventType);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
 
             try {
-                $em->persist($eventType);
-                $em->flush();
+                $em->getManager()->persist($eventType);
+                $em->getManager()->flush();
                 $this->addFlash('success', 'flash.admin.event_type.edit.success');
+
+                return $this->redirectToRoute('admin_event_type_index');
             } catch (\Exception $e) {
                 $this->addFlash('danger', 'flash.admin.event_type.edit.danger');
             }
-
-            return $this->redirectToRoute('admin_event_type_index');
         }
 
         return $this->render('admin/event_type/edit.html.twig', [

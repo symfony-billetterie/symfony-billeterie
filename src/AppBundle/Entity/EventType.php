@@ -2,16 +2,20 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Traits\TimeStampTrait;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Class TypeEvent
+ * Class EventType
  *
  * @ORM\Table(name="event_type")
- * @ORM\Entity(repositoryClass="")
+ * @ORM\Entity()
  */
 class EventType
 {
+    use TimeStampTrait;
+
     /**
      * @var int
      *
@@ -24,9 +28,15 @@ class EventType
     /**
      * @var string
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(name="name", type="string")
      */
     private $name;
+
+    /**
+     * @Gedmo\Slug(fields={"name"}, separator="-", updatable=true, unique=true)
+     * @ORM\Column(length=255, unique=true)
+     */
+    private $slug;
 
     /**
      * @return int
@@ -49,9 +59,29 @@ class EventType
      *
      * @return EventType
      */
-    public function setName(?string $name): EventType
+    public function setName(string $name): EventType
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     *
+     * @return EventType
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
 
         return $this;
     }
