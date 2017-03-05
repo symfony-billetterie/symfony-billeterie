@@ -1,4 +1,4 @@
-{% extends "app/layout.html.twig" %}
+{% extends "app/form.html.twig" %}
 
 {% block content %}
     {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
@@ -22,6 +22,9 @@
                     {{ form_row(form.address) }}
                     {{ form_row(form.zipCode) }}
                     {{ form_row(form.city) }}
+                </div>
+                <div class="row-reset">
+                    {{ form_row(form.birthdayDate) }}
                 </div>
             </div>
         </div>
