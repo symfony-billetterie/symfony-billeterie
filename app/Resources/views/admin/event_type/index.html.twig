@@ -28,7 +28,9 @@
                                 <a href="{{ path('admin_event_type_delete', {'eventType':eventType.id}) }}"
                                    class="btn btn-danger"
                                    onclick="return confirm('{{ 'admin.event_type.delete_confirm'|trans }}')"
-                                   title="{{ 'common.button.delete'|trans }}"><i class="fa fa-trash"></i></a>
+                                   title="{{ 'common.button.delete'|trans }}">
+                                    <i class="fa fa-trash"></i>
+                                </a>
                             </div>
                         </td>
                     </tr>
