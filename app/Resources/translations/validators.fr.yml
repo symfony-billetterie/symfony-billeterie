@@ -7,4 +7,6 @@ form:
             not_null: Veuillez saisir votre nom
         first_name:
             not_null: Veuillez saisir votre prénom
-
+        birthday_date:
+            date: Veuillez saisir une date avec le bon format
+            lower: Veuillez saisir une date inférieur à aujourd'hui

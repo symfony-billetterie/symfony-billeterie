@@ -75,7 +75,7 @@ app:
             first_name: Prénom
             birthday: Date de naissance
             address: Adresse
-            zip_code: Code postale
+            zip_code: Code postal
             city: Ville
             phone: Téléphone
             card: Numéro de pièce d'identité

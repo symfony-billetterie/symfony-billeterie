@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class UserType
@@ -26,9 +27,9 @@ class UserType extends AbstractType
             ->add('civility', ChoiceType::class, [
                 'label'    => 'app.form.registration.gender',
                 'multiple' => false,
-                'expanded' => false,
+                'expanded' => true,
                 'choices'  => User::getAvailableCivilities(),
-                'required' => false,
+                'required' => true,
             ])
             ->add('lastName', TextType::class, [
                 'label'    => 'app.form.registration.last_name',
@@ -41,8 +42,8 @@ class UserType extends AbstractType
             ->add('birthdayDate', BirthdayType::class, [
                 'label'    => 'app.form.registration.birthday',
                 'widget'   => 'single_text',
-                'format'   => 'dd/MM/YYYY',
-                'attr'     => ['class' => 'js-datepicker'],
+                'format'   => 'dd/MM/yyyy',
+                'attr'     => ['class' => 'datepicker'],
                 'required' => false,
             ])
             ->add('address', TextType::class, [
@@ -64,6 +65,19 @@ class UserType extends AbstractType
             ->add('idNumber', TextType::class, [
                 'label'    => 'app.form.registration.card',
                 'required' => false,
-            ]);
+            ])
+            ->remove('username');
+    }
+
+    /**
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'error_mapping' => [
+                'lower' => 'birthdayDate',
+            ],
+        ]);
     }
 }

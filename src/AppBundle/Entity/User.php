@@ -298,6 +298,34 @@ class User extends BaseUser
     }
 
     /**
+     * @param string $email
+     *
+     * @return $this
+     */
+    public function setEmail($email)
+    {
+        $email = is_null($email) ? '' : $email;
+        parent::setEmail($email);
+        parent::setUsername($email);
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isLower()
+    {
+        $todayDate = new \DateTime();
+        if ($this->birthdayDate > $todayDate) {
+
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * @return array
      */
     public static function getAvailableCivilities()

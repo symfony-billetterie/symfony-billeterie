@@ -25,7 +25,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
             'phone'     => '0612345678',
             'idNumber'  => '8984251',
             'email'     => 'admin@gmail.com',
-            'username'  => 'admin',
             'password'  => '1234',
             'enabled'   => true,
         ],
@@ -40,7 +39,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
             'phone'     => '0634567891',
             'idNumber'  => '88738777',
             'email'     => 'observatory@gmail.com',
-            'username'  => 'observatory',
             'password'  => '1234',
             'enabled'   => true,
         ],
@@ -55,7 +53,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
             'phone'     => '0645612378',
             'idNumber'  => '5138744',
             'email'     => 'agent@gmail.com',
-            'username'  => 'agent',
             'password'  => '1234',
             'enabled'   => true,
         ],
@@ -70,7 +67,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
             'phone'     => '0612678345',
             'idNumber'  => '02483148',
             'email'     => 'beneficiary@gmail.com',
-            'username'  => 'beneficiary',
             'password'  => '1234',
             'enabled'   => true,
         ],
@@ -90,14 +86,14 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
                 ->setCivility($user['civility'])
                 ->setBirthdayDate($now->sub(new \DateInterval('P30Y')))
                 ->setFirstName($user['firstName'])
-                ->setlastName($user['lastName'])
+                ->setLastName($user['lastName'])
                 ->setAddress($user['address'])
                 ->setZipCode($user['zipCode'])
                 ->setCity($user['city'])
                 ->setPhone($user['phone'])
                 ->setIdNumber($user['idNumber'])
                 ->setEmail($user['email'])
-                ->setUsername($user['username'])
+                ->setUsername($user['email'])
                 ->setPlainPassword($user['password'])
                 ->setEnabled($user['enabled']);
             $manager->persist($thisUser);

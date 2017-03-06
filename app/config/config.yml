@@ -83,6 +83,7 @@ stof_doctrine_extensions:
 fos_user:
     db_driver: orm
     firewall_name: main
+    use_username_form_type: false
     user_class: AppBundle\Entity\User
     registration:
         confirmation:
