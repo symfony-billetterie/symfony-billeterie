@@ -6,6 +6,13 @@ AppBundle\Entity\User:
         firstName:
             - NotNull:
                 message: form.user.first_name.not_null
+        birthdayDate:
+            - Date:
+                message: form.user.birthday_date.date
+    getters:
+        lower:
+            - IsTrue:
+                message: form.user.birthday_date.lower
 AppBundle\Entity\EventType:
     properties:
         name:

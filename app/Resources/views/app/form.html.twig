@@ -15,11 +15,10 @@
             src="{{ asset('libraries/bootstrap-datepicker3/locales/bootstrap-datepicker.fr.min.js') }}"></script>
     <script>
         $(document).ready(function () {
-            $('.js-datepicker').datepicker({
+            $('.datepicker').datepicker({
                 autoclose: true,
                 language: '{{ app.request.locale }}',
                 todayHighlight: true,
-                format: 'dd/mm/yyyy'
             });
         });
     </script>

@@ -21,10 +21,12 @@
 
 
     <div class="content">
-        {# Template Knp du breadcrumb #}
-        {{ knp_menu_render('AppBundle:AppBuilder:breadcrumb', {'template': 'app/common/_breadcrumb.html.twig',
-            'currentClass': 'active'}) }}
 
+        {% if app.user %}
+            {# Template Knp du breadcrumb #}
+            {{ knp_menu_render('AppBundle:AppBuilder:breadcrumb', {'template': 'app/common/_breadcrumb.html.twig',
+                'currentClass': 'active'}) }}
+        {% endif %}
         {# Template flash message #}
         {% block flash_message %}
             {% include 'app/common/_flash.html.twig' %}
