@@ -3,6 +3,7 @@
 namespace AppBundle\Form\Type;
 
 use AppBundle\Entity\User;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -36,6 +37,13 @@ class UserType extends AbstractType
             ->add('firstName', TextType::class, [
                 'label'    => 'app.form.registration.first_name',
                 'required' => true,
+            ])
+            ->add('birthdayDate', BirthdayType::class, [
+                'label'    => 'app.form.registration.birthday',
+                'widget'   => 'single_text',
+                'format'   => 'dd/MM/YYYY',
+                'attr'     => ['class' => 'js-datepicker'],
+                'required' => false,
             ])
             ->add('address', TextType::class, [
                 'label'    => 'app.form.registration.address',

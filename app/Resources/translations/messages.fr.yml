@@ -73,6 +73,7 @@ app:
             gender: Genre
             last_name: Nom
             first_name: Prénom
+            birthday: Date de naissance
             address: Adresse
             zip_code: Code postale
             city: Ville
@@ -80,12 +81,12 @@ app:
             card: Numéro de pièce d'identité
     user:
         login:
-            title: Connection
+            title: Connexion
             username: Identifiant
             password: Mot de passe
             remember_me: Se souvenir de moi
             forgotten_password: Mot de passe oublié
-            nav: Connection
+            nav: Connexion
         register:
             title: Inscription
             confirmed: Félicitations %username%, votre compte est maintenant activé.
