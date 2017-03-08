@@ -44,7 +44,7 @@ class Event
     private $location;
 
     /**
-     * @var event
+     * @var EventType
      *
      * @ORM\ManyToOne(targetEntity="EventType", inversedBy="eventType")
      * @ORM\JoinColumn(name="event_type_id", referencedColumnName="id")
@@ -52,9 +52,9 @@ class Event
     private $eventType;
 
     /**
-     * @var stock
+     * @var array
      *
-     * @ORM\OneToMany(targetEntity="Stock", mappedBy="event")
+     * @ORM\OneToMany(targetEntity="Stock", mappedBy="event", cascade={"persist"})
      */
     private $stocks;
 
@@ -169,6 +169,18 @@ class Event
     public function getEventType()
     {
         return $this->eventType;
+    }
+
+    /**
+     * @param $stock
+     *
+     * @return Event
+     */
+    public function addStock($stock)
+    {
+        $this->stocks[] = $stock;
+
+        return $this;
     }
 
     /**

@@ -37,7 +37,7 @@ admin:
         home: Accueil
         log: Registre
         event_type:
-            title: Types d'évènement
+            title: Types d'événement
             index: Liste des types
             create: Ajouter un type
             edit: Modifier un type
@@ -62,6 +62,9 @@ admin:
         delete_confirm : Etes-vous sûr de vouloir supprimer le type d\'événement selectionné ?
     event:
         title : Evénement
+        date: Date - Heure
+        location: Lieu
+        event_type: Type d'événement
         create: Créer un événement
         edit: Éditer un événement
         delete_confirm : Etes-vous sûr de vouloir supprimer l\'événement selectionné ?
@@ -73,6 +76,10 @@ admin:
             date: Date de l'événement
             location: Lieu de l'événement
             event_type: Type d'événement
+        stock:
+            title: Stock des tickets
+            category: Catégorie de ticket
+            quantity: Quantité de places
 
 
 app:

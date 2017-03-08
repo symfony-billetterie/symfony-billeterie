@@ -13,7 +13,10 @@
                 <thead>
                 <tr>
                     <th>{{ 'common.data_table.id'|trans }}</th>
-                    <th>{{ 'admin.event_type.title'|trans }}</th>
+                    <th>{{ 'admin.event.title'|trans }}</th>
+                    <th>{{ 'admin.event.date'|trans }}</th>
+                    <th>{{ 'admin.event.location'|trans }}</th>
+                    <th>{{ 'admin.event.event_type'|trans }}</th>
                     <th>{{ 'common.data_table.actions'|trans }}</th>
                 </tr>
                 </thead>
@@ -22,6 +25,9 @@
                     <tr>
                         <td>{{ event.id }}</td>
                         <td>{{ event.name }}</td>
+                        <td>{{ event.date|date("d-m-y H:i") }}</td>
+                        <td>{{ event.location }}</td>
+                        <td>{{ event.eventType.name }}</td>
                         <td class="column-actions">
                             <div class="btn-group" role="group" aria-label="...">
                                 <a href="{{ path('admin_event_edit', {'slug':event.slug}) }}"

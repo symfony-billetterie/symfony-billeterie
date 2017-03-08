@@ -24,16 +24,23 @@ class Stock
     /**
      * @var int
      *
-     * @ORM\Column(name="stock", type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $quantity;
 
     /**
-     * @var event
+     * @var Event
      *
      * @ORM\ManyToOne(targetEntity="Event", inversedBy="stocks")
      */
     private $event;
+
+    /**
+     * @var TicketCategory
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TicketCategory")
+     */
+    private $category;
 
 
     /**
@@ -49,7 +56,7 @@ class Stock
     /**
      * Set quantity
      *
-     * @param string $quantity
+     * @param integer $quantity
      *
      * @return Stock
      */
@@ -63,7 +70,7 @@ class Stock
     /**
      * Get quantity
      *
-     * @return int
+     * @return integer
      */
     public function getQuantity()
     {
@@ -75,7 +82,7 @@ class Stock
      *
      * @param string $event
      *
-     * @return event
+     * @return Stock
      */
     public function setEvent($event)
     {
@@ -87,10 +94,34 @@ class Stock
     /**
      * Get event
      *
-     * @return event
+     * @return Event
      */
     public function getEvent()
     {
         return $this->event;
+    }
+
+    /**
+     * Get category
+     *
+     * @return TicketCategory
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set category
+     *
+     * @param TicketCategory $category
+     *
+     * @return Stock
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
     }
 }

@@ -4,6 +4,7 @@ namespace AppBundle\Form\Type;
 
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -39,6 +40,9 @@ class EventType extends AbstractType
                         ->orderBy('eventType.name', 'ASC');
                 },
                 'choice_label' => 'name'
-            ]);
+            ])
+            ->add('stocks', CollectionType::class, array(
+                'entry_type' => StockType::class
+            ));;
     }
 }

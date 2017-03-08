@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Admin;
 
+use AppBundle\Entity\Stock;
 use AppBundle\Form\Type\EventType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -50,6 +51,15 @@ class EventController extends Controller
     {
         /** @var Event $event */
         $event = new Event();
+
+        $categories = $this->getDoctrine()->getRepository('AppBundle:TicketCategory')->findAll();
+
+        foreach ($categories as $category) {
+            $stock = new Stock();
+            $stock->setCategory($category);
+            $stock->setEvent($event);
+            $event->addStock($stock);
+        }
 
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
