@@ -41,6 +41,11 @@ admin:
             index: Liste des types
             create: Ajouter un type
             edit: Modifier un type
+        event:
+            title: Evénements
+            index: Liste des événements
+            create: Ajouter un événement
+            edit: Modifier un événement
     log:
         title: Registre
         type: Type
