@@ -18,3 +18,14 @@ AppBundle\Entity\EventType:
         name:
             - NotNull:
                 message: form.event_type.name.not_null
+AppBundle\Entity\Event:
+    properties:
+        name:
+            - NotNull:
+                message: form.event.name.not_null
+        location:
+            - NotNull:
+                message: form.event.location.not_null
+        date:
+            - NotNull:
+                message: form.event.date.not_null
