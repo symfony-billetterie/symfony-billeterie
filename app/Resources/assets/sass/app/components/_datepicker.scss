@@ -17,7 +17,14 @@
     }
 
     table tr td {
-
+        span.active:active,
+        span.active:hover:active,
+        span.active.disabled:active,
+        span.active.disabled:hover:active,
+        span.active.active,
+        span.active:hover.active,
+        span.active.disabled.active,
+        span.active.disabled:hover.active,
         &.active.active,
         &.active.disabled,
         &.active.disabled.active,
@@ -41,7 +48,8 @@
             background: $color-base !important;
             border-color: $color-base !important;
         }
-
+        span:hover,
+        span.focused,
         &.today,
         &.today.disabled,
         &.today.disabled:hover,

@@ -25,11 +25,13 @@ class UserType extends AbstractType
     {
         $builder
             ->add('civility', ChoiceType::class, [
-                'label'    => 'app.form.registration.gender',
-                'multiple' => false,
-                'expanded' => true,
-                'choices'  => User::getAvailableCivilities(),
-                'required' => true,
+                'label'       => 'app.form.registration.gender',
+                'multiple'    => false,
+                'expanded'    => false,
+                'choices'     => User::getAvailableCivilities(),
+                'data'        => 'man',
+                'required'    => false,
+                'placeholder' => '-',
             ])
             ->add('lastName', TextType::class, [
                 'label'    => 'app.form.registration.last_name',
@@ -44,6 +46,7 @@ class UserType extends AbstractType
                 'widget'   => 'single_text',
                 'format'   => 'dd/MM/yyyy',
                 'attr'     => ['class' => 'datepicker'],
+                'data'     => null,
                 'required' => false,
             ])
             ->add('address', TextType::class, [
