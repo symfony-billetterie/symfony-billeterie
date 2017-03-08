@@ -26,6 +26,8 @@ common:
     data_table:
         actions: Actions
         id : ID
+    obligatory_fields: >
+        * Champs obligatoires
 
 admin:
     title: Billetterie Admin
@@ -101,11 +103,11 @@ app:
             nav: Connexion
         register:
             title: Inscription
-            confirmed: Félicitations %username%, votre compte est maintenant activé.
+            confirmed: Votre compte %username% est maintenant activé.
             check_email: >
                 Un e-mail a été envoyé à l'adresse %email%. Il contient un lien d'activation sur lequel il
                 vous faudra cliquer afin d'activer votre compte.
-            back: Retour à la page d'origine.
+            back: Accéder au site
         resetting:
             title: Mot de passe perdu
             check_email: >
@@ -125,7 +127,7 @@ app:
                 title: Votre profil
                 email: Adresse mail
                 phone: N° de téléphone
-                username: Identifiant utilisateur
+                birthday_date: Date de naissance
                 name: Nom complet
                 address: Adresse complète
                 id_number: N° d'identité
