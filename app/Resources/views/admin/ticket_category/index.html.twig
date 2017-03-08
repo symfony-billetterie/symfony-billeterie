@@ -1,0 +1,46 @@
+{% extends 'admin:datatable_layout.html.twig' %}
+
+{% block content %}
+    <div class="panel">
+        <div class="panel-heading">
+            <div class="panel-title">{{ 'admin.ticket_category.title'|trans }}</div>
+        </div>
+        <div class="panel-body">
+            <a href="{{ path('admin_ticket_category_add') }}" class="btn btn-info add-btn">
+                {{ 'common.button.add'|trans }}
+            </a>
+            <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0"
+                   width="100%">
+                <thead>
+                <tr>
+                    <th>{{ 'common.data_table.id'|trans }}</th>
+                    <th>{{ 'admin.ticket_category.title'|trans }}</th>
+                    <th>{{ 'common.data_table.actions'|trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for ticketCategory in ticketCategories %}
+                    <tr>
+                        <td>{{ ticketCategory.id }}</td>
+                        <td>{{ ticketCategory.name }}</td>
+                        <td class="column-actions">
+                            <div class="btn-group" role="group" aria-label="...">
+                                <a href="{{ path('admin_ticket_category_edit', {'slug':ticketCategory.slug}) }}"
+                                   class="btn btn-info" title="{{ 'common.button.edit'|trans }}">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a href="{{ path('admin_ticket_category_delete', {'ticketCategory':ticketCategory.slug}) }}"
+                                   class="btn btn-danger"
+                                   onclick="return confirm('{{ 'admin.ticket_category.delete_confirm'|trans }}')"
+                                   title="{{ 'common.button.delete'|trans }}">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

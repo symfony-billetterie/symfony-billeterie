@@ -55,9 +55,16 @@ admin:
         create: Créer un type d'évènement
         edit: Éditer un type d'évènement
         delete_confirm : Etes-vous sûr de vouloir supprimer le type d\'evènement selectionné ?
+    ticket_category:
+        title: Catégorie de ticket
+        create: Créer une catégorie de ticket
+        edit: Editer une catégorie de ticket
+        delete_confirm: Etes-vous sur de vouloir supprimer la catégorie de ticket sélectionnée ?
     form:
         event_type:
             name: Nom du type d'évènement
+        ticket_category:
+            label: Categorie du ticket
 
 app:
     title: Billetterie
