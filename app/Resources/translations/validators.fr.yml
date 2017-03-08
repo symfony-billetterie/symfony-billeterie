@@ -1,7 +1,7 @@
 form:
     event_type:
         name:
-            not_null: Le nom du type d'évènement ne peut pas être nul
+            not_null: Veuillez remplir le nom du type d'évènement
     user:
         last_name:
             not_null: Veuillez saisir votre nom
@@ -10,3 +10,7 @@ form:
         birthday_date:
             date: Veuillez saisir une date avec le bon format
             lower: Veuillez saisir une date inférieur à aujourd'hui
+    ticket_category:
+        label:
+            not_null: Veuillez remplir le nom de la catégorie
+
