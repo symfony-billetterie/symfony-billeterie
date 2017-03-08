@@ -1,4 +1,4 @@
-{% extends 'admin:datatable_layout.html.twig' %}
+{% extends 'admin/datatable_layout.html.twig' %}
 
 {% block content %}
     <div class="panel">
@@ -22,14 +22,14 @@
                 {% for ticketCategory in ticketCategories %}
                     <tr>
                         <td>{{ ticketCategory.id }}</td>
-                        <td>{{ ticketCategory.name }}</td>
+                        <td>{{ ticketCategory.label }}</td>
                         <td class="column-actions">
                             <div class="btn-group" role="group" aria-label="...">
                                 <a href="{{ path('admin_ticket_category_edit', {'slug':ticketCategory.slug}) }}"
                                    class="btn btn-info" title="{{ 'common.button.edit'|trans }}">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="{{ path('admin_ticket_category_delete', {'ticketCategory':ticketCategory.slug}) }}"
+                                <a href="{{ path('admin_ticket_category_delete', {'slug':ticketCategory.slug}) }}"
                                    class="btn btn-danger"
                                    onclick="return confirm('{{ 'admin.ticket_category.delete_confirm'|trans }}')"
                                    title="{{ 'common.button.delete'|trans }}">

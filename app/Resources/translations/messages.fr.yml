@@ -41,6 +41,8 @@ admin:
             index: Liste des types
             create: Ajouter un type
             edit: Modifier un type
+        ticket_category:
+            title: Catégories de tickets
     log:
         title: Registre
         type: Type
@@ -150,3 +152,13 @@ flash:
             edit:
                 success: Le type d'évènement a bien été modifié
                 danger: Erreur, le type d'évènement n'a pas été modifié
+        ticket_category:
+            delete:
+                success: La catégorie du ticket a bien été supprimée
+                danger: Erreur, la catégorie du ticket n'a pas pu être supprimée
+            add:
+                success: La catégorie du ticket a bien été ajoutée
+                danger: Erreur, la catégorie du ticket n'a pas été ajoutée
+            edit:
+                success: La catégorie du ticket a bien été modifiée
+                danger: Erreur, la catégorie du ticket n'a pas été modifié e

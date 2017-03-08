@@ -30,8 +30,8 @@ class TicketCategoryController extends Controller
         //On va chercher toutes les categories de ticket
         $ticketCategories = $this->getDoctrine()->getRepository('AppBundle:TicketCategory')->findAll();
 
-        return $this->render('admin:ticket_category:index.html.twig', [
-            'ticketCategory' => $ticketCategories,
+        return $this->render('admin/ticket_category/index.html.twig', [
+            'ticketCategories' => $ticketCategories,
         ]);
     }
 
@@ -50,22 +50,28 @@ class TicketCategoryController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $form = $this->createForm(TicketCategoryType::class, $ticketCategory);
-        $form->handleRequest();
+        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($ticketCategory);
-            $em->flush();
-        }
+            try {
+                $em->persist($ticketCategory);
+                $em->flush();
+                $this->addFlash('success', 'flash.admin.ticket_category.add.success');
 
-        return $this->render('admin:ticket_category:edit.html.twig', [
-            'form' => $form,
+                return $this->redirectToRoute('admin_ticket_category_index');
+            } catch (\Exception $e) {
+                $this->addFlash('danger', 'flash.admin.ticket_category.add.danger');
+            }
+        }
+        return $this->render('admin/ticket_category/edit.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 
     /**
      * Modifier une catégorie de tickets
      *
-     * @Route("/editer/{slug}", name="admin_category_ticket_edit")
+     * @Route("/editer/{slug}", name="admin_ticket_category_edit")
      *
      * @param Request $request
      * @param string $slug
@@ -77,28 +83,36 @@ class TicketCategoryController extends Controller
         $ticketCategory = $em->getRepository('AppBundle:TicketCategory')->findOneBySlug($slug);
 
         $form = $this->createForm(TicketCategoryType::class, $ticketCategory);
-        $form->handleRequest();
+        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($ticketCategory);
-            $em->flush();
+            try {
+                $em->persist($ticketCategory);
+                $em->flush();
+                $this->addFlash('success', 'flash.admin.ticket_category.edit.success');
+
+                return $this->redirectToRoute('admin_ticket_category_index');
+            } catch (\Exception $e) {
+                $this->addFlash('danger', 'flash.admin.ticket_category.edit.danger');
+            }
         }
 
-        return $this->render('admin:ticket_category:edit.html.twig', [
-            'form' => $form,
+        return $this->render('admin/ticket_category/edit.html.twig', [
+            'form' => $form->createView(),
+            'edit' => 'edit',
         ]);
     }
 
     /**
      * Supprimer une catégorie de ticket
      *
-     * @Route("/supprimer/{slug}", name="admin_category_ticket_delete")
+     * @Route("/supprimer/{slug}", name="admin_ticket_category_delete")
      *
      * @param Request $request
      * @param string $slug
      * @return RedirectResponse
      */
-    public function deleteAction(Request $request, string $slug)
+    public function deleteAction(string $slug)
     {
         $em = $this->getDoctrine()->getManager();
         $ticketCategory = $em->getRepository('AppBundle:TicketCategory')->findOneBySlug($slug);
@@ -109,5 +123,7 @@ class TicketCategoryController extends Controller
         } catch (\Exception $e) {
             $this->addFlash('danger', 'flash.admin.ticket_category.danger');
         }
+
+        return $this->redirectToRoute('admin_ticket_category_index');
     }
 }
