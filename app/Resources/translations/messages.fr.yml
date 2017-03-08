@@ -115,7 +115,7 @@ app:
                 title: Votre profil
                 email: Adresse mail
                 phone: N° de téléphone
-                username: Identifiant utilisateur
+                birthday_date: Date de naissance
                 name: Nom complet
                 address: Adresse complète
                 id_number: N° d'identité
