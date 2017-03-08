@@ -1,0 +1,19 @@
+{% extends 'admin/form.html.twig' %}
+
+{% import 'admin/common/_submit.html.twig' as submit %}
+
+{% block content %}
+    {{ form_start(form) }}
+    <div class="panel">
+        <div class="panel-heading">
+            <div class="panel-title">{{ 'admin.ticket_category.add'|trans }}</div>
+        </div>
+        <div class="panel-body">
+            {{ form_row(form.label) }}
+        </div>
+        <div class="panel-footer">
+            {{ submit.button(path('admin_event_type_index')) }}
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

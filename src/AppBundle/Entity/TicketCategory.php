@@ -38,7 +38,7 @@ class TicketCategory
     /**
      * @return mixed
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -46,7 +46,7 @@ class TicketCategory
     /**
      * @return string
      */
-    public function getLabel(): string
+    public function getLabel(): ?string
     {
         return $this->label;
     }

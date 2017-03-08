@@ -43,6 +43,11 @@ admin:
             index: Liste des types
             create: Ajouter un type
             edit: Modifier un type
+        ticket_category:
+            title: Catégories de ticket
+            index: Liste des catégories de ticket
+            create: Ajouter une catégorie de ticket
+            edit: Modifier une catégorie de ticket
     log:
         title: Registre
         type: Type
@@ -56,10 +61,17 @@ admin:
         title : Type d'évènement
         create: Créer un type d'évènement
         edit: Éditer un type d'évènement
-        delete_confirm : Etes-vous sûr de vouloir supprimer le type d\'evènement selectionné ?
+        delete_confirm : Etes-vous sûr de vouloir supprimer le type d\'evènement selectionnée ?
+    ticket_category:
+        title: Catégorie de ticket
+        create: Créer une catégorie de ticket
+        edit: Editer une catégorie de ticket
+        delete_confirm: Etes-vous sûr de vouloir supprimer la catégorie de ticket sélectionnée ?
     form:
         event_type:
             name: Nom du type d'évènement
+        ticket_category:
+            label: Nom de la catégorie du ticket
 
 app:
     title: Billetterie
@@ -145,3 +157,13 @@ flash:
             edit:
                 success: Le type d'évènement a bien été modifié
                 danger: Erreur, le type d'évènement n'a pas été modifié
+        ticket_category:
+            delete:
+                success: La catégorie du ticket a bien été supprimée
+                danger: Erreur, la catégorie du ticket n'a pas pu être supprimée
+            add:
+                success: La catégorie du ticket a bien été ajoutée
+                danger: Erreur, la catégorie du ticket n'a pas été ajoutée
+            edit:
+                success: La catégorie du ticket a bien été modifiée
+                danger: Erreur, la catégorie du ticket n'a pas été modifiée

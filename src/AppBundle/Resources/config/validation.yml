@@ -13,8 +13,15 @@ AppBundle\Entity\User:
         lower:
             - IsTrue:
                 message: form.user.birthday_date.lower
+
 AppBundle\Entity\EventType:
     properties:
         name:
             - NotNull:
                 message: form.event_type.name.not_null
+
+AppBundle\Entity\TicketCategory:
+    properties:
+        label:
+            - NotNull:
+                message: form.ticket_category.label.not_null
