@@ -1,0 +1,28 @@
+fos_user:
+    username:
+        already_used: 'Le nom d''utilisateur est déjà utilisé.'
+        blank: 'Veuillez saisir un nom d''utilisateur'
+        short: 'Le nom d''utilisateur est trop court.'
+        long: 'Le nom d''utilisateur est trop long.'
+    email:
+        already_used: 'L''adresse e-mail est déjà utilisée.'
+        blank: 'Veuillez saisir une adresse e-mail'
+        short: 'L''adresse e-mail est trop courte.'
+        long: 'L''adresse e-mail est trop longue.'
+        invalid: 'L''adresse e-mail est invalide.'
+    password:
+        blank: 'Veuillez saisir un mot de passe'
+        short: 'Le mot de passe est trop court.'
+        mismatch: 'Les deux mots de passe ne sont pas identiques.'
+    new_password:
+        blank: 'Veuillez saisir un nouveau mot de passe'
+        short: 'Le nouveau mot de passe est trop court.'
+    current_password:
+        invalid: 'Le mot de passe est invalide.'
+    group:
+        blank: 'Veuillez saisir un nom'
+        short: 'Le nom est trop court.'
+        long: 'Le nom est trop long.'
+fos_group:
+    name:
+        already_used: 'Le nom est déjà utilisé.'

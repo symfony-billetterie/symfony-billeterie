@@ -97,7 +97,7 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        $this->birthdayDate = new \DateTime();
+        $this->birthdayDate = null;
         $this->roles        = [self::USER_ROLE_BENEFICIARY];
     }
 
@@ -132,7 +132,7 @@ class User extends BaseUser
     /**
      * @return \DateTime
      */
-    public function getBirthdayDate(): \DateTime
+    public function getBirthdayDate(): ?\DateTime
     {
         return $this->birthdayDate;
     }

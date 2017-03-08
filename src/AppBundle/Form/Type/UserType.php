@@ -46,7 +46,6 @@ class UserType extends AbstractType
                 'widget'   => 'single_text',
                 'format'   => 'dd/MM/yyyy',
                 'attr'     => ['class' => 'datepicker'],
-                'data'     => null,
                 'required' => false,
             ])
             ->add('address', TextType::class, [
@@ -69,7 +68,8 @@ class UserType extends AbstractType
                 'label'    => 'app.form.registration.card',
                 'required' => false,
             ])
-            ->remove('username');
+            ->remove('username')
+            ->remove('current_password');
     }
 
     /**

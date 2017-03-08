@@ -14,11 +14,11 @@
                     <p>{{ user.phone }}</p>
                 </div>
                 <div class="col-md-4 vr">
-                    <span>{{ 'app.user.profile.show.username'|trans }}: </span>
-                    <p>{{ user.username }}</p>
+                    <span>{{ 'app.user.profile.show.birthday_date'|trans }}: </span>
+                    <p>{{ user.birthdayDate|date('d/m/Y') }}</p>
 
                     <span>{{ 'app.user.profile.show.name'|trans }}: </span>
-                    <p>{{ user.civility }} {{ user.lastName|upper }} {{ user.firstName }}</p>
+                    <p>{{ ('app.civility.' ~ user.civility)|trans }} {{ user.lastName|upper }} {{ user.firstName }}</p>
                 </div>
                 <div class="col-md-4">
                     <span>{{ 'app.user.profile.show.address'|trans }}: </span>

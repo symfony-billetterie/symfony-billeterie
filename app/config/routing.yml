@@ -54,8 +54,8 @@ fos_user_resetting_reset:
 
 fos_user_profile_show:
     defaults:  { _controller: FOSUserBundle:Profile:show, _method: POST }
-    path: /profile/
+    path: /profil/
 
 fos_user_profile_edit:
     defaults:  { _controller: FOSUserBundle:Profile:edit, _method: POST }
-    path: /profile/modifier
+    path: /profil/modifier
