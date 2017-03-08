@@ -21,9 +21,9 @@ class AdminBuilder extends BaseBuilder
     public function mainMenu(FactoryInterface $factory)
     {
         /** @var Request $request */
-        $request   = $this->getRequest();
+        $request = $this->getRequest();
         $routeName = $request->get('_route');
-        $menu      = $factory->createItem('root');
+        $menu = $factory->createItem('root');
         $this->addItem($menu, 'admin.nav.home', 'admin_homepage', 'home');
 
         if ($this->getAuthorization()->isGranted(User::USER_ROLE_SUPER_ADMIN)) {
@@ -34,7 +34,7 @@ class AdminBuilder extends BaseBuilder
                 $eventType->setCurrent(true);
             }
 
-            $ticketCategory = $this->addItem($menu, 'admin.nav.ticket_category.title', 'admin_ticket_category_index', 'list');
+            $ticketCategory = $this->addItem($menu, 'admin.nav.ticket_category.title', 'admin_ticket_category_index', 'ticket');
             if (strpos($routeName, 'admin_ticket_category') === 0) {
                 $ticketCategory->setCurrent(true);
             }
@@ -51,7 +51,7 @@ class AdminBuilder extends BaseBuilder
     public function breadcrumb(FactoryInterface $factory)
     {
         /** @var Request $request */
-        $request   = $this->getRequest();
+        $request = $this->getRequest();
         $routeName = $request->get('_route');
 
         $menu = $factory->createItem('root');
@@ -71,6 +71,22 @@ class AdminBuilder extends BaseBuilder
                     );
                 }
             }
+
+            $this->addItemIfRouteMatch('admin.nav.ticket_category.title', $menu, 'admin_ticket_category_index',
+                'ticket'
+            );
+            if (strpos($routeName, 'admin_ticket_category') === 0) {
+                $this->addItem($menu, 'admin.nav.ticket_category.index', 'admin_ticket_category_index', 'list');
+                if (strpos($routeName, 'admin_ticket_category_add') === 0) {
+                    $this->addItem($menu, 'admin.nav.ticket_category.create', 'admin_ticket_category_add', 'plus');
+                }
+                if (strpos($routeName, 'admin_ticket_category_edit') === 0) {
+                    $ticketCategory = $request->get('slug');
+                    $this->addItem($menu, 'admin.nav.ticket_category.edit', 'admin_ticket_category_edit', 'pencil',
+                        ['slug' => $ticketCategory]
+                    );
+                }
+            }
         }
 
         return $menu;
@@ -81,8 +97,8 @@ class AdminBuilder extends BaseBuilder
      * @param ItemInterface $menuItem
      * @param               $route
      * @param               $label
-     * @param null          $icon
-     * @param array         $routeParameters
+     * @param null $icon
+     * @param array $routeParameters
      *
      * @return bool|ItemInterface
      */
@@ -93,7 +109,8 @@ class AdminBuilder extends BaseBuilder
         $label,
         $icon = null,
         $routeParameters = []
-    ) {
+    )
+    {
         $routeName = $this->getRequest()->get('_route');
         if (strpos($routeName, $prefix) === 0) {
             $menuItem = $this->addItem($menuItem, $label, $route, $icon, $routeParameters);

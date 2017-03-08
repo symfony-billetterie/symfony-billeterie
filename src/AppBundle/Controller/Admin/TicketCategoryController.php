@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Admin;
 
+use AppBundle\Controller\Traits\UtilitiesTrait;
 use AppBundle\Entity\TicketCategory;
 use AppBundle\Form\Type\TicketCategoryType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -12,10 +13,12 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class TicketCategoryController
  *
- * @Route("/type-category")
+ * @Route("/type-categorie")
  */
 class TicketCategoryController extends Controller
 {
+    use UtilitiesTrait;
+
     /**
      * lister des catégories de tickets
      *
@@ -99,7 +102,6 @@ class TicketCategoryController extends Controller
 
         return $this->render('admin/ticket_category/edit.html.twig', [
             'form' => $form->createView(),
-            'edit' => 'edit',
         ]);
     }
 
@@ -119,9 +121,9 @@ class TicketCategoryController extends Controller
         $em->remove($ticketCategory);
         try {
             $em->flush();
-            $this->addFlash('success', 'flash.admin.category_ticket.success');
+            $this->addFlash('success', 'flash.admin.ticket_category.delete.success');
         } catch (\Exception $e) {
-            $this->addFlash('danger', 'flash.admin.ticket_category.danger');
+            $this->addFlash('danger', 'flash.admin.ticket_category.delete.danger');
         }
 
         return $this->redirectToRoute('admin_ticket_category_index');
