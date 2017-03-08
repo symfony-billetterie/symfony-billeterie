@@ -17,8 +17,9 @@
         $(document).ready(function () {
             $('.datepicker').datepicker({
                 autoclose: true,
+                startView: 'years',
                 language: '{{ app.request.locale }}',
-                todayHighlight: true,
+                todayHighlight: true
             });
         });
     </script>
