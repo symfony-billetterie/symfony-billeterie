@@ -21,9 +21,9 @@ class AdminBuilder extends BaseBuilder
     public function mainMenu(FactoryInterface $factory)
     {
         /** @var Request $request */
-        $request = $this->getRequest();
+        $request   = $this->getRequest();
         $routeName = $request->get('_route');
-        $menu = $factory->createItem('root');
+        $menu      = $factory->createItem('root');
         $this->addItem($menu, 'admin.nav.home', 'admin_homepage', 'home');
 
         if ($this->getAuthorization()->isGranted(User::USER_ROLE_SUPER_ADMIN)) {
@@ -63,9 +63,9 @@ class AdminBuilder extends BaseBuilder
     public function breadcrumb(FactoryInterface $factory)
     {
         /** @var Request $request */
-        $request = $this->getRequest();
+        $request   = $this->getRequest();
         $routeName = $request->get('_route');
-        $menu = $factory->createItem('root');
+        $menu      = $factory->createItem('root');
 
         if ($this->getAuthorization()->isGranted(User::USER_ROLE_SUPER_ADMIN)) {
             $this->addItemIfRouteMatch('admin_log_index', $menu, 'admin_log_index', 'admin.nav.log', 'file-text');
@@ -136,12 +136,12 @@ class AdminBuilder extends BaseBuilder
     }
 
     /**
-     * @param $prefix
+     * @param string        $prefix
      * @param ItemInterface $menuItem
-     * @param $route
-     * @param $label
-     * @param null $icon
-     * @param array $routeParameters
+     * @param string        $route
+     * @param string        $label
+     * @param string|null   $icon
+     * @param array         $routeParameters
      *
      * @return bool|ItemInterface
      */

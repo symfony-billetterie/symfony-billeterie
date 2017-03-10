@@ -29,11 +29,18 @@ AppBundle\Entity\Event:
             - NotNull:
                 message: form.event.location.not_null
         date:
-            - NotNull:
-                message: form.event.date.not_null
+            - DateTime:
+                message: form.event.date.datetime
 
 AppBundle\Entity\TicketCategory:
     properties:
         label:
             - NotNull:
                 message: form.ticket_category.label.not_null
+
+AppBundle\Entity\Stock:
+    properties:
+        quantity:
+            - Type:
+                type: integer
+                message: form.stock.quantity.int

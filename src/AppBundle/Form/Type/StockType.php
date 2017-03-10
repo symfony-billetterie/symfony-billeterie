@@ -16,31 +16,26 @@ class StockType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('quantity', IntegerType::class, [
-                'label' => 'admin.form.stock.quantity',
-                'required' => false,
-            ])
-            ->add('category', EntityType::class, [
-                'label' => 'admin.form.stock.category',
-                'class' => 'AppBundle\Entity\TicketCategory',
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('category')
-                        ->orderBy('category.label', 'ASC');
-                },
-                'choice_label' => 'label',
-                'disabled' => true,
-            ]);
+        $builder->add(
+                'quantity',
+                IntegerType::class,
+                [
+                    'label'    => 'admin.form.stock.quantity',
+                    'required' => false,
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Stock',
-        ));
+        $resolver->setDefaults(
+            [
+                'data_class' => 'AppBundle\Entity\Stock',
+            ]
+        );
     }
 }
