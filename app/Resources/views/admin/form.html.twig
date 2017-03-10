@@ -14,9 +14,12 @@
     <script>
         $(document).ready(function () {
             $('.js-datepicker').datetimepicker({
-                format: 'DD/MM/YYYY'
+                format: 'DD-MM-YYYY',
             });
-            $('.js-datetimepicker').datetimepicker();
+            $('.js-datetimepicker').datetimepicker({
+                format: 'DD-MM-YYYY HH:mm',
+                sideBySide: true
+            });
         });
     </script>
 {% endblock %}

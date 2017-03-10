@@ -35,6 +35,16 @@ class AdminBuilder extends BaseBuilder
                 $eventType->setCurrent(true);
             }
 
+            $ticketCategory = $this->addItem(
+                $menu,
+                'admin.nav.ticket_category.title',
+                'admin_ticket_category_index',
+                'ticket'
+            );
+            if (strpos($routeName, 'admin_ticket_category') === 0) {
+                $ticketCategory->setCurrent(true);
+            }
+
             /* Event */
             $event = $this->addItem($menu, 'admin.nav.event.title', 'admin_event_index', 'list');
             if (strpos($routeName, 'admin_event') === 0 && strpos($routeName, 'admin_event_type') !== 0) {
@@ -94,6 +104,29 @@ class AdminBuilder extends BaseBuilder
                         'admin_event_edit',
                         'pencil',
                         ['slug' => $event]
+                    );
+                }
+            }
+
+            $this->addItemIfRouteMatch(
+                'admin.nav.ticket_category.title',
+                $menu,
+                'admin_ticket_category_index',
+                'ticket'
+            );
+            if (strpos($routeName, 'admin_ticket_category') === 0) {
+                $this->addItem($menu, 'admin.nav.ticket_category.index', 'admin_ticket_category_index', 'list');
+                if (strpos($routeName, 'admin_ticket_category_add') === 0) {
+                    $this->addItem($menu, 'admin.nav.ticket_category.create', 'admin_ticket_category_add', 'plus');
+                }
+                if (strpos($routeName, 'admin_ticket_category_edit') === 0) {
+                    $ticketCategory = $request->get('slug');
+                    $this->addItem(
+                        $menu,
+                        'admin.nav.ticket_category.edit',
+                        'admin_ticket_category_edit',
+                        'pencil',
+                        ['slug' => $ticketCategory]
                     );
                 }
             }

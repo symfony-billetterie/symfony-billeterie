@@ -10,7 +10,11 @@
         </div>
         <div class="panel-body">
             {{ form_row(form.name) }}
-            {{ form_row(form.date) }}
+            <div class="form-group form-group-datetimepicker">
+                {{ form_label(form.date) }}
+                {{ form_widget(form.date) }}
+                {{ form_errors(form.date) }}
+            </div>
             {{ form_row(form.location) }}
             {{ form_row(form.eventType) }}
         </div>

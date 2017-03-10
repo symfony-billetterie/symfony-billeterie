@@ -370,3 +370,17 @@ hr.small {
         border-right: 0;
     }
 }
+
+@media(max-width: $screen-tablet) {
+
+    .mt-sm-10 {
+        margin-top: 10px;
+    }
+}
+
+@media(min-width: $screen-tablet) {
+
+    .text-left-sm {
+        text-align: left;
+    }
+}

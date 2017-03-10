@@ -2,9 +2,9 @@
 
 {% block content %}
     <form action="{{ path("fos_user_security_check") }}" method="post">
-        <div class="panel col-md-6 col-md-offset-3">
+        <div class="panel col-sm-6 col-sm-offset-3">
             <div class="panel-heading">
-                <div class="panel-title">{{ 'app.user.login.title'|trans }}</div>
+                <div class="panel-title text-center">{{ 'app.user.login.title'|trans }}</div>
             </div>
             <div class="panel-body">
                 {% if error %}
@@ -35,13 +35,13 @@
                 </div>
             </div>
             <div class="panel-footer">
-                <div class="row">
-                    <div class="col-md-6">
+                <div class="row text-center">
+                    <div class="col-sm-6 text-left-sm">
                         <a class="btn btn-primary" href="{{ path('fos_user_resetting_request') }}">
                             {{ 'app.user.login.forgotten_password'|trans }}
                         </a>
                     </div>
-                    <div class="col-md-6 text-right">
+                    <div class="col-sm-6 text-right-sm mt-sm-10">
                         <input type="submit" class="btn btn-success" id="_submit" name="_submit"
                                value="{{ 'common.button.connection'|trans }}"/>
                     </div>

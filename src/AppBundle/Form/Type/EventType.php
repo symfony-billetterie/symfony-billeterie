@@ -28,7 +28,7 @@ class EventType extends AbstractType
             ->add('date', DateTimeType::class, [
                 'label' => 'admin.form.event.date',
                 'widget'   => 'single_text',
-                'format'   => 'dd/MM/yyyy',
+                'format'   => 'dd-MM-yyyy HH:mm',
                 'attr' => ['class' => 'js-datetimepicker'],
             ])
             ->add('location', TextType::class, [

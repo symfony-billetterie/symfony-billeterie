@@ -11,6 +11,11 @@
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $color-base;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $color-base;
 }
+
+.alert-danger {
+    margin-top: 10px;
+}
+
 .form-group-datetimepicker{
     position: relative;
 }

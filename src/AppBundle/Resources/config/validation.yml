@@ -31,3 +31,9 @@ AppBundle\Entity\Event:
         date:
             - NotNull:
                 message: form.event.date.not_null
+
+AppBundle\Entity\TicketCategory:
+    properties:
+        label:
+            - NotNull:
+                message: form.ticket_category.label.not_null

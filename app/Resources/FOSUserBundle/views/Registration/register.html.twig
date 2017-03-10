@@ -17,14 +17,7 @@
                     </div>
                 {% endfor %}
                 <div class="col-md-3">
-                    {{ form_label(form.civility) }}
-                    <div class="row">
-                        {% for children in form.civility.children %}
-                            <div class="col-md-6">
-                                {{ form_row(children) }}
-                            </div>
-                        {% endfor %}
-                    </div>
+                    {{ form_row(form.civility) }}
                 </div>
             </div>
             <hr>
@@ -58,9 +51,16 @@
                 </div>
             </div>
         </div>
-        <div class="panel-footer text-center">
-            <input type="submit" class="btn btn-lg btn-success" id="_submit" name="_submit"
-                   value="{{ 'common.button.save'|trans }}"/>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-xs-6 text-left">
+                    <span>{{ 'common.obligatory_fields'|trans }}</span>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <input type="submit" class="btn btn-success" id="_submit" name="_submit"
+                           value="{{ 'common.button.save'|trans }}"/>
+                </div>
+            </div>
         </div>
     </div>
     {{ form_end(form) }}

@@ -2,34 +2,60 @@
 
 {% block content %}
     {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
-
-    <div class="panel col-md-6 col-md-offset-3">
+    <div class="panel">
         <div class="panel-heading">
             <div class="panel-title">{{ 'app.user.profile.edit.title'|trans }}</div>
         </div>
         <div class="panel-body">
             <div class="row">
-                <div class="col-md-6 vr">
+                <div class="col-md-3">
                     {{ form_row(form.email) }}
-                    {{ form_row(form.username) }}
-                    {{ form_row(form.phone) }}
-                    {{ form_row(form.idNumber) }}
+                </div>
+                <div class="col-md-3">
                     {{ form_row(form.civility) }}
                 </div>
-                <div class="col-md-6">
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-3">
                     {{ form_row(form.lastName) }}
+                </div>
+                <div class="col-md-3">
                     {{ form_row(form.firstName) }}
+                </div>
+                <div class="col-md-3">
+                    {{ form_row(form.birthdayDate) }}
+                </div>
+                <div class="col-md-3">
+                    {{ form_row(form.idNumber) }}
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-3">
                     {{ form_row(form.address) }}
-                    {{ form_row(form.zipCode) }}
+                </div>
+                <div class="col-md-3">
                     {{ form_row(form.city) }}
                 </div>
-                <div class="text-center">
-                    {{ form_row(form.current_password) }}
+                <div class="col-md-3">
+                    {{ form_row(form.zipCode) }}
+                </div>
+                <div class="col-md-3">
+                    {{ form_row(form.phone) }}
                 </div>
             </div>
         </div>
-        <div class="panel-footer text-center">
-            <input type="submit" class="btn btn-success" value="{{ 'common.button.save'|trans }}"/>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-xs-6 text-left">
+                    <span>{{ 'common.obligatory_fields'|trans }}</span>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <input type="submit" class="btn btn-success" id="_submit" name="_submit"
+                           value="{{ 'common.button.save'|trans }}"/>
+                </div>
+            </div>
         </div>
     </div>
     {{ form_end(form) }}
