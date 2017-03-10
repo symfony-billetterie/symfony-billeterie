@@ -33,9 +33,12 @@ class EventTypeController extends Controller
     {
         $eventTypes = $this->getDoctrine()->getRepository('AppBundle:EventType')->findAll();
 
-        return $this->render('admin/event_type/index.html.twig', [
-            'eventTypes' => $eventTypes,
-        ]);
+        return $this->render(
+            'admin/event_type/index.html.twig',
+            [
+                'eventTypes' => $eventTypes,
+            ]
+        );
     }
 
     /**
@@ -68,9 +71,12 @@ class EventTypeController extends Controller
             }
         }
 
-        return $this->render('admin/event_type/create.html.twig', [
-            'form' => $form->createView(),
-        ]);
+        return $this->render(
+            'admin/event_type/create.html.twig',
+            [
+                'form' => $form->createView(),
+            ]
+        );
     }
 
     /**
@@ -104,9 +110,12 @@ class EventTypeController extends Controller
             }
         }
 
-        return $this->render('admin/event_type/edit.html.twig', [
-            'form' => $form->createView(),
-        ]);
+        return $this->render(
+            'admin/event_type/edit.html.twig',
+            [
+                'form' => $form->createView(),
+            ]
+        );
     }
 
     /**

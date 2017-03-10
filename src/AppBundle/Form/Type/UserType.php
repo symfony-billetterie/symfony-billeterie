@@ -45,7 +45,7 @@ class UserType extends AbstractType
                 'label'    => 'app.form.registration.birthday',
                 'widget'   => 'single_text',
                 'format'   => 'dd/MM/yyyy',
-                'attr'     => ['class' => 'datepicker'],
+                'attr'     => ['class' => 'js-datepicker'],
                 'required' => false,
             ])
             ->add('address', TextType::class, [

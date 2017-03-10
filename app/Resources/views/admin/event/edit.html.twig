@@ -1,0 +1,39 @@
+{% extends 'admin/form.html.twig' %}
+
+{% import 'admin/common/_submit.html.twig' as submit %}
+
+{% block content %}
+    {{ form_start(form) }}
+    <div class="panel">
+        <div class="panel-heading">
+            <div class="panel-title">{{ 'admin.event.edit'|trans }}</div>
+        </div>
+        <div class="panel-body">
+            {{ form_row(form.name) }}
+            <div class="form-group form-group-datetimepicker">
+                {{ form_label(form.date) }}
+                {{ form_widget(form.date) }}
+                {{ form_errors(form.date) }}
+            </div>
+            {{ form_row(form.location) }}
+            {{ form_row(form.eventType) }}
+        </div>
+        <div class="panel-heading">
+            <div class="panel-title">
+                {{ 'admin.form.stock.title'|trans }}
+            </div>
+        </div>
+        <div class="panel-body">
+            {% for stock in form.stocks %}
+                <div class="row">
+                    <div class="col-md-6">{{ form_row(stock.category) }}</div>
+                    <div class="col-md-6">{{ form_row(stock.quantity) }}</div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="panel-footer">
+            {{ submit.button(path('admin_event_index')) }}
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

@@ -45,10 +45,12 @@ class LoadEventTypeData extends AbstractFixture implements OrderedFixtureInterfa
             ],
         ];
 
-        foreach ($datas as $data) {
+        foreach ($datas as $key => $data) {
             /** @var EventType $eventType */
             $eventType = new EventType();
             $eventType->setName($data['name']);
+
+            $this->setReference('event-type-' . $key, $eventType);
 
             $manager->persist($eventType);
         }

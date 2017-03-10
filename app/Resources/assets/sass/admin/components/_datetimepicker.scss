@@ -48,6 +48,7 @@
             background: $color-base !important;
             border-color: $color-base !important;
         }
+
         span:hover,
         span.focused,
         &.today,
@@ -57,6 +58,12 @@
             background: $color-dark !important;
             border-color: $color-dark !important;
             color: #fff !important;
+        }
+
+        &.day.today{
+            &:before{
+                border-bottom-color: white;
+            }
         }
     }
 }

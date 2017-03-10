@@ -21,22 +21,34 @@ class AdminBuilder extends BaseBuilder
     public function mainMenu(FactoryInterface $factory)
     {
         /** @var Request $request */
-        $request = $this->getRequest();
+        $request   = $this->getRequest();
         $routeName = $request->get('_route');
-        $menu = $factory->createItem('root');
+        $menu      = $factory->createItem('root');
         $this->addItem($menu, 'admin.nav.home', 'admin_homepage', 'home');
 
         if ($this->getAuthorization()->isGranted(User::USER_ROLE_SUPER_ADMIN)) {
             $this->addItem($menu, 'admin.nav.log', 'admin_log_index', 'file-text');
 
+            /* Event Type */
             $eventType = $this->addItem($menu, 'admin.nav.event_type.title', 'admin_event_type_index', 'list');
             if (strpos($routeName, 'admin_event_type') === 0) {
                 $eventType->setCurrent(true);
             }
 
-            $ticketCategory = $this->addItem($menu, 'admin.nav.ticket_category.title', 'admin_ticket_category_index', 'ticket');
+            $ticketCategory = $this->addItem(
+                $menu,
+                'admin.nav.ticket_category.title',
+                'admin_ticket_category_index',
+                'ticket'
+            );
             if (strpos($routeName, 'admin_ticket_category') === 0) {
                 $ticketCategory->setCurrent(true);
+            }
+
+            /* Event */
+            $event = $this->addItem($menu, 'admin.nav.event.title', 'admin_event_index', 'list');
+            if (strpos($routeName, 'admin_event') === 0 && strpos($routeName, 'admin_event_type') !== 0) {
+                $event->setCurrent(true);
             }
         }
 
@@ -51,28 +63,55 @@ class AdminBuilder extends BaseBuilder
     public function breadcrumb(FactoryInterface $factory)
     {
         /** @var Request $request */
-        $request = $this->getRequest();
+        $request   = $this->getRequest();
         $routeName = $request->get('_route');
+        $menu      = $factory->createItem('root');
 
-        $menu = $factory->createItem('root');
         if ($this->getAuthorization()->isGranted(User::USER_ROLE_SUPER_ADMIN)) {
             $this->addItemIfRouteMatch('admin_log_index', $menu, 'admin_log_index', 'admin.nav.log', 'file-text');
 
+            /* Event Type */
             $this->addItemIfRouteMatch('admin.nav.event_type.title', $menu, 'admin_event_type_index', 'list');
-            if (strpos($routeName, 'admin_event_type') === 0) {
+            if (strpos($routeName, 'admin_event_type_index') === 0) {
                 $this->addItem($menu, 'admin.nav.event_type.index', 'admin_event_type_index', 'list');
                 if (strpos($routeName, 'admin_event_type_add') === 0) {
                     $this->addItem($menu, 'admin.nav.event_type.create', 'admin_event_type_add', 'plus');
                 }
                 if (strpos($routeName, 'admin_event_type_edit') === 0) {
                     $eventType = $request->get('slug');
-                    $this->addItem($menu, 'admin.nav.event_type.edit', 'admin_event_type_edit', 'pencil',
+                    $this->addItem(
+                        $menu,
+                        'admin.nav.event_type.edit',
+                        'admin_event_type_edit',
+                        'pencil',
                         ['slug' => $eventType]
                     );
                 }
             }
 
-            $this->addItemIfRouteMatch('admin.nav.ticket_category.title', $menu, 'admin_ticket_category_index',
+            /* Event */
+            $this->addItemIfRouteMatch('admin.nav.event.title', $menu, 'admin_event_index', 'list');
+            if (strpos($routeName, 'admin_event') === 0 && strpos($routeName, 'admin_event_type') !== 0) {
+                $this->addItem($menu, 'admin.nav.event.index', 'admin_event_index', 'list');
+                if (strpos($routeName, 'admin_event_add') === 0) {
+                    $this->addItem($menu, 'admin.nav.event.create', 'admin_event_add', 'plus');
+                }
+                if (strpos($routeName, 'admin_event_edit') === 0) {
+                    $event = $request->get('slug');
+                    $this->addItem(
+                        $menu,
+                        'admin.nav.event.edit',
+                        'admin_event_edit',
+                        'pencil',
+                        ['slug' => $event]
+                    );
+                }
+            }
+
+            $this->addItemIfRouteMatch(
+                'admin.nav.ticket_category.title',
+                $menu,
+                'admin_ticket_category_index',
                 'ticket'
             );
             if (strpos($routeName, 'admin_ticket_category') === 0) {
@@ -82,7 +121,11 @@ class AdminBuilder extends BaseBuilder
                 }
                 if (strpos($routeName, 'admin_ticket_category_edit') === 0) {
                     $ticketCategory = $request->get('slug');
-                    $this->addItem($menu, 'admin.nav.ticket_category.edit', 'admin_ticket_category_edit', 'pencil',
+                    $this->addItem(
+                        $menu,
+                        'admin.nav.ticket_category.edit',
+                        'admin_ticket_category_edit',
+                        'pencil',
                         ['slug' => $ticketCategory]
                     );
                 }
@@ -93,12 +136,12 @@ class AdminBuilder extends BaseBuilder
     }
 
     /**
-     * @param               $prefix
+     * @param string        $prefix
      * @param ItemInterface $menuItem
-     * @param               $route
-     * @param               $label
-     * @param null $icon
-     * @param array $routeParameters
+     * @param string        $route
+     * @param string        $label
+     * @param string|null   $icon
+     * @param array         $routeParameters
      *
      * @return bool|ItemInterface
      */
@@ -109,8 +152,7 @@ class AdminBuilder extends BaseBuilder
         $label,
         $icon = null,
         $routeParameters = []
-    )
-    {
+    ) {
         $routeName = $this->getRequest()->get('_route');
         if (strpos($routeName, $prefix) === 0) {
             $menuItem = $this->addItem($menuItem, $label, $route, $icon, $routeParameters);
