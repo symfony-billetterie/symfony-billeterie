@@ -27,6 +27,9 @@ class EventType extends AbstractType
             ])
             ->add('date', DateTimeType::class, [
                 'label' => 'admin.form.event.date',
+                'widget'   => 'single_text',
+                'format'   => 'dd/MM/yyyy',
+                'attr' => ['class' => 'js-datetimepicker'],
             ])
             ->add('location', TextType::class, [
                 'label' => 'admin.form.event.location',
@@ -34,7 +37,6 @@ class EventType extends AbstractType
             ->add('eventType', EntityType::class, [
                 'label' => 'admin.form.event.event_type',
                 'class' => 'AppBundle:EventType',
-                'attr' => ['class' => 'datepicker'],
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('eventType')
                         ->orderBy('eventType.name', 'ASC');
@@ -43,6 +45,6 @@ class EventType extends AbstractType
             ])
             ->add('stocks', CollectionType::class, array(
                 'entry_type' => StockType::class
-            ));;
+            ));
     }
 }

@@ -4,23 +4,19 @@
 
 {% block current_stylesheet %}
     {{ parent() }}
-    <link href="{{ asset('libraries/bootstrap-datepicker3/bootstrap-datepicker3.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 {% endblock %}
 
 {% block current_script %}
     {{ parent() }}
     <script type="text/javascript"
-            src="{{ asset('libraries/bootstrap-datepicker3/bootstrap-datepicker.min.js') }}"></script>
-    <script type="text/javascript"
-            src="{{ asset('libraries/bootstrap-datepicker3/locales/bootstrap-datepicker.fr.min.js') }}"></script>
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('.js-datepicker').datepicker({
-                autoclose: true,
-                language: '{{ app.request.locale }}',
-                todayHighlight: true,
-                format: 'dd/mm/yyyy'
+            $('.js-datepicker').datetimepicker({
+                format: 'DD/MM/YYYY'
             });
+            $('.js-datetimepicker').datetimepicker();
         });
     </script>
 {% endblock %}
