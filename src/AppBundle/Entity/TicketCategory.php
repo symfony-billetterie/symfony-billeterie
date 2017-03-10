@@ -54,9 +54,11 @@ class TicketCategory
     /**
      * @param string $label
      */
-    public function setLabel(string $label)
+    public function setLabel(?string $label): ?TicketCategory
     {
         $this->label = $label;
+
+        return $this;
     }
 
     /**
