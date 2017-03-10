@@ -59,7 +59,7 @@ class EventType
      *
      * @return EventType
      */
-    public function setName(string $name): EventType
+    public function setName(?string $name): ?EventType
     {
         $this->name = $name;
 

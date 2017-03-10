@@ -13,11 +13,13 @@ AppBundle\Entity\User:
         lower:
             - IsTrue:
                 message: form.user.birthday_date.lower
+
 AppBundle\Entity\EventType:
     properties:
         name:
             - NotNull:
                 message: form.event_type.name.not_null
+
 AppBundle\Entity\Event:
     properties:
         name:
