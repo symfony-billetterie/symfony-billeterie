@@ -93,7 +93,6 @@ class EventTypeController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             try {
                 $em->getManager()->persist($eventType);
                 $em->getManager()->flush();

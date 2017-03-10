@@ -1,13 +1,13 @@
 {% macro button(route) %}
     <div class="row">
         <div class="col-xs-2">
-            <a href="{{ route }}" class="btn btn-default btn-quirk btn-sm"
+            <a href="{{ route }}" class="btn btn-info"
                title="{{ 'common.button.back_without_save'|trans }}">
                 <i class="fa fa-arrow-left"></i> {{ 'common.button.back'|trans }}
             </a>
         </div>
         <div class="col-xs-10">
-            <button type="submit" class="btn btn-primary btn-quirk btn-sm mr5 pull-right" name="submit">
+            <button type="submit" class="btn btn-success pull-right" name="submit">
                 {{ 'common.button.save'|trans }}
             </button>
         </div>
