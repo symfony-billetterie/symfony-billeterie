@@ -89,6 +89,7 @@ class TicketCategoryController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            dump('test'); die();
             try {
                 $em->persist($ticketCategory);
                 $em->flush();
