@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d3ee115ee0e18eb3d0d9705aa4048436",
+    "content-hash": "04274e0889e93aa67c5ae5f290a3e233",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1353,6 +1353,59 @@
                 "yaml"
             ],
             "time": "2016-12-05T10:18:33+00:00"
+        },
+        {
+            "name": "kartik-v/bootstrap-fileinput",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
+                "reference": "c103391dc8f87c62dc4b9adaefb1e67bc3ccaac5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/c103391dc8f87c62dc4b9adaefb1e67bc3ccaac5",
+                "reference": "c103391dc8f87c62dc4b9adaefb1e67bc3ccaac5",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\plugins\\fileinput\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "An enhanced HTML 5 file input for Bootstrap 3.x with features for file preview for many file types, multiple selection, ajax uploads, and more.",
+            "homepage": "https://github.com/kartik-v/bootstrap-fileinput",
+            "keywords": [
+                "ajax",
+                "bootstrap",
+                "delete",
+                "file",
+                "image",
+                "input",
+                "jquery",
+                "multiple",
+                "preview",
+                "progress",
+                "upload"
+            ],
+            "time": "2017-04-04 07:11:03"
         },
         {
             "name": "knplabs/knp-menu",
@@ -3719,6 +3772,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "friendsofsymfony/user-bundle": 20,
+        "kartik-v/bootstrap-fileinput": 20,
         "composer/composer": 20
     },
     "prefer-stable": false,

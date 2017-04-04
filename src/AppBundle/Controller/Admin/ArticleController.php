@@ -77,7 +77,7 @@ class ArticleController extends Controller
      * Modification d'une actualité
      *
      * @param Request $request
-     * @param string $slug
+     * @param string  $slug
      *
      * @return Response
      *
@@ -89,7 +89,7 @@ class ArticleController extends Controller
 
         /** @var Article $article */
         $article = $em->getRepository('AppBundle:Article')->findOneBy(['slug' => $slug]);
-        $form = $this->createForm(ArticleType::class, $article);
+        $form    = $this->createForm(ArticleType::class, $article, ['article' => $article]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -99,6 +99,7 @@ class ArticleController extends Controller
                 $em->getManager()->flush();
                 $this->addFlash('success', 'flash.admin.article.edit.success');
                 dump($article);
+
                 return $this->redirectToRoute('admin_article_index');
             } catch (\Exception $e) {
                 $this->addFlash('danger', 'flash.admin.article.edit.danger');
@@ -120,7 +121,7 @@ class ArticleController extends Controller
      */
     public function deleteAction(string $slug)
     {
-        $em = $this->getDoctrine()->getManager();
+        $em      = $this->getDoctrine()->getManager();
         $article = $em->getRepository('AppBundle:Article')->findOneBy(['slug' => $slug]);
         $em->remove($article);
         try {

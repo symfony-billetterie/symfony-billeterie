@@ -8,3 +8,8 @@ assets:
             - jquery-1.11.3.min.js
             - bootstrap.min.js
             - admin.js
+            - ../../../../../vendor/kartik-v/bootstrap-fileinput/js/fileinput.min.js
+            - ../../../../../vendor/kartik-v/bootstrap-fileinput/js/plugins/canvas-to-blob.min.js
+            - ../../../../../vendor/kartik-v/bootstrap-fileinput/js/plugins/purify.min.js
+            - ../../../../../vendor/kartik-v/bootstrap-fileinput/js/plugins/sortable.min.js
+            - ../../../../../vendor/kartik-v/bootstrap-fileinput/themes/fa/theme.js

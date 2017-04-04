@@ -1,7 +1,12 @@
 {% extends 'admin/form.html.twig' %}
 
 {% import 'admin/common/_submit.html.twig' as submit %}
+{% block current_stylesheet %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.5.6/tinymce.min.js"></script>
+    <link href="{{ asset('') }}" rel="stylesheet">
 
+{% endblock %}
 {% block content %}
     {{ form_start(form) }}
     <div class="panel">
@@ -19,4 +24,24 @@
         </div>
     </div>
     {{ form_end(form) }}
+{% endblock %}
+
+{% block view_js %}
+    <script>
+        $(document).ready(function () {
+            tinymce.init({
+                selector: 'textarea',
+                height: 500,
+                menubar: false,
+                plugins: [
+                    'advlist autolink lists link image charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table contextmenu paste code'
+                ],
+                toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                content_css: '//www.tinymce.com/css/codepen.min.css',
+            });
+            $("input[type=file]").fileinput({'language':'fr', 'showUpload':false});
+        });
+    </script>
 {% endblock %}

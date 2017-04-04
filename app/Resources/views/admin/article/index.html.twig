@@ -26,7 +26,8 @@
                         <td>
                             {% if article.imageName is defined and article.imageName is not null %}
                                 <img class="img-responsive" alt="{{ article.imageName }}"
-                                     src="{{ asset('/upload/article/images/'~article.imageName)|imagine_filter("datatable_picture") }}">
+                                     src="{{ vich_uploader_asset(article, 'image')|imagine_filter
+                                     ("datatable_picture") }}">
                             {% endif %}
                         </td>
                         <td class="column-actions">

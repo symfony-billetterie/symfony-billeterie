@@ -36,7 +36,8 @@
         "knplabs/knp-menu-bundle": "^2.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "vich/uploader-bundle": "^1.5",
-        "liip/imagine-bundle": "^1.7"
+        "liip/imagine-bundle": "^1.7",
+        "kartik-v/bootstrap-fileinput": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
