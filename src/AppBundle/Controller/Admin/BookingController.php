@@ -32,8 +32,6 @@ class BookingController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine();
-
         $bookings = $this->getDoctrine()->getRepository('AppBundle:Booking')->findAll();
 
         /** @var Event[] $events */
@@ -58,7 +56,7 @@ class BookingController extends Controller
      *
      * @return Response
      */
-    public function ajaxTriReservationsAction(Request $request)
+    public function ajaxBookingFilterAction(Request $request)
     {
         $event    = $request->request->get('event');
         $bookings = $this->getDoctrine()->getRepository('AppBundle:Booking')->findBy(
