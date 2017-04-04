@@ -335,4 +335,12 @@ class User extends BaseUser
             'app.civility.woman' => self::USER_CIVILITY_WOMAN,
         ];
     }
+
+    /**
+     * @return string
+     */
+    public function getFullName()
+    {
+        return $this->firstName . ' ' . $this->lastName;
+    }
 }
