@@ -32,7 +32,9 @@ class BookingController extends Controller
      */
     public function indexAction()
     {
-        $bookings = $this->getDoctrine()->getRepository('AppBundle:Booking')->findAll();
+        $em = $this->getDoctrine();
+
+        $bookings = $em->getRepository('AppBundle:Booking')->findAll();g
 
         /** @var Event[] $events */
         $events = $em->getRepository('AppBundle:Event')->findAll();
