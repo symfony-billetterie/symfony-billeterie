@@ -58,6 +58,9 @@ admin:
             index: Liste des catégories de ticket
             create: Ajouter une catégorie de ticket
             edit: Modifier une catégorie de ticket
+        booking:
+            title: Réservations
+            index : Liste des réservations
     log:
         title: Registre
         type: Type
@@ -93,6 +96,12 @@ admin:
         create: Créer une actualité
         edit: Éditer une actualité
         delete_confirm : Etes-vous sûr de vouloir supprimer l\'actualité selectionnée ?
+    booking:
+        user:
+            name: Bénéficiaire
+            email: Courriel
+        ticketCategory:
+            label: Catégorie de ticket
     form:
         event_type:
             name: Nom du type d'évènement

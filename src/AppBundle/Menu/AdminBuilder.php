@@ -56,6 +56,12 @@ class AdminBuilder extends BaseBuilder
             if (strpos($routeName, 'admin_article') === 0) {
                 $article->setCurrent(true);
             }
+
+            /* Booking */
+            $event = $this->addItem($menu, 'admin.nav.booking.title', 'admin_booking_index', 'calendar');
+            if (strpos($routeName, 'admin_booking')) {
+                $event->setCurrent(true);
+            }
         }
 
         return $menu;
@@ -114,6 +120,18 @@ class AdminBuilder extends BaseBuilder
                 }
             }
 
+            /* Booking */
+            $this->addItemIfRouteMatch('admin.nav.booking.title', $menu, 'admin_booking_index', 'list');
+            if (strpos($routeName, 'admin_booking') === 0) {
+                $this->addItem($menu, 'admin.nav.booking.index', 'admin_booking_index', 'list');
+            }
+
+            $this->addItemIfRouteMatch(
+                'admin.nav.ticket_category.title',
+                $menu,
+                'admin_ticket_category_index',
+                'ticket'
+            );
             /* Article */
             if (strpos($routeName, 'admin_article') === 0) {
                 $this->addItem($menu, 'admin.nav.article.index', 'admin_article_index', 'newspaper-o');
