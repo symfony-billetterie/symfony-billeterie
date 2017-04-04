@@ -50,6 +50,12 @@ class AdminBuilder extends BaseBuilder
             if (strpos($routeName, 'admin_event') === 0 && strpos($routeName, 'admin_event_type') !== 0) {
                 $event->setCurrent(true);
             }
+
+            /* Article */
+            $article = $this->addItem($menu, 'admin.nav.article.title', 'admin_article_index', 'newspaper-o');
+            if (strpos($routeName, 'admin_article') === 0) {
+                $article->setCurrent(true);
+            }
         }
 
         return $menu;
@@ -108,12 +114,26 @@ class AdminBuilder extends BaseBuilder
                 }
             }
 
-            $this->addItemIfRouteMatch(
-                'admin.nav.ticket_category.title',
-                $menu,
-                'admin_ticket_category_index',
-                'ticket'
-            );
+            /* Article */
+            if (strpos($routeName, 'admin_article') === 0) {
+                $this->addItem($menu, 'admin.nav.article.index', 'admin_article_index', 'newspaper-o');
+                if (strpos($routeName, 'admin_article_add') === 0) {
+                    $this->addItem($menu, 'admin.nav.article.create', 'admin_article_add', 'plus');
+                }
+                if (strpos($routeName, 'admin_article_edit') === 0) {
+                    $article = $request->get('slug');
+                    $this->addItem($menu, 'admin.nav.article.edit', 'admin_article_edit', 'pencil', ['slug' => $article]);
+                }
+
+                $this->addItemIfRouteMatch(
+                    'admin.nav.ticket_category.title',
+                    $menu,
+                    'admin_ticket_category_index',
+                    'ticket'
+                );
+            }
+
+            /* Ticket Category */
             if (strpos($routeName, 'admin_ticket_category') === 0) {
                 $this->addItem($menu, 'admin.nav.ticket_category.index', 'admin_ticket_category_index', 'list');
                 if (strpos($routeName, 'admin_ticket_category_add') === 0) {

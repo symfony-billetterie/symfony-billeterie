@@ -1,0 +1,22 @@
+{% extends 'admin/form.html.twig' %}
+
+{% import 'admin/common/_submit.html.twig' as submit %}
+
+{% block content %}
+    {{ form_start(form) }}
+    <div class="panel">
+        <div class="panel-heading">
+            <div class="panel-title">{{ 'admin.article.edit'|trans }}</div>
+        </div>
+        <div class="panel-body">
+            {{ form_row(form.title) }}
+            {{ form_row(form.content) }}
+            {{ form_row(form.image) }}
+            {{ form_row(form.file) }}
+        </div>
+        <div class="panel-footer">
+            {{ submit.button(path('admin_article_index')) }}
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

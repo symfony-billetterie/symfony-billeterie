@@ -26,3 +26,4 @@ apache2.conf
 web/config.php
 web/maintenance.php
 app/sessions/
+upload/

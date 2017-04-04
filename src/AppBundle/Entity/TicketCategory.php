@@ -52,7 +52,9 @@ class TicketCategory
     }
 
     /**
-     * @param string $label
+     * @param null|string $label
+     *
+     * @return TicketCategory|null
      */
     public function setLabel(?string $label): ?TicketCategory
     {

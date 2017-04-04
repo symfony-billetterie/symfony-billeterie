@@ -38,7 +38,7 @@ sudo chmod 644 /etc/phpmyadmin/config.inc.php
 sudo add-apt-repository ppa:ondrej/php
 sudo apt-get update
 sudo apt-get install php7.1
-sudo apt-get -y install php7.1-mysql php7.1-cli php7.1-intl php7.1-curl php7.1-xml php7.1-gd php7.1-apcu php7.1-mcrypt php7.1-mbstring
+sudo apt-get -y install php php7.1 php7.1-mysql php7.1-cli php7.1-intl php7.1-curl php7.1-xml php7.1-gd php7.1-apcu php7.1-mcrypt php7.1-mbstring
 
 # Enable PHP7 mod
 sudo phpenmod mcrypt

@@ -1,0 +1,18 @@
+# VichUploader Configuration
+vich_uploader:
+    db_driver: orm
+    mappings:
+        article_image:
+            uri_prefix:         /upload/article/images
+            upload_destination: '%kernel.root_dir%/../web/upload/article/images'
+            namer:              vich_uploader.namer_uniqid
+            inject_on_load: false
+            delete_on_update:   true
+            delete_on_remove:   true
+        article_file:
+            uri_prefix:         /upload/article/files
+            upload_destination: '%kernel.root_dir%/../web/upload/article/files'
+            namer:              vich_uploader.namer_uniqid
+            inject_on_load: false
+            delete_on_update:   true
+            delete_on_remove:   true
