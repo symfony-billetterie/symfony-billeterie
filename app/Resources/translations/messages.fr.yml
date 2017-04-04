@@ -77,10 +77,6 @@ admin:
         create: Créer une catégorie de ticket
         edit: Editer une catégorie de ticket
         delete_confirm: Etes-vous sûr de vouloir supprimer la catégorie de ticket sélectionnée ?
-        title : Type d'événement
-        create: Créer un type d'événement
-        edit: Éditer un type d'événement
-        delete_confirm : Etes-vous sûr de vouloir supprimer le type d\'événement selectionné ?
     event:
         title : Evénement
         date: Date - Heure
@@ -118,6 +114,11 @@ admin:
             category: Catégorie de ticket
             label_qty: Nombre maximum de places pour la catégorie
             quantity: Quantité de places
+        booking:
+            event: Nom de l'événement
+            ticket_category: Catégorie de ticket
+            main_user: Adresse mail du bénéficiaire principal
+            secondary_user: Adresse mail du bénéficiaire secondaire
 
 app:
     title: Billetterie

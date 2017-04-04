@@ -20,33 +20,34 @@ class LoadEventData extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $datas = [
+            'Match Rugby' =>
             [
-                'name' => 'Match Rugby',
                 'date' => new \DateTime("2017-12-19 21:00:00"),
                 'location' => 'Paris',
             ],
+            'Match Football' =>
             [
-                'name' => 'Match Football',
+
                 'date' => new \DateTime("2017-04-12 22:30:00"),
                 'location' => 'Marseille',
             ],
+            'Match Tennis' =>
             [
-                'name' => 'Match Tennis',
                 'date' => new \DateTime("2017-05-23 20:35:00"),
                 'location' => 'Lyon',
             ],
+            'Match HandBall' =>
             [
-                'name' => 'Match HandBall',
                 'date' => new \DateTime("2017-12-26 21:00:00"),
                 'location' => 'Bordeaux',
             ],
+            'Match Ping Pong' =>
             [
-                'name' => 'Match Ping Pong',
                 'date' => new \DateTime("2017-09-26 19:00:00"),
                 'location' => 'Barcelone',
             ],
+            'Demi finale Football' =>
             [
-                'name' => 'Demi finale Football',
                 'date' => new \DateTime("2017-08-01 18:40:00"),
                 'location' => 'Madrid',
             ]
@@ -56,7 +57,7 @@ class LoadEventData extends AbstractFixture implements OrderedFixtureInterface
 
             /** @var Event $event */
             $event = new Event();
-            $event->setName($data['name']);
+            $event->setName($key);
             $event->setDate($data['date']);
             $event->setLocation($data['location']);
 
