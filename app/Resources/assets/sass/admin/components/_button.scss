@@ -4,5 +4,9 @@
 
 /* Marge bottom bouton d'ajout */
 .add-btn{
-  margin-bottom: 14px !important;
+  float: right;
+
+  i{
+    color: white;
+  }
 }
