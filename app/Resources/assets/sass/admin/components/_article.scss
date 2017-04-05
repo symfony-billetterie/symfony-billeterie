@@ -1,0 +1,15 @@
+/**
+    Article
+ */
+
+.article-item-file, .article-item-image {
+    overflow: hidden;
+
+    .krajee-default.file-preview-frame .kv-file-content {
+        height:auto;
+    }
+}
+
+.file-footer-caption {
+    line-height: 25px;
+}

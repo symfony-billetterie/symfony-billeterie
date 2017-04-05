@@ -13,3 +13,4 @@ assets:
             - ../../../../../vendor/kartik-v/bootstrap-fileinput/js/plugins/purify.min.js
             - ../../../../../vendor/kartik-v/bootstrap-fileinput/js/plugins/sortable.min.js
             - ../../../../../vendor/kartik-v/bootstrap-fileinput/themes/fa/theme.js
+            - ../../../../../vendor/kartik-v/bootstrap-fileinput/js/locales/fr.js

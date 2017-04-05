@@ -34,7 +34,7 @@ class BookingController extends Controller
     {
         $em = $this->getDoctrine();
 
-        $bookings = $em->getRepository('AppBundle:Booking')->findAll();g
+        $bookings = $em->getRepository('AppBundle:Booking')->findAll();
 
         /** @var Event[] $events */
         $events = $em->getRepository('AppBundle:Event')->findAll();

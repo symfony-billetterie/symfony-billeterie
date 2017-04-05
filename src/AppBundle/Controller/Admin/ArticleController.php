@@ -6,6 +6,9 @@ use AppBundle\Form\Type\ArticleType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\SplFileInfo;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Article;
@@ -89,16 +92,14 @@ class ArticleController extends Controller
 
         /** @var Article $article */
         $article = $em->getRepository('AppBundle:Article')->findOneBy(['slug' => $slug]);
-        $form    = $this->createForm(ArticleType::class, $article, ['article' => $article]);
+        $form    = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                dump($article);
                 $em->getManager()->persist($article);
                 $em->getManager()->flush();
                 $this->addFlash('success', 'flash.admin.article.edit.success');
-                dump($article);
 
                 return $this->redirectToRoute('admin_article_index');
             } catch (\Exception $e) {
@@ -107,7 +108,8 @@ class ArticleController extends Controller
         }
 
         return $this->render('admin/article/edit.html.twig', [
-            'form' => $form->createView(),
+            'form'    => $form->createView(),
+            'article' => $article,
         ]);
     }
 
