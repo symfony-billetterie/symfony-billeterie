@@ -4,3 +4,10 @@ services:
         arguments:
             - "@doctrine.orm.entity_manager"
             - "@translator"
+
+    app.manager.article:
+        class: AppBundle\Manager\ArticleManager
+        arguments:
+            - "@request_stack"
+            - "@knp_paginator"
+            - "@doctrine.orm.entity_manager"

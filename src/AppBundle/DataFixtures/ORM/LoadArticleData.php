@@ -23,33 +23,79 @@ class LoadArticleData extends AbstractFixture implements OrderedFixtureInterface
         $data = [
             [
                 'title'   => 'Concert Christophe Maé',
-                'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, asperiores cum distinctio dolore dolorum harum in inventore ipsum minus natus odit optio placeat quis tempore temporibus tenetur vitae voluptate voluptatum.</p>',
+                'content' => '<p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus iaculis lacus quis eros bibendum, in fringilla nunc cursus. Pellentesque placerat elit sit amet massa molestie bibendum. Proin sit amet euismod lorem, non finibus mi. Maecenas id egestas nunc. Mauris porta libero eu tempor sollicitudin. Pellentesque eget ornare quam, eu ultrices felis. Nam a eleifend ex. Sed sagittis est a purus ullamcorper, vel molestie tellus laoreet. Praesent tristique, elit auctor aliquet sodales, nisi leo dapibus nisl, at porttitor lectus dui non dui. Vivamus sit amet velit quis lectus elementum viverra. Fusce tincidunt pellentesque ex, in ornare tellus feugiat id. Aliquam nec condimentum mi. Morbi pellentesque eu urna nec scelerisque. Suspendisse accumsan erat eu lectus ultricies pulvinar.
+                    
+                    Nulla facilisi. Donec vestibulum congue turpis a accumsan. Curabitur id dictum sem. Phasellus at mattis orci, eget pulvinar odio. Quisque placerat dolor nisi. Fusce sagittis mi quis nulla semper suscipit. Fusce eleifend ut augue sed tempus. Vestibulum ultrices mauris at justo luctus, et tristique eros sodales. Nullam ante nisl, malesuada ac ligula varius, dignissim blandit lectus. Aliquam hendrerit justo in leo pretium viverra. Praesent sit amet ipsum non enim consectetur lacinia sit amet eu risus. Vivamus ultricies sodales lacus ac porta. Ut vitae eleifend dolor. Sed et euismod est.
+                    
+                    Nullam purus metus, dapibus a tempus eu, venenatis et velit. Suspendisse purus neque, pretium et est sit amet, sodales pretium sapien. Duis nec arcu turpis. Aliquam vehicula tellus nunc, ac aliquet dui faucibus eget. Donec eu iaculis augue. Praesent tristique velit eu vestibulum vehicula. In suscipit pharetra elementum. In pellentesque dui quis felis vestibulum, non laoreet erat sollicitudin. Fusce accumsan mollis ex finibus convallis. Praesent mattis convallis odio sed aliquam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec in augue quis orci lobortis fringilla. Vivamus sed nulla laoreet, congue augue ac, interdum augue.
+                    
+                    Aliquam erat volutpat. Duis vestibulum a nunc eget vehicula. Donec et justo eu lectus bibendum dignissim ut nec orci. Integer pretium a sapien vel dictum. Curabitur interdum tortor magna, auctor tempus nibh ultrices ut. Aenean dolor massa, fringilla id interdum et, mollis vitae purus. Mauris tristique sapien ut massa tincidunt, ut scelerisque mauris porttitor. Praesent dictum massa leo.
+                    
+                    Donec erat enim, hendrerit at tellus in, vestibulum lacinia nulla. Donec in tellus elit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In hac habitasse platea dictumst. Duis ornare augue quis pharetra sollicitudin. Nulla eget est massa. Sed enim libero, rutrum sed leo vitae, accumsan scelerisque risus.
+                    </p>',
 
             ],
             [
                 'title'   => 'Conférence astrophysique',
-                'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad commodi consequatur eius esse eveniet ex harum ipsam laborum modi molestias mollitia nam, numquam optio provident quia reiciendis similique unde velit!</p>',
-
+                'content' => '<p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus iaculis lacus quis eros bibendum, in fringilla nunc cursus. Pellentesque placerat elit sit amet massa molestie bibendum. Proin sit amet euismod lorem, non finibus mi. Maecenas id egestas nunc. Mauris porta libero eu tempor sollicitudin. Pellentesque eget ornare quam, eu ultrices felis. Nam a eleifend ex. Sed sagittis est a purus ullamcorper, vel molestie tellus laoreet. Praesent tristique, elit auctor aliquet sodales, nisi leo dapibus nisl, at porttitor lectus dui non dui. Vivamus sit amet velit quis lectus elementum viverra. Fusce tincidunt pellentesque ex, in ornare tellus feugiat id. Aliquam nec condimentum mi. Morbi pellentesque eu urna nec scelerisque. Suspendisse accumsan erat eu lectus ultricies pulvinar.
+                    
+                    Nulla facilisi. Donec vestibulum congue turpis a accumsan. Curabitur id dictum sem. Phasellus at mattis orci, eget pulvinar odio. Quisque placerat dolor nisi. Fusce sagittis mi quis nulla semper suscipit. Fusce eleifend ut augue sed tempus. Vestibulum ultrices mauris at justo luctus, et tristique eros sodales. Nullam ante nisl, malesuada ac ligula varius, dignissim blandit lectus. Aliquam hendrerit justo in leo pretium viverra. Praesent sit amet ipsum non enim consectetur lacinia sit amet eu risus. Vivamus ultricies sodales lacus ac porta. Ut vitae eleifend dolor. Sed et euismod est.
+                    
+                    Nullam purus metus, dapibus a tempus eu, venenatis et velit. Suspendisse purus neque, pretium et est sit amet, sodales pretium sapien. Duis nec arcu turpis. Aliquam vehicula tellus nunc, ac aliquet dui faucibus eget. Donec eu iaculis augue. Praesent tristique velit eu vestibulum vehicula. In suscipit pharetra elementum. In pellentesque dui quis felis vestibulum, non laoreet erat sollicitudin. Fusce accumsan mollis ex finibus convallis. Praesent mattis convallis odio sed aliquam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec in augue quis orci lobortis fringilla. Vivamus sed nulla laoreet, congue augue ac, interdum augue.
+                    
+                    Aliquam erat volutpat. Duis vestibulum a nunc eget vehicula. Donec et justo eu lectus bibendum dignissim ut nec orci. Integer pretium a sapien vel dictum. Curabitur interdum tortor magna, auctor tempus nibh ultrices ut. Aenean dolor massa, fringilla id interdum et, mollis vitae purus. Mauris tristique sapien ut massa tincidunt, ut scelerisque mauris porttitor. Praesent dictum massa leo.
+                    
+                    Donec erat enim, hendrerit at tellus in, vestibulum lacinia nulla. Donec in tellus elit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In hac habitasse platea dictumst. Duis ornare augue quis pharetra sollicitudin. Nulla eget est massa. Sed enim libero, rutrum sed leo vitae, accumsan scelerisque risus.
+                    </p>',
             ],
             [
                 'title'   => 'Meeting Francois Fillon',
-                'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci animi, cupiditate debitis dolor error, eveniet excepturi, exercitationem in ipsam laborum maiores nihil quod repellendus sapiente temporibus unde vero vitae voluptatem?</p>',
-
+                'content' => '<p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus iaculis lacus quis eros bibendum, in fringilla nunc cursus. Pellentesque placerat elit sit amet massa molestie bibendum. Proin sit amet euismod lorem, non finibus mi. Maecenas id egestas nunc. Mauris porta libero eu tempor sollicitudin. Pellentesque eget ornare quam, eu ultrices felis. Nam a eleifend ex. Sed sagittis est a purus ullamcorper, vel molestie tellus laoreet. Praesent tristique, elit auctor aliquet sodales, nisi leo dapibus nisl, at porttitor lectus dui non dui. Vivamus sit amet velit quis lectus elementum viverra. Fusce tincidunt pellentesque ex, in ornare tellus feugiat id. Aliquam nec condimentum mi. Morbi pellentesque eu urna nec scelerisque. Suspendisse accumsan erat eu lectus ultricies pulvinar.
+                    
+                    Nulla facilisi. Donec vestibulum congue turpis a accumsan. Curabitur id dictum sem. Phasellus at mattis orci, eget pulvinar odio. Quisque placerat dolor nisi. Fusce sagittis mi quis nulla semper suscipit. Fusce eleifend ut augue sed tempus. Vestibulum ultrices mauris at justo luctus, et tristique eros sodales. Nullam ante nisl, malesuada ac ligula varius, dignissim blandit lectus. Aliquam hendrerit justo in leo pretium viverra. Praesent sit amet ipsum non enim consectetur lacinia sit amet eu risus. Vivamus ultricies sodales lacus ac porta. Ut vitae eleifend dolor. Sed et euismod est.
+                    
+                    Nullam purus metus, dapibus a tempus eu, venenatis et velit. Suspendisse purus neque, pretium et est sit amet, sodales pretium sapien. Duis nec arcu turpis. Aliquam vehicula tellus nunc, ac aliquet dui faucibus eget. Donec eu iaculis augue. Praesent tristique velit eu vestibulum vehicula. In suscipit pharetra elementum. In pellentesque dui quis felis vestibulum, non laoreet erat sollicitudin. Fusce accumsan mollis ex finibus convallis. Praesent mattis convallis odio sed aliquam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec in augue quis orci lobortis fringilla. Vivamus sed nulla laoreet, congue augue ac, interdum augue.
+                    
+                    Aliquam erat volutpat. Duis vestibulum a nunc eget vehicula. Donec et justo eu lectus bibendum dignissim ut nec orci. Integer pretium a sapien vel dictum. Curabitur interdum tortor magna, auctor tempus nibh ultrices ut. Aenean dolor massa, fringilla id interdum et, mollis vitae purus. Mauris tristique sapien ut massa tincidunt, ut scelerisque mauris porttitor. Praesent dictum massa leo.
+                    
+                    Donec erat enim, hendrerit at tellus in, vestibulum lacinia nulla. Donec in tellus elit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In hac habitasse platea dictumst. Duis ornare augue quis pharetra sollicitudin. Nulla eget est massa. Sed enim libero, rutrum sed leo vitae, accumsan scelerisque risus.
+                    </p>',
             ],
             [
                 'title'   => 'Concert AC/DC',
-                'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam beatae culpa cum dolorum, incidunt iste minima molestiae nam necessitatibus, non odit similique suscipit voluptas. Corporis enim fugit quasi sequi sit.</p>',
-
+                'content' => '<p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus iaculis lacus quis eros bibendum, in fringilla nunc cursus. Pellentesque placerat elit sit amet massa molestie bibendum. Proin sit amet euismod lorem, non finibus mi. Maecenas id egestas nunc. Mauris porta libero eu tempor sollicitudin. Pellentesque eget ornare quam, eu ultrices felis. Nam a eleifend ex. Sed sagittis est a purus ullamcorper, vel molestie tellus laoreet. Praesent tristique, elit auctor aliquet sodales, nisi leo dapibus nisl, at porttitor lectus dui non dui. Vivamus sit amet velit quis lectus elementum viverra. Fusce tincidunt pellentesque ex, in ornare tellus feugiat id. Aliquam nec condimentum mi. Morbi pellentesque eu urna nec scelerisque. Suspendisse accumsan erat eu lectus ultricies pulvinar.
+                    
+                    Nulla facilisi. Donec vestibulum congue turpis a accumsan. Curabitur id dictum sem. Phasellus at mattis orci, eget pulvinar odio. Quisque placerat dolor nisi. Fusce sagittis mi quis nulla semper suscipit. Fusce eleifend ut augue sed tempus. Vestibulum ultrices mauris at justo luctus, et tristique eros sodales. Nullam ante nisl, malesuada ac ligula varius, dignissim blandit lectus. Aliquam hendrerit justo in leo pretium viverra. Praesent sit amet ipsum non enim consectetur lacinia sit amet eu risus. Vivamus ultricies sodales lacus ac porta. Ut vitae eleifend dolor. Sed et euismod est.
+                    
+                    Nullam purus metus, dapibus a tempus eu, venenatis et velit. Suspendisse purus neque, pretium et est sit amet, sodales pretium sapien. Duis nec arcu turpis. Aliquam vehicula tellus nunc, ac aliquet dui faucibus eget. Donec eu iaculis augue. Praesent tristique velit eu vestibulum vehicula. In suscipit pharetra elementum. In pellentesque dui quis felis vestibulum, non laoreet erat sollicitudin. Fusce accumsan mollis ex finibus convallis. Praesent mattis convallis odio sed aliquam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec in augue quis orci lobortis fringilla. Vivamus sed nulla laoreet, congue augue ac, interdum augue.
+                    
+                    Aliquam erat volutpat. Duis vestibulum a nunc eget vehicula. Donec et justo eu lectus bibendum dignissim ut nec orci. Integer pretium a sapien vel dictum. Curabitur interdum tortor magna, auctor tempus nibh ultrices ut. Aenean dolor massa, fringilla id interdum et, mollis vitae purus. Mauris tristique sapien ut massa tincidunt, ut scelerisque mauris porttitor. Praesent dictum massa leo.
+                    
+                    Donec erat enim, hendrerit at tellus in, vestibulum lacinia nulla. Donec in tellus elit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In hac habitasse platea dictumst. Duis ornare augue quis pharetra sollicitudin. Nulla eget est massa. Sed enim libero, rutrum sed leo vitae, accumsan scelerisque risus.
+                    </p>',
             ],
             [
                 'title'   => 'Concert de JuL',
-                'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dignissimos ipsam minima nobis nostrum quasi quisquam tempora. Ducimus expedita maxime nostrum quas sed ullam? Autem debitis fugiat magnam nesciunt repellendus?</p>',
-
+                'content' => '<p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus iaculis lacus quis eros bibendum, in fringilla nunc cursus. Pellentesque placerat elit sit amet massa molestie bibendum. Proin sit amet euismod lorem, non finibus mi. Maecenas id egestas nunc. Mauris porta libero eu tempor sollicitudin. Pellentesque eget ornare quam, eu ultrices felis. Nam a eleifend ex. Sed sagittis est a purus ullamcorper, vel molestie tellus laoreet. Praesent tristique, elit auctor aliquet sodales, nisi leo dapibus nisl, at porttitor lectus dui non dui. Vivamus sit amet velit quis lectus elementum viverra. Fusce tincidunt pellentesque ex, in ornare tellus feugiat id. Aliquam nec condimentum mi. Morbi pellentesque eu urna nec scelerisque. Suspendisse accumsan erat eu lectus ultricies pulvinar.
+                    
+                    Nulla facilisi. Donec vestibulum congue turpis a accumsan. Curabitur id dictum sem. Phasellus at mattis orci, eget pulvinar odio. Quisque placerat dolor nisi. Fusce sagittis mi quis nulla semper suscipit. Fusce eleifend ut augue sed tempus. Vestibulum ultrices mauris at justo luctus, et tristique eros sodales. Nullam ante nisl, malesuada ac ligula varius, dignissim blandit lectus. Aliquam hendrerit justo in leo pretium viverra. Praesent sit amet ipsum non enim consectetur lacinia sit amet eu risus. Vivamus ultricies sodales lacus ac porta. Ut vitae eleifend dolor. Sed et euismod est.
+                    
+                    Nullam purus metus, dapibus a tempus eu, venenatis et velit. Suspendisse purus neque, pretium et est sit amet, sodales pretium sapien. Duis nec arcu turpis. Aliquam vehicula tellus nunc, ac aliquet dui faucibus eget. Donec eu iaculis augue. Praesent tristique velit eu vestibulum vehicula. In suscipit pharetra elementum. In pellentesque dui quis felis vestibulum, non laoreet erat sollicitudin. Fusce accumsan mollis ex finibus convallis. Praesent mattis convallis odio sed aliquam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec in augue quis orci lobortis fringilla. Vivamus sed nulla laoreet, congue augue ac, interdum augue.
+                    
+                    Aliquam erat volutpat. Duis vestibulum a nunc eget vehicula. Donec et justo eu lectus bibendum dignissim ut nec orci. Integer pretium a sapien vel dictum. Curabitur interdum tortor magna, auctor tempus nibh ultrices ut. Aenean dolor massa, fringilla id interdum et, mollis vitae purus. Mauris tristique sapien ut massa tincidunt, ut scelerisque mauris porttitor. Praesent dictum massa leo.
+                    
+                    Donec erat enim, hendrerit at tellus in, vestibulum lacinia nulla. Donec in tellus elit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In hac habitasse platea dictumst. Duis ornare augue quis pharetra sollicitudin. Nulla eget est massa. Sed enim libero, rutrum sed leo vitae, accumsan scelerisque risus.
+                    </p>',
             ],
         ];
 
         foreach ($data as $item => $value) {
-            $img = $item+1;
+            $img = $item + 1;
             /** @var Article $article */
             $article = new Article();
             $article->setTitle($value['title']);
@@ -68,14 +114,6 @@ class LoadArticleData extends AbstractFixture implements OrderedFixtureInterface
     }
 
     /**
-     * @return int
-     */
-    public function getOrder()
-    {
-        return 0;
-    }
-
-    /**
      * @param $path
      *
      * @return UploadedFile
@@ -88,5 +126,13 @@ class LoadArticleData extends AbstractFixture implements OrderedFixtureInterface
         }
 
         return new UploadedFile($src, basename($path), $mimeTypeGuesser->guess($src), filesize($src), null, true);
+    }
+
+    /**
+     * @return int
+     */
+    public function getOrder()
+    {
+        return 0;
     }
 }

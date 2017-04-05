@@ -13,29 +13,27 @@ class AppBuilder extends BaseBuilder
 {
     /**
      * @param FactoryInterface $factory
-     * @param array $options
      *
      * @return ItemInterface
      */
-    public function mainMenu(FactoryInterface $factory, array $options)
+    public function mainMenu(FactoryInterface $factory)
     {
         $menu = $factory->createItem('root');
 
-        $this->addItem($menu, 'app.nav.home', 'homepage');
+        $this->addItem($menu, 'app.nav.article', 'homepage');
 
         return $menu;
     }
 
     /**
      * @param FactoryInterface $factory
-     * @param array            $options
      *
      * @return ItemInterface
      */
     public function breadcrumb(FactoryInterface $factory)
     {
         $menu = $factory->createItem('root');
-
+        $this->addItemIfRouteMatch('homepage', $menu, 'homepage', 'app.nav.article', 'newspaper-o');
 
         return $menu;
     }

@@ -8,3 +8,7 @@ liip_imagine :
             quality : 75
             filters :
                 thumbnail: { size : [200, 150], mode : outbound }
+        article_picture_list :
+            quality : 75
+            filters :
+                thumbnail: { size : [247, 164], mode : outbound }

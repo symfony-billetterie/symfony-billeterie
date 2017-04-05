@@ -136,6 +136,7 @@ app:
         description: Billetterie Symfony projet scolaire
     nav:
         home: Accueil
+        article: Actualités
         login: Connexion
         register: Inscription
     form:

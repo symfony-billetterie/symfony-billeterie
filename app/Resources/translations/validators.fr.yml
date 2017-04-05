@@ -19,4 +19,13 @@ form:
             lower: Veuillez saisir une date inférieure à aujourd'hui
     ticket_category:
         label:
-            not_null: Veuillez remplir le nom de la catégorie
+            not_null: Veuillez saisir le nom de la catégorie
+    article:
+        title:
+            not_null: Veuillez saisir le titre de l'actualité
+        content:
+            not_null: Veuillez saisir le contenu de l'actualité
+        image:
+            mime_type: Le format n'est pas valide (.png, .jpeg, .gif)
+        file:
+            mime_type: Le format n'est pas valide (.docx, .xlsx, .pdf)
