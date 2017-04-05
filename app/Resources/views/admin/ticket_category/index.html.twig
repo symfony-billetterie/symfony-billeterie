@@ -3,12 +3,14 @@
 {% block content %}
     <div class="panel">
         <div class="panel-heading">
-            <div class="panel-title">{{ 'admin.ticket_category.title'|trans }}</div>
+            <div class="panel-title">{{ 'admin.ticket_category.title'|trans }}
+                <a href="{{ path('admin_ticket_category_add') }}" class="btn btn-info add-btn"
+                   title="{{ 'common.button.add'|trans }}">
+                    <i class="fa fa-plus"></i>
+                </a>
+            </div>
         </div>
         <div class="panel-body">
-            <a href="{{ path('admin_ticket_category_add') }}" class="btn btn-info add-btn">
-                {{ 'common.button.add'|trans }}
-            </a>
             <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0"
                    width="100%">
                 <thead>
