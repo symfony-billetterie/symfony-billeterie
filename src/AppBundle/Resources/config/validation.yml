@@ -44,3 +44,23 @@ AppBundle\Entity\Stock:
             - Type:
                 type: integer
                 message: form.stock.quantity.int
+
+AppBundle\Entity\Article:
+    properties:
+        file:
+            - File:
+                maxSize: 5M
+                mimeTypes: [application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document]
+                mimeTypesMessage: form.article.file.mime_type
+        image:
+            - File:
+                maxSize: 1M
+                mimeTypes: [image/jpeg, image/png, image/gif]
+                mimeTypesMessage: form.article.image.mime_type
+        content:
+            - NotNull:
+                message: form.article.content.not_null
+        title:
+            - NotNull:
+                message: form.article.title.not_null
+

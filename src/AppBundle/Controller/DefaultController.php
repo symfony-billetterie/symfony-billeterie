@@ -17,14 +17,14 @@ class DefaultController extends Controller
      * @Route("/", name="homepage")
      * @Method({"GET"})
      *
-     * @param Request $request
-     *
      * @return Response
      *
-     * Retourne la page d'accueil du Front Office
+     * Retourne la liste des actualités
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
-        return $this->render('app/default/index.html.twig');
+        $articles = $this->get('app.manager.article')->listArticle();
+
+        return $this->render('app/default/index.html.twig', ['articles' => $articles]);
     }
 }

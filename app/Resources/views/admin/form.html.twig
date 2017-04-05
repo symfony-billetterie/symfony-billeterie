@@ -6,6 +6,7 @@
     {{ parent() }}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"
           rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.5.6/tinymce.min.js"></script>
 {% endblock %}
 
 {% block current_script %}
@@ -20,6 +21,32 @@
             $('.js-datetimepicker').datetimepicker({
                 format: 'DD/MM/YYYY HH:mm',
                 sideBySide: true
+            });
+            tinymce.init({
+                selector: 'textarea',
+                height: 500,
+                menubar: false,
+                plugins: [
+                    'advlist autolink lists link image charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table contextmenu paste code'
+                ],
+                toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                content_css: '//www.tinymce.com/css/codepen.min.css',
+            });
+            $("input[type=file]").fileinput({'language': 'fr', 'showUpload': false});
+
+            var vichImage = $('.vich-image');
+            var vichFile = $('.vich-file');
+
+            vichImage.bind("DOMSubtreeModified", function () {
+                console.log('test');
+                $('.article-item-image').hide();
+            });
+
+            vichFile.bind("DOMSubtreeModified", function () {
+                console.log('test');
+                $('.article-item-file').hide();
             });
         });
     </script>

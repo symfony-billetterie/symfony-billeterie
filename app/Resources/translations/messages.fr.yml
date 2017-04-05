@@ -48,6 +48,11 @@ admin:
             index: Liste des événements
             create: Ajouter un événement
             edit: Modifier un événement
+        article:
+            title: Actualités
+            index: Liste des actualités
+            create: Ajouter une actualité
+            edit: Modifier une actualité
         ticket_category:
             title: Catégories de ticket
             index: Liste des catégories de ticket
@@ -83,6 +88,14 @@ admin:
         create: Créer un événement
         edit: Éditer un événement
         delete_confirm : Etes-vous sûr de vouloir supprimer l\'événement selectionné ?
+    article:
+        title : Actualité
+        content: Contenu
+        image: Image
+        file: Fichier
+        create: Créer une actualité
+        edit: Éditer une actualité
+        delete_confirm : Etes-vous sûr de vouloir supprimer l\'actualité selectionnée ?
     booking:
         user:
             name: Bénéficiaire
@@ -100,6 +113,11 @@ admin:
             date: Date de l'événement
             location: Lieu de l'événement
             event_type: Type d'événement
+        article:
+            title: Titre
+            content: Contenu
+            image: Image
+            file: Fichier
         stock:
             title: Stock des tickets
             category: Catégorie de ticket
@@ -118,6 +136,7 @@ app:
         description: Billetterie Symfony projet scolaire
     nav:
         home: Accueil
+        article: Actualités
         login: Connexion
         register: Inscription
     form:
@@ -195,6 +214,16 @@ flash:
             edit:
                 success: Le type d'évènement a bien été modifié
                 danger: Erreur, le type d'évènement n'a pas été modifié
+        article:
+            delete:
+                success: L'actualité a bien été supprimée
+                danger: Erreur, l'actualité n'a pas pu être supprimée
+            add:
+                success: L'actualité a bien été ajoutée
+                danger: Erreur, l'actualité n'a pas été ajoutée
+            edit:
+                success: L'actualité a bien été modifiée
+                danger: Erreur, l'actualité n'a pas été modifiée
         ticket_category:
             delete:
                 success: La catégorie du ticket a bien été supprimée
