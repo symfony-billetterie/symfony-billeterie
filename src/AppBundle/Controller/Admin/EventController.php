@@ -58,6 +58,7 @@ class EventController extends Controller
             $stock = new Stock();
             $stock->setCategory($category);
             $stock->setEvent($event);
+            $stock->setQuantity(0);
             $event->addStock($stock);
         }
 

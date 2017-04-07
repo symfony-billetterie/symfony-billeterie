@@ -43,8 +43,8 @@ class EventType extends AbstractType
                 },
                 'choice_label' => 'name'
             ])
-            ->add('stocks', CollectionType::class, array(
+            ->add('stocks', CollectionType::class, [
                 'entry_type' => StockType::class
-            ));
+            ]);
     }
 }

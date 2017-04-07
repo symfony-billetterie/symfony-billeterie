@@ -21,29 +21,35 @@ class LoadStockData extends AbstractFixture implements OrderedFixtureInterface
     {
         $datas = [
             [
-                'quantity' => 445,
-                'event' => 'Match HandBall',
+                'quantity'       => 445,
+                'event'          => 'Match HandBall',
+                'ticketCategory' => 'Gradin',
             ],
             [
-                'quantity' => 1200,
-                'event' => 'Match Tennis',
+                'quantity'       => 1200,
+                'event'          => 'Match Tennis',
+                'ticketCategory' => 'Fosse',
             ],
             [
-                'quantity' => 4454,
-                'event' => 'Match Football',
+                'quantity'       => 4454,
+                'event'          => 'Match Football',
+                'ticketCategory' => 'Gradin',
             ],
             [
-                'quantity' => 5673,
-                'event' => 'Demi finale Football',
+                'quantity'       => 5673,
+                'event'          => 'Demi finale Football',
+                'ticketCategory' => 'Tribune',
             ],
             [
-                'quantity' => 3400,
-                'event' => 'Match Football',
+                'quantity'       => 3400,
+                'event'          => 'Match Football',
+                'ticketCategory' => 'Fosse',
             ],
             [
-                'quantity' => 1786,
-                'event' => 'Match Tennis',
-            ]
+                'quantity'       => 1786,
+                'event'          => 'Match Tennis',
+                'ticketCategory' => 'Balcon',
+            ],
         ];
 
         foreach ($datas as $key => $data) {
@@ -53,8 +59,12 @@ class LoadStockData extends AbstractFixture implements OrderedFixtureInterface
             $stock->setQuantity($data['quantity']);
 
             /** @var Event $randEvent */
-            $randEvent = $this->getReference('event-' . $data['event']);
-            $stock->setEvent($randEvent);
+            $event = $this->getReference('event-' . $data['event']);
+            $stock->setEvent($event);
+
+            /** @var Event $randEvent */
+            $ticketCategory = $this->getReference('ticket-category-' . $data['ticketCategory']);
+            $stock->setCategory($ticketCategory);
 
             $this->setReference('stock-' . $key, $stock);
 
