@@ -16,6 +16,8 @@ class BookingRepository extends EntityRepository
     {
         return $this->createQueryBuilder('b')
             ->join('b.event', 'e')
+            ->join('b.mainUser', 'u')
+            ->leftJoin('b.secondaryUsers', 'su')
             ->orderBy('e.id', 'DESC')
             ->getQuery()->getResult();
     }

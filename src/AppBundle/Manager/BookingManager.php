@@ -4,7 +4,6 @@ namespace AppBundle\Manager;
 
 use AppBundle\Entity\Booking;
 use AppBundle\Entity\User;
-use Doctrine\Common\Collections\ArrayCollection;
 use Liuggio\ExcelBundle\Factory;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -32,11 +31,11 @@ class BookingManager
 
     /**
      * @param User                      $user
-     * @param Booking[]|ArrayCollection $bookings
+     * @param Booking[]|array $bookings
      *
      * @return StreamedResponse
      */
-    public function exportBooking(User $user, ArrayCollection $bookings)
+    public function exportBooking(User $user, array $bookings)
     {
         /**
          * Numéro de ligne du fichier excel - commencer à la ligne 2 par défaut

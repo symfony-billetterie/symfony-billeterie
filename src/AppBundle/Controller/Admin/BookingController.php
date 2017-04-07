@@ -54,7 +54,7 @@ class BookingController extends Controller
     /**
      * Exporter les réservations
      *
-     * @Route("/export-toutes-les-reservations", name="admin_booking_export_all")
+     * @Route("/exporter-toutes-les-reservations", name="admin_booking_export_all")
      * @Method({"GET"})
      *
      * @return Response
@@ -80,7 +80,7 @@ class BookingController extends Controller
      *
      * @param int $id
      *
-     * @Route("/export-la-reservations/{id}", name="admin_booking_export")
+     * @Route("/exporter-la-reservation/{id}", name="admin_booking_export")
      * @Method({"GET"})
      *
      * @return RedirectResponse|StreamedResponse
