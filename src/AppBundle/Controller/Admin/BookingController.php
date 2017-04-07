@@ -2,16 +2,19 @@
 
 namespace AppBundle\Controller\Admin;
 
-use AppBundle\Entity\Stock;
-use AppBundle\Form\Type\EventType;
+use AppBundle\Entity\Booking;
+use AppBundle\Manager\BookingManager;
+use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Event;
 use AppBundle\Controller\Traits\UtilitiesTrait;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
  * Class BookingController
@@ -46,6 +49,58 @@ class BookingController extends Controller
                 'events'   => $events,
             ]
         );
+    }
+
+    /**
+     * Exporter les réservations
+     *
+     * @Route("/export-toutes-les-reservations", name="admin_booking_export_all")
+     * @Method({"GET"})
+     *
+     * @return Response
+     */
+    public function exportAllBookingAction()
+    {
+        try {
+            /** @var Booking[]|ArrayCollection $bookings */
+            $bookings = $this->getDoctrine()->getRepository('AppBundle:Booking')->findForExport();
+            /** @var BookingManager $bookingManager */
+            $bookingManager = $this->get('app.manager.booking');
+
+            return $bookingManager->exportBooking($this->getUser(), $bookings);
+        } catch (Exception $e) {
+            $this->addFlash('danger', 'flash.admin.booking.export.danger');
+        }
+
+        return $this->redirectToRoute('admin_booking_index');
+    }
+
+    /**
+     * Exporter les réservations
+     *
+     * @param int $id
+     *
+     * @Route("/export-la-reservations/{id}", name="admin_booking_export")
+     * @Method({"GET"})
+     *
+     * @return RedirectResponse|StreamedResponse
+     */
+    public function exportBookingAction(int $id)
+    {
+        try {
+            /** @var Booking $booking */
+            $booking = $this->getDoctrine()->getRepository('AppBundle:Booking')->findBy([
+                'id' => $id,
+            ]);
+            /** @var BookingManager $bookingManager */
+            $bookingManager = $this->get('app.manager.booking');
+
+            return $bookingManager->exportBooking($this->getUser(), $booking);
+        } catch (Exception $e) {
+            $this->addFlash('danger', 'flash.admin.booking.export.danger');
+        }
+
+        return $this->redirectToRoute('admin_booking_index');
     }
 
     /**
