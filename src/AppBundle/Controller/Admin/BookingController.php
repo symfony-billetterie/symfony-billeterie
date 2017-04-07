@@ -88,7 +88,7 @@ class BookingController extends Controller
     public function exportBookingAction(int $id)
     {
         try {
-            /** @var Booking $booking */
+            /** @var Booking[]|ArrayCollection $booking */
             $booking = $this->getDoctrine()->getRepository('AppBundle:Booking')->findBy([
                 'id' => $id,
             ]);
