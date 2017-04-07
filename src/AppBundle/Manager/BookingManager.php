@@ -5,7 +5,6 @@ namespace AppBundle\Manager;
 use AppBundle\Entity\Booking;
 use AppBundle\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\EntityManager;
 use Liuggio\ExcelBundle\Factory;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\StreamedResponse;
