@@ -98,6 +98,10 @@ admin:
         edit: Éditer une actualité
         delete_confirm : Etes-vous sûr de vouloir supprimer l\'actualité selectionnée ?
     booking:
+        title : Réservation
+        create: Créer une réservation
+        edit: Éditer une réservation
+        delete_confirm : Etes-vous sûr de vouloir supprimer la réservation selectionnée ?
         title: Réservations
         user:
             name: Bénéficiaire
@@ -126,10 +130,11 @@ admin:
             label_quantity: Nombre maximum de places pour la catégorie
             quantity: Quantité de places
         booking:
+            title : Réservations
             event: Nom de l'événement
             ticket_category: Catégorie de ticket
-            main_user: Adresse mail du bénéficiaire principal
-            secondary_user: Adresse mail du bénéficiaire secondaire
+            main_user: Bénéficiaire principal
+            secondary_user: Bénéficiaire secondaire
 
 app:
     title: Billetterie
@@ -250,4 +255,13 @@ flash:
                 danger: Erreur, l'événement n'a pas été modifié
         booking:
             export:
-                danger: Erreur, l'export d'évènement n'a pas fonctionné
+                danger: Une erreur est survenue lors de l'export
+            delete:
+                success: La réservation a bien été supprimée
+                danger: Erreur, la réservation n'a pas pu être supprimée
+            add:
+                success: La réservation a bien été ajoutée
+                danger: Erreur, la réservation n'a pas été ajoutée
+            edit:
+                success: La réservation a bien été modifié
+                danger: Erreur, la réservation n'a pas été modifié

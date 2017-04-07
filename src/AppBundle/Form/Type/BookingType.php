@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form\Type;
 
+use AppBundle\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,6 +16,10 @@ class BookingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('mainUser', BeneficiaryType::class, [
+                'label' => 'admin.form.booking.event',
+                'data_class' => User::class,
+                ])
             ->add('event', EntityType::class, [
                 'label' => 'admin.form.booking.event',
                 'class' => 'AppBundle:Event',
@@ -25,16 +30,11 @@ class BookingType extends AbstractType
                 'class' => 'AppBundle:TicketCategory',
                 'choice_label' => 'label',
             ])
-            ->add('mainUser', EntityType::class, [
-                'label' => 'admin.form.booking.main_user',
-                'class' => 'AppBundle:User',
-                'choice_label' => 'email'
-            ])
-            ->add('secondaryUser', EntityType::class, [
+            /*->add('secondaryUsers', EntityType::class, [
                 'label' => 'admin.form.booking.secondary_user',
                 'class' => 'AppBundle:User',
                 'choice_label' => 'email',
-            ])
+            ])*/
         ;
     }
 }

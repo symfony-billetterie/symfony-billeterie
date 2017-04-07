@@ -4,6 +4,7 @@ namespace AppBundle\Manager;
 
 use AppBundle\Entity\Booking;
 use AppBundle\Entity\User;
+use AppBundle\Repository\UserRepository;
 use Liuggio\ExcelBundle\Factory;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -16,21 +17,79 @@ class BookingManager
 {
     private $phpExcel;
     private $translator;
+    private $userRepository;
 
     /**
      * BookingManager constructor.
      *
      * @param Factory             $phpExcel
      * @param TranslatorInterface $translator
+     * @param UserRepository      $userRepository
      */
-    public function __construct(Factory $phpExcel, TranslatorInterface $translator)
-    {
-        $this->phpExcel   = $phpExcel;
-        $this->translator = $translator;
+    public function __construct(
+        Factory $phpExcel,
+        TranslatorInterface $translator,
+        UserRepository $userRepository
+    ) {
+        $this->phpExcel          = $phpExcel;
+        $this->translator        = $translator;
+        $this->userRepository = $userRepository;
     }
 
     /**
-     * @param User                      $user
+     * @param User $user
+     *
+     * @return User
+     */
+    public function manageUser(User $user)
+    {
+        /** @var User $existantUser */
+        if ($existantUser = $this->userRepository->findOneBy(
+            ['email' => $user->getEmail()]
+        )) {
+            return $this->editUser($existantUser, $user);
+        } else {
+            return $this->createUser($user);
+        }
+    }
+
+    /**
+     * @param User $user
+     *
+     * @return User
+     */
+    public function createUser(User $user)
+    {
+        $bytes = openssl_random_pseudo_bytes(4);
+        $pwd   = bin2hex($bytes);
+        $user->setPlainPassword($pwd);
+
+        return $user;
+    }
+
+    /**
+     * @param User $existantUser
+     * @param User $user
+     *
+     * @return User
+     */
+    public function editUser(User $existantUser, User $user)
+    {
+        $existantUser->setCivility($user->getCivility());
+        $existantUser->setLastName($user->getLastName());
+        $existantUser->setFirstName($user->getFirstName());
+        $existantUser->getBirthdayDate($user->getBirthdayDate());
+        $existantUser->setAddress($user->getAddress());
+        $existantUser->setZipCode($user->getZipCode());
+        $existantUser->setCity($user->getCity());
+        $existantUser->setIdNumber($user->getIdNumber());
+        $existantUser->setPhone($user->getPhone());
+
+        return $existantUser;
+    }
+
+    /**
+     * @param User            $user
      * @param Booking[]|array $bookings
      *
      * @return StreamedResponse

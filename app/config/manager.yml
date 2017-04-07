@@ -17,3 +17,4 @@ services:
         arguments:
             - "@phpexcel"
             - "@translator"
+            - "@app.repository.user"

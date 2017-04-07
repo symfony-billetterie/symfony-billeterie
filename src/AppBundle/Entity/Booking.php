@@ -40,7 +40,7 @@ class Booking
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", cascade={"persist"})
      * @ORM\JoinColumn(name="main_user_id", referencedColumnName="id")
      */
     protected $mainUser;
@@ -71,7 +71,7 @@ class Booking
     /**
      * @return Event
      */
-    public function getEvent(): Event
+    public function getEvent():? Event
     {
         return $this->event;
     }
@@ -91,7 +91,7 @@ class Booking
     /**
      * @return TicketCategory
      */
-    public function getTicketCategory(): TicketCategory
+    public function getTicketCategory():? TicketCategory
     {
         return $this->ticketCategory;
     }
@@ -109,9 +109,9 @@ class Booking
     }
 
     /**
-     * @return mixed
+     * @return User
      */
-    public function getMainUser(): User
+    public function getMainUser():? User
     {
         return $this->mainUser;
     }

@@ -6,5 +6,6 @@ imports:
     - { resource: listener.yml }
     - { resource: form.yml }
     - { resource: security_handler.yml }
+    - { resource: repository.yml }
 
 services:

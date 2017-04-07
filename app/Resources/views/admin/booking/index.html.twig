@@ -4,13 +4,8 @@
         <div class="panel-heading">
             <div class="panel-title">
                 {{ 'admin.booking.title'|trans }}
-                <a href="#" class="btn btn-info add-btn"
-                   title="{{ 'common.button.add'|trans }}">
+                <a href="{{ path('admin_booking_add') }}" class="btn btn-info add-btn" title=" {{ 'common.button.add'|trans }}">
                     <i class="fa fa-plus"></i>
-                </a>
-                <a href="{{ path('admin_booking_export_all') }}" class="btn btn-primary add-btn"
-                   title="{{ 'common.button.export'|trans }}">
-                    <i class="fa fa-file-excel-o"></i>
                 </a>
             </div>
         </div>

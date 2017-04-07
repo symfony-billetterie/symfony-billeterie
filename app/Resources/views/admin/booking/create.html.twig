@@ -1,0 +1,23 @@
+{% extends 'admin/form.html.twig' %}
+
+{% import 'admin/common/_submit.html.twig' as submit %}
+
+{% block content %}
+    <div class="panel">
+        <div class="panel-heading">
+            <div class="panel-title">{{ 'admin.booking.create'|trans }}</div>
+        </div>
+        <div class="panel-body">
+            {{ form_start(form) }}
+            {{ form_row(form.mainUser) }}
+            <hr>
+            {{ form_row(form.event) }}
+            {{ form_row(form.ticketCategory) }}
+            {#{{ form_row(form.secondaryUsers) }}#}
+        </div>
+        <div class="panel-footer">
+            {{ submit.button(path('admin_booking_index')) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
