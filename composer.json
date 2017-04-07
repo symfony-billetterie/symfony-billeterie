@@ -37,7 +37,9 @@
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "vich/uploader-bundle": "^1.5",
         "liip/imagine-bundle": "^1.7",
-        "kartik-v/bootstrap-fileinput": "dev-master"
+        "kartik-v/bootstrap-fileinput": "4.3.x-dev",
+        "liuggio/excelbundle": "^2.1",
+        "knplabs/knp-paginator-bundle": "^2.5"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
