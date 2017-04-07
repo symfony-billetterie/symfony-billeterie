@@ -20,14 +20,21 @@ class DefaultController extends Controller
      * @Route("/", name="admin_homepage")
      * @Method({"GET"})
      *
-     * @param Request $request
-     *
      * @return Response
      *
      * Retourne la page d'accueil du Back Office
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
-        return $this->render('admin/default/index.html.twig');
+        $bookingRepository = $this->getDoctrine()->getRepository('AppBundle:Booking');
+        $bookings=$bookingRepository->findAll();
+        $bookingsDistributed=$this->getDoctrine()->ge
+        return $this->render('admin/default/index.html.twig', [
+            'bookings'=> $bookings,
+            'bookingsDistributed'=> $bookingsDistributed,
+            'bookingsNotDistributed'=> $bookingsNotDistributed,
+            'bookingsReserved'=>$bookingsReserved,
+            'bookingsNotReserved'=>$bookingsNotDistributed,
+        ]);
     }
 }

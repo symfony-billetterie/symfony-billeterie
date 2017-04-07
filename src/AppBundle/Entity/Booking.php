@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Booking
+ *
  * @ORM\Entity
  * @ORM\Table(name="booking")
  */
@@ -53,6 +54,15 @@ class Booking
     protected $secondaryUser;
 
     /**
+     * Si False -> billet réservé, si True -> billet distribué
+     *
+     * @var boolean
+     *
+     * @ORM\Column(name="status", type="boolean")
+     */
+    protected $status;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -70,11 +80,13 @@ class Booking
 
     /**
      * @param Event $event
+     *
      * @return Booking
      */
     public function setEvent(Event $event): Booking
     {
         $this->event = $event;
+
         return $this;
     }
 
@@ -88,11 +100,13 @@ class Booking
 
     /**
      * @param TicketCategory $ticketCategory
+     *
      * @return Booking
      */
     public function setTicketCategory(TicketCategory $ticketCategory): Booking
     {
         $this->ticketCategory = $ticketCategory;
+
         return $this;
     }
 
@@ -106,11 +120,13 @@ class Booking
 
     /**
      * @param mixed $mainUser
+     *
      * @return Booking
      */
     public function setMainUser($mainUser)
     {
         $this->mainUser = $mainUser;
+
         return $this;
     }
 
@@ -124,11 +140,29 @@ class Booking
 
     /**
      * @param mixed $secondaryUser
+     *
      * @return Booking
      */
     public function setSecondaryUser($secondaryUser)
     {
         $this->secondaryUser = $secondaryUser;
+
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isStatus(): bool
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param bool $status
+     */
+    public function setStatus(bool $status)
+    {
+        $this->status = $status;
     }
 }
