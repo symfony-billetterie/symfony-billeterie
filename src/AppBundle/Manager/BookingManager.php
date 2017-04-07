@@ -16,20 +16,17 @@ use Symfony\Component\Translation\TranslatorInterface;
  */
 class BookingManager
 {
-    private $em;
     private $phpExcel;
     private $translator;
 
     /**
      * BookingManager constructor.
      *
-     * @param EntityManager       $em
      * @param Factory             $phpExcel
      * @param TranslatorInterface $translator
      */
-    public function __construct(EntityManager $em, Factory $phpExcel, TranslatorInterface $translator)
+    public function __construct(Factory $phpExcel, TranslatorInterface $translator)
     {
-        $this->em         = $em;
         $this->phpExcel   = $phpExcel;
         $this->translator = $translator;
     }
@@ -40,7 +37,7 @@ class BookingManager
      *
      * @return StreamedResponse
      */
-    public function exportBooking(User $user, $bookings)
+    public function exportBooking(User $user, ArrayCollection $bookings)
     {
         /**
          * Numéro de ligne du fichier excel - commencer à la ligne 2 par défaut

@@ -15,6 +15,5 @@ services:
     app.manager.booking:
         class: AppBundle\Manager\BookingManager
         arguments:
-            - "@doctrine.orm.entity_manager"
             - "@phpexcel"
             - "@translator"
