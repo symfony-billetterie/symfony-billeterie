@@ -72,6 +72,14 @@ class Event
      */
     private $slug;
 
+    /**
+     * Event constructor.
+     */
+    public function __construct()
+    {
+        $this->stocks   = new ArrayCollection();
+        $this->bookings = new ArrayCollection();
+    }
 
     /**
      * Get id

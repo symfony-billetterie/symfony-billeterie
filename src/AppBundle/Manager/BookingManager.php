@@ -63,7 +63,7 @@ class BookingManager
 
         /** Définir la cellule correspondante au titre */
         $phpExcelObject->setActiveSheetIndex(0)
-            ->setCellValue('A1', 'Type bénéficiaire')
+            ->setCellValue('A1', $this->translator->trans('Type bénéficiaire'))
             ->setCellValue('B1', 'Nom')
             ->setCellValue('C1', 'Prénom')
             ->setCellValue('D1', 'Adresse e-mail')
@@ -127,7 +127,6 @@ class BookingManager
                         ->setCellValue('M'.$i, 'null')
                         ->setCellValue('N'.$i, 'null')
                         ->setCellValue('O'.$i, 'null');
-
 
                     /** on incrémente le numéro de page */
                     $i++;

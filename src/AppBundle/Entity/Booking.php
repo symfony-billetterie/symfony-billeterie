@@ -53,6 +53,14 @@ class Booking
     protected $secondaryUsers;
 
     /**
+     * Booking constructor.
+     */
+    public function __construct()
+    {
+        $this->secondaryUsers = new ArrayCollection();
+    }
+
+    /**
      * @return int
      */
     public function getId(): int
