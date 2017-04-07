@@ -36,24 +36,24 @@
     une PR est faites et que c'est la votre consulter le Insight pour voir cest votre branche en sort indemne, 
     c'est à dire Platinium.
 
-###Comptes
+### Comptes
 
-####admin
+#### admin
     email: admin@gmail.com
     username: admin
     password: 1234
     
-####observator
+#### observatory
     email: observatory@gmail.com
     username: observatory
     password: 1234
     
-####agent
+#### agent
     email: agent@gmail.com
     username: agent
     password: 1234
 
-####beneficiary
+#### beneficiary
     email: beneficiary@gmail.com
     username: beneficiary
     password: 1234

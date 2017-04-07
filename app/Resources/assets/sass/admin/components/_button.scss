@@ -3,10 +3,15 @@
  */
 
 /* Marge bottom bouton d'ajout */
-.add-btn{
-  float: right;
-
-  i{
+.add-btn {
+    float: right;
+    margin-right: 15px;
     color: white;
-  }
+
+    &:first-child {
+        margin-right: inherit;
+    }
+    i {
+        color: white;
+    }
 }

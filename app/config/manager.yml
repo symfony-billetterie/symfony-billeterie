@@ -11,3 +11,9 @@ services:
             - "@request_stack"
             - "@knp_paginator"
             - "@doctrine.orm.entity_manager"
+
+    app.manager.booking:
+        class: AppBundle\Manager\BookingManager
+        arguments:
+            - "@phpexcel"
+            - "@translator"

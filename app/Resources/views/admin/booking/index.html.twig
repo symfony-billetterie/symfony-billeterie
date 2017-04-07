@@ -3,9 +3,14 @@
     <div class="panel">
         <div class="panel-heading">
             <div class="panel-title">
-                {{ 'admin.event_type.title'|trans }}
-                <a href="{{ path('admin_event_type_add') }}" class="btn btn-info add-btn">
-                    {{ 'common.button.add'|trans }}
+                {{ 'admin.booking.title'|trans }}
+                <a href="#" class="btn btn-info add-btn"
+                   title="{{ 'common.button.add'|trans }}">
+                    <i class="fa fa-plus"></i>
+                </a>
+                <a href="{{ path('admin_booking_export_all') }}" class="btn btn-primary add-btn"
+                   title="{{ 'common.button.export'|trans }}">
+                    <i class="fa fa-file-excel-o"></i>
                 </a>
             </div>
         </div>
@@ -21,18 +26,36 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block view_js %}
+    {{ parent() }}
     <script>
-        $('#select-event').select2().change(function () {
-            $.ajax({
-                        method: "POST",
-                        url: $('#url-ajax-reservation').val(),
-                        data: {
-                            event: $(this).val()
-                        }
-                    })
-                    .done(function (data) {
-                        $('.booking-list').html(data);
+        $(document).ready(function () {
+            $('#select-event').select2().change(function () {
+                $.ajax({
+                    method: "POST",
+                    url: $('#url-ajax-reservation').val(),
+                    data: {
+                        event: $(this).val()
+                    }
+                }).done(function (data) {
+                    $('.booking-list').html(data);
+                    $('#datatable').DataTable({
+                        responsive: true,
+                        oLanguage: {
+                            sUrl: "//cdn.datatables.net/plug-ins/1.10.13/i18n/French.json"
+                        },
+                        columnDefs: [
+                            {
+                                targets: [0],
+                                visible: false
+                            }
+                        ],
+                        order: [[0, "desc"]]
                     });
+                });
+            });
         });
     </script>
 {% endblock %}
