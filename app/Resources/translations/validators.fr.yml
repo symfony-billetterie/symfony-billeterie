@@ -8,6 +8,7 @@ form:
         location:
             not_null: Le lieu de l'évènement ne peut pas être nul
         date:
+            datetime: La date de l'évènement est incorrecte
             not_null: La date de l'évènement ne peut pas être nulle
     user:
         last_name:
