@@ -136,7 +136,6 @@ class EventController extends Controller
             $em->flush();
             $this->addFlash('success', 'flash.admin.event.delete.success');
         } catch (\Exception $e) {
-            dump($e);die;
             $this->addFlash('danger', 'flash.admin.event.delete.danger');
         }
 

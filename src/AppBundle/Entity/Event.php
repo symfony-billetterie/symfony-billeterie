@@ -62,7 +62,7 @@ class Event
     /**
      * @var Booking[]|ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Booking", mappedBy="event")
+     * @ORM\OneToMany(targetEntity="Booking", mappedBy="event", cascade={"remove"})
      */
     private $bookings;
 
