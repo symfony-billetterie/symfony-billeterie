@@ -31,7 +31,7 @@ class Stock
     /**
      * @var Event
      *
-     * @ORM\ManyToOne(targetEntity="Event", inversedBy="stocks")
+     * @ORM\ManyToOne(targetEntity="Event", inversedBy="stocks", cascade={"remove"})
      */
     private $event;
 

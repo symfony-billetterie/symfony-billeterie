@@ -54,7 +54,7 @@ class Event
     /**
      * @var array
      *
-     * @ORM\OneToMany(targetEntity="Stock", mappedBy="event", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Stock", mappedBy="event", cascade={"persist", "remove"})
      */
     private $stocks;
 
