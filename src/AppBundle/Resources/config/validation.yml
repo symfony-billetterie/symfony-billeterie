@@ -31,6 +31,8 @@ AppBundle\Entity\Event:
         date:
             - DateTime:
                 message: form.event.date.datetime
+            - NotNull:
+                message: form.event.date.not_null
 
 AppBundle\Entity\TicketCategory:
     properties:
