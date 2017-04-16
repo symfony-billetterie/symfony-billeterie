@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\Traits\TimeStampTrait;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -37,6 +38,13 @@ class EventType
      * @ORM\Column(length=255, unique=true)
      */
     private $slug;
+
+    /**
+     * @var Event[]|ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Event", mappedBy="eventType")
+     */
+    private $events;
 
     /**
      * @return int
@@ -82,6 +90,26 @@ class EventType
     public function setSlug($slug)
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Event[]|ArrayCollection
+     */
+    public function getEvents()
+    {
+        return $this->events;
+    }
+
+    /**
+     * @param Event[]|ArrayCollection $events
+     *
+     * @return EventType
+     */
+    public function setEvents($events)
+    {
+        $this->events = $events;
 
         return $this;
     }

@@ -27,5 +27,8 @@
                 {% endif %}
             </div>
         {% endfor %}
+        <div class="text-center">
+            {{ knp_pagination_render(articles, 'app/common/_pagination.html.twig') }}
+        </div>
     {% endif %}
 {% endblock %}

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -46,17 +47,24 @@ class Event
     /**
      * @var EventType
      *
-     * @ORM\ManyToOne(targetEntity="EventType", inversedBy="eventType")
+     * @ORM\ManyToOne(targetEntity="EventType", inversedBy="events")
      * @ORM\JoinColumn(name="event_type_id", referencedColumnName="id")
      */
     private $eventType;
 
     /**
-     * @var array
+     * @var Stock[]|ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Stock", mappedBy="event", cascade={"persist", "remove"})
      */
     private $stocks;
+
+    /**
+     * @var Booking[]|ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Booking", mappedBy="event")
+     */
+    private $bookings;
 
     /**
      * @Gedmo\Slug(fields={"name"}, separator="-", updatable=true, unique=true)
@@ -64,6 +72,14 @@ class Event
      */
     private $slug;
 
+    /**
+     * Event constructor.
+     */
+    public function __construct()
+    {
+        $this->stocks   = new ArrayCollection();
+        $this->bookings = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -152,7 +168,7 @@ class Event
      *
      * @param string $eventType
      *
-     * @return eventType
+     * @return Event
      */
     public function setEventType($eventType)
     {
@@ -164,7 +180,7 @@ class Event
     /**
      * Get eventType
      *
-     * @return eventType
+     * @return EventType
      */
     public function getEventType()
     {
@@ -188,7 +204,7 @@ class Event
      *
      * @param string $stocks
      *
-     * @return event
+     * @return Event
      */
     public function setStocks($stocks)
     {
@@ -200,11 +216,31 @@ class Event
     /**
      * Get stock
      *
-     * @return stock
+     * @return Stock[]|ArrayCollection
      */
     public function getStocks()
     {
         return $this->stocks;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBookings()
+    {
+        return $this->bookings;
+    }
+
+    /**
+     * @param mixed $bookings
+     *
+     * @return Event
+     */
+    public function setBookings($bookings)
+    {
+        $this->bookings = $bookings;
+
+        return $this;
     }
 
     /**
@@ -218,7 +254,7 @@ class Event
     /**
      * @param mixed $slug
      *
-     * @return EventType
+     * @return Event
      */
     public function setSlug($slug)
     {

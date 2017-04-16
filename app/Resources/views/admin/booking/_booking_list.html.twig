@@ -16,13 +16,17 @@
             <td>{{ booking.mainUser.fullName }}</td>
             <td>{{ booking.mainUser.email }}</td>
             <td>{{ booking.ticketCategory.label }}</td>
-            <td class="column-actions">
+            <td class="column-actions-booking">
                 <div class="btn-group" role="group" aria-label="...">
-                    <a href=""
+                    <a href="#"
                        class="btn btn-info" title="{{ 'common.button.edit'|trans }}">
                         <i class="fa fa-edit"></i>
                     </a>
-                    <a href=""
+                    <a href="{{ path('admin_booking_export', {'id': booking.id}) }}" class="btn btn-primary"
+                       title="{{ 'common.button.export'|trans }}">
+                        <i class="fa fa-file-excel-o"></i>
+                    </a>
+                    <a href="#"
                        class="btn btn-danger"
                        onclick="return confirm('{{ 'admin.event_type.delete_confirm'|trans }}')"
                        title="{{ 'common.button.delete'|trans }}">
@@ -34,18 +38,3 @@
     {% endfor %}
     </tbody>
 </table>
-<script>
-    $('#datatable').DataTable({
-        responsive: true,
-        oLanguage: {
-            sUrl: "//cdn.datatables.net/plug-ins/1.10.13/i18n/French.json"
-        },
-        columnDefs: [
-            {
-                targets: [0],
-                visible: false
-            }
-        ],
-        order: [[0, "desc"]]
-    });
-</script>

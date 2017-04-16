@@ -2,11 +2,12 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Booking
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\BookingRepository")
  * @ORM\Table(name="booking")
  */
 class Booking
@@ -23,7 +24,7 @@ class Booking
     /**
      * @var Event
      *
-     * @ORM\ManyToOne(targetEntity="Event")
+     * @ORM\ManyToOne(targetEntity="Event", inversedBy="bookings")
      * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
      */
     protected $event;
@@ -45,12 +46,19 @@ class Booking
     protected $mainUser;
 
     /**
-     * @var User
+     * @var User[]|ArrayCollection
      *
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumn(name="secondary_user_id", referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="User")
      */
-    protected $secondaryUser;
+    protected $secondaryUsers;
+
+    /**
+     * Booking constructor.
+     */
+    public function __construct()
+    {
+        $this->secondaryUsers = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -70,11 +78,13 @@ class Booking
 
     /**
      * @param Event $event
+     *
      * @return Booking
      */
     public function setEvent(Event $event): Booking
     {
         $this->event = $event;
+
         return $this;
     }
 
@@ -88,11 +98,13 @@ class Booking
 
     /**
      * @param TicketCategory $ticketCategory
+     *
      * @return Booking
      */
     public function setTicketCategory(TicketCategory $ticketCategory): Booking
     {
         $this->ticketCategory = $ticketCategory;
+
         return $this;
     }
 
@@ -106,29 +118,61 @@ class Booking
 
     /**
      * @param mixed $mainUser
+     *
      * @return Booking
      */
     public function setMainUser($mainUser)
     {
         $this->mainUser = $mainUser;
+
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return User[]|ArrayCollection
      */
-    public function getSecondaryUser():? User
+    public function getSecondaryUsers()
     {
-        return $this->secondaryUser;
+        return $this->secondaryUsers;
     }
 
     /**
-     * @param mixed $secondaryUser
+     * @param User[]|ArrayCollection $secondaryUsers
+     *
      * @return Booking
      */
-    public function setSecondaryUser($secondaryUser)
+    public function setSecondaryUsers($secondaryUsers)
     {
-        $this->secondaryUser = $secondaryUser;
+        $this->secondaryUsers = $secondaryUsers;
+
+        return $this;
+    }
+
+    /**
+     * @param User $secondaryUser
+     *
+     * @return Booking
+     */
+    public function addSecondaryUser(User $secondaryUser)
+    {
+        if (!$this->secondaryUsers->contains($secondaryUser)) {
+            $this->secondaryUsers->add($secondaryUser);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param User $secondaryUser
+     *
+     * @return Booking
+     */
+    public function removeSecondaryUser(User $secondaryUser)
+    {
+        if ($this->secondaryUsers->contains($secondaryUser)) {
+            $this->secondaryUsers->remove($secondaryUser);
+        }
+
         return $this;
     }
 }
