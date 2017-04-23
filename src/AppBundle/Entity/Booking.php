@@ -48,9 +48,16 @@ class Booking
     /**
      * @var User[]|ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="User")
+     * @ORM\ManyToMany(targetEntity="User", cascade={"persist"})
      */
     protected $secondaryUsers;
+
+    /**
+     * @var Ticket[]|ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Ticket", mappedBy="booking", cascade={"persist"})
+     */
+    protected $tickets;
 
     /**
      * Booking constructor.
@@ -172,6 +179,26 @@ class Booking
         if ($this->secondaryUsers->contains($secondaryUser)) {
             $this->secondaryUsers->remove($secondaryUser);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Ticket[]|ArrayCollection
+     */
+    public function getTickets()
+    {
+        return $this->tickets;
+    }
+
+    /**
+     * @param Ticket[]|ArrayCollection $tickets
+     *
+     * @return Booking
+     */
+    public function setTickets($tickets)
+    {
+        $this->tickets = $tickets;
 
         return $this;
     }

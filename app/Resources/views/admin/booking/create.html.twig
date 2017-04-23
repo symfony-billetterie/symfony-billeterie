@@ -9,15 +9,93 @@
         </div>
         <div class="panel-body">
             {{ form_start(form) }}
-            {{ form_row(form.mainUser) }}
+            <div class="row">
+                {#<div class="col-md-6">
+                    {{ form_row(form.mainUser.civility) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.mainUser.birthdayDate) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.mainUser.lastName) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.mainUser.firstName) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.mainUser.phone) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.mainUser.email) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.mainUser.zipCode) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.mainUser.city) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.mainUser.address) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.mainUser.idNumber) }}
+                </div>#}
+            </div>
             <hr>
-            {{ form_row(form.event) }}
-            {{ form_row(form.ticketCategory) }}
-            {#{{ form_row(form.secondaryUsers) }}#}
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.event) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.ticketCategory) }}
+                </div>
+            </div>
+
+            <ul id="ticket-fields-list" data-prototype="{{ form_widget(form.tickets.vars.prototype)|e }}">
+                {% for ticket in form.tickets %}
+                    <li>
+                        {#{{ form_errors(ticket) }}
+                        {{ form_widget(ticket.user.nom) }}#}
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <a href="#" id="add-another-ticket">Ajouter un ticket</a>
+
+            <hr>
+
         </div>
         <div class="panel-footer">
             {{ submit.button(path('admin_booking_index')) }}
             {{ form_end(form) }}
         </div>
     </div>
+
+
+    <script type="text/javascript">
+        var ticketCount = '{{ form.tickets|length }}';
+
+        jQuery(document).ready(function() {
+            jQuery('#add-another-ticket').click(function(e) {
+                e.preventDefault();
+
+                var ticketList = jQuery('#ticket-fields-list');
+
+                var newWidget = ticketList.attr('data-prototype');
+                newWidget = newWidget.replace(/__name__/g, ticketCount);
+                ticketCount++;
+
+                var newLi = jQuery('<li></li>').html(newWidget);
+                newLi.appendTo(ticketList);
+            });
+        })
+    </script>
 {% endblock %}

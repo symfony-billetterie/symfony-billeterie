@@ -157,6 +157,8 @@ app:
             city: Ville
             phone: Téléphone
             card: Numéro de pièce d'identité
+        beneficiary:
+            email: Email
     user:
         login:
             title: Connexion

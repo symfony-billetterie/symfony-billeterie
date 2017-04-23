@@ -32,8 +32,8 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @var string
      * @ORM\Column(type="string", nullable=true)
+     * @var string
      */
     protected $civility;
 

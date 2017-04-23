@@ -143,22 +143,31 @@ class BookingController extends Controller
         /** @var Booking $booking */
         $booking = new Booking();
 
-        /** @var @var User $user */
-        $user = new User();
-
         $form = $this->createForm(BookingType::class, $booking);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user = $booking->getMainUser();
             $em   = $this->getDoctrine()->getManager();
 
             /** @var BookingManager $bookingManager */
             $bookingManager = $this->get('app.manager.booking');
-            $user = $bookingManager->manageUser($user);
+
+            // evenemnt form ?
+            foreach ($booking->getTickets() as $ticket) {
+                $ticketUser = $bookingManager->manageUser($ticket->getUser());
+                $ticket->setBooking($booking);
+
+                if ($booking->getTickets()[key($booking->getTickets())] == $ticket) {
+                    $booking->setMainUser($ticketUser);
+                } else {
+                    $em->persist($ticketUser);
+                    $booking->addSecondaryUser($ticketUser);
+                }
+
+                $ticket->setUser($ticketUser);
+            }
 
             try {
-                $booking->setMainUser($user);
                 $em->persist($booking);
                 $em->flush();
 
