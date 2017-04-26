@@ -36,6 +36,7 @@ class BookingType extends AbstractType
                 'data_class' => Ticket::class,
             ])*/
             ->add('tickets', CollectionType::class, [
+                'label' => 'toto',
                 'entry_type' => TicketType::class,
                 'allow_add' => true,
                 'allow_delete' => false,

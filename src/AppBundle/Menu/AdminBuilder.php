@@ -124,14 +124,17 @@ class AdminBuilder extends BaseBuilder
             $this->addItemIfRouteMatch('admin.nav.booking.title', $menu, 'admin_booking_index', 'list');
             if (strpos($routeName, 'admin_booking') === 0) {
                 $this->addItem($menu, 'admin.nav.booking.index', 'admin_booking_index', 'list');
+                if (strpos($routeName, 'admin_booking_add') === 0) {
+                    $this->addItem($menu, 'admin.nav.booking.create', 'admin_booking_add', 'plus');
+                }
             }
-
             $this->addItemIfRouteMatch(
                 'admin.nav.ticket_category.title',
                 $menu,
                 'admin_ticket_category_index',
                 'ticket'
             );
+
             /* Article */
             if (strpos($routeName, 'admin_article') === 0) {
                 $this->addItem($menu, 'admin.nav.article.index', 'admin_article_index', 'newspaper-o');

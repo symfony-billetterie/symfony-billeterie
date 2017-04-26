@@ -156,7 +156,6 @@ class BookingController extends Controller
 
             /** @var BookingManager $bookingManager */
             $stockManager = $this->get('app.manager.stock');
-            /*dump($booking);die;*/
 
             // evenemnt form ?
             foreach ($booking->getTickets() as $ticket) {

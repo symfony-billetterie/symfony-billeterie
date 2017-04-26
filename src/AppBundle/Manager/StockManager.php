@@ -46,9 +46,6 @@ class StockManager
         );
         $countStock = $stock->getQuantity();
 
-        dump($countTicket);
-        dump($countStock);
-        dump($countTicket > $countStock);
         // Insufficient stock
         if ($countTicket > $countStock) {
             return false;

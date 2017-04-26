@@ -10,46 +10,6 @@
         <div class="panel-body">
             {{ form_start(form) }}
             <div class="row">
-                {#<div class="col-md-6">
-                    {{ form_row(form.mainUser.civility) }}
-                </div>
-                <div class="col-md-6">
-                    {{ form_row(form.mainUser.birthdayDate) }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    {{ form_row(form.mainUser.lastName) }}
-                </div>
-                <div class="col-md-6">
-                    {{ form_row(form.mainUser.firstName) }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    {{ form_row(form.mainUser.phone) }}
-                </div>
-                <div class="col-md-6">
-                    {{ form_row(form.mainUser.email) }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    {{ form_row(form.mainUser.zipCode) }}
-                </div>
-                <div class="col-md-6">
-                    {{ form_row(form.mainUser.city) }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    {{ form_row(form.mainUser.address) }}
-                </div>
-                <div class="col-md-6">
-                    {{ form_row(form.mainUser.idNumber) }}
-                </div>#}
-            </div>
-            <div class="row">
                 <div class="col-md-6">
                     {{ form_row(form.event) }}
                 </div>
@@ -61,8 +21,7 @@
             <ul id="ticket-fields-list" data-prototype="{{ form_widget(form.tickets.vars.prototype)|e }}">
                 {% for ticket in form.tickets %}
                     <li>
-                        {#{{ form_errors(ticket) }}
-                        {{ form_widget(ticket.user.nom) }}#}
+                        {# Holder to ticket creation #}
                     </li>
                 {% endfor %}
             </ul>
@@ -70,9 +29,12 @@
             <a href="#" id="add-another-ticket">Ajouter un ticket</a>
 
         </div>
+
+        {{ form_row(form._token) }}
+
         <div class="panel-footer">
             {{ submit.button(path('admin_booking_index')) }}
-            {{ form_end(form) }}
+            {{ form_end(form, {'render_rest': false}) }}
         </div>
     </div>
 
@@ -92,6 +54,11 @@
 
                 var newLi = jQuery('<li></li>').html(newWidget);
                 newLi.appendTo(ticketList);
+
+                jQuery('.js-datepicker').datetimepicker({
+                    format: 'DD/MM/YYYY',
+                }).parent().css('position', 'relative');
+
             });
         })
     </script>

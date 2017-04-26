@@ -23,4 +23,3 @@ services:
             class: AppBundle\Manager\StockManager
             arguments:
                 - "@doctrine.orm.entity_manager"
-
