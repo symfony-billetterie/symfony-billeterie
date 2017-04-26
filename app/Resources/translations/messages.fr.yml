@@ -135,6 +135,10 @@ admin:
             ticket_category: Catégorie de ticket
             main_user: Bénéficiaire principal
             secondary_user: Bénéficiaire secondaire
+        ticket:
+            floor: Etage
+            door: Porte
+            number: Numéro de ticket
 
 app:
     title: Billetterie
