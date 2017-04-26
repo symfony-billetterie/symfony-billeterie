@@ -72,10 +72,10 @@ admin:
     sidebar:
         administration: Administration
     event_type:
-        title : Type d'évènement
-        create: Créer un type d'évènement
-        edit: Éditer un type d'évènement
-        delete_confirm : Etes-vous sûr de vouloir supprimer le type d\'evènement selectionnée ?
+        title : Type d'événement
+        create: Créer un type d'événement
+        edit: Éditer un type d'événement
+        delete_confirm : Etes-vous sûr de vouloir supprimer le type d\'événement selectionné ?
     ticket_category:
         title: Catégorie de ticket
         create: Créer une catégorie de ticket
@@ -106,7 +106,7 @@ admin:
             label: Catégorie de ticket
     form:
         event_type:
-            name: Nom du type d'évènement
+            name: Nom du type d'événement
         ticket_category:
             label: Nom de la catégorie du ticket
             name: Nom du type d'événement
@@ -214,8 +214,8 @@ flash:
                 success: Le type d'événement a bien été ajouté
                 danger: Erreur, le type d'événement n'a pas été ajouté
             edit:
-                success: Le type d'évènement a bien été modifié
-                danger: Erreur, le type d'évènement n'a pas été modifié
+                success: Le type d'événement a bien été modifié
+                danger: Erreur, le type d'événement n'a pas été modifié
         article:
             delete:
                 success: L'actualité a bien été supprimée
@@ -250,4 +250,4 @@ flash:
                 danger: Erreur, l'événement n'a pas été modifié
         booking:
             export:
-                danger: Erreur, l'export d'évènement n'a pas fonctionné
+                danger: Erreur, l'export d'événement n'a pas fonctionné
