@@ -91,9 +91,11 @@ class BookingController extends Controller
     {
         try {
             /** @var Booking[]|ArrayCollection $booking */
-            $booking = $this->getDoctrine()->getRepository('AppBundle:Booking')->findBy([
-                'id' => $id,
-            ]);
+            $booking = $this->getDoctrine()->getRepository('AppBundle:Booking')->findBy(
+                [
+                    'id' => $id,
+                ]
+            );
             /** @var BookingManager $bookingManager */
             $bookingManager = $this->get('app.manager.booking');
 
@@ -117,7 +119,7 @@ class BookingController extends Controller
      */
     public function ajaxBookingFilterAction(Request $request)
     {
-        $event    = $request->request->get('event');
+        $event = $request->request->get('event');
         $bookings = $this->getDoctrine()->getRepository('AppBundle:Booking')->findBy(
             ['event' => $event]
         );
@@ -147,35 +149,48 @@ class BookingController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em   = $this->getDoctrine()->getManager();
+            $em = $this->getDoctrine()->getManager();
 
             /** @var BookingManager $bookingManager */
             $bookingManager = $this->get('app.manager.booking');
 
+            /** @var BookingManager $bookingManager */
+            $stockManager = $this->get('app.manager.stock');
+            /*dump($booking);die;*/
+
             // evenemnt form ?
             foreach ($booking->getTickets() as $ticket) {
-                $ticketUser = $bookingManager->manageUser($ticket->getUser());
-                $ticket->setBooking($booking);
+                if ($stockManager->manageStock(
+                    $booking->getEvent(),
+                    $booking->getTicketCategory(),
+                    $booking->getTicketCount()
+                )
+                ) {
+                    $ticketUser = $bookingManager->manageUser($ticket->getUser());
+                    $ticket->setBooking($booking);
 
-                if ($booking->getTickets()[key($booking->getTickets())] == $ticket) {
-                    $booking->setMainUser($ticketUser);
+                    if ($booking->getTickets()[key($booking->getTickets())] == $ticket) {
+                        $booking->setMainUser($ticketUser);
+                    } else {
+                        $em->persist($ticketUser);
+                        $booking->addSecondaryUser($ticketUser);
+                    }
+
+                    $ticket->setUser($ticketUser);
+
+                    try {
+                        $em->persist($booking);
+                        $em->flush();
+
+                        $this->addFlash('success', 'flash.admin.booking.add.success');
+
+                        return $this->redirectToRoute('admin_booking_index');
+                    } catch (\Exception $e) {
+                        $this->addFlash('danger', 'flash.admin.booking.add.danger');
+                    }
                 } else {
-                    $em->persist($ticketUser);
-                    $booking->addSecondaryUser($ticketUser);
+                    $this->addFlash('danger', 'flash.admin.booking.insufficientStock.danger');
                 }
-
-                $ticket->setUser($ticketUser);
-            }
-
-            try {
-                $em->persist($booking);
-                $em->flush();
-
-                $this->addFlash('success', 'flash.admin.booking.add.success');
-
-                return $this->redirectToRoute('admin_booking_index');
-            } catch (\Exception $e) {
-                $this->addFlash('danger', 'flash.admin.booking.add.danger');
             }
         }
 

@@ -3,8 +3,11 @@
 namespace AppBundle\Manager;
 
 use AppBundle\Entity\Booking;
+use AppBundle\Entity\Ticket;
 use AppBundle\Entity\User;
+use AppBundle\Repository\BookingRepository;
 use AppBundle\Repository\UserRepository;
+use Doctrine\ORM\EntityRepository;
 use Liuggio\ExcelBundle\Factory;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -24,6 +27,7 @@ class BookingManager
      *
      * @param Factory             $phpExcel
      * @param TranslatorInterface $translator
+     * @param UserRepository      $userRepository
      * @param UserRepository      $userRepository
      */
     public function __construct(
@@ -52,7 +56,7 @@ class BookingManager
             return $this->createUser($user);
         }
     }
-
+    
     /**
      * @param User $user
      *

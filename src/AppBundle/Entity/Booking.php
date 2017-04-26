@@ -202,4 +202,9 @@ class Booking
 
         return $this;
     }
+
+    public function getTicketCount()
+    {
+        return 1 + count($this->secondaryUsers);
+    }
 }

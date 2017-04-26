@@ -42,7 +42,7 @@ class EventType
     /**
      * @var Event[]|ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Event", mappedBy="eventType")
+     * @ORM\OneToMany(targetEntity="Event", mappedBy="eventType", cascade={"remove"})
      */
     private $events;
 
