@@ -160,6 +160,7 @@ class BookingController extends Controller
             // evenemnt form ?
             foreach ($booking->getTickets() as $ticket) {
                 if ($stockManager->manageStock(
+                    false,
                     $booking->getEvent(),
                     $booking->getTicketCategory(),
                     $booking->getTicketCount()
@@ -211,8 +212,20 @@ class BookingController extends Controller
      */
     public function deleteAction(Booking $booking)
     {
+        // Update stock before deleting
         $em = $this->getDoctrine()->getManager();
+
+        /** @var BookingManager $bookingManager */
+        $stockManager = $this->get('app.manager.stock');
+
+        $stockManager->manageStock(
+            true,
+            $booking->getEvent(),
+            $booking->getTicketCategory(),
+            $booking->getTicketCount()
+        );
         $em->remove($booking);
+
         try {
             $em->flush();
             $this->addFlash('success', 'flash.admin.booking.delete.success');

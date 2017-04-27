@@ -55,7 +55,7 @@ class Booking
     /**
      * @var Ticket[]|ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Ticket", mappedBy="booking", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Ticket", mappedBy="booking", cascade={"persist", "remove"})
      */
     protected $tickets;
 
