@@ -18,7 +18,7 @@
             <td>{{ booking.ticketCategory.label }}</td>
             <td class="column-actions-booking">
                 <div class="btn-group" role="group" aria-label="...">
-                    <a href="#"
+                    <a href="{{ path('admin_booking_edit', {'id': booking.id}) }}"
                        class="btn btn-info" title="{{ 'common.button.edit'|trans }}">
                         <i class="fa fa-edit"></i>
                     </a>

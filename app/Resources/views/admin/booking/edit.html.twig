@@ -1,0 +1,66 @@
+{% extends 'admin/form.html.twig' %}
+
+{% import 'admin/common/_submit.html.twig' as submit %}
+
+{% block content %}
+    <div class="panel">
+        <div class="panel-heading">
+            <div class="panel-title">{{ 'admin.booking.create'|trans }}</div>
+        </div>
+        <div class="panel-body">
+            {{ form_start(form) }}
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.event) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.ticketCategory) }}
+                </div>
+            </div>
+
+            <ul id="ticket-fields-list" data-prototype="{{ form_widget(form.tickets.vars.prototype)|e }}">
+                {% for ticket in form.tickets %}
+                    <li>
+                        {{ form_errors(ticket) }}
+                        {{ form_widget(ticket) }}
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <a href="#" id="add-another-ticket">Ajouter un ticket</a>
+
+        </div>
+
+        {{ form_row(form._token) }}
+
+        <div class="panel-footer">
+            {{ submit.button(path('admin_booking_index')) }}
+            {{ form_end(form, {'render_rest': false}) }}
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        var ticketCount = '{{ form.tickets|length }}';
+
+        jQuery(document).ready(function() {
+            jQuery('#add-another-ticket').click(function(e) {
+                e.preventDefault();
+
+                var ticketList = jQuery('#ticket-fields-list');
+
+                var newWidget = ticketList.attr('data-prototype');
+                newWidget = newWidget.replace(/__name__/g, ticketCount);
+                ticketCount++;
+
+                var newLi = jQuery('<li></li>').html(newWidget);
+                newLi.appendTo(ticketList);
+
+                jQuery('.js-datepicker').datetimepicker({
+                    format: 'DD/MM/YYYY',
+                }).parent().css('position', 'relative');
+
+            });
+        })
+    </script>
+{% endblock %}

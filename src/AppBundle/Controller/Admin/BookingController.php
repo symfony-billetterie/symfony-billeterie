@@ -203,6 +203,43 @@ class BookingController extends Controller
     }
 
     /**
+     * Modification d'une réservation
+     *
+     * @param Request $request
+     * @param int  $id
+     *
+     * @return RedirectResponse|Response
+     *
+     * @Route("/editer/{id}", name="admin_booking_edit")
+     */
+    public function editAction(Request $request, int $id)
+    {
+        $em = $this->getDoctrine();
+
+        /** @var Booking $booking */
+        $booking = $em->getRepository('AppBundle:Booking')->findOneBy(['id' => $id]);
+        $form = $this->createForm(BookingType::class, $booking);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                $em->getManager()->persist($booking);
+                $em->getManager()->flush();
+                $this->addFlash('success', 'flash.admin.event.edit.success');
+
+                return $this->redirectToRoute('admin_booking_index');
+            } catch (\Exception $e) {
+                dump($e);
+                $this->addFlash('danger', 'flash.admin.booking.edit.danger');
+            }
+        }
+
+        return $this->render('admin/booking/edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
      * Suppression d'une réservation
      *
      * @Route("/supprimer/{booking}", name="admin_booking_delete")
