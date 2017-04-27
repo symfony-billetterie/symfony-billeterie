@@ -157,7 +157,6 @@ class BookingController extends Controller
             /** @var BookingManager $bookingManager */
             $stockManager = $this->get('app.manager.stock');
 
-            // evenemnt form ?
             foreach ($booking->getTickets() as $ticket) {
                 if ($stockManager->manageStock(
                     false,
@@ -216,21 +215,51 @@ class BookingController extends Controller
     {
         $em = $this->getDoctrine();
 
+        /** @var BookingManager $bookingManager */
+        $bookingManager = $this->get('app.manager.booking');
+
+        /** @var BookingManager $bookingManager */
+        $stockManager = $this->get('app.manager.stock');
+
         /** @var Booking $booking */
         $booking = $em->getRepository('AppBundle:Booking')->findOneBy(['id' => $id]);
         $form = $this->createForm(BookingType::class, $booking);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            try {
-                $em->getManager()->persist($booking);
-                $em->getManager()->flush();
-                $this->addFlash('success', 'flash.admin.event.edit.success');
+            /*$em = $this->getDoctrine()->resetManager();*/
+            foreach ($booking->getTickets() as $ticket) {
+                if ($stockManager->manageStock(
+                    false,
+                    $booking->getEvent(),
+                    $booking->getTicketCategory(),
+                    $booking->getTicketCount()
+                )
+                ) {
+                    $ticketUser = $bookingManager->manageUser($ticket->getUser());
+                    $ticket->setBooking($booking);
 
-                return $this->redirectToRoute('admin_booking_index');
-            } catch (\Exception $e) {
-                dump($e);
-                $this->addFlash('danger', 'flash.admin.booking.edit.danger');
+                    if ($booking->getTickets()[key($booking->getTickets())] == $ticket) {
+                        $booking->setMainUser($ticketUser);
+                    } else {
+                        $em->getManager()->persist($ticketUser);
+                        $booking->addSecondaryUser($ticketUser);
+                    }
+
+                    $ticket->setUser($ticketUser);
+                    try {
+                        $em->getManager()->persist($booking);
+                        $em->getManager()->flush();
+
+                        $this->addFlash('success', 'flash.admin.booking.edit.success');
+
+                        return $this->redirectToRoute('admin_booking_index');
+                    } catch (\Exception $e) {
+                        $this->addFlash('danger', 'flash.admin.booking.edit.danger');
+                    }
+                } else {
+                    $this->addFlash('danger', 'flash.admin.booking.insufficientStock.danger');
+                }
             }
         }
 

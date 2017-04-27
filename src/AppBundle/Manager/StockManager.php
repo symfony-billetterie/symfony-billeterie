@@ -49,7 +49,7 @@ class StockManager
         // If deleting booking
         if ($delete) {
             $stock->setQuantity($countStock + $countTicket);
-            $this->em->flush();
+            $this->em->flush($stock);
             return true;
         } else {
             // Insufficient stock
@@ -57,7 +57,7 @@ class StockManager
                 return false;
             } else {
                 $stock->setQuantity($countStock - $countTicket);
-                $this->em->flush();
+                $this->em->flush($stock);
 
                 return true;
             }

@@ -270,8 +270,8 @@ flash:
                 success: La réservation a bien été ajoutée
                 danger: Erreur, la réservation n'a pas été ajoutée
             edit:
-                success: La réservation a bien été modifié
-                danger: Erreur, la réservation n'a pas été modifié
+                success: La réservation a bien été modifiée
+                danger: Erreur, la réservation n'a pas été modifiée
                 danger: Erreur, l'export d'événement n'a pas fonctionné
             insufficientStock:
                 danger : Le stock est insuffisant pour cet évènement et cette catégorie de ticket

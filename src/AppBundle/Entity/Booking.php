@@ -24,7 +24,7 @@ class Booking
     /**
      * @var Event
      *
-     * @ORM\ManyToOne(targetEntity="Event", inversedBy="bookings")
+     * @ORM\ManyToOne(targetEntity="Event", inversedBy="bookings", cascade={"persist"})
      * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
      */
     protected $event;
@@ -32,7 +32,7 @@ class Booking
     /**
      * @var TicketCategory
      *
-     * @ORM\ManyToOne(targetEntity="TicketCategory")
+     * @ORM\ManyToOne(targetEntity="TicketCategory", cascade={"persist"})
      * @ORM\JoinColumn(name="ticket_category_id", referencedColumnName="id")
      */
     protected $ticketCategory;
