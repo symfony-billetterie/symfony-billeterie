@@ -275,3 +275,5 @@ flash:
                 danger: Erreur, l'export d'événement n'a pas fonctionné
             insufficientStock:
                 danger : Le stock est insuffisant pour cet évènement et cette catégorie de ticket
+            noStock:
+                danger : Aucun stock n'est prévu pour cet événement et cette catégorie de ticket

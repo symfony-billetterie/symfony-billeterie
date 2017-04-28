@@ -157,39 +157,49 @@ class BookingController extends Controller
             /** @var BookingManager $bookingManager */
             $stockManager = $this->get('app.manager.stock');
 
-            foreach ($booking->getTickets() as $ticket) {
-                if ($stockManager->manageStock(
+            try {
+                $stockManager->manageStock(
                     false,
                     $booking->getEvent(),
                     $booking->getTicketCategory(),
                     $booking->getTicketCount()
-                )
-                ) {
-                    $ticketUser = $bookingManager->manageUser($ticket->getUser());
-                    $ticket->setBooking($booking);
+                );
+                foreach ($booking->getTickets() as $ticket) {
+                    if ($stockManager->manageStock(
+                        false,
+                        $booking->getEvent(),
+                        $booking->getTicketCategory(),
+                        $booking->getTicketCount()
+                    )
+                    ) {
+                        $ticketUser = $bookingManager->manageUser($ticket->getUser());
+                        $ticket->setBooking($booking);
 
-                    if ($booking->getTickets()[key($booking->getTickets())] == $ticket) {
-                        $booking->setMainUser($ticketUser);
+                        if ($booking->getTickets()[key($booking->getTickets())] == $ticket) {
+                            $booking->setMainUser($ticketUser);
+                        } else {
+                            $em->persist($ticketUser);
+                            $booking->addSecondaryUser($ticketUser);
+                        }
+
+                        $ticket->setUser($ticketUser);
+
+                        try {
+                            $em->persist($booking);
+                            $em->flush();
+
+                            $this->addFlash('success', 'flash.admin.booking.add.success');
+
+                            return $this->redirectToRoute('admin_booking_index');
+                        } catch (\Exception $e) {
+                            $this->addFlash('danger', 'flash.admin.booking.add.danger');
+                        }
                     } else {
-                        $em->persist($ticketUser);
-                        $booking->addSecondaryUser($ticketUser);
+                        $this->addFlash('danger', 'flash.admin.booking.insufficientStock.danger');
                     }
-
-                    $ticket->setUser($ticketUser);
-
-                    try {
-                        $em->persist($booking);
-                        $em->flush();
-
-                        $this->addFlash('success', 'flash.admin.booking.add.success');
-
-                        return $this->redirectToRoute('admin_booking_index');
-                    } catch (\Exception $e) {
-                        $this->addFlash('danger', 'flash.admin.booking.add.danger');
-                    }
-                } else {
-                    $this->addFlash('danger', 'flash.admin.booking.insufficientStock.danger');
                 }
+            } catch (\LogicException $e) {
+                $this->addFlash('danger', 'flash.admin.booking.noStock.danger');
             }
         }
 
@@ -205,7 +215,7 @@ class BookingController extends Controller
      * Modification d'une réservation
      *
      * @param Request $request
-     * @param int  $id
+     * @param int     $id
      *
      * @return RedirectResponse|Response
      *
@@ -223,11 +233,10 @@ class BookingController extends Controller
 
         /** @var Booking $booking */
         $booking = $em->getRepository('AppBundle:Booking')->findOneBy(['id' => $id]);
-        $form = $this->createForm(BookingType::class, $booking);
+        $form    = $this->createForm(BookingType::class, $booking);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /*$em = $this->getDoctrine()->resetManager();*/
             foreach ($booking->getTickets() as $ticket) {
                 if ($stockManager->manageStock(
                     false,
@@ -263,9 +272,12 @@ class BookingController extends Controller
             }
         }
 
-        return $this->render('admin/booking/edit.html.twig', [
-            'form' => $form->createView(),
-        ]);
+        return $this->render(
+            'admin/booking/edit.html.twig',
+            [
+                'form' => $form->createView(),
+            ]
+        );
     }
 
     /**

@@ -38,29 +38,34 @@ class StockManager
      */
     public function manageStock(bool $delete, Event $event, TicketCategory $ticketCategory, int $countTicket)
     {
-        $stock      = $this->em->getRepository('AppBundle:Stock')->findOneBy(
+        $stock = $this->em->getRepository('AppBundle:Stock')->findOneBy(
             [
                 'event'    => $event->getId(),
                 'category' => $ticketCategory->getId(),
             ]
         );
-        $countStock = $stock->getQuantity();
-
-        // If deleting booking
-        if ($delete) {
-            $stock->setQuantity($countStock + $countTicket);
-            $this->em->flush($stock);
-            return true;
-        } else {
-            // Insufficient stock
-            if ($countTicket > $countStock) {
-                return false;
-            } else {
-                $stock->setQuantity($countStock - $countTicket);
+        if ($stock) {
+            $countStock = $stock->getQuantity();
+            // If deleting booking
+            if ($delete) {
+                $stock->setQuantity($countStock + $countTicket);
                 $this->em->flush($stock);
 
-                return true;
+                return false;
+            } else {
+
+                // Insufficient stock
+                if ($countTicket > $countStock) {
+                    return false;
+                } else {
+                    $stock->setQuantity($countStock - $countTicket);
+                    $this->em->flush($stock);
+
+                    return true;
+                }
             }
+        } else {
+            Throw New \LogicException('No stock');
         }
     }
 }
