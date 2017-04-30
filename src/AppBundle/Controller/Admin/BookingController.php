@@ -160,6 +160,7 @@ class BookingController extends Controller
             try {
                 $stockManager->manageStock(
                     false,
+                    false,
                     $booking->getEvent(),
                     $booking->getTicketCategory(),
                     $booking->getTicketCount()
@@ -167,6 +168,7 @@ class BookingController extends Controller
                 foreach ($booking->getTickets() as $ticket) {
                     if ($stockManager->manageStock(
                         false,
+                        null,
                         $booking->getEvent(),
                         $booking->getTicketCategory(),
                         $booking->getTicketCount()
@@ -232,6 +234,9 @@ class BookingController extends Controller
 
         /** @var Booking $booking */
         $booking = $em->getRepository('AppBundle:Booking')->findOneBy(['id' => $id]);
+        $tickets = $em->getRepository('AppBundle:Ticket')->findBy(['booking' => $id]);
+        $oldCountTicket = count($tickets);
+        
         $form    = $this->createForm(BookingType::class, $booking);
         $form->handleRequest($request);
 
@@ -239,6 +244,7 @@ class BookingController extends Controller
             foreach ($booking->getTickets() as $ticket) {
                 if ($stockManager->manageStock(
                     false,
+                    $oldCountTicket,
                     $booking->getEvent(),
                     $booking->getTicketCategory(),
                     $booking->getTicketCount()
@@ -296,6 +302,7 @@ class BookingController extends Controller
 
         $stockManager->manageStock(
             true,
+            null,
             $booking->getEvent(),
             $booking->getTicketCategory(),
             $booking->getTicketCount()

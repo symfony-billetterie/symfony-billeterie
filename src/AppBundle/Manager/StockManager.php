@@ -36,8 +36,13 @@ class StockManager
      *
      * @return bool
      */
-    public function manageStock(bool $delete, Event $event, TicketCategory $ticketCategory, int $countTicket)
-    {
+    public function manageStock(
+        bool $delete,
+        int $oldCountTicket,
+        Event $event,
+        TicketCategory $ticketCategory,
+        int $countTicket
+    ) {
         $stock = $this->em->getRepository('AppBundle:Stock')->findOneBy(
             [
                 'event'    => $event->getId(),
@@ -52,6 +57,11 @@ class StockManager
                 $this->em->flush($stock);
 
                 return false;
+            } else if ($oldCountTicket) {
+                // Déduire nouveaux tickets du stock
+                $newTickets = $countTicket - $oldCountTicket;
+                $stock->setQuantity($countStock - $newTickets);
+                $this->em->flush($stock);
             } else {
 
                 // Insufficient stock
