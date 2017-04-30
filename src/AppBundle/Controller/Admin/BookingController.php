@@ -183,20 +183,19 @@ class BookingController extends Controller
                         }
 
                         $ticket->setUser($ticketUser);
-
-                        try {
-                            $em->persist($booking);
-                            $em->flush();
-
-                            $this->addFlash('success', 'flash.admin.booking.add.success');
-
-                            return $this->redirectToRoute('admin_booking_index');
-                        } catch (\Exception $e) {
-                            $this->addFlash('danger', 'flash.admin.booking.add.danger');
-                        }
                     } else {
                         $this->addFlash('danger', 'flash.admin.booking.insufficientStock.danger');
                     }
+                }
+                try {
+                    $em->persist($booking);
+                    $em->flush();
+
+                    $this->addFlash('success', 'flash.admin.booking.add.success');
+
+                    return $this->redirectToRoute('admin_booking_index');
+                } catch (\Exception $e) {
+                    $this->addFlash('danger', 'flash.admin.booking.add.danger');
                 }
             } catch (\LogicException $e) {
                 $this->addFlash('danger', 'flash.admin.booking.noStock.danger');
@@ -247,7 +246,6 @@ class BookingController extends Controller
                 ) {
                     $ticketUser = $bookingManager->manageUser($ticket->getUser());
                     $ticket->setBooking($booking);
-
                     if ($booking->getTickets()[key($booking->getTickets())] == $ticket) {
                         $booking->setMainUser($ticketUser);
                     } else {
@@ -256,19 +254,19 @@ class BookingController extends Controller
                     }
 
                     $ticket->setUser($ticketUser);
-                    try {
-                        $em->getManager()->persist($booking);
-                        $em->getManager()->flush();
-
-                        $this->addFlash('success', 'flash.admin.booking.edit.success');
-
-                        return $this->redirectToRoute('admin_booking_index');
-                    } catch (\Exception $e) {
-                        $this->addFlash('danger', 'flash.admin.booking.edit.danger');
-                    }
                 } else {
                     $this->addFlash('danger', 'flash.admin.booking.insufficientStock.danger');
                 }
+            }
+            try {
+                $em->getManager()->persist($booking);
+                $em->getManager()->flush();
+
+                $this->addFlash('success', 'flash.admin.booking.edit.success');
+
+                return $this->redirectToRoute('admin_booking_index');
+            } catch (\Exception $e) {
+                $this->addFlash('danger', 'flash.admin.booking.edit.danger');
             }
         }
 
