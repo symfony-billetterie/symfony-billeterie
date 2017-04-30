@@ -8,6 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 
 /**
  * Class TicketType
@@ -37,6 +38,7 @@ class TicketType extends AbstractType
                 'label' => 'admin.form.booking.event',
                 'data_class' => User::class,
             ])
+            ->add('delete', ButtonType::class, ['attr' => ['class' => 'delete-ticket']]);
         ;
     }
 

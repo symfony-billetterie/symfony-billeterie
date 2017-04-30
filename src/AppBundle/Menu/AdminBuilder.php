@@ -127,6 +127,16 @@ class AdminBuilder extends BaseBuilder
                 if (strpos($routeName, 'admin_booking_add') === 0) {
                     $this->addItem($menu, 'admin.nav.booking.create', 'admin_booking_add', 'plus');
                 }
+                if (strpos($routeName, 'admin_booking_edit') === 0) {
+                    $booking = $request->get('id');
+                    $this->addItem(
+                        $menu,
+                        'admin.nav.booking.edit',
+                        'admin_booking_edit',
+                        'pencil',
+                        ['id' => $booking]
+                    );
+                }
             }
             $this->addItemIfRouteMatch(
                 'admin.nav.ticket_category.title',

@@ -38,7 +38,7 @@ class StockManager
      */
     public function manageStock(
         bool $delete,
-        int $oldCountTicket,
+        int $oldCountTicket = null,
         Event $event,
         TicketCategory $ticketCategory,
         int $countTicket

@@ -39,7 +39,7 @@ class BookingType extends AbstractType
                 'label' => 'toto',
                 'entry_type' => TicketType::class,
                 'allow_add' => true,
-                'allow_delete' => false,
+                'allow_delete' => true,
                 'by_reference' => false,
             ]);
     }

@@ -42,6 +42,10 @@
 
     <script type="text/javascript">
         var ticketCount = '{{ form.tickets|length }}';
+        jQuery('.delete-ticket').click(function() {
+            console.info('test');
+            $(this).parent().parent().remove();
+        });
 
         jQuery(document).ready(function() {
             jQuery('#add-another-ticket').click(function(e) {
@@ -59,7 +63,6 @@
                 jQuery('.js-datepicker').datetimepicker({
                     format: 'DD/MM/YYYY',
                 }).parent().css('position', 'relative');
-
             });
         })
     </script>

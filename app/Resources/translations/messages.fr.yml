@@ -63,6 +63,7 @@ admin:
             title: Réservations
             index : Liste des réservations
             create : Ajouter une réservation
+            edit : Modifier une réservation
     log:
         title: Registre
         type: Type

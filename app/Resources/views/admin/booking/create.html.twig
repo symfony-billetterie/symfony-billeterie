@@ -29,6 +29,7 @@
             <a href="#" id="add-another-ticket">Ajouter un ticket</a>
 
         </div>
+        </div>
 
         {{ form_row(form._token) }}
 
@@ -59,6 +60,9 @@
                     format: 'DD/MM/YYYY',
                 }).parent().css('position', 'relative');
 
+                jQuery('.delete-ticket').click(function() {
+                    $(this).parent().parent().remove();
+                });
             });
         })
     </script>

@@ -119,7 +119,7 @@ class BookingController extends Controller
      */
     public function ajaxBookingFilterAction(Request $request)
     {
-        $event = $request->request->get('event');
+        $event    = $request->request->get('event');
         $bookings = $this->getDoctrine()->getRepository('AppBundle:Booking')->findBy(
             ['event' => $event]
         );
@@ -233,14 +233,20 @@ class BookingController extends Controller
         $stockManager = $this->get('app.manager.stock');
 
         /** @var Booking $booking */
-        $booking = $em->getRepository('AppBundle:Booking')->findOneBy(['id' => $id]);
-        $tickets = $em->getRepository('AppBundle:Ticket')->findBy(['booking' => $id]);
-        $oldCountTicket = count($tickets);
-        
-        $form    = $this->createForm(BookingType::class, $booking);
+        $booking        = $em->getRepository('AppBundle:Booking')->findOneBy(['id' => $id]);
+        $oldTickets     = $em->getRepository('AppBundle:Ticket')->findBy(['booking' => $id]);
+        $oldCountTicket = count($oldTickets);
+
+        $form = $this->createForm(BookingType::class, $booking);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /* Delete removed tickets */
+            foreach ($oldTickets as $ticket) {
+                if (!$booking->getTickets()->contains($ticket)) {
+                    $em->getManager()->remove($ticket);
+                }
+            }
             foreach ($booking->getTickets() as $ticket) {
                 if ($stockManager->manageStock(
                     false,
