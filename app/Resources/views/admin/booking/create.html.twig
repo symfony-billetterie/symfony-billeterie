@@ -29,7 +29,6 @@
             <a href="#" id="add-another-ticket">Ajouter un ticket</a>
 
         </div>
-        </div>
 
         {{ form_row(form._token) }}
 
@@ -52,9 +51,12 @@
                 var newWidget = ticketList.attr('data-prototype');
                 newWidget = newWidget.replace(/__name__/g, ticketCount);
                 ticketCount++;
+                titleWidget = '<div class="panel-heading panel-title">Ticket '+ ticketCount +'</div><div class="panel-body">';
+                closerPanelBody = '</div>';
 
-                var newLi = jQuery('<li></li>').html(newWidget);
+                var newLi = jQuery('<li></li>').html(titleWidget + newWidget + closerPanelBody);
                 newLi.appendTo(ticketList);
+                newLi.addClass('panel');
 
                 jQuery('.js-datepicker').datetimepicker({
                     format: 'DD/MM/YYYY',

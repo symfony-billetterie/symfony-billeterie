@@ -38,7 +38,10 @@ class TicketType extends AbstractType
                 'label' => 'admin.form.booking.event',
                 'data_class' => User::class,
             ])
-            ->add('delete', ButtonType::class, ['attr' => ['class' => 'delete-ticket']]);
+            ->add('delete', ButtonType::class, [
+                'attr' => ['class' => 'delete-ticket btn btn-danger'],
+                'label' => 'admin.form.ticket.delete'
+            ]);
         ;
     }
 

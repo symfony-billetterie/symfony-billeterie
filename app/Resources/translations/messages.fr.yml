@@ -141,6 +141,7 @@ admin:
             floor: Etage de la place
             door: Porte de la place
             number: Numéro de ticket
+            delete: Supprimer le ticket
 
 app:
     title: Billetterie

@@ -21,8 +21,15 @@
             <ul id="ticket-fields-list" data-prototype="{{ form_widget(form.tickets.vars.prototype)|e }}">
                 {% for ticket in form.tickets %}
                     <li>
-                        {{ form_errors(ticket) }}
-                        {{ form_widget(ticket) }}
+                        <div class="panel">
+                            <div class="panel-heading panel-title">
+                                Ticket {{ loop.index }}
+                            </div>
+                            <div class="panel-body">
+                                {{ form_errors(ticket) }}
+                                {{ form_widget(ticket) }}
+                            </div>
+                        </div>
                     </li>
                 {% endfor %}
             </ul>
@@ -56,9 +63,12 @@
                 var newWidget = ticketList.attr('data-prototype');
                 newWidget = newWidget.replace(/__name__/g, ticketCount);
                 ticketCount++;
+                titleWidget = '<div class="panel-heading panel-title">Ticket '+ ticketCount +'</div><div class="panel-body">';
+                closerPanelBody = '</div>';
 
-                var newLi = jQuery('<li></li>').html(newWidget);
+                var newLi = jQuery('<li></li>').html(titleWidget + newWidget + closerPanelBody);
                 newLi.appendTo(ticketList);
+                newLi.addClass('panel');
 
                 jQuery('.js-datepicker').datetimepicker({
                     format: 'DD/MM/YYYY',
