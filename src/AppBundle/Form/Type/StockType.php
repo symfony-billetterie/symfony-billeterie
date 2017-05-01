@@ -19,10 +19,10 @@ class StockType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add(
-            'quantity',
+            'initialQuantity',
             IntegerType::class,
             [
-                'label'    => 'admin.form.stock.quantity',
+                'label'    => 'admin.form.stock.initialQuantity',
                 'required' => false,
             ]
         );

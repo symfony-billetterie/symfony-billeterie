@@ -21,34 +21,40 @@ class LoadStockData extends AbstractFixture implements OrderedFixtureInterface
     {
         $datas = [
             [
-                'quantity'       => 445,
-                'event'          => 'Match HandBall',
-                'ticketCategory' => 'Gradin',
+                'quantity'        => 445,
+                'initialQuantity' => 445,
+                'event'           => 'Match HandBall',
+                'ticketCategory'  => 'Gradin',
             ],
             [
-                'quantity'       => 1200,
-                'event'          => 'Match Tennis',
-                'ticketCategory' => 'Fosse',
+                'quantity'        => 1200,
+                'initialQuantity' => 1200,
+                'event'           => 'Match Tennis',
+                'ticketCategory'  => 'Fosse',
             ],
             [
-                'quantity'       => 4454,
-                'event'          => 'Match Football',
-                'ticketCategory' => 'Gradin',
+                'quantity'        => 4454,
+                'initialQuantity' => 4454,
+                'event'           => 'Match Football',
+                'ticketCategory'  => 'Gradin',
             ],
             [
-                'quantity'       => 5673,
-                'event'          => 'Demi finale Football',
-                'ticketCategory' => 'Tribune',
+                'quantity'        => 5673,
+                'initialQuantity' => 5673,
+                'event'           => 'Demi finale Football',
+                'ticketCategory'  => 'Tribune',
             ],
             [
-                'quantity'       => 3400,
-                'event'          => 'Match Football',
-                'ticketCategory' => 'Fosse',
+                'quantity'        => 3400,
+                'initialQuantity' => 3400,
+                'event'           => 'Match Football',
+                'ticketCategory'  => 'Fosse',
             ],
             [
-                'quantity'       => 1786,
-                'event'          => 'Match Tennis',
-                'ticketCategory' => 'Balcon',
+                'quantity'        => 1786,
+                'initialQuantity' => 1786,
+                'event'           => 'Match Tennis',
+                'ticketCategory'  => 'Balcon',
             ],
         ];
 
@@ -57,6 +63,7 @@ class LoadStockData extends AbstractFixture implements OrderedFixtureInterface
             /** @var Event $event */
             $stock = new Stock();
             $stock->setQuantity($data['quantity']);
+            $stock->setInitialQuantity($data['initialQuantity']);
 
             /** @var Event $randEvent */
             $event = $this->getReference('event-' . $data['event']);

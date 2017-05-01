@@ -158,51 +158,42 @@ class BookingController extends Controller
             /** @var BookingManager $bookingManager */
             $stockManager = $this->get('app.manager.stock');
 
-            try {
-                $stockManager->manageStock(
-                    false,
-                    false,
-                    $booking->getEvent(),
-                    $booking->getTicketCategory(),
-                    $booking->getTicketCount()
-                );
+            if ($stockManager->checkStock($booking)) {
                 foreach ($booking->getTickets() as $ticket) {
-                    if ($stockManager->manageStock(
-                        false,
-                        null,
-                        $booking->getEvent(),
-                        $booking->getTicketCategory(),
-                        $booking->getTicketCount()
-                    )
-                    ) {
-                        $ticketUser = $bookingManager->manageUser($ticket->getUser());
-                        $ticket->setBooking($booking);
+                    $ticketUser = $bookingManager->manageUser($ticket->getUser());
 
-                        if ($booking->getTickets()[key($booking->getTickets())] == $ticket) {
-                            $booking->setMainUser($ticketUser);
-                        } else {
-                            $em->persist($ticketUser);
-                            $booking->addSecondaryUser($ticketUser);
-                        }
+                    $ticket->setBooking($booking);
+                    $ticket->setUser($ticketUser);
 
-                        $ticket->setUser($ticketUser);
+                    if ($booking->getTickets()[key($booking->getTickets())] == $ticket) {
+                        $booking->setMainUser($ticketUser);
                     } else {
-                        $this->addFlash('danger', 'flash.admin.booking.insufficientStock.danger');
+                        $booking->addSecondaryUser($ticketUser);
                     }
                 }
+
                 try {
                     $em->persist($booking);
                     $em->flush();
 
+                    $stockManager->updateStockQuantity($booking->getEvent(), $booking->getTicketCategory());
+
                     $this->addFlash('success', 'flash.admin.booking.add.success');
 
                     return $this->redirectToRoute('admin_booking_index');
-                } catch (\Exception $e) {
+                } catch (\Exception $exception) {
                     $this->addFlash('danger', 'flash.admin.booking.add.danger');
                 }
-            } catch (\LogicException $e) {
-                $this->addFlash('danger', 'flash.admin.booking.noStock.danger');
+            } else {
+                $this->addFlash('danger', 'flash.admin.booking.insufficientStock.danger');
             }
+
+            return $this->render(
+                'admin/booking/create.html.twig',
+                [
+                    'form' => $form->createView(),
+                ]
+            );
         }
 
         return $this->render(
@@ -225,7 +216,7 @@ class BookingController extends Controller
      */
     public function editAction(Request $request, int $id)
     {
-        $em = $this->getDoctrine();
+        $em = $this->getDoctrine()->getManager();
 
         /** @var BookingManager $bookingManager */
         $bookingManager = $this->get('app.manager.booking');
@@ -247,56 +238,38 @@ class BookingController extends Controller
             foreach ($oldTickets as $ticket) {
                 if (!$booking->getTickets()->contains($ticket)) {
                     $stockManager->deleteTicket($booking->getEvent(), $booking->getTicketCategory());
-                    $em->getManager()->remove($ticket);
+                    $em->remove($ticket);
                 }
             }
-            $i = 0;
-            foreach ($booking->getTickets() as $ticket) {
-                /* Updates stock with new tickets only once */
-                if ($i == 0) {
-                    $oldCountTicket = count($oldTickets);
-                } else {
-                    $oldCountTicket = null;
-                }
 
-                if ($stockManager->manageStock(
-                    false,
-                    $oldCountTicket,
-                    $booking->getEvent(),
-                    $booking->getTicketCategory(),
-                    $booking->getTicketCount()
-                )
-                ) {
+            if ($stockManager->checkStock($booking)) {
+                foreach ($booking->getTickets() as $ticket) {
                     $ticketUser = $bookingManager->manageUser($ticket->getUser());
+
                     $ticket->setBooking($booking);
+                    $ticket->setUser($ticketUser);
+
                     if ($booking->getTickets()[key($booking->getTickets())] == $ticket) {
                         $booking->setMainUser($ticketUser);
                     } else {
-                        $em->getManager()->persist($ticketUser);
                         $booking->addSecondaryUser($ticketUser);
                     }
-
-                    $ticket->setUser($ticketUser);
-                } elseif ($stockManager->manageStock(
-                    false,
-                    $oldCountTicket,
-                    $booking->getEvent(),
-                    $booking->getTicketCategory(),
-                    $booking->getTicketCount()
-                ) === false
-                ) {
-                    $this->addFlash('danger', 'flash.admin.booking.insufficientStock.danger');
                 }
-                $i++;
-            }
-            try {
-                $em->getManager()->persist($booking);
-                $em->getManager()->flush($booking);
-                $this->addFlash('success', 'flash.admin.booking.edit.success');
 
-                return $this->redirectToRoute('admin_booking_index');
-            } catch (\Exception $e) {
-                $this->addFlash('danger', 'flash.admin.booking.edit.danger');
+                try {
+                    $em->persist($booking);
+                    $em->flush();
+
+                    $stockManager->updateStockQuantity($booking->getEvent(), $booking->getTicketCategory());
+
+                    $this->addFlash('success', 'flash.admin.booking.edit.success');
+
+                    return $this->redirectToRoute('admin_booking_index');
+                } catch (\Exception $exception) {
+                    $this->addFlash('danger', 'flash.admin.booking.edit.danger');
+                }
+            } else {
+                $this->addFlash('danger', 'flash.admin.booking.insufficientStock.danger');
             }
         }
 
@@ -324,13 +297,7 @@ class BookingController extends Controller
         /** @var BookingManager $bookingManager */
         $stockManager = $this->get('app.manager.stock');
 
-        $stockManager->manageStock(
-            true,
-            null,
-            $booking->getEvent(),
-            $booking->getTicketCategory(),
-            $booking->getTicketCount()
-        );
+        $stockManager->checkStock($booking);
         $em->remove($booking);
 
         try {

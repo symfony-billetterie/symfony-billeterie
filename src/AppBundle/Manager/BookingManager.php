@@ -3,11 +3,10 @@
 namespace AppBundle\Manager;
 
 use AppBundle\Entity\Booking;
-use AppBundle\Entity\Ticket;
+use AppBundle\Entity\Stock;
 use AppBundle\Entity\User;
 use AppBundle\Repository\BookingRepository;
 use AppBundle\Repository\UserRepository;
-use Doctrine\ORM\EntityRepository;
 use Liuggio\ExcelBundle\Factory;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -21,6 +20,7 @@ class BookingManager
     private $phpExcel;
     private $translator;
     private $userRepository;
+    private $bookingRepository;
 
     /**
      * BookingManager constructor.
@@ -28,16 +28,18 @@ class BookingManager
      * @param Factory             $phpExcel
      * @param TranslatorInterface $translator
      * @param UserRepository      $userRepository
-     * @param UserRepository      $userRepository
+     * @param BookingRepository   $bookingRepository
      */
     public function __construct(
         Factory $phpExcel,
         TranslatorInterface $translator,
-        UserRepository $userRepository
+        UserRepository $userRepository,
+        BookingRepository $bookingRepository
     ) {
         $this->phpExcel          = $phpExcel;
         $this->translator        = $translator;
-        $this->userRepository = $userRepository;
+        $this->userRepository    = $userRepository;
+        $this->bookingRepository = $bookingRepository;
     }
 
     /**
@@ -50,13 +52,14 @@ class BookingManager
         /** @var User $existantUser */
         if ($existantUser = $this->userRepository->findOneBy(
             ['email' => $user->getEmail()]
-        )) {
+        )
+        ) {
             return $this->editUser($existantUser, $user);
         } else {
             return $this->createUser($user);
         }
     }
-    
+
     /**
      * @param User $user
      *
@@ -113,29 +116,23 @@ class BookingManager
          * @var \PHPExcel $phpExcelObject
          */
         $phpExcelObject = $this->phpExcel->createPHPExcelObject();
-        $phpExcelObject->getProperties()->setCreator($user->getLastName().$user->getFirstName())
-            ->setTitle("Export réservations")
-            ->setDescription("Exportation des réservations - format excel")
-            ->setKeywords("export reservation billetterie")
-            ->setCategory("Export");
+        $phpExcelObject->getProperties()->setCreator($user->getLastName() . $user->getFirstName())->setTitle(
+                "Export réservations"
+            )->setDescription("Exportation des réservations - format excel")->setKeywords(
+                "export reservation billetterie"
+            )->setCategory("Export");
 
         /** Définir la cellule correspondante au titre */
-        $phpExcelObject->setActiveSheetIndex(0)
-            ->setCellValue('A1', $this->translator->trans('Type bénéficiaire'))
-            ->setCellValue('B1', 'Nom')
-            ->setCellValue('C1', 'Prénom')
-            ->setCellValue('D1', 'Adresse e-mail')
-            ->setCellValue('E1', 'Date de naissance')
-            ->setCellValue('F1', 'Téléphone')
-            ->setCellValue('G1', 'Adresse')
-            ->setCellValue('H1', 'Ville')
-            ->setCellValue('I1', 'Code postal')
-            ->setCellValue('J1', 'Pièce d’identité')
-            ->setCellValue('K1', 'N° d’identité')
-            ->setCellValue('L1', 'État ticket')
-            ->setCellValue('M1', 'Porte')
-            ->setCellValue('N1', 'Étage')
-            ->setCellValue('O1', 'N° place');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('A1', $this->translator->trans('Type bénéficiaire'))
+                       ->setCellValue('B1', 'Nom')->setCellValue('C1', 'Prénom')->setCellValue('D1', 'Adresse e-mail')
+                       ->setCellValue('E1', 'Date de naissance')->setCellValue('F1', 'Téléphone')->setCellValue(
+                'G1',
+                'Adresse'
+            )->setCellValue('H1', 'Ville')->setCellValue('I1', 'Code postal')->setCellValue('J1', 'Pièce d’identité')
+                       ->setCellValue('K1', 'N° d’identité')->setCellValue('L1', 'État ticket')->setCellValue(
+                'M1',
+                'Porte'
+            )->setCellValue('N1', 'Étage')->setCellValue('O1', 'N° place');
 
         /**
          * Insérer les informations d'une réservation à chaque nouvelle ligne
@@ -145,22 +142,23 @@ class BookingManager
          */
         foreach ($bookings as $booking) {
             /** Définir la cellule correspondante à la valeur */
-            $phpExcelObject->setActiveSheetIndex(0)
-                ->setCellValue('A'.$i, ('Principal'))
-                ->setCellValue('B'.$i, $booking->getMainUser()->getLastName())
-                ->setCellValue('C'.$i, $booking->getMainUser()->getFirstName())
-                ->setCellValue('D'.$i, $booking->getMainUser()->getEmail())
-                ->setCellValue('E'.$i, $booking->getMainUser()->getBirthdayDate())
-                ->setCellValue('F'.$i, $booking->getMainUser()->getPhone())
-                ->setCellValue('G'.$i, $booking->getMainUser()->getAddress())
-                ->setCellValue('H'.$i, $booking->getMainUser()->getCity())
-                ->setCellValue('I'.$i, $booking->getMainUser()->getZipCode())
-                ->setCellValue('J'.$i, 'null')
-                ->setCellValue('K'.$i, $booking->getMainUser()->getIdNumber())
-                ->setCellValue('L'.$i, 'null')
-                ->setCellValue('M'.$i, 'null')
-                ->setCellValue('N'.$i, 'null')
-                ->setCellValue('O'.$i, 'null');
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('A' . $i, ('Principal'))->setCellValue(
+                    'B' . $i,
+                    $booking->getMainUser()->getLastName()
+                )->setCellValue('C' . $i, $booking->getMainUser()->getFirstName())->setCellValue(
+                    'D' . $i,
+                    $booking->getMainUser()->getEmail()
+                )->setCellValue('E' . $i, $booking->getMainUser()->getBirthdayDate())->setCellValue(
+                    'F' . $i,
+                    $booking->getMainUser()->getPhone()
+                )->setCellValue('G' . $i, $booking->getMainUser()->getAddress())->setCellValue(
+                    'H' . $i,
+                    $booking->getMainUser()->getCity()
+                )->setCellValue('I' . $i, $booking->getMainUser()->getZipCode())->setCellValue('J' . $i, 'null')
+                           ->setCellValue('K' . $i, $booking->getMainUser()->getIdNumber())->setCellValue(
+                    'L' . $i,
+                    'null'
+                )->setCellValue('M' . $i, 'null')->setCellValue('N' . $i, 'null')->setCellValue('O' . $i, 'null');
 
             /** on incrémente le numéro de page */
             $i++;
@@ -169,22 +167,20 @@ class BookingManager
                 /** @var User $user */
                 foreach ($booking->getSecondaryUsers() as $user) {
                     /** Définir la cellule correspondante à la valeur */
-                    $phpExcelObject->setActiveSheetIndex(0)
-                        ->setCellValue('A'.$i, ('Secondaire'))
-                        ->setCellValue('B'.$i, $user->getLastName())
-                        ->setCellValue('C'.$i, $user->getFirstName())
-                        ->setCellValue('D'.$i, $user->getEmail())
-                        ->setCellValue('E'.$i, $user->getBirthdayDate())
-                        ->setCellValue('F'.$i, $user->getPhone())
-                        ->setCellValue('G'.$i, $user->getAddress())
-                        ->setCellValue('H'.$i, $user->getCity())
-                        ->setCellValue('I'.$i, $user->getZipCode())
-                        ->setCellValue('J'.$i, 'null')
-                        ->setCellValue('K'.$i, $user->getIdNumber())
-                        ->setCellValue('L'.$i, 'null')
-                        ->setCellValue('M'.$i, 'null')
-                        ->setCellValue('N'.$i, 'null')
-                        ->setCellValue('O'.$i, 'null');
+                    $phpExcelObject->setActiveSheetIndex(0)->setCellValue('A' . $i, ('Secondaire'))->setCellValue(
+                            'B' . $i,
+                            $user->getLastName()
+                        )->setCellValue('C' . $i, $user->getFirstName())->setCellValue('D' . $i, $user->getEmail())
+                                   ->setCellValue('E' . $i, $user->getBirthdayDate())->setCellValue(
+                            'F' . $i,
+                            $user->getPhone()
+                        )->setCellValue('G' . $i, $user->getAddress())->setCellValue('H' . $i, $user->getCity())
+                                   ->setCellValue('I' . $i, $user->getZipCode())->setCellValue('J' . $i, 'null')
+                                   ->setCellValue('K' . $i, $user->getIdNumber())->setCellValue('L' . $i, 'null')
+                                   ->setCellValue('M' . $i, 'null')->setCellValue('N' . $i, 'null')->setCellValue(
+                            'O' . $i,
+                            'null'
+                        );
 
                     /** on incrémente le numéro de page */
                     $i++;
@@ -204,5 +200,28 @@ class BookingManager
         $response->headers->set('Content-Disposition', $dispositionHeader);
 
         return $response;
+    }
+
+    /**
+     * @param Stock $stock
+     *
+     * @return int
+     */
+    public function countReservedTickets(Stock $stock)
+    {
+        $bookings = $this->bookingRepository->findBy(
+            [
+                'event'          => $stock->getEvent()->getId(),
+                'ticketCategory' => $stock->getCategory()->getId(),
+            ]
+        );
+
+        $ticketCount = 0;
+
+        foreach ($bookings as $booking) {
+            $ticketCount += count($booking->getTickets());
+        }
+
+        return $ticketCount;
     }
 }

@@ -130,7 +130,7 @@ admin:
             title: Stock des tickets
             category: Catégorie de ticket
             label_quantity: Nombre maximum de places pour la catégorie
-            quantity: Quantité de places
+            initialQuantity: Quantité de places
         booking:
             title : Réservations
             event: Nom de l'événement

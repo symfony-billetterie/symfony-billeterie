@@ -74,7 +74,7 @@ class Ticket
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }

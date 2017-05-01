@@ -4,79 +4,91 @@ namespace AppBundle\Manager;
 
 use AppBundle\Entity\Booking;
 use AppBundle\Entity\Event;
+use AppBundle\Entity\Stock;
 use AppBundle\Entity\TicketCategory;
-use AppBundle\Form\Type\TicketType;
 use Doctrine\ORM\EntityManager;
-use Knp\Component\Pager\Paginator;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Class StockManager
  */
 class StockManager
 {
-    private $request;
-    private $knpPaginator;
     private $em;
+
+    /**
+     * @var BookingManager $bookingManager
+     */
+    private $bookingManager;
 
     /**
      * StockManager constructor.
      *
-     * @param EntityManager $em
+     * @param EntityManager  $em
+     * @param BookingManager $bookingManager
      */
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManager $em, BookingManager $bookingManager)
     {
-        $this->em = $em;
+        $this->em             = $em;
+        $this->bookingManager = $bookingManager;
+    }
+
+    /**
+     * @param Booking $booking
+     *
+     * @return bool
+     */
+    public function checkStock(Booking $booking)
+    {
+        $newTickets = 0;
+
+        foreach ($booking->getTickets() as $ticket) {
+            if (null === $ticket->getId()) {
+                $newTickets++;
+            }
+        }
+
+        $stock = $this->em->getRepository('AppBundle:Stock')->findOneBy(
+            [
+                'event'    => $booking->getEvent()->getId(),
+                'category' => $booking->getTicketCategory()->getId(),
+            ]
+        );
+
+        $remainingTickets = $stock->getQuantity();
+
+        if ($remainingTickets - $newTickets <= 0) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
      * @param Event          $event
      * @param TicketCategory $ticketCategory
-     * @param int            $countTicket
      *
      * @return bool
      */
-    public function manageStock(
-        bool $delete,
-        int $oldCountTicket = null,
-        Event $event,
-        TicketCategory $ticketCategory,
-        int $countTicket
-    ) {
+    public function updateStockQuantity(Event $event, TicketCategory $ticketCategory)
+    {
         $stock = $this->em->getRepository('AppBundle:Stock')->findOneBy(
             [
                 'event'    => $event->getId(),
                 'category' => $ticketCategory->getId(),
             ]
         );
-        if ($stock) {
-            $countStock = $stock->getQuantity();
-            // If deleting booking
-            if ($delete) {
-                $stock->setQuantity($countStock + $countTicket);
-                $this->em->flush($stock);
 
-                return false;
-            } else if (!is_null($oldCountTicket)) {
-                // Déduire nouveaux tickets du stock
-                $newTickets = $countTicket - $oldCountTicket;
-                $stock->setQuantity($countStock - $newTickets);
-                $this->em->flush($stock);
-            } else {
+        $quantity = $this->bookingManager->countReservedTickets($stock);
 
-                // Insufficient stock
-                if ($countTicket > $countStock) {
-                    return false;
-                } else {
-                    $stock->setQuantity($countStock - $countTicket);
-                    $this->em->flush($stock);
+        $stock->setQuantity($stock->getInitialQuantity() - $quantity);
 
-                    return true;
-                }
-            }
-        } else {
-            Throw New \LogicException('No stock');
+        try {
+            $this->em->flush($stock);
+        } catch (\Exception $e) {
+            return false;
         }
+
+        return true;
     }
 
     /**
@@ -87,7 +99,7 @@ class StockManager
      */
     public function deleteTicket(Event $event, TicketCategory $ticketCategory)
     {
-        $stock = $this->em->getRepository('AppBundle:Stock')->findOneBy(
+        $stock      = $this->em->getRepository('AppBundle:Stock')->findOneBy(
             [
                 'event'    => $event->getId(),
                 'category' => $ticketCategory->getId(),
@@ -96,6 +108,7 @@ class StockManager
         $countStock = $stock->getQuantity();
         $stock->setQuantity($countStock + 1);
         $this->em->flush($stock);
+
         return true;
     }
 }

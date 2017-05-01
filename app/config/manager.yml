@@ -18,8 +18,10 @@ services:
             - "@phpexcel"
             - "@translator"
             - "@app.repository.user"
+            - "@app.repository.booking"
 
     app.manager.stock:
             class: AppBundle\Manager\StockManager
             arguments:
                 - "@doctrine.orm.entity_manager"
+                - "@app.manager.booking"

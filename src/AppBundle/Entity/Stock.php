@@ -26,6 +26,13 @@ class Stock
      *
      * @ORM\Column(type="integer", nullable=true)
      */
+    private $initialQuantity;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
     private $quantity;
 
     /**
@@ -41,7 +48,6 @@ class Stock
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TicketCategory", cascade={"remove"})
      */
     private $category;
-
 
     /**
      * Get id
@@ -121,6 +127,30 @@ class Stock
     public function setCategory($category)
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getInitialQuantity()
+    {
+        return $this->initialQuantity;
+    }
+
+    /**
+     * @param int $initialQuantity
+     *
+     * @return Stock
+     */
+    public function setInitialQuantity($initialQuantity)
+    {
+        $this->initialQuantity = $initialQuantity;
+
+        if (null == $this->quantity) {
+            $this->quantity = $initialQuantity;
+        }
 
         return $this;
     }
