@@ -50,8 +50,7 @@
     <script type="text/javascript">
         var ticketCount = '{{ form.tickets|length }}';
         jQuery('.delete-ticket').click(function() {
-            console.info('test');
-            $(this).parent().parent().remove();
+            $(this).closest('li').remove();
         });
 
         jQuery(document).ready(function() {

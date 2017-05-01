@@ -3,6 +3,7 @@
 namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Booking;
+use AppBundle\Entity\Ticket;
 use AppBundle\Form\Type\BookingType;
 use AppBundle\Manager\BookingManager;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -233,9 +234,10 @@ class BookingController extends Controller
         $stockManager = $this->get('app.manager.stock');
 
         /** @var Booking $booking */
-        $booking        = $em->getRepository('AppBundle:Booking')->findOneBy(['id' => $id]);
-        $oldTickets     = $em->getRepository('AppBundle:Ticket')->findBy(['booking' => $id]);
-        $oldCountTicket = count($oldTickets);
+        $booking = $em->getRepository('AppBundle:Booking')->findOneBy(['id' => $id]);
+
+        /** @var Ticket $oldTickets */
+        $oldTickets = $em->getRepository('AppBundle:Ticket')->findBy(['booking' => $id]);
 
         $form = $this->createForm(BookingType::class, $booking);
         $form->handleRequest($request);
@@ -244,10 +246,19 @@ class BookingController extends Controller
             /* Delete removed tickets */
             foreach ($oldTickets as $ticket) {
                 if (!$booking->getTickets()->contains($ticket)) {
+                    $stockManager->deleteTicket($booking->getEvent(), $booking->getTicketCategory());
                     $em->getManager()->remove($ticket);
                 }
             }
+            $i = 0;
             foreach ($booking->getTickets() as $ticket) {
+                /* Updates stock with new tickets only once */
+                if ($i == 0) {
+                    $oldCountTicket = count($oldTickets);
+                } else {
+                    $oldCountTicket = null;
+                }
+
                 if ($stockManager->manageStock(
                     false,
                     $oldCountTicket,
@@ -266,14 +277,21 @@ class BookingController extends Controller
                     }
 
                     $ticket->setUser($ticketUser);
-                } else {
+                } elseif ($stockManager->manageStock(
+                    false,
+                    $oldCountTicket,
+                    $booking->getEvent(),
+                    $booking->getTicketCategory(),
+                    $booking->getTicketCount()
+                ) === false
+                ) {
                     $this->addFlash('danger', 'flash.admin.booking.insufficientStock.danger');
                 }
+                $i++;
             }
             try {
                 $em->getManager()->persist($booking);
-                $em->getManager()->flush();
-
+                $em->getManager()->flush($booking);
                 $this->addFlash('success', 'flash.admin.booking.edit.success');
 
                 return $this->redirectToRoute('admin_booking_index');

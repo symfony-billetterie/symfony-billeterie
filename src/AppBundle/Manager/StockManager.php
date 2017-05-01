@@ -57,7 +57,7 @@ class StockManager
                 $this->em->flush($stock);
 
                 return false;
-            } else if ($oldCountTicket) {
+            } else if (!is_null($oldCountTicket)) {
                 // Déduire nouveaux tickets du stock
                 $newTickets = $countTicket - $oldCountTicket;
                 $stock->setQuantity($countStock - $newTickets);
@@ -77,5 +77,25 @@ class StockManager
         } else {
             Throw New \LogicException('No stock');
         }
+    }
+
+    /**
+     * @param Event          $event
+     * @param TicketCategory $ticketCategory
+     *
+     * @return bool
+     */
+    public function deleteTicket(Event $event, TicketCategory $ticketCategory)
+    {
+        $stock = $this->em->getRepository('AppBundle:Stock')->findOneBy(
+            [
+                'event'    => $event->getId(),
+                'category' => $ticketCategory->getId(),
+            ]
+        );
+        $countStock = $stock->getQuantity();
+        $stock->setQuantity($countStock + 1);
+        $this->em->flush($stock);
+        return true;
     }
 }
