@@ -288,3 +288,28 @@ flash:
                 danger : Le stock est insuffisant pour cet évènement et cette catégorie de ticket
             no_stock:
                 danger : Aucun stock n'est prévu pour cet événement et cette catégorie de ticket
+
+import_export:
+    title: Export réservations
+    description: Exportation des réservations - format excel
+    keywords: export reservation billetterie
+    category: Export
+    data:
+        beneficiary_type: Type bénéficiaire
+        last_name: Nom
+        first_name: Prénom
+        email: Adresse mail
+        birth_date: Date d'anniversaire
+        phone: Téléphone
+        address: Adresse
+        city: Ville
+        zip_code: Code postale
+        identity_number: N° d'identité
+        ticket_status: État ticket
+        door: Porte
+        floor: Étage
+        place_number: N° place
+        main: Principal
+        secondary: Secondaire
+        distributed: Distribué
+        not_distributed: Non distribué

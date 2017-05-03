@@ -1,0 +1,28 @@
+{% if pageCount > endPage %}
+    {% if pageCount > (endPage + 1) %}
+        {% if pageCount > (endPage + 2) %}
+            <li class="disabled">
+                <span>&hellip;</span>
+            </li>
+        {% else %}
+            <li>
+                <a href="{{ path(route, query|merge({(pageParameterName): (pageCount - 1)})) }}">{{ pageCount -1 }}</a>
+            </li>
+        {% endif %}
+    {% endif %}
+    <li>
+        <a href="{{ path(route, query|merge({(pageParameterName): pageCount})) }}">{{ pageCount }}</a>
+    </li>
+{% endif %}
+
+{% if next is defined %}
+    <li>
+        <a rel="next" href="{{ path(route, query|merge({(pageParameterName): next})) }}">
+            &nbsp;&raquo;
+        </a>
+    </li>
+{% else %}
+    <li class="disabled">
+        <span>&nbsp;&raquo;</span>
+    </li>
+{% endif %}
