@@ -26,3 +26,8 @@ services:
             arguments:
                 - "@doctrine.orm.entity_manager"
                 - "@app.manager.booking"
+    app.manager.event:
+        class: AppBundle\Manager\EventManager
+        arguments:
+            - "@doctrine.orm.entity_manager"
+

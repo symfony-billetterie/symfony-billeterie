@@ -49,18 +49,11 @@ class EventController extends Controller
      */
     public function addAction(Request $request)
     {
-        /** @var Event $event */
-        $event = new Event();
+        /** @var BookingManager $bookingManager */
+        $eventManager = $this->get('app.manager.event');
 
-        $categories = $this->getDoctrine()->getRepository('AppBundle:TicketCategory')->findAll();
-
-        foreach ($categories as $category) {
-            $stock = new Stock();
-            $stock->setCategory($category);
-            $stock->setEvent($event);
-            $stock->setQuantity(0);
-            $event->addStock($stock);
-        }
+        /* Initialization stock for event */
+        $event = $eventManager->createEvent();
 
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
