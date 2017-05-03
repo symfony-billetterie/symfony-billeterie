@@ -21,27 +21,35 @@ class LoadStockData extends AbstractFixture implements OrderedFixtureInterface
     {
         $datas = [
             [
-                'quantity' => 445,
+                'quantity' => 20,
+                'event' => 'Match Ping Pong',
+            ],
+            [
+                'quantity' => 15,
                 'event' => 'Match HandBall',
             ],
             [
-                'quantity' => 1200,
+                'quantity' => 10,
+                'event' => 'Match Rugby',
+            ],
+            [
+                'quantity' => 24,
                 'event' => 'Match Tennis',
             ],
             [
-                'quantity' => 4454,
+                'quantity' => 10,
                 'event' => 'Match Football',
             ],
             [
-                'quantity' => 5673,
+                'quantity' => 50,
                 'event' => 'Demi finale Football',
             ],
             [
-                'quantity' => 3400,
+                'quantity' => 12,
                 'event' => 'Match Football',
             ],
             [
-                'quantity' => 1786,
+                'quantity' => 17,
                 'event' => 'Match Tennis',
             ]
         ];

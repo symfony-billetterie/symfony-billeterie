@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Booking
+ *
  * @ORM\Entity(repositoryClass="AppBundle\Repository\BookingRepository")
  * @ORM\Table(name="booking")
  */
@@ -51,6 +52,13 @@ class Booking
      * @ORM\ManyToMany(targetEntity="User")
      */
     protected $secondaryUsers;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="distributed", type="boolean")
+     */
+    protected $distributed;
 
     /**
      * Booking constructor.
@@ -174,5 +182,21 @@ class Booking
         }
 
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDistributed(): bool
+    {
+        return $this->distributed;
+    }
+
+    /**
+     * @param bool $distributed
+     */
+    public function setDistributed(bool $distributed)
+    {
+        $this->distributed = $distributed;
     }
 }

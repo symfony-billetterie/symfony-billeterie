@@ -1,169 +1,146 @@
 {% extends 'admin/layout.html.twig' %}
+{% block stylesheets_lib %}
+    {{ parent() }}
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+{% endblock %}
 
 {% block content %}
     <div class="panel">
         <div class="panel-heading">
-            <div class="panel-title">New vs Returning Visitors</div>
+            <div class="panel-title">{{ 'admin.dashboard.title'|trans }}</div>
         </div>
         <div class="panel-body">
-            Ut tristique adipiscing mauris, sit amet suscipit metus porta quis. Donec dictum
-            tincidunt
-            erat, eu blandit ligula. Nam sit amet dolor sapien. Quisque velit erat, congue sed
-            suscipit
-            vel, feugiat sit amet enim. Suspendisse interdum enim at mi tempor commodo. Sed
-            tincidunt
-            sed tortor eu scelerisque. Donec luctus malesuada vulputate. Nunc vel auctor metus, vel
-            adipiscing odio. Aliquam aliquet rhoncus libero, at varius nisi pulvinar nec. Aliquam
-            erat
-            volutpat. Donec ut neque mi. Praesent enim nisl, bibendum vitae ante et, placerat
-            pharetra
-            magna. Donec facilisis nisl turpis, eget facilisis turpis semper non. Maecenas luctus
-            ligula
-            tincidunt iasdsd vitae ante et,
-            <br/><br/>
-            Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque sed consectetur
-            erat.
-            Maecenas in elementum libero. Sed consequat pellentesque ultricies. Ut laoreet vehicula
-            nisl
-            sed placerat. Duis posuere lectus n, eros et hendrerit pellentesque, ante magna
-            condimentum
-            sapien, eget ultrices eros libero non orci. Etiam varius diam lectus.
-            <br/><br/>
-        </div>
-        <div class="panel-footer">
-            <button class="btn btn-danger">Test</button>
+            <ul class="nav nav-tabs" role="tablist">
+                {% for object in objects %}
+                    <li role="presentation" class="{{ loop.index == 1 ? "active":"" }}">
+                        <a href="#{{ object.event.slug }}" aria-controls="{{ object.event.slug }}" role="tab"
+                           data-toggle="tab">{{ object.event.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="tab-content">
+                {% for object in objects %}
+                    <div role="tabpanel" class="tab-pane {{ loop.index == 1 ? "active":"" }}"
+                         id="{{ object.event.slug }}">
+                        <div class="col-md-6">
+                            <div id="pie-{{ loop.index }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div id="chart-{{ loop.index }}">
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
-    <div class="panel">
-        <div class="panel-heading">
-            <div class="panel-title">New vs Returning Visitors</div>
-        </div>
-        <div class="panel-body">
-            Ut tristique adipiscing mauris, sit amet suscipit metus porta quis. Donec dictum
-            tincidunt
-            erat, eu blandit ligula. Nam sit amet dolor sapien. Quisque velit erat, congue sed
-            suscipit
-            vel, feugiat sit amet enim. Suspendisse interdum enim at mi tempor commodo. Sed
-            tincidunt
-            sed tortor eu scelerisque. Donec luctus malesuada vulputate. Nunc vel auctor metus, vel
-            adipiscing odio. Aliquam aliquet rhoncus libero, at varius nisi pulvinar nec. Aliquam
-            erat
-            volutpat. Donec ut neque mi. Praesent enim nisl, bibendum vitae ante et, placerat
-            pharetra
-            magna. Donec facilisis nisl turpis, eget facilisis turpis semper non. Maecenas luctus
-            ligula
-            tincidunt iasdsd vitae ante et,
-            <br/><br/>
-            Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque sed consectetur
-            erat.
-            Maecenas in elementum libero. Sed consequat pellentesque ultricies. Ut laoreet vehicula
-            nisl
-            sed placerat. Duis posuere lectus n, eros et hendrerit pellentesque, ante magna
-            condimentum
-            sapien, eget ultrices eros libero non orci. Etiam varius diam lectus.
-            <br/><br/>
-        </div>
-        <div class="panel-footer">
-            <button class="btn btn-danger">Test</button>
-        </div>
-    </div>
-    <div class="panel">
-        <div class="panel-heading">
-            <div class="panel-title">New vs Returning Visitors</div>
-        </div>
-        <div class="panel-body">
-            Ut tristique adipiscing mauris, sit amet suscipit metus porta quis. Donec dictum
-            tincidunt
-            erat, eu blandit ligula. Nam sit amet dolor sapien. Quisque velit erat, congue sed
-            suscipit
-            vel, feugiat sit amet enim. Suspendisse interdum enim at mi tempor commodo. Sed
-            tincidunt
-            sed tortor eu scelerisque. Donec luctus malesuada vulputate. Nunc vel auctor metus, vel
-            adipiscing odio. Aliquam aliquet rhoncus libero, at varius nisi pulvinar nec. Aliquam
-            erat
-            volutpat. Donec ut neque mi. Praesent enim nisl, bibendum vitae ante et, placerat
-            pharetra
-            magna. Donec facilisis nisl turpis, eget facilisis turpis semper non. Maecenas luctus
-            ligula
-            tincidunt iasdsd vitae ante et,
-            <br/><br/>
-            Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque sed consectetur
-            erat.
-            Maecenas in elementum libero. Sed consequat pellentesque ultricies. Ut laoreet vehicula
-            nisl
-            sed placerat. Duis posuere lectus n, eros et hendrerit pellentesque, ante magna
-            condimentum
-            sapien, eget ultrices eros libero non orci. Etiam varius diam lectus.
-            <br/><br/>
-        </div>
-        <div class="panel-footer">
-            <button class="btn btn-danger">Test</button>
-        </div>
-    </div>
-    <div class="panel">
-        <div class="panel-heading">
-            <div class="panel-title">New vs Returning Visitors</div>
-        </div>
-        <div class="panel-body">
-            Ut tristique adipiscing mauris, sit amet suscipit metus porta quis. Donec dictum
-            tincidunt
-            erat, eu blandit ligula. Nam sit amet dolor sapien. Quisque velit erat, congue sed
-            suscipit
-            vel, feugiat sit amet enim. Suspendisse interdum enim at mi tempor commodo. Sed
-            tincidunt
-            sed tortor eu scelerisque. Donec luctus malesuada vulputate. Nunc vel auctor metus, vel
-            adipiscing odio. Aliquam aliquet rhoncus libero, at varius nisi pulvinar nec. Aliquam
-            erat
-            volutpat. Donec ut neque mi. Praesent enim nisl, bibendum vitae ante et, placerat
-            pharetra
-            magna. Donec facilisis nisl turpis, eget facilisis turpis semper non. Maecenas luctus
-            ligula
-            tincidunt iasdsd vitae ante et,
-            <br/><br/>
-            Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque sed consectetur
-            erat.
-            Maecenas in elementum libero. Sed consequat pellentesque ultricies. Ut laoreet vehicula
-            nisl
-            sed placerat. Duis posuere lectus n, eros et hendrerit pellentesque, ante magna
-            condimentum
-            sapien, eget ultrices eros libero non orci. Etiam varius diam lectus.
-            <br/><br/>
-        </div>
-        <div class="panel-footer">
-            <button class="btn btn-danger">Test</button>
-        </div>
-    </div>
-    <div class="panel">
-        <div class="panel-heading">
-            <div class="panel-title">New vs Returning Visitors</div>
-        </div>
-        <div class="panel-body">
-            Ut tristique adipiscing mauris, sit amet suscipit metus porta quis. Donec dictum
-            tincidunt
-            erat, eu blandit ligula. Nam sit amet dolor sapien. Quisque velit erat, congue sed
-            suscipit
-            vel, feugiat sit amet enim. Suspendisse interdum enim at mi tempor commodo. Sed
-            tincidunt
-            sed tortor eu scelerisque. Donec luctus malesuada vulputate. Nunc vel auctor metus, vel
-            adipiscing odio. Aliquam aliquet rhoncus libero, at varius nisi pulvinar nec. Aliquam
-            erat
-            volutpat. Donec ut neque mi. Praesent enim nisl, bibendum vitae ante et, placerat
-            pharetra
-            magna. Donec facilisis nisl turpis, eget facilisis turpis semper non. Maecenas luctus
-            ligula
-            tincidunt iasdsd vitae ante et,
-            <br/><br/>
-            Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque sed consectetur
-            erat.
-            Maecenas in elementum libero. Sed consequat pellentesque ultricies. Ut laoreet vehicula
-            nisl
-            sed placerat. Duis posuere lectus n, eros et hendrerit pellentesque, ante magna
-            condimentum
-            sapien, eget ultrices eros libero non orci. Etiam varius diam lectus.
-            <br/><br/>
-        </div>
-        <div class="panel-footer">
-            <button class="btn btn-danger">Test</button>
-        </div>
-    </div>
+{% endblock %}
+
+{% block view_js %}
+    <script>
+        $(document).ready(function () {
+            {% for object in objects %}
+            Highcharts.chart('chart-{{ loop.index }}', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: '{{ 'admin.dashboard.next_event'|trans }} ({{ 'admin.dashboard.total_places'|trans }} : {{ object.bookings + object
+                    .bookingsDistributed +
+                    object.remainingPlaces }})'
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis: {
+                    type: 'category',
+                    labels: {
+                        rotation: -45,
+                        style: {
+                            fontSize: '13px',
+                            fontFamily: 'Verdana, sans-serif'
+                        }
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: ''
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                tooltip: {
+                    pointFormat: '<strong>{point.y} billets</strong>'
+                },
+                series: [{
+                    name: 'Billets',
+                    data: [
+                        ['{{ 'admin.dashboard.distributed_tickets'|trans }}', {{ object.bookingsDistributed }}],
+                        ['{{ 'admin.dashboard.booked_tickets'|trans }}', {{ object.bookings }}],
+                        ['{{ 'admin.dashboard.remaining_tickets'|trans }}', {{ object.remainingPlaces }}]
+                    ],
+                    dataLabels: {
+                        enabled: true,
+                        rotation: -90,
+                        color: '#FFFFFF',
+                        align: 'right',
+                        format: '{point.y}',
+                        y: 10,
+                        style: {
+                            fontSize: '13px',
+                            fontFamily: 'Verdana, sans-serif'
+                        }
+                    }
+                }]
+            });
+            Highcharts.chart('pie-{{ loop.index }}', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: '{{ 'admin.dashboard.title'|trans }}'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Categories',
+                    colorByPoint: true,
+                    data: [
+                        {
+                            name: '{{ 'admin.dashboard.distributed_tickets'|trans }}',
+                            y: {{ object.bookingsDistributed }}
+                        },
+                        {
+                            name: '{{ 'admin.dashboard.booked_tickets'|trans }}',
+                            y: {{ object.bookings }}
+                        },
+                        {
+                            name: '{{ 'admin.dashboard.remaining_tickets'|trans }}',
+                            y: {{ object.remainingPlaces }}
+                        }]
+                }]
+            });
+            {% endfor %}
+        });
+    </script>
 {% endblock %}

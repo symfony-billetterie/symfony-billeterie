@@ -130,6 +130,13 @@ admin:
             ticket_category: Catégorie de ticket
             main_user: Adresse mail du bénéficiaire principal
             secondary_user: Adresse mail du bénéficiaire secondaire
+    dashboard:
+        title: Statistiques globales
+        next_event: Prochain événement
+        distributed_tickets: Billets distribués
+        total_places: Places totales
+        booked_tickets: Billets réservés
+        remaining_tickets: Billets restants
 
 app:
     title: Billetterie

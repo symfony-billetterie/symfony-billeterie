@@ -330,6 +330,14 @@ class LoadArticleData extends AbstractFixture implements OrderedFixtureInterface
     }
 
     /**
+     * @return string
+     */
+    private function getRootDir()
+    {
+        return $this->container->get('kernel')->getRootDir().'/../src/AppBundle/DataFixtures';
+    }
+
+    /**
      * @param $path
      *
      * @return UploadedFile
@@ -342,14 +350,6 @@ class LoadArticleData extends AbstractFixture implements OrderedFixtureInterface
         }
 
         return new UploadedFile($src, basename($path), $mimeTypeGuesser->guess($src), filesize($src), null, true);
-    }
-
-    /**
-     * @return string
-     */
-    private function getRootDir()
-    {
-        return $this->container->get('kernel')->getRootDir().'/../src/AppBundle/DataFixtures';
     }
 
     /**

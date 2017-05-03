@@ -30,7 +30,7 @@ class BookingManager
     }
 
     /**
-     * @param User                      $user
+     * @param User            $user
      * @param Booking[]|array $bookings
      *
      * @return StreamedResponse

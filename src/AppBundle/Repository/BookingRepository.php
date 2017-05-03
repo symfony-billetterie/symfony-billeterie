@@ -2,6 +2,7 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Event;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -20,5 +21,22 @@ class BookingRepository extends EntityRepository
             ->leftJoin('b.secondaryUsers', 'su')
             ->orderBy('e.id', 'DESC')
             ->getQuery()->getResult();
+    }
+
+    /**
+     * @param bool  $isDistributed
+     * @param Event $event
+     *
+     * @return int
+     */
+    public function findBookingNumber(bool $isDistributed, Event $event)
+    {
+        return $this->createQueryBuilder('b')
+            ->select('COUNT(b.id)')
+            ->join('b.event', 'e', 'WITH', 'e.id = :event')
+            ->where('b.distributed = :isDistributed')
+            ->setParameter('event', $event->getId())
+            ->setParameter('isDistributed',$isDistributed)
+            ->getQuery()->getSingleScalarResult();
     }
 }

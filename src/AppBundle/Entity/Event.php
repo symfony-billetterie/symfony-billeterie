@@ -10,7 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * Event
  *
  * @ORM\Table(name="event")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\EventRepository")
  */
 class Event
 {
@@ -92,6 +92,16 @@ class Event
     }
 
     /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
      * Set name
      *
      * @param string $name
@@ -106,13 +116,13 @@ class Event
     }
 
     /**
-     * Get name
+     * Get date
      *
-     * @return string
+     * @return \DateTime
      */
-    public function getName()
+    public function getDate()
     {
-        return $this->name;
+        return $this->date;
     }
 
     /**
@@ -130,13 +140,13 @@ class Event
     }
 
     /**
-     * Get date
+     * Get location
      *
-     * @return \DateTime
+     * @return string
      */
-    public function getDate()
+    public function getLocation()
     {
-        return $this->date;
+        return $this->location;
     }
 
     /**
@@ -154,13 +164,13 @@ class Event
     }
 
     /**
-     * Get location
+     * Get eventType
      *
-     * @return string
+     * @return EventType
      */
-    public function getLocation()
+    public function getEventType()
     {
-        return $this->location;
+        return $this->eventType;
     }
 
     /**
@@ -178,16 +188,6 @@ class Event
     }
 
     /**
-     * Get eventType
-     *
-     * @return EventType
-     */
-    public function getEventType()
-    {
-        return $this->eventType;
-    }
-
-    /**
      * @param $stock
      *
      * @return Event
@@ -197,6 +197,16 @@ class Event
         $this->stocks[] = $stock;
 
         return $this;
+    }
+
+    /**
+     * Get stock
+     *
+     * @return Stock[]|ArrayCollection
+     */
+    public function getStocks()
+    {
+        return $this->stocks;
     }
 
     /**
@@ -211,16 +221,6 @@ class Event
         $this->stocks = $stocks;
 
         return $this;
-    }
-
-    /**
-     * Get stock
-     *
-     * @return Stock[]|ArrayCollection
-     */
-    public function getStocks()
-    {
-        return $this->stocks;
     }
 
     /**

@@ -26,6 +26,7 @@ class ArticleType extends AbstractType
             ])
             ->add('content', TextareaType::class, [
                 'label' => 'admin.form.article.content',
+                'required' => false,
             ])
             ->add('image', VichImageType::class, [
                 'label'    => 'admin.form.article.image',
