@@ -1,0 +1,25 @@
+{% if previous is defined %}
+    <li>
+        <a rel="prev" href="{{ path(route, query|merge({(pageParameterName): previous})) }}">
+            &laquo;&nbsp;
+        </a>
+    </li>
+{% else %}
+    <li class="disabled">
+        <span>&laquo;&nbsp;</span>
+    </li>
+{% endif %}
+{% if startPage > 1 %}
+    <li>
+        <a href="{{ path(route, query|merge({(pageParameterName): 1})) }}">1</a>
+    </li>
+    {% if startPage == 3 %}
+        <li>
+            <a href="{{ path(route, query|merge({(pageParameterName): 2})) }}">2</a>
+        </li>
+    {% elseif startPage != 2 %}
+        <li class="disabled">
+            <span>&hellip;</span>
+        </li>
+    {% endif %}
+{% endif %}
