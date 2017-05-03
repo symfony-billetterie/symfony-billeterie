@@ -44,7 +44,7 @@ class TicketCategoryController extends Controller
      * Ajouter une catégorie de tickets
      *
      * @Route("/ajouter", name="admin_ticket_category_add")
-     * @Method({"GET"})
+     * @Method({"POST"})
      *
      * @param Request $request
      * @return Response
@@ -113,7 +113,7 @@ class TicketCategoryController extends Controller
      * Supprimer une catégorie de ticket
      *
      * @Route("/supprimer/{slug}", name="admin_ticket_category_delete")
-     * @Method({"GET"})
+     * @Method({"POST"})
      *
      * @param string $slug
      * @return RedirectResponse
