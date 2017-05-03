@@ -8,6 +8,7 @@ use AppBundle\Entity\Ticket;
 use AppBundle\Entity\User;
 use AppBundle\Repository\BookingRepository;
 use AppBundle\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Liuggio\ExcelBundle\Factory;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -32,7 +33,7 @@ class BookingManager
      * @param TranslatorInterface $translator
      * @param UserRepository      $userRepository
      * @param BookingRepository   $bookingRepository
-     * @param EntityManager  $em
+     * @param EntityManager       $em
      */
     public function __construct(
         Factory $phpExcel,
@@ -91,7 +92,7 @@ class BookingManager
         $existantUser->setCivility($user->getCivility());
         $existantUser->setLastName($user->getLastName());
         $existantUser->setFirstName($user->getFirstName());
-        $existantUser->getBirthdayDate($user->getBirthdayDate());
+        $existantUser->setBirthdayDate($user->getBirthdayDate());
         $existantUser->setAddress($user->getAddress());
         $existantUser->setZipCode($user->getZipCode());
         $existantUser->setCity($user->getCity());
@@ -114,12 +115,13 @@ class BookingManager
             $ticket->setBooking($booking);
             $ticket->setUser($ticketUser);
 
-            if ($booking->getTickets()[key($booking->getTickets())] == $ticket) {
+            if ($booking->getTickets()[key($booking->getTickets())] === $ticket) {
                 $booking->setMainUser($ticketUser);
             } else {
                 $booking->addSecondaryUser($ticketUser);
             }
         }
+
         return true;
     }
 
@@ -136,6 +138,7 @@ class BookingManager
                 $this->deleteTicket($ticket);
             }
         }
+
         return true;
     }
 
@@ -183,81 +186,52 @@ class BookingManager
          */
         $phpExcelObject = $this->phpExcel->createPHPExcelObject();
         $phpExcelObject->getProperties()->setCreator($user->getLastName().$user->getFirstName())
-            ->setTitle("Export réservations")
-            ->setDescription("Exportation des réservations - format excel")
-            ->setKeywords("export reservation billetterie")
-            ->setCategory("Export");
+            ->setTitle($this->translator->trans('import_export.title'))
+            ->setDescription($this->translator->trans('import_export.description'))
+            ->setKeywords($this->translator->trans('import_export.keywords'))
+            ->setCategory($this->translator->trans('import_export.category'));
 
         /** Définir la cellule correspondante au titre */
         $phpExcelObject->setActiveSheetIndex(0)
-            ->setCellValue('A1', $this->translator->trans('Type bénéficiaire'))
-            ->setCellValue('B1', 'Nom')
-            ->setCellValue('C1', 'Prénom')
-            ->setCellValue('D1', 'Adresse e-mail')
-            ->setCellValue('E1', 'Date de naissance')
-            ->setCellValue('F1', 'Téléphone')
-            ->setCellValue('G1', 'Adresse')
-            ->setCellValue('H1', 'Ville')
-            ->setCellValue('I1', 'Code postal')
-            ->setCellValue('J1', 'Pièce d’identité')
-            ->setCellValue('K1', 'N° d’identité')
-            ->setCellValue('L1', 'État ticket')
-            ->setCellValue('M1', 'Porte')
-            ->setCellValue('N1', 'Étage')
-            ->setCellValue('O1', 'N° place');
+            ->setCellValue('A1', $this->translator->trans('import_export.data.beneficiary_type'))
+            ->setCellValue('B1', $this->translator->trans('import_export.data.last_name'))
+            ->setCellValue('C1', $this->translator->trans('import_export.data.first_name'))
+            ->setCellValue('D1', $this->translator->trans('import_export.data.email'))
+            ->setCellValue('E1', $this->translator->trans('import_export.data.birth_date'))
+            ->setCellValue('F1', $this->translator->trans('import_export.data.phone'))
+            ->setCellValue('G1', $this->translator->trans('import_export.data.address'))
+            ->setCellValue('H1', $this->translator->trans('import_export.data.city'))
+            ->setCellValue('I1', $this->translator->trans('import_export.data.zip_code'))
+            ->setCellValue('J1', $this->translator->trans('import_export.data.identity_number'))
+            ->setCellValue('K1', $this->translator->trans('import_export.data.ticket_status'))
+            ->setCellValue('L1', $this->translator->trans('import_export.data.door'))
+            ->setCellValue('M1', $this->translator->trans('import_export.data.floor'))
+            ->setCellValue('N1', $this->translator->trans('import_export.data.place_number'));
 
         /**
          * Insérer les informations d'une réservation à chaque nouvelle ligne
          *
-         * @var int     $key
          * @var Booking $booking
          */
         foreach ($bookings as $booking) {
-            /** Définir la cellule correspondante à la valeur */
-            $phpExcelObject->setActiveSheetIndex(0)
-                ->setCellValue('A'.$i, ('Principal'))
-                ->setCellValue('B'.$i, $booking->getMainUser()->getLastName())
-                ->setCellValue('C'.$i, $booking->getMainUser()->getFirstName())
-                ->setCellValue('D'.$i, $booking->getMainUser()->getEmail())
-                ->setCellValue('E'.$i, $booking->getMainUser()->getBirthdayDate())
-                ->setCellValue('F'.$i, $booking->getMainUser()->getPhone())
-                ->setCellValue('G'.$i, $booking->getMainUser()->getAddress())
-                ->setCellValue('H'.$i, $booking->getMainUser()->getCity())
-                ->setCellValue('I'.$i, $booking->getMainUser()->getZipCode())
-                ->setCellValue('J'.$i, 'null')
-                ->setCellValue('K'.$i, $booking->getMainUser()->getIdNumber())
-                ->setCellValue('L'.$i, 'null')
-                ->setCellValue('M'.$i, 'null')
-                ->setCellValue('N'.$i, 'null')
-                ->setCellValue('O'.$i, 'null');
-
-            /** on incrémente le numéro de page */
-            $i++;
-
-            if (!empty($booking->getSecondaryUsers())) {
-                /** @var User $user */
-                foreach ($booking->getSecondaryUsers() as $user) {
-                    /** Définir la cellule correspondante à la valeur */
-                    $phpExcelObject->setActiveSheetIndex(0)
-                        ->setCellValue('A'.$i, ('Secondaire'))
-                        ->setCellValue('B'.$i, $user->getLastName())
-                        ->setCellValue('C'.$i, $user->getFirstName())
-                        ->setCellValue('D'.$i, $user->getEmail())
-                        ->setCellValue('E'.$i, $user->getBirthdayDate())
-                        ->setCellValue('F'.$i, $user->getPhone())
-                        ->setCellValue('G'.$i, $user->getAddress())
-                        ->setCellValue('H'.$i, $user->getCity())
-                        ->setCellValue('I'.$i, $user->getZipCode())
-                        ->setCellValue('J'.$i, 'null')
-                        ->setCellValue('K'.$i, $user->getIdNumber())
-                        ->setCellValue('L'.$i, 'null')
-                        ->setCellValue('M'.$i, 'null')
-                        ->setCellValue('N'.$i, 'null')
-                        ->setCellValue('O'.$i, 'null');
-
-                    /** on incrémente le numéro de page */
-                    $i++;
-                }
+            /** @var Ticket $ticket */
+            foreach ($booking->getTickets() as $ticket) {
+                /** Définir la cellule correspondante à la valeur */
+                $phpExcelObject->setActiveSheetIndex(0)
+                    ->setCellValue('A'.$i, ($booking->getMainUser() === $ticket->getUser() ? $this->translator->trans('import_export.data.main') : $this->translator->trans('import_export.data.secondary')))
+                    ->setCellValue('B'.$i, $ticket->getUser()->getLastName())
+                    ->setCellValue('C'.$i, $ticket->getUser()->getFirstName())
+                    ->setCellValue('D'.$i, $ticket->getUser()->getEmail())
+                    ->setCellValue('E'.$i, $ticket->getUser()->getBirthdayDate())
+                    ->setCellValue('F'.$i, $ticket->getUser()->getPhone())
+                    ->setCellValue('G'.$i, $ticket->getUser()->getAddress())
+                    ->setCellValue('H'.$i, $ticket->getUser()->getCity())
+                    ->setCellValue('I'.$i, $ticket->getUser()->getZipCode())
+                    ->setCellValue('J'.$i, $ticket->getUser()->getIdNumber())
+                    ->setCellValue('K'.$i, $ticket->isDistributed() ? $this->translator->trans('import_export.data.distributed') : $this->translator->trans('import_export.data.not_distributed'))
+                    ->setCellValue('L'.$i, $ticket->getDoor())
+                    ->setCellValue('M'.$i, $ticket->getFloor())
+                    ->setCellValue('N'.$i, $ticket->getNumber());
             }
         }
         $phpExcelObject->getActiveSheet()->setTitle('Reservations');
@@ -282,6 +256,7 @@ class BookingManager
      */
     public function countReservedTickets(Stock $stock)
     {
+        /** @var Booking[]|ArrayCollection $bookings */
         $bookings = $this->bookingRepository->findBy(
             [
                 'event'          => $stock->getEvent()->getId(),
@@ -290,7 +265,7 @@ class BookingManager
         );
 
         $ticketCount = 0;
-
+        /** @var Booking $booking */
         foreach ($bookings as $booking) {
             $ticketCount += count($booking->getTickets());
         }
