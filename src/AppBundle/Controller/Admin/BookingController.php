@@ -133,6 +133,7 @@ class BookingController extends Controller
      * Ajout d'une réservation
      *
      * @Route("/ajouter", name="admin_booking_add")
+     * @Method({"GET"})
      * @param Request $request
      *
      * @return Response
@@ -198,6 +199,7 @@ class BookingController extends Controller
      * @return RedirectResponse|Response
      *
      * @Route("/editer/{id}", name="admin_booking_edit")
+     * @Method({"GET"})
      */
     public function editAction(Request $request, int $id)
     {
@@ -252,6 +254,7 @@ class BookingController extends Controller
      * Suppression d'une réservation
      *
      * @Route("/supprimer/{booking}", name="admin_booking_delete")
+     * @Method({"GET"})
      * @param Booking $booking
      *
      * @return RedirectResponse
