@@ -6,7 +6,6 @@ $(document).ready(function () {
 
     /** Si on clique sur l'icone 'bar' du header*/
     $navBrand.click(function () {
-        console.log($nav.css('display'));
         $nav.fadeToggle();
     });
 });

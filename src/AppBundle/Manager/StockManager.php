@@ -88,6 +88,7 @@ class StockManager
         $stock->setQuantity($stock->getInitialQuantity() - $quantity);
 
         try {
+            $this->em->persist($stock);
             $this->em->flush($stock);
         } catch (\Exception $e) {
             return false;
