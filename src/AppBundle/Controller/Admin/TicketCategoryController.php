@@ -5,6 +5,7 @@ namespace AppBundle\Controller\Admin;
 use AppBundle\Controller\Traits\UtilitiesTrait;
 use AppBundle\Entity\TicketCategory;
 use AppBundle\Form\Type\TicketCategoryType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -77,7 +78,7 @@ class TicketCategoryController extends Controller
      * Modifier une catégorie de tickets
      *
      * @Route("/editer/{slug}", name="admin_ticket_category_edit")
-     * @Method({"GET"})
+     * @Method({"POST"})
      *
      * @param Request $request
      * @param string $slug

@@ -42,6 +42,8 @@ class ArticleController extends Controller
      * Ajout d'une actualité
      *
      * @Route("/ajouter", name="admin_article_add")
+     * @Method({"POST"})
+     *
      * @param Request $request
      *
      * @return Response

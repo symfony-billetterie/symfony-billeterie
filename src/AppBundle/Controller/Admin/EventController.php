@@ -120,6 +120,7 @@ class EventController extends Controller
      *
      * @Route("/supprimer/{slug}", name="admin_event_delete")
      * @Method({"POST"})
+     *
      * @param string $slug
      *
      * @return RedirectResponse

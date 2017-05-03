@@ -46,6 +46,7 @@ class EventTypeController extends Controller
      *
      * @Route("/ajouter", name="admin_event_type_add")
      * @Method({"POST"})
+     *
      * @param Request $request
      *
      * @return Response
