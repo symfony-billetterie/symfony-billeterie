@@ -1,0 +1,12 @@
+services:
+    app.repository.user:
+        class: AppBundle\Repository\UserRepository
+        factory: 'doctrine.orm.default_entity_manager:getRepository'
+        arguments:
+            - 'AppBundle:User'
+
+    app.repository.booking:
+        class: AppBundle\Repository\BookingRepository
+        factory: 'doctrine.orm.default_entity_manager:getRepository'
+        arguments:
+            - 'AppBundle:Booking'

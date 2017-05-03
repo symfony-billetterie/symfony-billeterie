@@ -40,12 +40,24 @@ AppBundle\Entity\TicketCategory:
             - NotNull:
                 message: form.ticket_category.label.not_null
 
+AppBundle\Entity\Ticket:
+    properties:
+        door:
+            - NotNull:
+                message: form.ticket_category.label.not_null
+        floor:
+            - NotNull:
+                message: form.ticket_category.label.not_null
+        number:
+            - NotNull:
+                message: form.ticket_category.label.not_null
+
 AppBundle\Entity\Stock:
     properties:
         quantity:
             - Type:
                 type: integer
-                message: form.stock.quantity.int
+                message: form.stock.initial_quantity.int
 
 AppBundle\Entity\Article:
     properties:

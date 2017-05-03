@@ -25,7 +25,7 @@ class Booking
     /**
      * @var Event
      *
-     * @ORM\ManyToOne(targetEntity="Event", inversedBy="bookings")
+     * @ORM\ManyToOne(targetEntity="Event", inversedBy="bookings", cascade={"persist"})
      * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
      */
     protected $event;
@@ -33,7 +33,7 @@ class Booking
     /**
      * @var TicketCategory
      *
-     * @ORM\ManyToOne(targetEntity="TicketCategory")
+     * @ORM\ManyToOne(targetEntity="TicketCategory", cascade={"persist"})
      * @ORM\JoinColumn(name="ticket_category_id", referencedColumnName="id")
      */
     protected $ticketCategory;
@@ -41,7 +41,7 @@ class Booking
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", cascade={"persist"})
      * @ORM\JoinColumn(name="main_user_id", referencedColumnName="id")
      */
     protected $mainUser;
@@ -49,16 +49,16 @@ class Booking
     /**
      * @var User[]|ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="User")
+     * @ORM\ManyToMany(targetEntity="User", cascade={"persist"})
      */
     protected $secondaryUsers;
 
     /**
-     * @var bool
+     * @var Ticket[]|ArrayCollection
      *
-     * @ORM\Column(name="distributed", type="boolean")
+     * @ORM\OneToMany(targetEntity="Ticket", mappedBy="booking", cascade={"persist", "remove"})
      */
-    protected $distributed;
+    protected $tickets;
 
     /**
      * Booking constructor.
@@ -79,7 +79,7 @@ class Booking
     /**
      * @return Event
      */
-    public function getEvent(): Event
+    public function getEvent():? Event
     {
         return $this->event;
     }
@@ -99,7 +99,7 @@ class Booking
     /**
      * @return TicketCategory
      */
-    public function getTicketCategory(): TicketCategory
+    public function getTicketCategory():? TicketCategory
     {
         return $this->ticketCategory;
     }
@@ -117,9 +117,9 @@ class Booking
     }
 
     /**
-     * @return mixed
+     * @return User
      */
-    public function getMainUser(): User
+    public function getMainUser():? User
     {
         return $this->mainUser;
     }
@@ -185,18 +185,27 @@ class Booking
     }
 
     /**
-     * @return bool
+     * @return Ticket[]|ArrayCollection
      */
-    public function isDistributed(): bool
+    public function getTickets()
     {
-        return $this->distributed;
+        return $this->tickets;
     }
 
     /**
-     * @param bool $distributed
+     * @param Ticket[]|ArrayCollection $tickets
+     *
+     * @return Booking
      */
-    public function setDistributed(bool $distributed)
+    public function setTickets($tickets)
     {
-        $this->distributed = $distributed;
+        $this->tickets = $tickets;
+
+        return $this;
+    }
+
+    public function getTicketCount()
+    {
+        return 1 + count($this->secondaryUsers);
     }
 }

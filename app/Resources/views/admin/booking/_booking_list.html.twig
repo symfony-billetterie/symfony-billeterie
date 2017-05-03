@@ -18,7 +18,7 @@
             <td>{{ booking.ticketCategory.label }}</td>
             <td class="column-actions-booking">
                 <div class="btn-group" role="group" aria-label="...">
-                    <a href="#"
+                    <a href="{{ path('admin_booking_edit', {'id': booking.id}) }}"
                        class="btn btn-info" title="{{ 'common.button.edit'|trans }}">
                         <i class="fa fa-edit"></i>
                     </a>
@@ -26,9 +26,9 @@
                        title="{{ 'common.button.export'|trans }}">
                         <i class="fa fa-file-excel-o"></i>
                     </a>
-                    <a href="#"
+                    <a href="{{ path('admin_booking_delete', {'booking':booking.id}) }}"
                        class="btn btn-danger"
-                       onclick="return confirm('{{ 'admin.event_type.delete_confirm'|trans }}')"
+                       onclick="return confirm('{{ 'admin.booking.delete_confirm'|trans }}')"
                        title="{{ 'common.button.delete'|trans }}">
                         <i class="fa fa-trash"></i>
                     </a>

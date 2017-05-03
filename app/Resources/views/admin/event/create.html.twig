@@ -26,8 +26,9 @@
         <div class="panel-body">
             {% for stock in form.stocks %}
                 <div class="row">
-                    <div class="col-md-6">{{ 'admin.form.stock.label_quantity'|trans }} <b>{{ stock.vars.value.category.label }}</b></div>
-                    <div class="col-md-6">{{ form_widget(stock.quantity) }}{{ form_errors(stock.quantity) }}</div>
+                    <div class="col-md-6">{{ 'admin.form.stock.label_quantity'|trans }}
+                        <b>{{ stock.vars.value.category.label }}</b></div>
+                    <div class="col-md-6">{{ form_widget(stock.initialQuantity) }}{{ form_errors(stock.initialQuantity) }}</div>
                 </div>
             {% endfor %}
         </div>

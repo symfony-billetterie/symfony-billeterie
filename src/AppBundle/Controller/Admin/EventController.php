@@ -43,23 +43,18 @@ class EventController extends Controller
      * Ajout d'un événement
      *
      * @Route("/ajouter", name="admin_event_add")
+     * @Method({"POST"})
      * @param Request $request
      *
      * @return Response
      */
     public function addAction(Request $request)
     {
-        /** @var Event $event */
-        $event = new Event();
+        /** @var BookingManager $bookingManager */
+        $eventManager = $this->get('app.manager.event');
 
-        $categories = $this->getDoctrine()->getRepository('AppBundle:TicketCategory')->findAll();
-
-        foreach ($categories as $category) {
-            $stock = new Stock();
-            $stock->setCategory($category);
-            $stock->setEvent($event);
-            $event->addStock($stock);
-        }
+        /* Initialization stock for event */
+        $event = $eventManager->createEvent();
 
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
@@ -92,6 +87,7 @@ class EventController extends Controller
      * @return Response
      *
      * @Route("/editer/{slug}", name="admin_event_edit")
+     * @Method({"POST"})
      */
     public function editAction(Request $request, string $slug)
     {
@@ -123,6 +119,8 @@ class EventController extends Controller
      * Suppression d'un événement
      *
      * @Route("/supprimer/{slug}", name="admin_event_delete")
+     * @Method({"POST"})
+     *
      * @param string $slug
      *
      * @return RedirectResponse
