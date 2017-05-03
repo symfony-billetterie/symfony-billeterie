@@ -8,7 +8,6 @@ use AppBundle\Entity\Ticket;
 use AppBundle\Entity\User;
 use AppBundle\Repository\BookingRepository;
 use AppBundle\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Liuggio\ExcelBundle\Factory;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -256,7 +255,7 @@ class BookingManager
      */
     public function countReservedTickets(Stock $stock)
     {
-        /** @var Booking[]|ArrayCollection $bookings */
+        /** @var Booking[] $bookings */
         $bookings = $this->bookingRepository->findBy(
             [
                 'event'          => $stock->getEvent()->getId(),
