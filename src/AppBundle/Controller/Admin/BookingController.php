@@ -108,7 +108,7 @@ class BookingController extends Controller
      * Call ajax pour tri liste réservations par événement
      *
      * @Route("/ajax-liste-reservation", name="admin_ajax_booking_list_index")
-     * @Method({"POST"})
+     * @Method({"GET", "POST"})
      *
      * @param Request $request
      *
