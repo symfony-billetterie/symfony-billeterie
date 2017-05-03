@@ -133,7 +133,7 @@ class BookingController extends Controller
      * Ajout d'une réservation
      *
      * @Route("/ajouter", name="admin_booking_add")
-     * @method({"GET"})
+     * @method({"POST"})
      * @param Request $request
      *
      * @return Response
