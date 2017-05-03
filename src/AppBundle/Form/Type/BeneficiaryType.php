@@ -21,7 +21,7 @@ class BeneficiaryType extends UserType
         $builder
             ->add('email', TextType::class, [
                 'label'    => 'app.form.beneficiary.email',
-                'required' => false,
+                'required' => true,
             ])
         ;
     }

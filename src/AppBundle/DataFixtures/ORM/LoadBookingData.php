@@ -24,25 +24,21 @@ class LoadBookingData extends AbstractFixture implements OrderedFixtureInterface
                 'event'           => 'Match Rugby',
                 'ticket_category' => 'Gradin',
                 'main_user'       => 'beneficiary@gmail.com',
-                'distributed'     => 1,
             ],
             [
                 'event'           => 'Match Tennis',
                 'ticket_category' => 'Tribune',
                 'main_user'       => 'beneficiary@gmail.com',
-                'distributed'     => 0,
             ],
             [
                 'event'           => 'Match HandBall',
                 'ticket_category' => 'Gradin',
                 'main_user'       => 'agent@gmail.com',
-                'distributed'     => 0,
             ],
             [
                 'event'           => 'Match HandBall',
                 'ticket_category' => 'Tribune',
                 'main_user'       => 'agent@gmail.com',
-                'distributed'     => 1,
             ],
         ];
 
@@ -56,7 +52,6 @@ class LoadBookingData extends AbstractFixture implements OrderedFixtureInterface
             $booking->setEvent($event);
             $booking->setTicketCategory($ticketCategory);
             $booking->setMainUser($this->getReference('user-'.$value['main_user']));
-            $booking->setDistributed($value['distributed']);
 
             $manager->persist($booking);
             $this->setReference('booking-'.$value['event'].$value['ticket_category'], $booking);
