@@ -16,9 +16,7 @@
                             <div class="file-thumbnail-footer">
                                 <div class="file-footer-caption"
                                      title="{{ form.vars.object.fileName }}">{{ form.vars.object.fileName }}<br>
-                                    {% if form.delete is defined %}
-                                        {{ form_row(form.delete) }}
-                                    {% endif %}
+                                    {% include 'admin/common/form/_delete.html.twig' %}
                                 </div>
                             </div>
                         </div>
@@ -50,9 +48,7 @@
                             <div class="file-thumbnail-footer">
                                 <div class="file-footer-caption"
                                      title="{{ form.vars.object.imageName }}">{{ form.vars.object.imageName }}<br>
-                                    {% if form.delete is defined %}
-                                        {{ form_row(form.delete) }}
-                                    {% endif %}
+                                    {% include 'admin/common/form/_delete.html.twig' %}
                                 </div>
                             </div>
                         </div>
