@@ -213,7 +213,6 @@ class BookingManager
          * @var Booking $booking
          */
         foreach ($bookings as $booking) {
-            dump($booking);die();
             /** @var Ticket $ticket */
             foreach ($booking->getTickets() as $ticket) {
                 /** Définir la cellule correspondante à la valeur */
