@@ -8,29 +8,25 @@
     "packages": [
         {
             "name": "behat/transliterator",
-            "version": "v1.2.0",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/Transliterator.git",
-                "reference": "826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c"
+                "reference": "868e05be3a9f25ba6424c2dd4849567f50715003"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Transliterator/zipball/826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c",
-                "reference": "826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c",
+                "url": "https://api.github.com/repos/Behat/Transliterator/zipball/868e05be3a9f25ba6424c2dd4849567f50715003",
+                "reference": "868e05be3a9f25ba6424c2dd4849567f50715003",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
-            "require-dev": {
-                "chuyskywalker/rolling-curl": "^3.1",
-                "php-yaoi/php-yaoi": "^1.0"
-            },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2-dev"
+                    "dev-master": "1.1-dev"
                 }
             },
             "autoload": {
@@ -48,7 +44,7 @@
                 "slug",
                 "transliterator"
             ],
-            "time": "2017-04-04T11:38:05+00:00"
+            "time": "2015-09-28T16:26:35+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -1000,12 +996,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "fda6cbe3db268ab35d569d28a37d9b0f6d0eef60"
+                "reference": "730a8a5f6633ae913a838d26b1c7156faa6ed697"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/fda6cbe3db268ab35d569d28a37d9b0f6d0eef60",
-                "reference": "fda6cbe3db268ab35d569d28a37d9b0f6d0eef60",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/730a8a5f6633ae913a838d26b1c7156faa6ed697",
+                "reference": "730a8a5f6633ae913a838d26b1c7156faa6ed697",
                 "shasum": ""
             },
             "require": {
@@ -1069,24 +1065,24 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2017-04-05 07:28:52"
+            "time": "2017-04-21 12:31:59"
         },
         {
             "name": "gedmo/doctrine-extensions",
-            "version": "v2.4.27",
+            "version": "v2.4.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Atlantic18/DoctrineExtensions.git",
-                "reference": "fe152e1239f2f46287d369e43cc9fa817cc3cd36"
+                "reference": "58038d5d217b6ba2c75de90cb2f6d424d86fab56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/fe152e1239f2f46287d369e43cc9fa817cc3cd36",
-                "reference": "fe152e1239f2f46287d369e43cc9fa817cc3cd36",
+                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/58038d5d217b6ba2c75de90cb2f6d424d86fab56",
+                "reference": "58038d5d217b6ba2c75de90cb2f6d424d86fab56",
                 "shasum": ""
             },
             "require": {
-                "behat/transliterator": "~1.0",
+                "behat/transliterator": "1.1",
                 "doctrine/common": "~2.4",
                 "php": ">=5.3.2"
             },
@@ -1147,7 +1143,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2017-03-22T09:48:22+00:00"
+            "time": "2017-04-23T08:59:41+00:00"
         },
         {
             "name": "imagine/imagine",
@@ -1364,12 +1360,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
-                "reference": "2dc539a32bd12e4ca0c300022059b71093bf6fb7"
+                "reference": "6c4be4faf6d471ae23caec142c74f8cf7b2a191c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/2dc539a32bd12e4ca0c300022059b71093bf6fb7",
-                "reference": "2dc539a32bd12e4ca0c300022059b71093bf6fb7",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/6c4be4faf6d471ae23caec142c74f8cf7b2a191c",
+                "reference": "6c4be4faf6d471ae23caec142c74f8cf7b2a191c",
                 "shasum": ""
             },
             "type": "library",
@@ -1409,7 +1405,7 @@
                 "progress",
                 "upload"
             ],
-            "time": "2017-04-05 17:43:09"
+            "time": "2017-05-02 10:32:01"
         },
         {
             "name": "knplabs/knp-components",
@@ -2204,16 +2200,16 @@
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "v5.0.18",
+            "version": "v5.0.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "17846680901003d26d823c2e3ac9228702837916"
+                "reference": "654c4fa3d11448c8005400a244987896243a990a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/17846680901003d26d823c2e3ac9228702837916",
-                "reference": "17846680901003d26d823c2e3ac9228702837916",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/654c4fa3d11448c8005400a244987896243a990a",
+                "reference": "654c4fa3d11448c8005400a244987896243a990a",
                 "shasum": ""
             },
             "require": {
@@ -2252,7 +2248,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2017-01-10T14:58:45+00:00"
+            "time": "2017-04-23T22:28:23+00:00"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -2432,16 +2428,16 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.4.6",
+            "version": "v5.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "81fdccfaf8bdc5d5d7a1ef6bb3a61bbb1a6c4a3e"
+                "reference": "56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/81fdccfaf8bdc5d5d7a1ef6bb3a61bbb1a6c4a3e",
-                "reference": "81fdccfaf8bdc5d5d7a1ef6bb3a61bbb1a6c4a3e",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4",
+                "reference": "56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4",
                 "shasum": ""
             },
             "require": {
@@ -2482,7 +2478,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2017-02-13T07:52:53+00:00"
+            "time": "2017-04-20T17:32:18+00:00"
         },
         {
             "name": "symfony/monolog-bundle",
@@ -2942,16 +2938,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v3.2.7",
+            "version": "v3.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "1631040ea8fc5e0e405c00d35cbf2c0b7b555f64"
+                "reference": "85959c2abbe4d2f050f950f39c9c3cf83819f3df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/1631040ea8fc5e0e405c00d35cbf2c0b7b555f64",
-                "reference": "1631040ea8fc5e0e405c00d35cbf2c0b7b555f64",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/85959c2abbe4d2f050f950f39c9c3cf83819f3df",
+                "reference": "85959c2abbe4d2f050f950f39c9c3cf83819f3df",
                 "shasum": ""
             },
             "require": {
@@ -3082,7 +3078,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-04-05T12:52:29+00:00"
+            "time": "2017-05-01T17:47:03+00:00"
         },
         {
             "name": "twig/extensions",
@@ -3138,16 +3134,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v2.3.0",
+            "version": "v2.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "9718186a5df85a4f7917e78d3ffcabc204c75d25"
+                "reference": "85e8372c451510165c04bf781295f9d922fa524b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/9718186a5df85a4f7917e78d3ffcabc204c75d25",
-                "reference": "9718186a5df85a4f7917e78d3ffcabc204c75d25",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/85e8372c451510165c04bf781295f9d922fa524b",
+                "reference": "85e8372c451510165c04bf781295f9d922fa524b",
                 "shasum": ""
             },
             "require": {
@@ -3197,7 +3193,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-03-22T15:41:51+00:00"
+            "time": "2017-04-21T00:13:02+00:00"
         },
         {
             "name": "vich/uploader-bundle",
@@ -3290,12 +3286,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "a6fa6ca64eb21ec1a37dc7e0b5df578457f2fa16"
+                "reference": "b07b4c3428a57b68e385ae3db0474e6c5400789b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/a6fa6ca64eb21ec1a37dc7e0b5df578457f2fa16",
-                "reference": "a6fa6ca64eb21ec1a37dc7e0b5df578457f2fa16",
+                "url": "https://api.github.com/repos/composer/composer/zipball/b07b4c3428a57b68e385ae3db0474e6c5400789b",
+                "reference": "b07b4c3428a57b68e385ae3db0474e6c5400789b",
                 "shasum": ""
             },
             "require": {
@@ -3359,7 +3355,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2017-04-06T07:14:25+00:00"
+            "time": "2017-04-28T09:25:51+00:00"
         },
         {
             "name": "composer/semver",
@@ -3748,16 +3744,16 @@
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v2.8.19",
+            "version": "v2.8.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
-                "reference": "bc240bf630ea49d5f86cef746254d64299029932"
+                "reference": "b0a7230649affaa40960ac7dd47d2a88f2886afb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/bc240bf630ea49d5f86cef746254d64299029932",
-                "reference": "bc240bf630ea49d5f86cef746254d64299029932",
+                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/b0a7230649affaa40960ac7dd47d2a88f2886afb",
+                "reference": "b0a7230649affaa40960ac7dd47d2a88f2886afb",
                 "shasum": ""
             },
             "require": {
@@ -3802,7 +3798,7 @@
             ],
             "description": "Symfony PHPUnit Bridge",
             "homepage": "https://symfony.com",
-            "time": "2017-03-01T19:11:57+00:00"
+            "time": "2017-04-12T14:07:15+00:00"
         }
     ],
     "aliases": [],
