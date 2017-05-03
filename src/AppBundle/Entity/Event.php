@@ -55,14 +55,14 @@ class Event
     /**
      * @var Stock[]|ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Stock", mappedBy="event", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Stock", mappedBy="event", cascade={"persist", "remove"})
      */
     private $stocks;
 
     /**
      * @var Booking[]|ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Booking", mappedBy="event")
+     * @ORM\OneToMany(targetEntity="Booking", mappedBy="event", cascade={"remove"})
      */
     private $bookings;
 

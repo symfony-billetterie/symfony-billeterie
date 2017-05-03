@@ -1,14 +1,15 @@
 form:
     event_type:
         name:
-            not_null: Le nom du type d'évènement ne peut pas être nul
+            not_null: Le nom du type d'événement ne peut pas être nul
     event:
         name:
-            not_null: Le nom de l'évènement ne peut pas être nul
+            not_null: Le nom de l'événement ne peut pas être nul
         location:
-            not_null: Le lieu de l'évènement ne peut pas être nul
+            not_null: Le lieu de l'événement ne peut pas être nul
         date:
-            not_null: La date de l'évènement ne peut pas être nulle
+            datetime: La date de l'événement saisie ne correspond pas à un format de date valide
+            not_null: La date de l'événement ne peut pas être nulle
     user:
         last_name:
             not_null: Veuillez saisir votre nom
