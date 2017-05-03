@@ -2,12 +2,13 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Booking
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\BookingRepository")
  * @ORM\Table(name="booking")
  */
 class Booking
@@ -24,7 +25,7 @@ class Booking
     /**
      * @var Event
      *
-     * @ORM\ManyToOne(targetEntity="Event")
+     * @ORM\ManyToOne(targetEntity="Event", inversedBy="bookings")
      * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
      */
     protected $event;
@@ -46,21 +47,26 @@ class Booking
     protected $mainUser;
 
     /**
-     * @var User
+     * @var User[]|ArrayCollection
      *
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumn(name="secondary_user_id", referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="User")
      */
-    protected $secondaryUser;
+    protected $secondaryUsers;
 
     /**
-     * Si False -> billet réservé, si True -> billet distribué
+     * @var bool
      *
-     * @var boolean
-     *
-     * @ORM\Column(name="status", type="boolean")
+     * @ORM\Column(name="distributed", type="boolean")
      */
-    protected $status;
+    protected $distributed;
+
+    /**
+     * Booking constructor.
+     */
+    public function __construct()
+    {
+        $this->secondaryUsers = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -131,21 +137,49 @@ class Booking
     }
 
     /**
-     * @return mixed
+     * @return User[]|ArrayCollection
      */
-    public function getSecondaryUser():? User
+    public function getSecondaryUsers()
     {
-        return $this->secondaryUser;
+        return $this->secondaryUsers;
     }
 
     /**
-     * @param mixed $secondaryUser
+     * @param User[]|ArrayCollection $secondaryUsers
      *
      * @return Booking
      */
-    public function setSecondaryUser($secondaryUser)
+    public function setSecondaryUsers($secondaryUsers)
     {
-        $this->secondaryUser = $secondaryUser;
+        $this->secondaryUsers = $secondaryUsers;
+
+        return $this;
+    }
+
+    /**
+     * @param User $secondaryUser
+     *
+     * @return Booking
+     */
+    public function addSecondaryUser(User $secondaryUser)
+    {
+        if (!$this->secondaryUsers->contains($secondaryUser)) {
+            $this->secondaryUsers->add($secondaryUser);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param User $secondaryUser
+     *
+     * @return Booking
+     */
+    public function removeSecondaryUser(User $secondaryUser)
+    {
+        if ($this->secondaryUsers->contains($secondaryUser)) {
+            $this->secondaryUsers->remove($secondaryUser);
+        }
 
         return $this;
     }
@@ -153,16 +187,16 @@ class Booking
     /**
      * @return bool
      */
-    public function isStatus(): bool
+    public function isDistributed(): bool
     {
-        return $this->status;
+        return $this->distributed;
     }
 
     /**
-     * @param bool $status
+     * @param bool $distributed
      */
-    public function setStatus(bool $status)
+    public function setDistributed(bool $distributed)
     {
-        $this->status = $status;
+        $this->distributed = $distributed;
     }
 }

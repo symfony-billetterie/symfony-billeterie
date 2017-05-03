@@ -20,8 +20,9 @@ class ArticleManager
     /**
      * ArticleManager constructor.
      *
-     * @param RequestStack $request
-     * @param Paginator    $knpPaginator
+     * @param RequestStack  $request
+     * @param Paginator     $knpPaginator
+     * @param EntityManager $em
      */
     public function __construct(RequestStack $request, Paginator $knpPaginator, EntityManager $em)
     {
@@ -35,7 +36,7 @@ class ArticleManager
      */
     public function listArticle()
     {
-        $articles = $this->em->getRepository('AppBundle:Article')->findAll();
+        $articles = $this->em->getRepository('AppBundle:Article')->findBy([], ['id' => 'DESC']);
 
         /** @var PaginatorInterface $articles */
         $articles = $this->knpPaginator->paginate(

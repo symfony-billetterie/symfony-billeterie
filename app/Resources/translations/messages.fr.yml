@@ -8,6 +8,7 @@ common:
         back: Retour
         delete: Supprimer
         add: Ajouter
+        export: Exporter
         connection: Connexion
         back_without_save: Retour sans sauvegarder
     error:
@@ -97,6 +98,7 @@ admin:
         edit: Éditer une actualité
         delete_confirm : Etes-vous sûr de vouloir supprimer l\'actualité selectionnée ?
     booking:
+        title: Réservations
         user:
             name: Bénéficiaire
             email: Courriel
@@ -246,3 +248,6 @@ flash:
             edit:
                 success: L'événement a bien été modifié
                 danger: Erreur, l'événement n'a pas été modifié
+        booking:
+            export:
+                danger: Erreur, l'export d'évènement n'a pas fonctionné

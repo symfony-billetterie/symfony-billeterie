@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -9,7 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * Event
  *
  * @ORM\Table(name="event")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\EventRepository")
  */
 class Event
 {
@@ -46,17 +47,24 @@ class Event
     /**
      * @var EventType
      *
-     * @ORM\ManyToOne(targetEntity="EventType", inversedBy="eventType")
+     * @ORM\ManyToOne(targetEntity="EventType", inversedBy="events")
      * @ORM\JoinColumn(name="event_type_id", referencedColumnName="id")
      */
     private $eventType;
 
     /**
-     * @var array
+     * @var Stock[]|ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Stock", mappedBy="event", cascade={"persist"})
      */
     private $stocks;
+
+    /**
+     * @var Booking[]|ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Booking", mappedBy="event")
+     */
+    private $bookings;
 
     /**
      * @Gedmo\Slug(fields={"name"}, separator="-", updatable=true, unique=true)
@@ -64,6 +72,14 @@ class Event
      */
     private $slug;
 
+    /**
+     * Event constructor.
+     */
+    public function __construct()
+    {
+        $this->stocks   = new ArrayCollection();
+        $this->bookings = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -73,6 +89,16 @@ class Event
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
@@ -90,13 +116,13 @@ class Event
     }
 
     /**
-     * Get name
+     * Get date
      *
-     * @return string
+     * @return \DateTime
      */
-    public function getName()
+    public function getDate()
     {
-        return $this->name;
+        return $this->date;
     }
 
     /**
@@ -114,13 +140,13 @@ class Event
     }
 
     /**
-     * Get date
+     * Get location
      *
-     * @return \DateTime
+     * @return string
      */
-    public function getDate()
+    public function getLocation()
     {
-        return $this->date;
+        return $this->location;
     }
 
     /**
@@ -138,13 +164,13 @@ class Event
     }
 
     /**
-     * Get location
+     * Get eventType
      *
-     * @return string
+     * @return EventType
      */
-    public function getLocation()
+    public function getEventType()
     {
-        return $this->location;
+        return $this->eventType;
     }
 
     /**
@@ -152,23 +178,13 @@ class Event
      *
      * @param string $eventType
      *
-     * @return eventType
+     * @return Event
      */
     public function setEventType($eventType)
     {
         $this->eventType = $eventType;
 
         return $this;
-    }
-
-    /**
-     * Get eventType
-     *
-     * @return eventType
-     */
-    public function getEventType()
-    {
-        return $this->eventType;
     }
 
     /**
@@ -184,11 +200,21 @@ class Event
     }
 
     /**
+     * Get stock
+     *
+     * @return Stock[]|ArrayCollection
+     */
+    public function getStocks()
+    {
+        return $this->stocks;
+    }
+
+    /**
      * Set stock
      *
      * @param string $stocks
      *
-     * @return event
+     * @return Event
      */
     public function setStocks($stocks)
     {
@@ -198,13 +224,23 @@ class Event
     }
 
     /**
-     * Get stock
-     *
-     * @return stock
+     * @return mixed
      */
-    public function getStocks()
+    public function getBookings()
     {
-        return $this->stocks;
+        return $this->bookings;
+    }
+
+    /**
+     * @param mixed $bookings
+     *
+     * @return Event
+     */
+    public function setBookings($bookings)
+    {
+        $this->bookings = $bookings;
+
+        return $this;
     }
 
     /**
@@ -218,7 +254,7 @@ class Event
     /**
      * @param mixed $slug
      *
-     * @return EventType
+     * @return Event
      */
     public function setSlug($slug)
     {
