@@ -6,7 +6,6 @@ use AppBundle\Entity\Article;
 use AppBundle\Entity\Event;
 use AppBundle\Entity\Stock;
 use Doctrine\ORM\EntityManager;
-use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * Class EventManager
