@@ -105,31 +105,6 @@ class BookingController extends Controller
     }
 
     /**
-     * Call ajax pour tri liste réservations par événement
-     *
-     * @Route("/ajax-liste-reservation", name="admin_ajax_booking_list_index")
-     * @Method({"GET", "POST"})
-     *
-     * @param Request $request
-     *
-     * @return Response
-     */
-    public function ajaxBookingFilterAction(Request $request)
-    {
-        $event    = $request->request->get('event');
-        $bookings = $this->getDoctrine()->getRepository('AppBundle:Booking')->findBy(
-            ['event' => $event]
-        );
-
-        return $this->render(
-            'admin/booking/_booking_list.html.twig',
-            [
-                'bookings' => $bookings,
-            ]
-        );
-    }
-
-    /**
      * Ajout d'une réservation
      *
      * @Route("/ajouter", name="admin_booking_add")
@@ -168,7 +143,6 @@ class BookingController extends Controller
 
                     return $this->redirectToRoute('admin_booking_index');
                 } catch (\Exception $exception) {
-                    dump($exception);die;
                     $this->addFlash('danger', 'flash.admin.booking.add.danger');
                 }
             } else {
@@ -278,5 +252,30 @@ class BookingController extends Controller
         }
 
         return $this->redirectToRoute('admin_booking_index');
+    }
+
+    /**
+     * Call ajax pour tri liste réservations par événement
+     *
+     * @Route("/ajax-liste-reservation", name="admin_ajax_booking_list_index")
+     * @Method({"GET"})
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function ajaxBookingFilterAction(Request $request)
+    {
+        $event    = $request->request->get('event');
+        $bookings = $this->getDoctrine()->getRepository('AppBundle:Booking')->findBy(
+            ['event' => $event]
+        );
+
+        return $this->render(
+            'admin/booking/_booking_list.html.twig',
+            [
+                'bookings' => $bookings,
+            ]
+        );
     }
 }
