@@ -41,9 +41,9 @@ admin:
         log: Registre
         event_type:
             title: Types d'événement
-            index: Liste des types
-            create: Ajouter un type
-            edit: Modifier un type
+            index: Liste des types d'évènement
+            create: Ajouter un type d'évènement
+            edit: Modifier un type d'évènement
         event:
             title: Evénements
             index: Liste des événements

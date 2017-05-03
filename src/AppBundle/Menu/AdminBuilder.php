@@ -84,7 +84,7 @@ class AdminBuilder extends BaseBuilder
 
             /* Event Type */
             $this->addItemIfRouteMatch('admin.nav.event_type.title', $menu, 'admin_event_type_index', 'list');
-            if (strpos($routeName, 'admin_event_type_index') === 0) {
+            if (strpos($routeName, 'admin_event_type') === 0) {
                 $this->addItem($menu, 'admin.nav.event_type.index', 'admin_event_type_index', 'list');
                 if (strpos($routeName, 'admin_event_type_add') === 0) {
                     $this->addItem($menu, 'admin.nav.event_type.create', 'admin_event_type_add', 'plus');

@@ -18,7 +18,8 @@
                 </div>
             </div>
 
-            <ul id="ticket-fields-list" data-prototype="{{ form_widget(form.tickets.vars.prototype)|e }}">
+            <ul class="list-unstyled" id="ticket-fields-list"
+                data-prototype="{{ form_widget(form.tickets.vars.prototype)|e }}">
                 {% for ticket in form.tickets %}
                     <li>
                         {# Holder to ticket creation #}
@@ -42,8 +43,8 @@
     <script type="text/javascript">
         var ticketCount = '{{ form.tickets|length }}';
 
-        jQuery(document).ready(function() {
-            jQuery('#add-another-ticket').click(function(e) {
+        jQuery(document).ready(function () {
+            jQuery('#add-another-ticket').click(function (e) {
                 e.preventDefault();
 
                 var ticketList = jQuery('#ticket-fields-list');
@@ -51,7 +52,7 @@
                 var newWidget = ticketList.attr('data-prototype');
                 newWidget = newWidget.replace(/__name__/g, ticketCount);
                 ticketCount++;
-                titleWidget = '<div class="panel-heading panel-title">Ticket '+ ticketCount +'</div><div class="panel-body">';
+                titleWidget = '<div class="panel-heading panel-title">Ticket ' + ticketCount + '</div><div class="panel-body">';
                 closerPanelBody = '</div>';
 
                 var newLi = jQuery('<li></li>').html(titleWidget + newWidget + closerPanelBody);
@@ -62,7 +63,7 @@
                     format: 'DD/MM/YYYY',
                 }).parent().css('position', 'relative');
 
-                jQuery('.delete-ticket').click(function() {
+                jQuery('.delete-ticket').click(function () {
                     $(this).parent().parent().remove();
                 });
             });

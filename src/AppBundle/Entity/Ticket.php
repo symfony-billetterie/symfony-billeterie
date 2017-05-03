@@ -22,11 +22,11 @@ class Ticket
     private $id;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="distributed", type="boolean")
      */
-    private $distributed;
+    private $distributed= false;
 
     /**
      * @var string

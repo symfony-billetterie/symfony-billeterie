@@ -108,7 +108,7 @@ class BookingController extends Controller
      * Ajout d'une réservation
      *
      * @Route("/ajouter", name="admin_booking_add")
-     * @Method({"POST", "GET"})
+     * @Method({"GET", "POST"})
      * @param Request $request
      *
      * @return Response
@@ -142,7 +142,7 @@ class BookingController extends Controller
                     $this->addFlash('success', 'flash.admin.booking.add.success');
 
                     return $this->redirectToRoute('admin_booking_index');
-                } catch (\Exception $exception) {
+                } catch (\Exception $e) {
                     $this->addFlash('danger', 'flash.admin.booking.add.danger');
                 }
             } else {
@@ -156,6 +156,7 @@ class BookingController extends Controller
                 ]
             );
         }
+
         return $this->render(
             'admin/booking/create.html.twig',
             [
