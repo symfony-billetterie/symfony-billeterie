@@ -5,7 +5,6 @@ namespace AppBundle\Manager;
 use AppBundle\Entity\Booking;
 use AppBundle\Entity\Event;
 use AppBundle\Entity\Stock;
-use AppBundle\Entity\Ticket;
 use AppBundle\Entity\TicketCategory;
 use Doctrine\ORM\EntityManager;
 

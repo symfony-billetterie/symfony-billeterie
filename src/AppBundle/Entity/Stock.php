@@ -148,7 +148,7 @@ class Stock
     {
         $this->initialQuantity = $initialQuantity;
 
-        if (null == $this->quantity) {
+        if (null === $this->quantity) {
             $this->quantity = $initialQuantity;
         }
 
