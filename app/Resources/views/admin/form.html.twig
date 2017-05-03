@@ -35,7 +35,7 @@
                 content_css: '//www.tinymce.com/css/codepen.min.css',
 
             });
-            $("input[type=file]").fileinput({'language': 'fr', 'showUpload': false});
+            $("input[type=file]").fileinput({'language': '{{ app.request.local }}', 'showUpload': false});
 
             var vichImage = $('.vich-image');
             var vichFile = $('.vich-file');

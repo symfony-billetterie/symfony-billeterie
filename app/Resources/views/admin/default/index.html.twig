@@ -7,7 +7,7 @@
 {% block content %}
     <div class="panel">
         <div class="panel-heading">
-            <div class="panel-title">Statistiques globales</div>
+            <div class="panel-title">{{ 'admin.dashboard.title'|trans }}</div>
         </div>
         <div class="panel-body">
             <ul class="nav nav-tabs" role="tablist">
@@ -46,7 +46,8 @@
                     type: 'column'
                 },
                 title: {
-                    text: 'Prochain événement (Places totales : {{ object.bookings + object.bookingsDistributed +
+                    text: '{{ 'admin.dashboard.next_event'|trans }} ({{ 'admin.dashboard.total_places'|trans }} : {{ object.bookings + object
+                    .bookingsDistributed +
                     object.remainingPlaces }})'
                 },
                 subtitle: {
@@ -77,17 +78,17 @@
                 series: [{
                     name: 'Billets',
                     data: [
-                        ['Billets distribués', {{ object.bookingsDistributed }}],
-                        ['Billets réservés', {{ object.bookings }}],
-                        ['Billets restants', {{ object.remainingPlaces }}]
+                        ['{{ 'admin.dashboard.distributed_tickets'|trans }}', {{ object.bookingsDistributed }}],
+                        ['{{ 'admin.dashboard.booked_tickets'|trans }}', {{ object.bookings }}],
+                        ['{{ 'admin.dashboard.remaining_tickets'|trans }}', {{ object.remainingPlaces }}]
                     ],
                     dataLabels: {
                         enabled: true,
                         rotation: -90,
                         color: '#FFFFFF',
                         align: 'right',
-                        format: '{point.y}', // one decimal
-                        y: 10, // 10 pixels down from the top
+                        format: '{point.y}',
+                        y: 10,
                         style: {
                             fontSize: '13px',
                             fontFamily: 'Verdana, sans-serif'
@@ -103,7 +104,7 @@
                     type: 'pie'
                 },
                 title: {
-                    text: 'Statistiques globales'
+                    text: '{{ 'admin.dashboard.title'|trans }}'
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -126,15 +127,15 @@
                     colorByPoint: true,
                     data: [
                         {
-                            name: 'Billets distribués',
+                            name: '{{ 'admin.dashboard.distributed_tickets'|trans }}',
                             y: {{ object.bookingsDistributed }}
                         },
                         {
-                            name: 'Billets attribués',
+                            name: '{{ 'admin.dashboard.booked_tickets'|trans }}',
                             y: {{ object.bookings }}
                         },
                         {
-                            name: 'Billets non attribués',
+                            name: '{{ 'admin.dashboard.remaining_tickets'|trans }}',
                             y: {{ object.remainingPlaces }}
                         }]
                 }]
