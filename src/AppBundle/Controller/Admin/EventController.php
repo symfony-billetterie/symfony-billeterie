@@ -26,7 +26,7 @@ class EventController extends Controller
      * Liste des événements
      *
      * @Route("/", name="admin_event_index")
-     * @Method({"GET"})
+     * @method({"GET"})
      *
      * @return Response
      */
@@ -43,7 +43,7 @@ class EventController extends Controller
      * Ajout d'un événement
      *
      * @Route("/ajouter", name="admin_event_add")
-     * @Method({"GET"})
+     * @method({"GET"})
      * @param Request $request
      *
      * @return Response
@@ -87,7 +87,7 @@ class EventController extends Controller
      * @return Response
      *
      * @Route("/editer/{slug}", name="admin_event_edit")
-     * @Method({"GET"})
+     * @method({"GET"})
      */
     public function editAction(Request $request, string $slug)
     {
@@ -119,7 +119,7 @@ class EventController extends Controller
      * Suppression d'un événement
      *
      * @Route("/supprimer/{slug}", name="admin_event_delete")
-     * @Method({"GET"})
+     * @method({"GET"})
      * @param string $slug
      *
      * @return RedirectResponse
