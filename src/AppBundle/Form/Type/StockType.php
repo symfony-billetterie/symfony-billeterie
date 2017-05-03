@@ -22,7 +22,7 @@ class StockType extends AbstractType
             'initialQuantity',
             IntegerType::class,
             [
-                'label'    => 'admin.form.stock.initialQuantity',
+                'label'    => 'admin.form.stock.initial_quantity',
                 'required' => false,
             ]
         );

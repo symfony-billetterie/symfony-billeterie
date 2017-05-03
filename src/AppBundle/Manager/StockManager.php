@@ -5,6 +5,7 @@ namespace AppBundle\Manager;
 use AppBundle\Entity\Booking;
 use AppBundle\Entity\Event;
 use AppBundle\Entity\Stock;
+use AppBundle\Entity\Ticket;
 use AppBundle\Entity\TicketCategory;
 use Doctrine\ORM\EntityManager;
 
@@ -92,22 +93,22 @@ class StockManager
     }
 
     /**
-     * @param Event          $event
-     * @param TicketCategory $ticketCategory
+     * @param Ticket $ticket
      *
      * @return bool
      */
-    public function deleteTicket(Event $event, TicketCategory $ticketCategory)
+    public function deleteTicket(Ticket $ticket)
     {
         $stock      = $this->em->getRepository('AppBundle:Stock')->findOneBy(
             [
-                'event'    => $event->getId(),
-                'category' => $ticketCategory->getId(),
+                'event'    => $ticket->getBooking()->getEvent()->getId(),
+                'category' => $ticket->getBooking()->getTicketCategory()->getId(),
             ]
         );
         $countStock = $stock->getQuantity();
         $stock->setQuantity($countStock + 1);
         $this->em->flush($stock);
+        $this->em->remove($ticket);
 
         return true;
     }

@@ -130,7 +130,7 @@ admin:
             title: Stock des tickets
             category: Catégorie de ticket
             label_quantity: Nombre maximum de places pour la catégorie
-            initialQuantity: Quantité de places
+            initial_quantity: Quantité de places
         booking:
             title : Réservations
             event: Nom de l'événement
@@ -275,7 +275,7 @@ flash:
                 success: La réservation a bien été modifiée
                 danger: Erreur, la réservation n'a pas été modifiée
                 danger: Erreur, l'export d'événement n'a pas fonctionné
-            insufficientStock:
+            insufficient_stock:
                 danger : Le stock est insuffisant pour cet évènement et cette catégorie de ticket
-            noStock:
+            no_stock:
                 danger : Aucun stock n'est prévu pour cet événement et cette catégorie de ticket

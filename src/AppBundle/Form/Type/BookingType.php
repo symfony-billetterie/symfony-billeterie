@@ -17,10 +17,6 @@ class BookingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            /*->add('mainUser', BeneficiaryType::class, [
-                'label' => 'admin.form.booking.event',
-                'data_class' => User::class,
-                ])*/
             ->add('event', EntityType::class, [
                 'label' => 'admin.form.booking.event',
                 'class' => 'AppBundle:Event',
@@ -31,12 +27,7 @@ class BookingType extends AbstractType
                 'class' => 'AppBundle:TicketCategory',
                 'choice_label' => 'label',
             ])
-            /*->add('tickets', TicketType::class, [
-                'label' => 'admin.form.booking.ticket',
-                'data_class' => Ticket::class,
-            ])*/
             ->add('tickets', CollectionType::class, [
-                'label' => 'toto',
                 'entry_type' => TicketType::class,
                 'allow_add' => true,
                 'allow_delete' => true,

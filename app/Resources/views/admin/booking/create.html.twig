@@ -37,8 +37,8 @@
             {{ form_end(form, {'render_rest': false}) }}
         </div>
     </div>
-
-
+{% endblock %}
+{% block view_js %}
     <script type="text/javascript">
         var ticketCount = '{{ form.tickets|length }}';
 

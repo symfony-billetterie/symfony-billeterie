@@ -57,7 +57,7 @@ AppBundle\Entity\Stock:
         quantity:
             - Type:
                 type: integer
-                message: form.stock.initialQuantity.int
+                message: form.stock.initial_quantity.int
 
 AppBundle\Entity\Article:
     properties:

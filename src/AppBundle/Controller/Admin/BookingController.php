@@ -92,11 +92,7 @@ class BookingController extends Controller
     {
         try {
             /** @var Booking[]|ArrayCollection $booking */
-            $booking = $this->getDoctrine()->getRepository('AppBundle:Booking')->findBy(
-                [
-                    'id' => $id,
-                ]
-            );
+            $booking = $this->getDoctrine()->getRepository('AppBundle:Booking')->findBy(['id' => $id,]);
             /** @var BookingManager $bookingManager */
             $bookingManager = $this->get('app.manager.booking');
 
@@ -185,7 +181,7 @@ class BookingController extends Controller
                     $this->addFlash('danger', 'flash.admin.booking.add.danger');
                 }
             } else {
-                $this->addFlash('danger', 'flash.admin.booking.insufficientStock.danger');
+                $this->addFlash('danger', 'flash.admin.booking.insufficient_stock.danger');
             }
 
             return $this->render(
@@ -237,8 +233,7 @@ class BookingController extends Controller
             /* Delete removed tickets */
             foreach ($oldTickets as $ticket) {
                 if (!$booking->getTickets()->contains($ticket)) {
-                    $stockManager->deleteTicket($booking->getEvent(), $booking->getTicketCategory());
-                    $em->remove($ticket);
+                    $stockManager->deleteTicket($ticket);
                 }
             }
 
@@ -269,7 +264,7 @@ class BookingController extends Controller
                     $this->addFlash('danger', 'flash.admin.booking.edit.danger');
                 }
             } else {
-                $this->addFlash('danger', 'flash.admin.booking.insufficientStock.danger');
+                $this->addFlash('danger', 'flash.admin.booking.insufficient_stock.danger');
             }
         }
 
