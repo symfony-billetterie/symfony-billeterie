@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Booking
+ *
  * @ORM\Entity(repositoryClass="AppBundle\Repository\BookingRepository")
  * @ORM\Table(name="booking")
  */

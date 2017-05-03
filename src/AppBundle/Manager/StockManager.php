@@ -55,13 +55,16 @@ class StockManager
             ]
         );
 
-        $remainingTickets = $stock->getQuantity();
-
-        if ($remainingTickets - $newTickets <= 0) {
-            return false;
+        if ($stock) {
+            $remainingTickets = $stock->getQuantity();
+            if ($remainingTickets - $newTickets <= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return true;
         }
-
-        return true;
     }
 
     /**

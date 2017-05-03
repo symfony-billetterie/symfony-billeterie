@@ -133,7 +133,7 @@ class BookingController extends Controller
      * Ajout d'une réservation
      *
      * @Route("/ajouter", name="admin_booking_add")
-     * @Method({"POST"})
+     * @Method({"POST", "GET"})
      * @param Request $request
      *
      * @return Response
@@ -168,6 +168,7 @@ class BookingController extends Controller
 
                     return $this->redirectToRoute('admin_booking_index');
                 } catch (\Exception $exception) {
+                    dump($exception);die;
                     $this->addFlash('danger', 'flash.admin.booking.add.danger');
                 }
             } else {
@@ -181,7 +182,6 @@ class BookingController extends Controller
                 ]
             );
         }
-
         return $this->render(
             'admin/booking/create.html.twig',
             [
@@ -199,7 +199,7 @@ class BookingController extends Controller
      * @return RedirectResponse|Response
      *
      * @Route("/editer/{id}", name="admin_booking_edit")
-     * @Method({"POST"})
+     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, int $id)
     {
@@ -254,7 +254,7 @@ class BookingController extends Controller
      * Suppression d'une réservation
      *
      * @Route("/supprimer/{booking}", name="admin_booking_delete")
-     * @Method({"POST"})
+     * @Method({"GET", "POST"})
      * @param Booking $booking
      *
      * @return RedirectResponse
