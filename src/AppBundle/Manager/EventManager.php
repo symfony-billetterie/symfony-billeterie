@@ -2,7 +2,6 @@
 
 namespace AppBundle\Manager;
 
-use AppBundle\Entity\Article;
 use AppBundle\Entity\Event;
 use AppBundle\Entity\Stock;
 use Doctrine\ORM\EntityManager;
@@ -25,7 +24,7 @@ class EventManager
     }
 
     /**
-     * @return Article[]|array|PaginatorInterface
+     * @return Event
      */
     public function createEvent()
     {

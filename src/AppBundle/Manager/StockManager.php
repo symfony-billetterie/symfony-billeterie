@@ -47,6 +47,7 @@ class StockManager
             }
         }
 
+        /** @var Stock $stock */
         $stock = $this->em->getRepository('AppBundle:Stock')->findOneBy(
             [
                 'event'    => $booking->getEvent()->getId(),
@@ -71,6 +72,7 @@ class StockManager
      */
     public function updateStockQuantity(Event $event, TicketCategory $ticketCategory)
     {
+        /** @var Stock $stock */
         $stock = $this->em->getRepository('AppBundle:Stock')->findOneBy(
             [
                 'event'    => $event->getId(),
