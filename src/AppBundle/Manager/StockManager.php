@@ -91,25 +91,4 @@ class StockManager
 
         return true;
     }
-
-    /**
-     * @param Ticket $ticket
-     *
-     * @return bool
-     */
-    public function deleteTicket(Ticket $ticket)
-    {
-        $stock      = $this->em->getRepository('AppBundle:Stock')->findOneBy(
-            [
-                'event'    => $ticket->getBooking()->getEvent()->getId(),
-                'category' => $ticket->getBooking()->getTicketCategory()->getId(),
-            ]
-        );
-        $countStock = $stock->getQuantity();
-        $stock->setQuantity($countStock + 1);
-        $this->em->flush($stock);
-        $this->em->remove($ticket);
-
-        return true;
-    }
 }

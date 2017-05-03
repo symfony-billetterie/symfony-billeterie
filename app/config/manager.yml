@@ -19,6 +19,7 @@ services:
             - "@translator"
             - "@app.repository.user"
             - "@app.repository.booking"
+            - "@doctrine.orm.entity_manager"
 
     app.manager.stock:
             class: AppBundle\Manager\StockManager

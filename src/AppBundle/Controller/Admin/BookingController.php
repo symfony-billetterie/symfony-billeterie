@@ -231,11 +231,7 @@ class BookingController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             /* Delete removed tickets */
-            foreach ($oldTickets as $ticket) {
-                if (!$booking->getTickets()->contains($ticket)) {
-                    $stockManager->deleteTicket($ticket);
-                }
-            }
+            $bookingManager->manageRemovedTickets($booking, $oldTickets);
 
             if ($stockManager->checkStock($booking)) {
                 foreach ($booking->getTickets() as $ticket) {

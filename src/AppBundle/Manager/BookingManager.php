@@ -4,6 +4,7 @@ namespace AppBundle\Manager;
 
 use AppBundle\Entity\Booking;
 use AppBundle\Entity\Stock;
+use AppBundle\Entity\Ticket;
 use AppBundle\Entity\User;
 use AppBundle\Repository\BookingRepository;
 use AppBundle\Repository\UserRepository;
@@ -11,6 +12,7 @@ use Liuggio\ExcelBundle\Factory;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Translation\TranslatorInterface;
+use Doctrine\ORM\EntityManager;
 
 /**
  * Class BookingManager
@@ -21,6 +23,7 @@ class BookingManager
     private $translator;
     private $userRepository;
     private $bookingRepository;
+    private $em;
 
     /**
      * BookingManager constructor.
@@ -29,17 +32,20 @@ class BookingManager
      * @param TranslatorInterface $translator
      * @param UserRepository      $userRepository
      * @param BookingRepository   $bookingRepository
+     * @param EntityManager  $em
      */
     public function __construct(
         Factory $phpExcel,
         TranslatorInterface $translator,
         UserRepository $userRepository,
-        BookingRepository $bookingRepository
+        BookingRepository $bookingRepository,
+        EntityManager $em
     ) {
         $this->phpExcel          = $phpExcel;
         $this->translator        = $translator;
         $this->userRepository    = $userRepository;
         $this->bookingRepository = $bookingRepository;
+        $this->em                = $em;
     }
 
     /**
@@ -93,6 +99,43 @@ class BookingManager
         $existantUser->setPhone($user->getPhone());
 
         return $existantUser;
+    }
+
+    /**
+     * @param Booking $booking
+     * @param array   $oldTickets
+     *
+     * @return bool
+     */
+    public function manageRemovedTickets(Booking $booking, array $oldTickets)
+    {
+        foreach ($oldTickets as $ticket) {
+            if (!$booking->getTickets()->contains($ticket)) {
+                $this->deleteTicket($ticket);
+            }
+        }
+        return true;
+    }
+
+    /**
+     * @param Ticket $ticket
+     *
+     * @return bool
+     */
+    public function deleteTicket(Ticket $ticket)
+    {
+        $stock      = $this->em->getRepository('AppBundle:Stock')->findOneBy(
+            [
+                'event'    => $ticket->getBooking()->getEvent()->getId(),
+                'category' => $ticket->getBooking()->getTicketCategory()->getId(),
+            ]
+        );
+        $countStock = $stock->getQuantity();
+        $stock->setQuantity($countStock + 1);
+        $this->em->flush($stock);
+        $this->em->remove($ticket);
+
+        return true;
     }
 
     /**
