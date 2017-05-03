@@ -32,7 +32,7 @@ class BookingController extends Controller
      * Liste des réservations par événement
      *
      * @Route("/", name="admin_booking_index")
-     * @method({"GET"})
+     * @Method({"GET"})
      *
      * @return Response
      */
@@ -58,7 +58,7 @@ class BookingController extends Controller
      * Exporter les réservations
      *
      * @Route("/exporter-toutes-les-reservations", name="admin_booking_export_all")
-     * @method({"GET"})
+     * @Method({"GET"})
      *
      * @return Response
      */
@@ -84,7 +84,7 @@ class BookingController extends Controller
      * @param int $id
      *
      * @Route("/exporter-la-reservation/{id}", name="admin_booking_export")
-     * @method({"GET"})
+     * @Method({"GET"})
      *
      * @return RedirectResponse|StreamedResponse
      */
@@ -108,7 +108,7 @@ class BookingController extends Controller
      * Call ajax pour tri liste réservations par événement
      *
      * @Route("/ajax-liste-reservation", name="admin_ajax_booking_list_index")
-     * @method({"POST"})
+     * @Method({"POST"})
      *
      * @param Request $request
      *
@@ -133,7 +133,7 @@ class BookingController extends Controller
      * Ajout d'une réservation
      *
      * @Route("/ajouter", name="admin_booking_add")
-     * @method({"POST"})
+     * @Method({"POST"})
      * @param Request $request
      *
      * @return Response
@@ -199,7 +199,7 @@ class BookingController extends Controller
      * @return RedirectResponse|Response
      *
      * @Route("/editer/{id}", name="admin_booking_edit")
-     * @method({"POST"})
+     * @Method({"POST"})
      */
     public function editAction(Request $request, int $id)
     {
@@ -254,7 +254,7 @@ class BookingController extends Controller
      * Suppression d'une réservation
      *
      * @Route("/supprimer/{booking}", name="admin_booking_delete")
-     * @method({"POST"})
+     * @Method({"POST"})
      * @param Booking $booking
      *
      * @return RedirectResponse

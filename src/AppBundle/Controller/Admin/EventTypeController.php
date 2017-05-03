@@ -25,7 +25,7 @@ class EventTypeController extends Controller
      * Liste des types d'événement
      *
      * @Route("/", name="admin_event_type_index")
-     * @method({"GET"})
+     * @Method({"GET"})
      *
      * @return Response
      */
@@ -45,7 +45,7 @@ class EventTypeController extends Controller
      * Ajout d'un type d'événement
      *
      * @Route("/ajouter", name="admin_event_type_add")
-     * @method({"POST"})
+     * @Method({"POST"})
      * @param Request $request
      *
      * @return Response
@@ -89,7 +89,7 @@ class EventTypeController extends Controller
      * @return Response
      *
      * @Route("/editer/{slug}", name="admin_event_type_edit")
-     * @method({"POST"})
+     * @Method({"POST"})
      */
     public function editAction(Request $request, string $slug)
     {
@@ -124,7 +124,7 @@ class EventTypeController extends Controller
      * Suppression d'un type d'événement
      *
      * @Route("/supprimer/{eventType}", name="admin_event_type_delete")
-     * @method({"POST"})
+     * @Method({"POST"})
      * @param EventType $eventType
      *
      * @return RedirectResponse

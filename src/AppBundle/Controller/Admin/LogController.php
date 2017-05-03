@@ -20,7 +20,7 @@ class LogController extends Controller
 
     /**
      * @Route("/", name="admin_log_index")
-     * @method({"GET"})
+     * @Method({"GET"})
      *
      * @return Response
      *
