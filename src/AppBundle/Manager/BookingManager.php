@@ -103,6 +103,28 @@ class BookingManager
 
     /**
      * @param Booking $booking
+     *
+     * @return bool
+     */
+    public function manageTickets(Booking $booking)
+    {
+        foreach ($booking->getTickets() as $ticket) {
+            $ticketUser = $this->manageUser($ticket->getUser());
+
+            $ticket->setBooking($booking);
+            $ticket->setUser($ticketUser);
+
+            if ($booking->getTickets()[key($booking->getTickets())] == $ticket) {
+                $booking->setMainUser($ticketUser);
+            } else {
+                $booking->addSecondaryUser($ticketUser);
+            }
+        }
+        return true;
+    }
+
+    /**
+     * @param Booking $booking
      * @param array   $oldTickets
      *
      * @return bool

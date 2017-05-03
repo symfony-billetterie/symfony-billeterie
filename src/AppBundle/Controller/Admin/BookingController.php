@@ -155,19 +155,8 @@ class BookingController extends Controller
             $stockManager = $this->get('app.manager.stock');
 
             if ($stockManager->checkStock($booking)) {
-                foreach ($booking->getTickets() as $ticket) {
-                    $ticketUser = $bookingManager->manageUser($ticket->getUser());
-
-                    $ticket->setBooking($booking);
-                    $ticket->setUser($ticketUser);
-
-                    if ($booking->getTickets()[key($booking->getTickets())] == $ticket) {
-                        $booking->setMainUser($ticketUser);
-                    } else {
-                        $booking->addSecondaryUser($ticketUser);
-                    }
-                }
-
+                /* Booking's tickets processing */
+                $bookingManager->manageTickets($booking);
                 try {
                     $em->persist($booking);
                     $em->flush();
@@ -234,25 +223,12 @@ class BookingController extends Controller
             $bookingManager->manageRemovedTickets($booking, $oldTickets);
 
             if ($stockManager->checkStock($booking)) {
-                foreach ($booking->getTickets() as $ticket) {
-                    $ticketUser = $bookingManager->manageUser($ticket->getUser());
-
-                    $ticket->setBooking($booking);
-                    $ticket->setUser($ticketUser);
-
-                    if ($booking->getTickets()[key($booking->getTickets())] == $ticket) {
-                        $booking->setMainUser($ticketUser);
-                    } else {
-                        $booking->addSecondaryUser($ticketUser);
-                    }
-                }
-
+                /* Booking's tickets processing */
+                $bookingManager->manageTickets($booking);
                 try {
                     $em->persist($booking);
                     $em->flush();
-
                     $stockManager->updateStockQuantity($booking->getEvent(), $booking->getTicketCategory());
-
                     $this->addFlash('success', 'flash.admin.booking.edit.success');
 
                     return $this->redirectToRoute('admin_booking_index');
