@@ -5,6 +5,7 @@ namespace AppBundle\Controller\Admin;
 use AppBundle\Entity\Booking;
 use AppBundle\Entity\Ticket;
 use AppBundle\Form\Type\BookingType;
+use AppBundle\Form\Type\ImportBookingType;
 use AppBundle\Manager\BookingManager;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -101,6 +102,39 @@ class BookingController extends Controller
         }
 
         return $this->redirectToRoute('admin_booking_index');
+    }
+
+    /**
+     * Impoter les réservations
+     *
+     * @param Request $request
+     *
+     * @Route("/impoter", name="admin_booking_import")
+     * @Method({"GET", "POST"})
+     *
+     * @return Response
+     */
+    public function importAction(Request $request)
+    {
+        $form = $this->createForm(ImportBookingType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            try {
+                $this->get('app.manager.booking')->importBookings($form->get('bookings')->getData());
+            } catch (\Exception $exception) {
+                $this->addFlash('danger', $exception->getMessage());
+            }
+
+            $this->addFlash('success', 'import.success');
+
+            return $this->redirectToRoute('admin_booking_index');
+        }
+
+        return $this->render('admin/booking/import.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
