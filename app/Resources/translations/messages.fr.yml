@@ -113,6 +113,7 @@ admin:
         ticket:
             title: Ticket
             add: Ajouter un ticket
+        select_event_type: Sélectionner un type d'événement
     form:
         event_type:
             name: Nom du type d'événement
@@ -148,8 +149,8 @@ admin:
             main_user: Adresse mail du bénéficiaire principal
             secondary_user: Adresse mail du bénéficiaire secondaire
     dashboard:
-        title: Statistiques globales
-        next_event: Prochain événement
+        title: Proportion de billets distribués
+        ticket_count: Nombre de billets
         distributed_tickets: Billets distribués
         total_places: Places totales
         booked_tickets: Billets réservés

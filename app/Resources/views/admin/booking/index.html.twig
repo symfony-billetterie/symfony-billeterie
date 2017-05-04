@@ -11,6 +11,7 @@
         </div>
         <div class="panel-body">
             <select id="select-event">
+                <option value="all">{{ 'admin.booking.select_event_type'|trans }}</option>
                 {% for event in events %}
                     <option value="{{ event.id }}">{{ event.name }}</option>
                 {% endfor %}

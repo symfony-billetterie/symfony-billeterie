@@ -270,7 +270,7 @@ class BookingController extends Controller
      * Call ajax pour tri liste réservations par événement
      *
      * @Route("/ajax-liste-reservation", name="admin_ajax_booking_list_index")
-     * @Method({"GET"})
+     * @Method({"GET", "POST"})
      *
      * @param Request $request
      *
@@ -279,9 +279,14 @@ class BookingController extends Controller
     public function ajaxBookingFilterAction(Request $request)
     {
         $event    = $request->request->get('event');
-        $bookings = $this->getDoctrine()->getRepository('AppBundle:Booking')->findBy(
-            ['event' => $event]
-        );
+
+        if ('all' === $event) {
+            $bookings = $this->getDoctrine()->getRepository('AppBundle:Booking')->findAll();
+        } else {
+            $bookings = $this->getDoctrine()->getRepository('AppBundle:Booking')->findBy(
+                ['event' => $event]
+            );
+        }
 
         return $this->render(
             'admin/booking/_booking_list.html.twig',
