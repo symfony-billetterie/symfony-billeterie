@@ -13,7 +13,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Event;
-use AppBundle\Entity\User;
 use AppBundle\Controller\Traits\UtilitiesTrait;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -189,7 +188,7 @@ class BookingController extends Controller
         /** @var Booking $booking */
         $booking = $em->getRepository('AppBundle:Booking')->findOneBy(['id' => $id]);
 
-        /** @var Ticket $oldTickets */
+        /** @var Ticket[]|ArrayCollection $oldTickets */
         $oldTickets = $em->getRepository('AppBundle:Ticket')->findBy(['booking' => $id]);
 
         $form = $this->createForm(BookingType::class, $booking);
