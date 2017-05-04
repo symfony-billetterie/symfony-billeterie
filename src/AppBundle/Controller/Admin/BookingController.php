@@ -128,26 +128,38 @@ class BookingController extends Controller
 
             /** @var BookingManager $bookingManager */
             $stockManager = $this->get('app.manager.stock');
+            if (!empty($booking->getTickets())) {
+                if ($stockManager->checkStock($booking)) {
+                    /* Booking's tickets processing */
+                    $bookingManager->manageTickets($booking);
+                    try {
+                        $em->persist($booking);
+                        $em->flush();
 
-            if ($stockManager->checkStock($booking)) {
-                /* Booking's tickets processing */
-                $bookingManager->manageTickets($booking);
-                try {
-                    $em->persist($booking);
-                    $em->flush();
+                        try {
+                            $stockManager->updateStockQuantity($booking->getEvent(), $booking->getTicketCategory());
+                        } catch (\Exception $e) {
+                            $this->addFlash('danger', 'flash.admin.booking.no_stock.danger');
+                            return $this->render(
+                                'admin/booking/create.html.twig',
+                                [
+                                    'form' => $form->createView(),
+                                ]
+                            );
+                        }
 
-                    $stockManager->updateStockQuantity($booking->getEvent(), $booking->getTicketCategory());
+                        $this->addFlash('success', 'flash.admin.booking.add.success');
 
-                    $this->addFlash('success', 'flash.admin.booking.add.success');
-
-                    return $this->redirectToRoute('admin_booking_index');
-                } catch (\Exception $e) {
-                    $this->addFlash('danger', 'flash.admin.booking.add.danger');
+                        return $this->redirectToRoute('admin_booking_index');
+                    } catch (\Exception $e) {
+                        $this->addFlash('danger', 'flash.admin.booking.add.danger');
+                    }
+                } else {
+                    $this->addFlash('danger', 'flash.admin.booking.insufficient_stock.danger');
                 }
             } else {
-                $this->addFlash('danger', 'flash.admin.booking.insufficient_stock.danger');
+                $this->addFlash('danger', 'flash.admin.booking.no_tickets.danger');
             }
-
             return $this->render(
                 'admin/booking/create.html.twig',
                 [

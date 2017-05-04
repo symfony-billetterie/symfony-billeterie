@@ -34,9 +34,7 @@ class BookingRepository extends EntityRepository
         return $this->createQueryBuilder('b')
             ->select('COUNT(b.id)')
             ->join('b.event', 'e', 'WITH', 'e.id = :event')
-            ->where('b.distributed = :isDistributed')
             ->setParameter('event', $event->getId())
-            ->setParameter('isDistributed',$isDistributed)
             ->getQuery()->getSingleScalarResult();
     }
 }

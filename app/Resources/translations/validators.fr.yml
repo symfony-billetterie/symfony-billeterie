@@ -21,6 +21,14 @@ form:
     ticket_category:
         label:
             not_null: Veuillez saisir le nom de la catégorie
+    ticket:
+        door:
+            not_null: Veuillez saisir la porte
+        floor:
+            not_null: Veuillez saisir l'étage
+        number:
+            not_null: Veuillez saisir le numéro de ticket
+
     article:
         title:
             not_null: Veuillez saisir le titre de l'actualité

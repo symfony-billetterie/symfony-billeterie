@@ -7,6 +7,7 @@ use AppBundle\Entity\Event;
 use AppBundle\Entity\Stock;
 use AppBundle\Entity\TicketCategory;
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class StockManager
@@ -82,16 +83,19 @@ class StockManager
                 'category' => $ticketCategory->getId(),
             ]
         );
+        if ($stock) {
+            $quantity = $this->bookingManager->countReservedTickets($stock);
 
-        $quantity = $this->bookingManager->countReservedTickets($stock);
+            $stock->setQuantity($stock->getInitialQuantity() - $quantity);
 
-        $stock->setQuantity($stock->getInitialQuantity() - $quantity);
-
-        try {
-            $this->em->persist($stock);
-            $this->em->flush($stock);
-        } catch (\Exception $e) {
-            return false;
+            try {
+                $this->em->persist($stock);
+                $this->em->flush($stock);
+            } catch (\Exception $e) {
+                return false;
+            }
+        } else {
+            throw new NotFoundHttpException("Page not found");
         }
 
         return true;
