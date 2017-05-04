@@ -110,6 +110,9 @@ admin:
             email: Courriel
         ticketCategory:
             label: Catégorie de ticket
+        ticket:
+            title: Ticket
+            add: Ajouter un ticket
     form:
         event_type:
             name: Nom du type d'événement
@@ -288,6 +291,8 @@ flash:
                 danger : Le stock est insuffisant pour cet évènement et cette catégorie de ticket
             no_stock:
                 danger : Aucun stock n'est prévu pour cet événement et cette catégorie de ticket
+            no_tickets:
+                danger : Vous devez au moins créer un ticket pour votre réservation
 
 import_export:
     title: Export réservations

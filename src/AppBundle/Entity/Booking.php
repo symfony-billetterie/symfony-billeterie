@@ -61,13 +61,6 @@ class Booking
     protected $tickets;
 
     /**
-     * @var bool
-     *
-     * @ORM\Column(name="distributed", type="boolean")
-     */
-    private $distributed = false;
-
-    /**
      * Booking constructor.
      */
     public function __construct()
@@ -209,33 +202,5 @@ class Booking
         $this->tickets = $tickets;
 
         return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isDistributed(): bool
-    {
-        return $this->distributed;
-    }
-
-    /**
-     * @param bool $distributed
-     *
-     * @return Booking
-     */
-    public function setDistributed(bool $distributed): Booking
-    {
-        $this->distributed = $distributed;
-
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getTicketCount()
-    {
-        return 1 + count($this->secondaryUsers);
     }
 }
