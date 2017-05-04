@@ -110,6 +110,9 @@ admin:
             email: Courriel
         ticketCategory:
             label: Catégorie de ticket
+        ticket:
+            title: Ticket
+            add: Ajouter un ticket
     form:
         event_type:
             name: Nom du type d'événement

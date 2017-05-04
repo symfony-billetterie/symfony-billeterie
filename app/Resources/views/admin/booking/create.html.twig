@@ -22,7 +22,7 @@
                 {% for ticket in form.tickets %}
                     <li>
                         <div class="panel">
-                            <div class="panel-heading panel-title">Ticket {{ loop.index }}</div>
+                            <div class="panel-heading panel-title">{{ 'admin.booking.ticket.title'|trans }} {{ loop.index }}</div>
                             <div class="panel-body">
                                 {{ form_widget(ticket) }}
                                 {{ form_errors(ticket) }}
@@ -34,7 +34,7 @@
                 {% endfor %}
             </ul>
 
-            <a href="#" id="add-another-ticket">Ajouter un ticket</a>
+            <a href="#" id="add-another-ticket">{{ 'admin.booking.ticket.add'|trans }}</a>
 
         </div>
 
