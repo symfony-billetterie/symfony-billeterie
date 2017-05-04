@@ -2,8 +2,10 @@
 
 namespace AppBundle\Form\Type;
 
+use AppBundle\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class BeneficiaryType
@@ -29,5 +31,15 @@ class BeneficiaryType extends UserType
     public function getParent()
     {
         return UserType::class;
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(
+            [
+                'data_class' => User::class,
+                'cascade_validation' => true,
+            ]
+        );
     }
 }

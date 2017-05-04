@@ -18,10 +18,17 @@
                 </div>
             </div>
 
-            <ul class="list-unstyled" id="ticket-fields-list"
-                data-prototype="{{ form_widget(form.tickets.vars.prototype)|e }}">
+            <ul class="list-unstyled" id="ticket-fields-list" data-prototype="{{ form_widget(form.tickets.vars.prototype)|e }}">
                 {% for ticket in form.tickets %}
                     <li>
+                        <div class="panel">
+                            <div class="panel-heading panel-title">Ticket {{ loop.index }}</div>
+                            <div class="panel-body">
+                                {{ form_widget(ticket) }}
+                                {{ form_errors(ticket) }}
+                            </div>
+                        </div>
+
                         {# Holder to ticket creation #}
                     </li>
                 {% endfor %}

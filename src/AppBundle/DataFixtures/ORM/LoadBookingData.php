@@ -42,7 +42,7 @@ class LoadBookingData extends AbstractFixture implements OrderedFixtureInterface
             ],
         ];
 
-        foreach ($data as $value) {
+        foreach ($data as $key => $value) {
             /** @var Event $event */
             $event = $this->getReference('event-'.$value['event']);
             /** @var TicketCategory $ticketCategory */
@@ -54,7 +54,7 @@ class LoadBookingData extends AbstractFixture implements OrderedFixtureInterface
             $booking->setMainUser($this->getReference('user-'.$value['main_user']));
 
             $manager->persist($booking);
-            $this->setReference('booking-'.$value['event'].$value['ticket_category'], $booking);
+            $this->setReference('booking-'.$key, $booking);
         }
 
         $manager->flush();

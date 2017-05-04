@@ -24,7 +24,7 @@ class LoadTicketData extends AbstractFixture implements OrderedFixtureInterface
             [
                 'distributed'     => 0,
                 'door'            => 1,
-                'floor'           => 1,
+                'floor'           => 3,
                 'number'          => 321412,
                 'user'            => 'beneficiary@gmail.com',
                 'event'           => 'Match Rugby',
@@ -32,17 +32,17 @@ class LoadTicketData extends AbstractFixture implements OrderedFixtureInterface
             ],
             [
                 'distributed'     => 0,
-                'door'            => 1,
-                'floor'           => 1,
+                'door'            => 3,
+                'floor'           => 32,
                 'number'          => 321412,
                 'user'            => 'beneficiary@gmail.com',
                 'event'           => 'Match Tennis',
                 'ticket_category' => 'Gradin',
             ],
             [
-                'distributed'     => 0,
+                'distributed'     => 1,
                 'door'            => 1,
-                'floor'           => 1,
+                'floor'           => 12,
                 'number'          => 321412,
                 'user'            => 'beneficiary@gmail.com',
                 'event'           => 'Match HandBall',
@@ -50,8 +50,8 @@ class LoadTicketData extends AbstractFixture implements OrderedFixtureInterface
             ],
             [
                 'distributed'     => 0,
-                'door'            => 1,
-                'floor'           => 1,
+                'door'            => 10,
+                'floor'           => 13,
                 'number'          => 321412,
                 'user'            => 'beneficiary@gmail.com',
                 'event'           => 'Match HandBall',
@@ -67,7 +67,7 @@ class LoadTicketData extends AbstractFixture implements OrderedFixtureInterface
             $ticket->setFloor($value['floor']);
             $ticket->setNumber($value['number']);
             $ticket->setUser($this->getReference('user-'.$value['user']));
-            $ticket->setBooking($this->getReference('booking-'.$value['event'].$value['ticket_category']));
+            $ticket->setBooking($this->getReference('booking-'.rand(0,3)));
 
             $manager->persist($ticket);
         }

@@ -24,15 +24,15 @@ class TicketType extends AbstractType
         $builder
             ->add('floor', TextType::class, [
                 'label' => 'admin.form.ticket.floor',
-                'required' => false,
+                'required' => true,
             ])
             ->add('door', TextType::class, [
                 'label' => 'admin.form.ticket.door',
-                'required' => false,
+                'required' => true,
             ])
             ->add('number', TextType::class, [
                 'label' => 'admin.form.ticket.number',
-                'required' => false,
+                'required' => true,
             ])
             ->add('user', BeneficiaryType::class, [
                 'label' => 'admin.form.booking.event',
@@ -52,6 +52,7 @@ class TicketType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Ticket::class,
+            'cascade_validation' => true,
         ]);
     }
 }
