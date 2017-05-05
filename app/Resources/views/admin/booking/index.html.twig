@@ -36,7 +36,7 @@
         $(document).ready(function () {
             $('#select-event').select2().change(function () {
                 $.ajax({
-                    method: "POST",
+                    method: "GET",
                     url: $('#url-ajax-reservation').val(),
                     data: {
                         event: $(this).val()

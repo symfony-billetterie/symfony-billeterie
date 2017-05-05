@@ -55,91 +55,6 @@ class BookingController extends Controller
     }
 
     /**
-     * Exporter les réservations
-     *
-     * @Route("/exporter-toutes-les-reservations", name="admin_booking_export_all")
-     * @Method({"GET"})
-     *
-     * @return Response
-     */
-    public function exportAllBookingAction()
-    {
-        try {
-            /** @var Booking[]|ArrayCollection $bookings */
-            $bookings = $this->getDoctrine()->getRepository('AppBundle:Booking')->findForExport();
-            /** @var BookingManager $bookingManager */
-            $bookingManager = $this->get('app.manager.booking');
-
-            return $bookingManager->exportBooking($this->getUser(), $bookings);
-        } catch (Exception $e) {
-            $this->addFlash('danger', 'flash.admin.booking.export.danger');
-        }
-
-        return $this->redirectToRoute('admin_booking_index');
-    }
-
-    /**
-     * Exporter les réservations
-     *
-     * @param int $id
-     *
-     * @Route("/exporter-la-reservation/{id}", name="admin_booking_export")
-     * @Method({"GET"})
-     *
-     * @return RedirectResponse|StreamedResponse
-     */
-    public function exportBookingAction(int $id)
-    {
-        try {
-            /** @var Booking[]|ArrayCollection $booking */
-            $booking = $this->getDoctrine()->getRepository('AppBundle:Booking')->findBy(['id' => $id,]);
-            /** @var BookingManager $bookingManager */
-            $bookingManager = $this->get('app.manager.booking');
-
-            return $bookingManager->exportBooking($this->getUser(), $booking);
-        } catch (Exception $e) {
-            $this->addFlash('danger', 'flash.admin.booking.export.danger');
-        }
-
-        return $this->redirectToRoute('admin_booking_index');
-    }
-
-    /**
-     * Impoter les réservations
-     *
-     * @param Request $request
-     *
-     * @Route("/impoter", name="admin_booking_import")
-     * @Method({"GET", "POST"})
-     *
-     * @return Response
-     */
-    public function importAction(Request $request)
-    {
-        $form = $this->createForm(ImportBookingType::class);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted()) {
-            try {
-                $this->get('app.manager.booking')->importBookings($form->get('bookings')->getData());
-            } catch (\Exception $exception) {
-                $this->addFlash('danger', $exception->getMessage());
-
-                return $this->redirectToRoute('admin_booking_import');
-            }
-
-            $this->addFlash('success', 'import.success');
-
-            return $this->redirectToRoute('admin_booking_index');
-        }
-
-        return $this->render('admin/booking/import.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
      * Ajout d'une réservation
      *
      * @Route("/ajouter", name="admin_booking_add")
@@ -306,7 +221,7 @@ class BookingController extends Controller
      * Call ajax pour tri liste réservations par événement
      *
      * @Route("/ajax-liste-reservation", name="admin_ajax_booking_list_index")
-     * @Method({"GET", "POST"})
+     * @Method({"GET"})
      *
      * @param Request $request
      *
@@ -314,7 +229,7 @@ class BookingController extends Controller
      */
     public function ajaxBookingFilterAction(Request $request)
     {
-        $event    = $request->request->get('event');
+        $event    = $request->get('event');
 
         if ('all' === $event) {
             $bookings = $this->getDoctrine()->getRepository('AppBundle:Booking')->findAll();
@@ -330,5 +245,90 @@ class BookingController extends Controller
                 'bookings' => $bookings,
             ]
         );
+    }
+
+    /**
+     * Exporter les réservations
+     *
+     * @Route("/exporter-toutes-les-reservations", name="admin_booking_export_all")
+     * @Method({"GET"})
+     *
+     * @return Response
+     */
+    public function exportAllBookingAction()
+    {
+        try {
+            /** @var Booking[]|ArrayCollection $bookings */
+            $bookings = $this->getDoctrine()->getRepository('AppBundle:Booking')->findForExport();
+            /** @var BookingManager $bookingManager */
+            $bookingManager = $this->get('app.manager.booking');
+
+            return $bookingManager->exportBooking($this->getUser(), $bookings);
+        } catch (Exception $e) {
+            $this->addFlash('danger', 'flash.admin.booking.export.danger');
+        }
+
+        return $this->redirectToRoute('admin_booking_index');
+    }
+
+    /**
+     * Exporter les réservations
+     *
+     * @param int $id
+     *
+     * @Route("/exporter-la-reservation/{id}", name="admin_booking_export")
+     * @Method({"GET"})
+     *
+     * @return RedirectResponse|StreamedResponse
+     */
+    public function exportBookingAction(int $id)
+    {
+        try {
+            /** @var Booking[]|ArrayCollection $booking */
+            $booking = $this->getDoctrine()->getRepository('AppBundle:Booking')->findBy(['id' => $id,]);
+            /** @var BookingManager $bookingManager */
+            $bookingManager = $this->get('app.manager.booking');
+
+            return $bookingManager->exportBooking($this->getUser(), $booking);
+        } catch (Exception $e) {
+            $this->addFlash('danger', 'flash.admin.booking.export.danger');
+        }
+
+        return $this->redirectToRoute('admin_booking_index');
+    }
+
+    /**
+     * Importer les réservations
+     *
+     * @param Request $request
+     *
+     * @Route("/importer", name="admin_booking_import")
+     * @Method({"GET", "POST"})
+     *
+     * @return Response
+     */
+    public function importAction(Request $request)
+    {
+        $form = $this->createForm(ImportBookingType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            try {
+                $this->get('app.manager.booking')->importBookings($form->get('bookings')->getData());
+            } catch (\Exception $exception) {
+                $this->addFlash('danger', $exception->getMessage());
+
+                return $this->redirectToRoute('admin_booking_import');
+            }
+
+            $this->addFlash('success', 'import.success');
+
+            return $this->redirectToRoute('admin_booking_index');
+        }
+
+        return $this->render('admin/booking/import.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }
