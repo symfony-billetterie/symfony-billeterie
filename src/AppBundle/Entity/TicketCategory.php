@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -48,6 +49,15 @@ class TicketCategory
      * @ORM\OneToMany(targetEntity="Booking", mappedBy="ticketCategory", cascade={"remove"})
      */
     private $bookings;
+
+    /**
+     * TicketCategory constructor.
+     */
+    public function __construct()
+    {
+        $this->bookings = new ArrayCollection();
+        $this->stocks   = new ArrayCollection();
+    }
 
     /**
      * @return mixed
