@@ -164,7 +164,7 @@ admin:
         firstName: Prénom
         lastName: Nom
         email: Adresse e-mail
-        delete_confirm: Etes-vous sûr de vouloir supprimer l'utilisateur selectionnée ?
+        delete_confirm: Etes-vous sûr de vouloir désactiver l'utilisateur selectionné ?
 app:
     title: Billetterie
     seo:
@@ -308,8 +308,8 @@ flash:
                 danger : Vous devez au moins créer un ticket pour votre réservation
         user:
             delete:
-                success: L'utilisateur a bien été supprimée
-                danger: Erreur, l'utilisateur n'a pas pu être supprimée
+                success: L'utilisateur a bien été désactivé
+                danger: Erreur, l'utilisateur n'a pas pu être désactivé
 
 export:
     title: Export réservations
