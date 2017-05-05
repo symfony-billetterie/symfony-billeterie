@@ -327,7 +327,7 @@ import:
     error:
         default: Erreur à la ligne
         main_user: le bénéficiaire secondaire n'est pas rattaché à un bénéficiaire principal
-        flush: les données n\'ont pas pu être sauvegardées
+        flush: Les données n\'ont pas pu être sauvegardées
         categ_event: la catégorie de ticket et/ou l'événement sont incorrects
         file_extension: L'extension du fichier est incorrect, veuillez importer un fichier .csv
 
