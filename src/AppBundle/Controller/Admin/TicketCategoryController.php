@@ -62,6 +62,11 @@ class TicketCategoryController extends Controller
             try {
                 $em->persist($ticketCategory);
                 $em->flush();
+                $this->get('app.manager.log')->logAction(
+                    'log.ticket_category.add.title',
+                    'log.ticket_category.add.message',
+                    $this->getUser()
+                );
                 $this->addFlash('success', 'flash.admin.ticket_category.add.success');
 
                 return $this->redirectToRoute('admin_ticket_category_index');
@@ -99,6 +104,11 @@ class TicketCategoryController extends Controller
             try {
                 $em->persist($ticketCategory);
                 $em->flush();
+                $this->get('app.manager.log')->logAction(
+                    'log.ticket_category.edit.title',
+                    'log.ticket_category.edit.message',
+                    $this->getUser()
+                );
                 $this->addFlash('success', 'flash.admin.ticket_category.edit.success');
 
                 return $this->redirectToRoute('admin_ticket_category_index');
@@ -129,6 +139,11 @@ class TicketCategoryController extends Controller
         $em->remove($ticketCategory);
         try {
             $em->flush();
+            $this->get('app.manager.log')->logAction(
+                'log.ticket_category.remove.title',
+                'log.ticket_category.remove.message',
+                $this->getUser()
+            );
             $this->addFlash('success', 'flash.admin.ticket_category.delete.success');
         } catch (\Exception $e) {
             $this->addFlash('danger', 'flash.admin.ticket_category.delete.danger');

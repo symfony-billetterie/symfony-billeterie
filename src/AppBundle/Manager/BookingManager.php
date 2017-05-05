@@ -12,6 +12,7 @@ use Liuggio\ExcelBundle\Factory;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Symfony\Component\Translation\TranslatorInterface;
 use Doctrine\ORM\EntityManager;
 
@@ -24,6 +25,8 @@ class BookingManager
     private $translator;
     private $userRepository;
     private $bookingRepository;
+    private $logManager;
+    private $tokenStorage;
     private $em;
 
     /**
@@ -33,6 +36,8 @@ class BookingManager
      * @param TranslatorInterface $translator
      * @param UserRepository      $userRepository
      * @param BookingRepository   $bookingRepository
+     * @param LogManager          $logManager
+     * @param TokenStorage        $tokenStorage
      * @param EntityManager       $em
      */
     public function __construct(
@@ -40,12 +45,16 @@ class BookingManager
         TranslatorInterface $translator,
         UserRepository $userRepository,
         BookingRepository $bookingRepository,
+        LogManager $logManager,
+        TokenStorage $tokenStorage,
         EntityManager $em
     ) {
         $this->phpExcel          = $phpExcel;
         $this->translator        = $translator;
         $this->userRepository    = $userRepository;
         $this->bookingRepository = $bookingRepository;
+        $this->logManager        = $logManager;
+        $this->tokenStorage      = $tokenStorage;
         $this->em                = $em;
     }
 
@@ -203,10 +212,12 @@ class BookingManager
             ->setCellValue('H1', $this->translator->trans('export.data.city'))
             ->setCellValue('I1', $this->translator->trans('export.data.zip_code'))
             ->setCellValue('J1', $this->translator->trans('export.data.identity_number'))
-            ->setCellValue('K1', $this->translator->trans('export.data.ticket_status'))
-            ->setCellValue('L1', $this->translator->trans('export.data.door'))
-            ->setCellValue('M1', $this->translator->trans('export.data.floor'))
-            ->setCellValue('N1', $this->translator->trans('export.data.place_number'));
+            ->setCellValue('K1', $this->translator->trans('export.data.event'))
+            ->setCellValue('L1', $this->translator->trans('export.data.category_ticket'))
+            ->setCellValue('M1', $this->translator->trans('export.data.ticket_status'))
+            ->setCellValue('N1', $this->translator->trans('export.data.door'))
+            ->setCellValue('O1', $this->translator->trans('export.data.floor'))
+            ->setCellValue('P1', $this->translator->trans('export.data.place_number'));
 
         /**
          * Insérer les informations d'une réservation à chaque nouvelle ligne
@@ -228,16 +239,18 @@ class BookingManager
                     ->setCellValue('H'.$i, $ticket->getUser()->getCity())
                     ->setCellValue('I'.$i, $ticket->getUser()->getZipCode())
                     ->setCellValue('J'.$i, $ticket->getUser()->getIdNumber())
-                    ->setCellValue('K'.$i, $ticket->isDistributed() ? $this->translator->trans('export.data.distributed') : $this->translator->trans('export.data.not_distributed'))
-                    ->setCellValue('L'.$i, $ticket->getDoor())
-                    ->setCellValue('M'.$i, $ticket->getFloor())
-                    ->setCellValue('N'.$i, $ticket->getNumber());
+                    ->setCellValue('K'.$i, $booking->getEvent()->getName())
+                    ->setCellValue('K'.$i, $booking->getTicketCategory()->getLabel())
+                    ->setCellValue('M'.$i, $ticket->isDistributed() ? $this->translator->trans('export.data.distributed') : $this->translator->trans('export.data.not_distributed'))
+                    ->setCellValue('N'.$i, $ticket->getDoor())
+                    ->setCellValue('O'.$i, $ticket->getFloor())
+                    ->setCellValue('P'.$i, $ticket->getNumber());
 
                 $i++;
             }
         }
 
-        $phpExcelObject->getActiveSheet()->setTitle('Reservations');
+        $phpExcelObject->getActiveSheet()->setTitle($this->translator->trans('export.data.bookings'));
         $writer            = $this->phpExcel->createWriter($phpExcelObject, 'Excel5');
         $response          = $this->phpExcel->createStreamedResponse($writer);
         $dispositionHeader = $response->headers->makeDisposition(
@@ -283,16 +296,18 @@ class BookingManager
      */
     public function importBookings(File $csvFile)
     {
+        $currentUser = $this->tokenStorage->getToken()->getUser();
+
         if ('txt' !== $csvFile->guessExtension()) {
             throw new \Exception($this->translator->trans('import.error.file_extension'));
         }
 
         $ignoreFirstLine = true;
-        $i = 1;
+        $i               = 1;
 
-        if (($handle = fopen($csvFile->getRealPath(), "r")) !== FALSE) {
-            while(($row = fgetcsv($handle)) !== FALSE) {
-                $errorMessage = $this->translator->trans('import.error.default') . ' ' . $i . ', ';
+        if (($handle = fopen($csvFile->getRealPath(), "r")) !== false) {
+            while (($row = fgetcsv($handle)) !== false) {
+                $errorMessage = $this->translator->trans('import.error.default').$i.', ';
 
                 if ($ignoreFirstLine && $i === 1) {
                     $i++;
@@ -349,8 +364,7 @@ class BookingManager
                     $user
                         ->setPlainPassword($pwd)
                         ->setUsername(strtolower($lastName).strtolower($firstName))
-                        ->setEmail($email)
-                    ;
+                        ->setEmail($email);
                 }
 
                 $user
@@ -361,8 +375,7 @@ class BookingManager
                     ->setAddress($address)
                     ->setCity($city)
                     ->setZipCode($zipCode)
-                    ->setIdNumber($identityNumber)
-                ;
+                    ->setIdNumber($identityNumber);
 
                 if ($beneficiaryType === $this->translator->trans('export.data.main')) {
                     $booking = new Booking();
@@ -377,17 +390,16 @@ class BookingManager
                     ]);
 
                     if (null === $ticketCategory || null === $event) {
-                        throw new \LogicException($errorMessage . $this->translator->trans('import.error.categ_event'));
+                        throw new \LogicException($errorMessage.$this->translator->trans('import.error.categ_event'));
                     }
 
                     $booking
                         ->setEvent($event)
-                        ->setTicketCategory($ticketCategory)
-                    ;
+                        ->setTicketCategory($ticketCategory);
                 }
 
                 if (!isset($booking)) {
-                    throw new \LogicException($errorMessage . $this->translator->trans('import.error.main_user'));
+                    throw new \LogicException($errorMessage.$this->translator->trans('import.error.main_user'));
                 }
 
                 if ($beneficiaryType === $this->translator->trans('export.data.secondary')) {
@@ -407,9 +419,13 @@ class BookingManager
 
                 $this->em->persist($booking);
             }
-
             try {
                 $this->em->flush();
+                $this->logManager->logAction(
+                    $this->translator->trans('log.import.title'),
+                    $this->translator->trans('log.import.message'),
+                    $currentUser
+                );
             } catch (\Exception $exception) {
                 throw new \Exception($this->translator->trans('import.error.flush'));
             }

@@ -62,6 +62,11 @@ class ArticleController extends Controller
             try {
                 $em->persist($article);
                 $em->flush();
+                $this->get('app.manager.log')->logAction(
+                    'log.article.add.title',
+                    'log.article.add.message',
+                    $this->getUser()
+                );
                 $this->addFlash('success', 'flash.admin.article.add.success');
 
                 return $this->redirectToRoute('admin_article_index');
@@ -99,6 +104,11 @@ class ArticleController extends Controller
             try {
                 $em->getManager()->persist($article);
                 $em->getManager()->flush();
+                $this->get('app.manager.log')->logAction(
+                    'log.article.edit.title',
+                    'log.article.edit.message',
+                    $this->getUser()
+                );
                 $this->addFlash('success', 'flash.admin.article.edit.success');
 
                 return $this->redirectToRoute('admin_article_index');
@@ -129,6 +139,11 @@ class ArticleController extends Controller
         $em->remove($article);
         try {
             $em->flush();
+            $this->get('app.manager.log')->logAction(
+                'log.article.delete.title',
+                'log.article.delete.message',
+                $this->getUser()
+            );
             $this->addFlash('success', 'flash.admin.article.delete.success');
         } catch (\Exception $e) {
             $this->addFlash('danger', 'flash.admin.article.delete.danger');
