@@ -56,12 +56,12 @@ class BookingManager
      */
     public function manageUser(User $user)
     {
-        /** @var User $existantUser */
-        if ($existantUser = $this->userRepository->findOneBy(
+        /** @var User $existingUser */
+        if ($existingUser = $this->userRepository->findOneBy(
             ['email' => $user->getEmail()]
         )
         ) {
-            return $this->editUser($existantUser, $user);
+            return $this->editUser($existingUser, $user);
         } else {
             return $this->createUser($user);
         }
@@ -82,24 +82,24 @@ class BookingManager
     }
 
     /**
-     * @param User $existantUser
+     * @param User $existingUser
      * @param User $user
      *
      * @return User
      */
-    public function editUser(User $existantUser, User $user)
+    public function editUser(User $existingUser, User $user)
     {
-        $existantUser->setCivility($user->getCivility());
-        $existantUser->setLastName($user->getLastName());
-        $existantUser->setFirstName($user->getFirstName());
-        $existantUser->setBirthdayDate($user->getBirthdayDate());
-        $existantUser->setAddress($user->getAddress());
-        $existantUser->setZipCode($user->getZipCode());
-        $existantUser->setCity($user->getCity());
-        $existantUser->setIdNumber($user->getIdNumber());
-        $existantUser->setPhone($user->getPhone());
+        $existingUser->setCivility($user->getCivility());
+        $existingUser->setLastName($user->getLastName());
+        $existingUser->setFirstName($user->getFirstName());
+        $existingUser->setBirthdayDate($user->getBirthdayDate());
+        $existingUser->setAddress($user->getAddress());
+        $existingUser->setZipCode($user->getZipCode());
+        $existingUser->setCity($user->getCity());
+        $existingUser->setIdNumber($user->getIdNumber());
+        $existingUser->setPhone($user->getPhone());
 
-        return $existantUser;
+        return $existingUser;
     }
 
     /**
@@ -294,9 +294,15 @@ class BookingManager
         $ignoreFirstLine = true;
         $i               = 1;
 
+<<<<<<< HEAD
         if (($handle = fopen($csvFile->getRealPath(), "r")) !== false) {
             while (($row = fgetcsv($handle)) !== false) {
                 $errorMessage = $this->translator->trans('import.error.default').$i.', ';
+=======
+        if (($handle = fopen($csvFile->getRealPath(), "r")) !== FALSE) {
+            while(($row = fgetcsv($handle)) !== FALSE) {
+                $errorMessage = $this->translator->trans('import.error.default') . ' ' . $i . ', ';
+>>>>>>> 2f295560e492d2fbbe7c87338675c84cc93eab0e
 
                 if ($ignoreFirstLine && $i === 1) {
                     $i++;
@@ -322,13 +328,19 @@ class BookingManager
                 $ticketCategorySlug = $data[14];
                 $eventSlug          = $data[15];
 
+<<<<<<< HEAD
                 /** @var User $existantUser */
                 $existantUser = $this->userRepository->findOneBy([
+=======
+
+                /** @var User $existingUser */
+                $existingUser = $this->userRepository->findOneBy([
+>>>>>>> 2f295560e492d2fbbe7c87338675c84cc93eab0e
                     'email' => $email,
                 ]);
 
-                if (null !== $existantUser) {
-                    $user = $existantUser;
+                if (null !== $existingUser) {
+                    $user = $existingUser;
                 } else {
                     $user = new User();
 
@@ -343,14 +355,14 @@ class BookingManager
                 $user
                     ->setLastName($lastName)
                     ->setFirstName($firstName)
-                    //->setBirthdayDate(\DateTime::createFromFormat('Y-m-d H:i:s', $birthDate))
+                    ->setBirthdayDate(\DateTime::createFromFormat('Y-m-d H:i:s', $birthDate))
                     ->setPhone($phoneNumber)
                     ->setAddress($address)
                     ->setCity($city)
                     ->setZipCode($zipCode)
                     ->setIdNumber($identityNumber);
 
-                if ($beneficiaryType === 'Principal') {
+                if ($beneficiaryType === $this->translator->trans('export.data.main')) {
                     $booking = new Booking();
                     $booking->setMainUser($user);
 
@@ -375,13 +387,13 @@ class BookingManager
                     throw new \LogicException($errorMessage.$this->translator->trans('import.error.main_user'));
                 }
 
-                if ($beneficiaryType === 'Secondaire') {
+                if ($beneficiaryType === $this->translator->trans('export.data.secondary')) {
                     $booking->addSecondaryUser($user);
                 }
 
                 $ticket = new Ticket();
 
-                $ticket->setDistributed($ticketStatus === 'Distribué');
+                $ticket->setDistributed($ticketStatus === $this->translator->trans('export.data.distributed'));
                 $ticket->setDoor($door);
                 $ticket->setFloor($floor);
                 $ticket->setNumber($ticketNumber);
@@ -391,12 +403,20 @@ class BookingManager
                 $booking->addTicket($ticket);
 
                 $this->em->persist($booking);
+            }
 
+<<<<<<< HEAD
                 try {
                     $this->em->flush();
                 } catch (\Exception $exception) {
                     throw new \Exception($errorMessage.$this->translator->trans('import.error.flush'));
                 }
+=======
+            try {
+                $this->em->flush();
+            } catch (\Exception $exception) {
+                throw new \Exception($this->translator->trans('import.error.flush'));
+>>>>>>> 2f295560e492d2fbbe7c87338675c84cc93eab0e
             }
         }
     }
