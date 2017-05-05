@@ -62,6 +62,12 @@ class AdminBuilder extends BaseBuilder
             if (strpos($routeName, 'admin_booking') === 0) {
                 $booking->setCurrent(true);
             }
+            /* Booking */
+            $user = $this->addItem($menu, 'admin.nav.users.title', 'admin_user_index', 'users');
+            if (strpos($routeName, 'admin_user')) {
+                $user->setCurrent(true);
+            }
+
         }
 
         return $menu;
