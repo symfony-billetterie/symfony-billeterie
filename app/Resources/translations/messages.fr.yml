@@ -157,6 +157,7 @@ admin:
         total_places: Places totales
         booked_tickets: Billets réservés
         remaining_tickets: Billets restants
+        ticket: billets
 
 app:
     title: Billetterie
@@ -313,14 +314,18 @@ export:
         city: Ville
         zip_code: Code postale
         identity_number: N° d'identité
+        event: Évènement
+        category_ticket: Catégorie de ticket
         ticket_status: État ticket
         door: Porte
+        bookings: Réservations
         floor: Étage
         place_number: N° place
         main: Principal
         secondary: Secondaire
         distributed: Distribué
         not_distributed: Non distribué
+
 import:
     success: Les réservations ont bien été importées
     label: Fichier CSV
