@@ -2,7 +2,6 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -84,5 +83,37 @@ class TicketCategory
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * @return Stock[]|ArrayCollection
+     */
+    public function getStocks()
+    {
+        return $this->stocks;
+    }
+    
+    /**
+     * @param Stock[]|ArrayCollection $stocks
+     */
+    public function setStocks($stocks)
+    {
+        $this->stocks = $stocks;
+    }
+    
+    /**
+     * @return Booking[]|ArrayCollection
+     */
+    public function getBookings()
+    {
+        return $this->bookings;
+    }
+    
+    /**
+     * @param Booking[]|ArrayCollection $bookings
+     */
+    public function setBookings($bookings)
+    {
+        $this->bookings = $bookings;
     }
 }
