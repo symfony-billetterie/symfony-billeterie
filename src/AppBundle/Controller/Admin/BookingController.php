@@ -7,6 +7,7 @@ use AppBundle\Entity\Ticket;
 use AppBundle\Form\Type\BookingType;
 use AppBundle\Form\Type\ImportBookingType;
 use AppBundle\Manager\BookingManager;
+use AppBundle\Manager\LogManager;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -91,6 +92,7 @@ class BookingController extends Controller
                             $stockManager->updateStockQuantity($booking->getEvent(), $booking->getTicketCategory());
                         } catch (\Exception $e) {
                             $this->addFlash('danger', 'flash.admin.booking.no_stock.danger');
+
                             return $this->render(
                                 'admin/booking/create.html.twig',
                                 [
@@ -111,6 +113,7 @@ class BookingController extends Controller
             } else {
                 $this->addFlash('danger', 'flash.admin.booking.no_tickets.danger');
             }
+
             return $this->render(
                 'admin/booking/create.html.twig',
                 [
@@ -229,7 +232,7 @@ class BookingController extends Controller
      */
     public function ajaxBookingFilterAction(Request $request)
     {
-        $event    = $request->get('event');
+        $event = $request->get('event');
 
         if ('all' === $event) {
             $bookings = $this->getDoctrine()->getRepository('AppBundle:Booking')->findAll();
@@ -284,10 +287,13 @@ class BookingController extends Controller
     public function exportBookingAction(int $id)
     {
         try {
+            /** @var LogManager $logManager */
+            $logManager = $this->get('app.manager.log');
             /** @var Booking[]|ArrayCollection $booking */
             $booking = $this->getDoctrine()->getRepository('AppBundle:Booking')->findBy(['id' => $id,]);
             /** @var BookingManager $bookingManager */
             $bookingManager = $this->get('app.manager.booking');
+            $logManager->logAction('log.export.title', 'log.export.message', $this->getUser());
 
             return $bookingManager->exportBooking($this->getUser(), $booking);
         } catch (Exception $e) {

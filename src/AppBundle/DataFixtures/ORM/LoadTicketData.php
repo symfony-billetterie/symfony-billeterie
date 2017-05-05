@@ -2,7 +2,9 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
+use AppBundle\Entity\Booking;
 use AppBundle\Entity\Ticket;
+use AppBundle\Entity\User;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -59,14 +61,18 @@ class LoadTicketData extends AbstractFixture implements OrderedFixtureInterface
         ];
 
         foreach ($data as $value) {
+            /** @var User $user */
+            $user = $this->getReference('user-'.$value['user']);
+            /** @var Booking $booking */
+            $booking = $this->getReference('booking-'.rand(0, 3));
             /** @var Ticket $ticket */
             $ticket = new Ticket();
             $ticket->setDistributed($value['distributed']);
             $ticket->setDoor($value['door']);
             $ticket->setFloor($value['floor']);
             $ticket->setNumber($value['number']);
-            $ticket->setUser($this->getReference('user-'.$value['user']));
-            $ticket->setBooking($this->getReference('booking-'.rand(0,3)));
+            $ticket->setUser($user);
+            $ticket->setBooking($booking);
 
             $manager->persist($ticket);
         }
