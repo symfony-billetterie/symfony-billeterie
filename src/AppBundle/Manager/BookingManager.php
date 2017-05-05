@@ -305,6 +305,10 @@ class BookingManager
 
                 $data = explode(';', current($row));
 
+                if (count($data) !== 16) {
+                    throw new \LogicException($errorMessage . $this->translator->trans('import.error.missing_data'));
+                }
+
                 $beneficiaryType    = $data[0];
                 $lastName           = $data[1];
                 $firstName          = $data[2];
@@ -321,6 +325,18 @@ class BookingManager
                 $ticketNumber       = $data[13];
                 $ticketCategorySlug = $data[14];
                 $eventSlug          = $data[15];
+
+                if (!$this->checkEmail($email)) {
+                    throw new \LogicException($errorMessage . $this->translator->trans('import.error.email'));
+                }
+
+                if (!$this->checkPhoneNumber($phoneNumber)) {
+                    throw new \LogicException($errorMessage . $this->translator->trans('import.error.phone_number'));
+                }
+
+                if (!$this->checkZipCode($zipCode)) {
+                    throw new \LogicException($errorMessage . $this->translator->trans('import.error.zip_code'));
+                }
 
                 /** @var User $existingUser */
                 $existingUser = $this->userRepository->findOneBy([
@@ -398,5 +414,47 @@ class BookingManager
                 throw new \Exception($this->translator->trans('import.error.flush'));
             }
         }
+    }
+
+    /**
+     * @param $email
+     *
+     * @return bool
+     */
+    public function checkEmail($email)
+    {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * @param $zipCode
+     *
+     * @return bool
+     */
+    public function checkZipCode($zipCode)
+    {
+        if (strlen($zipCode) > 6) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * @param $phoneNumber
+     *
+     * @return bool
+     */
+    public function checkPhoneNumber($phoneNumber)
+    {
+        if (0 !== strpos($phoneNumber, '+33') && 0 !== strpos($phoneNumber, '0')) {
+            return false;
+        }
+
+        return true;
     }
 }

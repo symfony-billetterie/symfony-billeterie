@@ -355,8 +355,12 @@ import:
     label: Fichier CSV
     error:
         default: Erreur à la ligne
+        missing_data: certaines informations ne sont pas renseignées
         main_user: le bénéficiaire secondaire n'est pas rattaché à un bénéficiaire principal
         flush: Les données n\'ont pas pu être sauvegardées
         categ_event: la catégorie de ticket et/ou l'événement sont incorrects
         file_extension: L'extension du fichier est incorrect, veuillez importer un fichier .csv
+        email: Le format de l\'adresse e-mail est incorrect
+        zip_code: Le format du code postal est incorrect
+        phone_number: Le format du numéro de téléphone est incorrect
 
