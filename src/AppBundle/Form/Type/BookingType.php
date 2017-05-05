@@ -2,9 +2,12 @@
 
 namespace AppBundle\Form\Type;
 
+use AppBundle\Entity\Booking;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BookingType extends AbstractType
 {
@@ -25,16 +28,24 @@ class BookingType extends AbstractType
                 'class' => 'AppBundle:TicketCategory',
                 'choice_label' => 'label',
             ])
-            ->add('mainUser', EntityType::class, [
-                'label' => 'admin.form.booking.main_user',
-                'class' => 'AppBundle:User',
-                'choice_label' => 'email'
-            ])
-            ->add('secondaryUser', EntityType::class, [
-                'label' => 'admin.form.booking.secondary_user',
-                'class' => 'AppBundle:User',
-                'choice_label' => 'email',
-            ])
-        ;
+            ->add('tickets', CollectionType::class, [
+                'entry_type' => TicketType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'entry_options' =>[
+                    'cascade_validation' => true,
+                ]
+            ]);
+    }
+
+    /**
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => Booking::class,
+        ]);
     }
 }

@@ -1,0 +1,35 @@
+{% extends 'admin/form.html.twig' %}
+
+{% import 'admin/common/_submit.html.twig' as submit %}
+
+{% block content %}
+    <div class="panel">
+        <div class="panel-heading">
+            <div class="panel-title">{{ 'admin.booking.import'|trans }}</div>
+        </div>
+
+        {{ form_start(form) }}
+
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.bookings) }}
+                </div>
+                <div class="col-md-6">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="panel-footer">
+            {{ submit.button(path('admin_booking_index')) }}
+        </div>
+
+        {{ form_end(form, {'render_rest': false}) }}
+    </div>
+{% endblock %}
+{% block view_js %}
+    <script type="text/javascript">
+
+    </script>
+{% endblock %}

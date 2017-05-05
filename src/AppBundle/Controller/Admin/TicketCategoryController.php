@@ -5,11 +5,13 @@ namespace AppBundle\Controller\Admin;
 use AppBundle\Controller\Traits\UtilitiesTrait;
 use AppBundle\Entity\TicketCategory;
 use AppBundle\Form\Type\TicketCategoryType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 /**
  * Class TicketCategoryController
  *
@@ -23,12 +25,11 @@ class TicketCategoryController extends Controller
      * lister des catégories de tickets
      *
      * @Route("/", name="admin_ticket_category_index")
-     *
-     * @param Request $request
+     * @Method({"GET"})
      *
      * @return Response
      */
-    public function indexAction(Request $request): Response
+    public function indexAction(): Response
     {
         //On va chercher toutes les categories de ticket
         $ticketCategories = $this->getDoctrine()->getRepository('AppBundle:TicketCategory')->findAll();
@@ -42,15 +43,17 @@ class TicketCategoryController extends Controller
      * Ajouter une catégorie de tickets
      *
      * @Route("/ajouter", name="admin_ticket_category_add")
+     * @Method({"GET", "POST"})
      *
      * @param Request $request
+     *
      * @return Response
      */
     public function addAction(Request $request): Response
     {
         /** @var TicketCategory $ticketCategory */
         $ticketCategory = new TicketCategory();
-        $em = $this->getDoctrine()->getManager();
+        $em             = $this->getDoctrine()->getManager();
 
         $form = $this->createForm(TicketCategoryType::class, $ticketCategory);
         $form->handleRequest($request);
@@ -66,6 +69,7 @@ class TicketCategoryController extends Controller
                 $this->addFlash('danger', 'flash.admin.ticket_category.add.danger');
             }
         }
+
         return $this->render('admin/ticket_category/edit.html.twig', [
             'form' => $form->createView(),
         ]);
@@ -75,15 +79,18 @@ class TicketCategoryController extends Controller
      * Modifier une catégorie de tickets
      *
      * @Route("/editer/{slug}", name="admin_ticket_category_edit")
+     * @Method({"GET", "POST"})
      *
      * @param Request $request
-     * @param string $slug
+     * @param string  $slug
+     *
      * @return Response
      */
     public function editAction(Request $request, string $slug): Response
     {
         $em = $this->getDoctrine()->getManager();
-        $ticketCategory = $em->getRepository('AppBundle:TicketCategory')->findOneBySlug($slug);
+        /** @var TicketCategory $ticketCategory */
+        $ticketCategory = $em->getRepository('AppBundle:TicketCategory')->findOneBy(['slug' => $slug]);
 
         $form = $this->createForm(TicketCategoryType::class, $ticketCategory);
         $form->handleRequest($request);
@@ -109,15 +116,16 @@ class TicketCategoryController extends Controller
      * Supprimer une catégorie de ticket
      *
      * @Route("/supprimer/{slug}", name="admin_ticket_category_delete")
+     * @Method({"GET", "POST"})
      *
-     * @param Request $request
      * @param string $slug
+     *
      * @return RedirectResponse
      */
     public function deleteAction(string $slug)
     {
-        $em = $this->getDoctrine()->getManager();
-        $ticketCategory = $em->getRepository('AppBundle:TicketCategory')->findOneBySlug($slug);
+        $em             = $this->getDoctrine()->getManager();
+        $ticketCategory = $em->getRepository('AppBundle:TicketCategory')->findOneBy(['slug' => $slug]);
         $em->remove($ticketCategory);
         try {
             $em->flush();

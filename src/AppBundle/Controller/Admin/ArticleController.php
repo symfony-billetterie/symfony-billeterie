@@ -42,6 +42,8 @@ class ArticleController extends Controller
      * Ajout d'une actualité
      *
      * @Route("/ajouter", name="admin_article_add")
+     * @Method({"GET", "POST"})
+     *
      * @param Request $request
      *
      * @return Response
@@ -82,6 +84,7 @@ class ArticleController extends Controller
      * @return Response
      *
      * @Route("/editer/{slug}", name="admin_article_edit")
+     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, string $slug)
     {
@@ -114,6 +117,7 @@ class ArticleController extends Controller
      * Suppression d'une actualité
      *
      * @Route("/supprimer/{slug}", name="admin_article_delete")
+     * @Method({"GET", "POST"})
      * @param string $slug
      *
      * @return RedirectResponse

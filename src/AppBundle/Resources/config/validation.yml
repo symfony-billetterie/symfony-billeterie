@@ -9,6 +9,11 @@ AppBundle\Entity\User:
         birthdayDate:
             - Date:
                 message: form.user.birthday_date.date
+        email:
+            - NotNull:
+                message: form.user.first_name.not_null
+            - Email:
+                checkMX: true
     getters:
         lower:
             - IsTrue:
@@ -40,12 +45,32 @@ AppBundle\Entity\TicketCategory:
             - NotNull:
                 message: form.ticket_category.label.not_null
 
+AppBundle\Entity\Ticket:
+    properties:
+        door:
+            - NotNull:
+                message: form.ticket.door.not_null
+        floor:
+            - NotNull:
+                message: form.ticket.floor.not_null
+        number:
+            - NotNull:
+                message: form.ticket.number.not_null
+        user:
+            - NotNull: ~
+            - Valid:
+
+AppBundle\Entity\Booking:
+    properties:
+        tickets:
+            - Valid: ~
+
 AppBundle\Entity\Stock:
     properties:
         quantity:
             - Type:
                 type: integer
-                message: form.stock.quantity.int
+                message: form.stock.initial_quantity.int
 
 AppBundle\Entity\Article:
     properties:
@@ -65,4 +90,3 @@ AppBundle\Entity\Article:
         title:
             - NotNull:
                 message: form.article.title.not_null
-

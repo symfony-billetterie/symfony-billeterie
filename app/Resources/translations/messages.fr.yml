@@ -41,9 +41,9 @@ admin:
         log: Registre
         event_type:
             title: Types d'événement
-            index: Liste des types
-            create: Ajouter un type
-            edit: Modifier un type
+            index: Liste des types d'évènement
+            create: Ajouter un type d'évènement
+            edit: Modifier un type d'évènement
         event:
             title: Evénements
             index: Liste des événements
@@ -62,6 +62,8 @@ admin:
         booking:
             title: Réservations
             index : Liste des réservations
+            create : Ajouter une réservation
+            edit : Modifier une réservation
         users:
             title: Utilisateurs
     log:
@@ -100,12 +102,22 @@ admin:
         edit: Éditer une actualité
         delete_confirm : Etes-vous sûr de vouloir supprimer l\'actualité selectionnée ?
     booking:
+        title : Réservation
+        create: Créer une réservation
+        edit: Éditer une réservation
+        delete_confirm : Etes-vous sûr de vouloir supprimer la réservation selectionnée ?
         title: Réservations
         user:
             name: Bénéficiaire
             email: Adresse e-mail
         ticketCategory:
             label: Catégorie de ticket
+        ticket:
+            title: Ticket
+            add: Ajouter un ticket
+        select_event_type: Sélectionner un type d'événement
+        export_all: Exporter toutes les réservations
+        import: Importer des réservations
     form:
         event_type:
             name: Nom du type d'événement
@@ -126,15 +138,23 @@ admin:
             title: Stock des tickets
             category: Catégorie de ticket
             label_quantity: Nombre maximum de places pour la catégorie
-            quantity: Quantité de places
+            initial_quantity: Quantité de places
         booking:
+            title : Réservations
             event: Nom de l'événement
             ticket_category: Catégorie de ticket
+            main_user: Bénéficiaire principal
+            secondary_user: Bénéficiaire secondaire
+        ticket:
+            floor: Etage de la place
+            door: Porte de la place
+            number: Numéro de ticket
+            delete: Supprimer le ticket
             main_user: Adresse mail du bénéficiaire principal
             secondary_user: Adresse mail du bénéficiaire secondaire
     dashboard:
-        title: Statistiques globales
-        next_event: Prochain événement
+        title: Proportion de billets distribués
+        ticket_count: Nombre de billets
         distributed_tickets: Billets distribués
         total_places: Places totales
         booked_tickets: Billets réservés
@@ -165,6 +185,8 @@ app:
             city: Ville
             phone: Téléphone
             card: Numéro de pièce d'identité
+        beneficiary:
+            email: Email
     user:
         login:
             title: Connexion
@@ -263,7 +285,57 @@ flash:
                 danger: Erreur, l'événement n'a pas été modifié
         booking:
             export:
+                danger: Une erreur est survenue lors de l'export
+            delete:
+                success: La réservation a bien été supprimée
+                danger: Erreur, la réservation n'a pas pu être supprimée
+            add:
+                success: La réservation a bien été ajoutée
+                danger: Erreur, la réservation n'a pas été ajoutée
+            edit:
+                success: La réservation a bien été modifiée
+                danger: Erreur, la réservation n'a pas été modifiée
                 danger: Erreur, l'export d'événement n'a pas fonctionné
+            insufficient_stock:
+                danger : Le stock est insuffisant pour cet évènement et cette catégorie de ticket
+            no_stock:
+                danger : Aucun stock n'est prévu pour cet événement et cette catégorie de ticket
+            no_tickets:
+                danger : Vous devez au moins créer un ticket pour votre réservation
+
+export:
+    title: Export réservations
+    description: Exportation des réservations - format excel
+    keywords: export reservation billetterie
+    category: Export
+    data:
+        beneficiary_type: Type bénéficiaire
+        last_name: Nom
+        first_name: Prénom
+        email: Adresse mail
+        birth_date: Date d'anniversaire
+        phone: Téléphone
+        address: Adresse
+        city: Ville
+        zip_code: Code postale
+        identity_number: N° d'identité
+        ticket_status: État ticket
+        door: Porte
+        floor: Étage
+        place_number: N° place
+        main: Principal
+        secondary: Secondaire
+        distributed: Distribué
+        not_distributed: Non distribué
+import:
+    success: Les réservations ont bien été importées
+    label: Fichier CSV
+    error:
+        default: Erreur à la ligne
+        main_user: le bénéficiaire secondaire n'est pas rattaché à un bénéficiaire principal
+        flush: Les données n\'ont pas pu être sauvegardées
+        categ_event: la catégorie de ticket et/ou l'événement sont incorrects
+        file_extension: L'extension du fichier est incorrect, veuillez importer un fichier .csv
         user:
             delete:
                 success: L'utilisateur a bien été supprimé

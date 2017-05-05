@@ -58,9 +58,9 @@ class AdminBuilder extends BaseBuilder
             }
 
             /* Booking */
-            $event = $this->addItem($menu, 'admin.nav.booking.title', 'admin_booking_index', 'calendar');
-            if (strpos($routeName, 'admin_booking')) {
-                $event->setCurrent(true);
+            $booking = $this->addItem($menu, 'admin.nav.booking.title', 'admin_booking_index', 'calendar');
+            if (strpos($routeName, 'admin_booking') === 0) {
+                $booking->setCurrent(true);
             }
             /* Booking */
             $user = $this->addItem($menu, 'admin.nav.users.title', 'admin_user_index', 'users');
@@ -90,7 +90,7 @@ class AdminBuilder extends BaseBuilder
 
             /* Event Type */
             $this->addItemIfRouteMatch('admin.nav.event_type.title', $menu, 'admin_event_type_index', 'list');
-            if (strpos($routeName, 'admin_event_type_index') === 0) {
+            if (strpos($routeName, 'admin_event_type') === 0) {
                 $this->addItem($menu, 'admin.nav.event_type.index', 'admin_event_type_index', 'list');
                 if (strpos($routeName, 'admin_event_type_add') === 0) {
                     $this->addItem($menu, 'admin.nav.event_type.create', 'admin_event_type_add', 'plus');
@@ -130,14 +130,27 @@ class AdminBuilder extends BaseBuilder
             $this->addItemIfRouteMatch('admin.nav.booking.title', $menu, 'admin_booking_index', 'list');
             if (strpos($routeName, 'admin_booking') === 0) {
                 $this->addItem($menu, 'admin.nav.booking.index', 'admin_booking_index', 'list');
+                if (strpos($routeName, 'admin_booking_add') === 0) {
+                    $this->addItem($menu, 'admin.nav.booking.create', 'admin_booking_add', 'plus');
+                }
+                if (strpos($routeName, 'admin_booking_edit') === 0) {
+                    $booking = $request->get('id');
+                    $this->addItem(
+                        $menu,
+                        'admin.nav.booking.edit',
+                        'admin_booking_edit',
+                        'pencil',
+                        ['id' => $booking]
+                    );
+                }
             }
-
             $this->addItemIfRouteMatch(
                 'admin.nav.ticket_category.title',
                 $menu,
                 'admin_ticket_category_index',
                 'ticket'
             );
+
             /* Article */
             if (strpos($routeName, 'admin_article') === 0) {
                 $this->addItem($menu, 'admin.nav.article.index', 'admin_article_index', 'newspaper-o');
@@ -146,7 +159,13 @@ class AdminBuilder extends BaseBuilder
                 }
                 if (strpos($routeName, 'admin_article_edit') === 0) {
                     $article = $request->get('slug');
-                    $this->addItem($menu, 'admin.nav.article.edit', 'admin_article_edit', 'pencil', ['slug' => $article]);
+                    $this->addItem(
+                        $menu,
+                        'admin.nav.article.edit',
+                        'admin_article_edit',
+                        'pencil',
+                        ['slug' => $article]
+                    );
                 }
 
                 $this->addItemIfRouteMatch(
