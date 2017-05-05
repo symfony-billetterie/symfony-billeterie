@@ -19,8 +19,6 @@ services:
             - "@translator"
             - "@app.repository.user"
             - "@app.repository.booking"
-            - "@app.manager.log"
-            - "@security.token_storage"
             - "@doctrine.orm.entity_manager"
 
     app.manager.stock:
