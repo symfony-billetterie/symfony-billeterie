@@ -9,6 +9,7 @@ use AppBundle\Entity\User;
 use AppBundle\Repository\BookingRepository;
 use AppBundle\Repository\UserRepository;
 use Liuggio\ExcelBundle\Factory;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -185,27 +186,27 @@ class BookingManager
          */
         $phpExcelObject = $this->phpExcel->createPHPExcelObject();
         $phpExcelObject->getProperties()->setCreator($user->getLastName().$user->getFirstName())
-            ->setTitle($this->translator->trans('import_export.title'))
-            ->setDescription($this->translator->trans('import_export.description'))
-            ->setKeywords($this->translator->trans('import_export.keywords'))
-            ->setCategory($this->translator->trans('import_export.category'));
+            ->setTitle($this->translator->trans('export.title'))
+            ->setDescription($this->translator->trans('export.description'))
+            ->setKeywords($this->translator->trans('export.keywords'))
+            ->setCategory($this->translator->trans('export.category'));
 
         /** Définir la cellule correspondante au titre */
         $phpExcelObject->setActiveSheetIndex(0)
-            ->setCellValue('A1', $this->translator->trans('import_export.data.beneficiary_type'))
-            ->setCellValue('B1', $this->translator->trans('import_export.data.last_name'))
-            ->setCellValue('C1', $this->translator->trans('import_export.data.first_name'))
-            ->setCellValue('D1', $this->translator->trans('import_export.data.email'))
-            ->setCellValue('E1', $this->translator->trans('import_export.data.birth_date'))
-            ->setCellValue('F1', $this->translator->trans('import_export.data.phone'))
-            ->setCellValue('G1', $this->translator->trans('import_export.data.address'))
-            ->setCellValue('H1', $this->translator->trans('import_export.data.city'))
-            ->setCellValue('I1', $this->translator->trans('import_export.data.zip_code'))
-            ->setCellValue('J1', $this->translator->trans('import_export.data.identity_number'))
-            ->setCellValue('K1', $this->translator->trans('import_export.data.ticket_status'))
-            ->setCellValue('L1', $this->translator->trans('import_export.data.door'))
-            ->setCellValue('M1', $this->translator->trans('import_export.data.floor'))
-            ->setCellValue('N1', $this->translator->trans('import_export.data.place_number'));
+            ->setCellValue('A1', $this->translator->trans('export.data.beneficiary_type'))
+            ->setCellValue('B1', $this->translator->trans('export.data.last_name'))
+            ->setCellValue('C1', $this->translator->trans('export.data.first_name'))
+            ->setCellValue('D1', $this->translator->trans('export.data.email'))
+            ->setCellValue('E1', $this->translator->trans('export.data.birth_date'))
+            ->setCellValue('F1', $this->translator->trans('export.data.phone'))
+            ->setCellValue('G1', $this->translator->trans('export.data.address'))
+            ->setCellValue('H1', $this->translator->trans('export.data.city'))
+            ->setCellValue('I1', $this->translator->trans('export.data.zip_code'))
+            ->setCellValue('J1', $this->translator->trans('export.data.identity_number'))
+            ->setCellValue('K1', $this->translator->trans('export.data.ticket_status'))
+            ->setCellValue('L1', $this->translator->trans('export.data.door'))
+            ->setCellValue('M1', $this->translator->trans('export.data.floor'))
+            ->setCellValue('N1', $this->translator->trans('export.data.place_number'));
 
         /**
          * Insérer les informations d'une réservation à chaque nouvelle ligne
@@ -217,7 +218,7 @@ class BookingManager
             foreach ($booking->getTickets() as $ticket) {
                 /** Définir la cellule correspondante à la valeur */
                 $phpExcelObject->setActiveSheetIndex(0)
-                    ->setCellValue('A'.$i, ($booking->getMainUser() === $ticket->getUser() ? $this->translator->trans('import_export.data.main') : $this->translator->trans('import_export.data.secondary')))
+                    ->setCellValue('A'.$i, ($booking->getMainUser() === $ticket->getUser() ? $this->translator->trans('export.data.main') : $this->translator->trans('export.data.secondary')))
                     ->setCellValue('B'.$i, $ticket->getUser()->getLastName())
                     ->setCellValue('C'.$i, $ticket->getUser()->getFirstName())
                     ->setCellValue('D'.$i, $ticket->getUser()->getEmail())
@@ -227,12 +228,15 @@ class BookingManager
                     ->setCellValue('H'.$i, $ticket->getUser()->getCity())
                     ->setCellValue('I'.$i, $ticket->getUser()->getZipCode())
                     ->setCellValue('J'.$i, $ticket->getUser()->getIdNumber())
-                    ->setCellValue('K'.$i, $ticket->isDistributed() ? $this->translator->trans('import_export.data.distributed') : $this->translator->trans('import_export.data.not_distributed'))
+                    ->setCellValue('K'.$i, $ticket->isDistributed() ? $this->translator->trans('export.data.distributed') : $this->translator->trans('export.data.not_distributed'))
                     ->setCellValue('L'.$i, $ticket->getDoor())
                     ->setCellValue('M'.$i, $ticket->getFloor())
                     ->setCellValue('N'.$i, $ticket->getNumber());
+
+                $i++;
             }
         }
+
         $phpExcelObject->getActiveSheet()->setTitle('Reservations');
         $writer            = $this->phpExcel->createWriter($phpExcelObject, 'Excel5');
         $response          = $this->phpExcel->createStreamedResponse($writer);
@@ -270,5 +274,130 @@ class BookingManager
         }
 
         return $ticketCount;
+    }
+
+    /**
+     * @param File $csvFile
+     *
+     * @throws \Exception
+     */
+    public function importBookings(File $csvFile)
+    {
+        if ('txt' !== $csvFile->guessExtension()) {
+            throw new \Exception($this->translator->trans('import.error.file_extension'));
+        }
+
+        $ignoreFirstLine = true;
+        $i = 1;
+
+        if (($handle = fopen($csvFile->getRealPath(), "r")) !== FALSE) {
+            while(($row = fgetcsv($handle)) !== FALSE) {
+                $errorMessage = $this->translator->trans('import.error.default') . $i . ', ';
+
+                if ($ignoreFirstLine && $i === 1) {
+                    $i++;
+                    continue;
+                }
+
+                $data = explode(';', current($row));
+
+                $beneficiaryType    = $data[0];
+                $lastName           = $data[1];
+                $firstName          = $data[2];
+                $email              = $data[3];
+                $birthDate          = $data[4];
+                $phoneNumber        = $data[5];
+                $address            = $data[6];
+                $city               = $data[7];
+                $zipCode            = $data[8];
+                $identityNumber     = $data[9];
+                $ticketStatus       = $data[10];
+                $door               = $data[11];
+                $floor              = $data[12];
+                $ticketNumber       = $data[13];
+                $ticketCategorySlug = $data[14];
+                $eventSlug          = $data[15];
+
+
+                /** @var User $existantUser */
+                $existantUser = $this->userRepository->findOneBy([
+                    'email' => $email,
+                ]);
+
+                if (null !== $existantUser) {
+                    $user = $existantUser;
+                } else {
+                    $user = new User();
+
+                    $bytes = openssl_random_pseudo_bytes(4);
+                    $pwd   = bin2hex($bytes);
+                    $user
+                        ->setPlainPassword($pwd)
+                        ->setUsername(strtolower($lastName).strtolower($firstName))
+                        ->setEmail($email)
+                    ;
+                }
+
+                $user
+                    ->setLastName($lastName)
+                    ->setFirstName($firstName)
+                    //->setBirthdayDate(\DateTime::createFromFormat('Y-m-d H:i:s', $birthDate))
+                    ->setPhone($phoneNumber)
+                    ->setAddress($address)
+                    ->setCity($city)
+                    ->setZipCode($zipCode)
+                    ->setIdNumber($identityNumber)
+                ;
+
+                if ($beneficiaryType === 'Principal') {
+                    $booking = new Booking();
+                    $booking->setMainUser($user);
+
+                    $ticketCategory = $this->em->getRepository('AppBundle:TicketCategory')->findOneBy([
+                        'slug' => $ticketCategorySlug,
+                    ]);
+
+                    $event = $this->em->getRepository('AppBundle:Event')->findOneBy([
+                        'slug' => $eventSlug,
+                    ]);
+
+                    if (null === $ticketCategory || null === $event) {
+                        throw new \LogicException($errorMessage . $this->translator->trans('import.error.categ_event'));
+                    }
+
+                    $booking
+                        ->setEvent($event)
+                        ->setTicketCategory($ticketCategory)
+                    ;
+                }
+
+                if (!isset($booking)) {
+                    throw new \LogicException($errorMessage . $this->translator->trans('import.error.main_user'));
+                }
+
+                if ($beneficiaryType === 'Secondaire') {
+                    $booking->addSecondaryUser($user);
+                }
+
+                $ticket = new Ticket();
+
+                $ticket->setDistributed($ticketStatus === 'Distribué');
+                $ticket->setDoor($door);
+                $ticket->setFloor($floor);
+                $ticket->setNumber($ticketNumber);
+                $ticket->setUser($user);
+                $ticket->setBooking($booking);
+
+                $booking->addTicket($ticket);
+
+                $this->em->persist($booking);
+
+                try {
+                    $this->em->flush();
+                } catch (\Exception $exception) {
+                    throw new \Exception($errorMessage . $this->translator->trans('import.error.flush'));
+                }
+            }
+        }
     }
 }

@@ -113,6 +113,9 @@ admin:
         ticket:
             title: Ticket
             add: Ajouter un ticket
+        select_event_type: Sélectionner un type d'événement
+        export_all: Exporter toutes les réservations
+        import: Importer des réservations
     form:
         event_type:
             name: Nom du type d'événement
@@ -148,8 +151,8 @@ admin:
             main_user: Adresse mail du bénéficiaire principal
             secondary_user: Adresse mail du bénéficiaire secondaire
     dashboard:
-        title: Statistiques globales
-        next_event: Prochain événement
+        title: Proportion de billets distribués
+        ticket_count: Nombre de billets
         distributed_tickets: Billets distribués
         total_places: Places totales
         booked_tickets: Billets réservés
@@ -294,7 +297,7 @@ flash:
             no_tickets:
                 danger : Vous devez au moins créer un ticket pour votre réservation
 
-import_export:
+export:
     title: Export réservations
     description: Exportation des réservations - format excel
     keywords: export reservation billetterie
@@ -318,3 +321,13 @@ import_export:
         secondary: Secondaire
         distributed: Distribué
         not_distributed: Non distribué
+import:
+    success: Les réservations ont bien été importées
+    label: Fichier CSV
+    error:
+        default: Erreur à la ligne
+        main_user: le bénéficiaire secondaire n'est pas rattaché à un bénéficiaire principal
+        flush: les données n\'ont pas pu être sauvegardées
+        categ_event: la catégorie de ticket et/ou l'événement sont incorrects
+        file_extension: L'extension du fichier est incorrect, veuillez importer un fichier .csv
+

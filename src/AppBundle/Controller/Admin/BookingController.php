@@ -5,6 +5,7 @@ namespace AppBundle\Controller\Admin;
 use AppBundle\Entity\Booking;
 use AppBundle\Entity\Ticket;
 use AppBundle\Form\Type\BookingType;
+use AppBundle\Form\Type\ImportBookingType;
 use AppBundle\Manager\BookingManager;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -101,6 +102,41 @@ class BookingController extends Controller
         }
 
         return $this->redirectToRoute('admin_booking_index');
+    }
+
+    /**
+     * Impoter les réservations
+     *
+     * @param Request $request
+     *
+     * @Route("/impoter", name="admin_booking_import")
+     * @Method({"GET", "POST"})
+     *
+     * @return Response
+     */
+    public function importAction(Request $request)
+    {
+        $form = $this->createForm(ImportBookingType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            try {
+                $this->get('app.manager.booking')->importBookings($form->get('bookings')->getData());
+            } catch (\Exception $exception) {
+                $this->addFlash('danger', $exception->getMessage());
+
+                return $this->redirectToRoute('admin_booking_import');
+            }
+
+            $this->addFlash('success', 'import.success');
+
+            return $this->redirectToRoute('admin_booking_index');
+        }
+
+        return $this->render('admin/booking/import.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
@@ -270,7 +306,7 @@ class BookingController extends Controller
      * Call ajax pour tri liste réservations par événement
      *
      * @Route("/ajax-liste-reservation", name="admin_ajax_booking_list_index")
-     * @Method({"GET"})
+     * @Method({"GET", "POST"})
      *
      * @param Request $request
      *
@@ -279,9 +315,14 @@ class BookingController extends Controller
     public function ajaxBookingFilterAction(Request $request)
     {
         $event    = $request->request->get('event');
-        $bookings = $this->getDoctrine()->getRepository('AppBundle:Booking')->findBy(
-            ['event' => $event]
-        );
+
+        if ('all' === $event) {
+            $bookings = $this->getDoctrine()->getRepository('AppBundle:Booking')->findAll();
+        } else {
+            $bookings = $this->getDoctrine()->getRepository('AppBundle:Booking')->findBy(
+                ['event' => $event]
+            );
+        }
 
         return $this->render(
             'admin/booking/_booking_list.html.twig',

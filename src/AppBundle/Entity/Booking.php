@@ -66,6 +66,7 @@ class Booking
     public function __construct()
     {
         $this->secondaryUsers = new ArrayCollection();
+        $this->tickets = new ArrayCollection();
     }
 
     /**
@@ -202,5 +203,12 @@ class Booking
         $this->tickets = $tickets;
 
         return $this;
+    }
+
+    public function addTicket(Ticket $ticket)
+    {
+        if (!$this->tickets->contains($ticket)) {
+            $this->tickets->add($ticket);
+        }
     }
 }
