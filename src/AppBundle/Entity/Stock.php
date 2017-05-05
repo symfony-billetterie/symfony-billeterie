@@ -45,7 +45,7 @@ class Stock
     /**
      * @var TicketCategory
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TicketCategory", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TicketCategory", inversedBy="stocks", cascade={"remove"})
      */
     private $category;
 

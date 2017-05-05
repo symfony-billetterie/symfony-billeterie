@@ -12,6 +12,7 @@ use Liuggio\ExcelBundle\Factory;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Symfony\Component\Translation\TranslatorInterface;
 use Doctrine\ORM\EntityManager;
 
@@ -24,6 +25,8 @@ class BookingManager
     private $translator;
     private $userRepository;
     private $bookingRepository;
+    private $logManager;
+    private $tokenStorage;
     private $em;
 
     /**
@@ -33,6 +36,8 @@ class BookingManager
      * @param TranslatorInterface $translator
      * @param UserRepository      $userRepository
      * @param BookingRepository   $bookingRepository
+     * @param LogManager          $logManager
+     * @param TokenStorage        $tokenStorage
      * @param EntityManager       $em
      */
     public function __construct(
@@ -40,12 +45,16 @@ class BookingManager
         TranslatorInterface $translator,
         UserRepository $userRepository,
         BookingRepository $bookingRepository,
+        LogManager $logManager,
+        TokenStorage $tokenStorage,
         EntityManager $em
     ) {
         $this->phpExcel          = $phpExcel;
         $this->translator        = $translator;
         $this->userRepository    = $userRepository;
         $this->bookingRepository = $bookingRepository;
+        $this->logManager        = $logManager;
+        $this->tokenStorage      = $tokenStorage;
         $this->em                = $em;
     }
 
@@ -287,6 +296,8 @@ class BookingManager
      */
     public function importBookings(File $csvFile)
     {
+        $currentUser = $this->tokenStorage->getToken()->getUser();
+
         if ('txt' !== $csvFile->guessExtension()) {
             throw new \Exception($this->translator->trans('import.error.file_extension'));
         }
@@ -410,6 +421,11 @@ class BookingManager
             }
             try {
                 $this->em->flush();
+                $this->logManager->logAction(
+                    $this->translator->trans('log.import.title'),
+                    $this->translator->trans('log.import.message'),
+                    $currentUser
+                );
             } catch (\Exception $exception) {
                 throw new \Exception($this->translator->trans('import.error.flush'));
             }
