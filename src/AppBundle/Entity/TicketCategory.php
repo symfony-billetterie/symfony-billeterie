@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -34,6 +35,20 @@ class TicketCategory
      * @ORM\Column(length=255, unique=true)
      */
     private $slug;
+
+    /**
+     * @var Stock[]|ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Stock", mappedBy="category", cascade={"remove"})
+     */
+    private $stocks;
+
+    /**
+     * @var Booking[]|ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Booking", mappedBy="ticketCategory", cascade={"remove"})
+     */
+    private $bookings;
 
     /**
      * @return mixed

@@ -33,7 +33,7 @@ class Booking
     /**
      * @var TicketCategory
      *
-     * @ORM\ManyToOne(targetEntity="TicketCategory", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="TicketCategory", cascade={"persist"}, inversedBy="bookings")
      * @ORM\JoinColumn(name="ticket_category_id", referencedColumnName="id")
      */
     protected $ticketCategory;
