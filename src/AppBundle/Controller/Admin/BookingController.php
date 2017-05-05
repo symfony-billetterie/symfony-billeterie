@@ -125,6 +125,8 @@ class BookingController extends Controller
                 $this->get('app.manager.booking')->importBookings($form->get('bookings')->getData());
             } catch (\Exception $exception) {
                 $this->addFlash('danger', $exception->getMessage());
+
+                return $this->redirectToRoute('admin_booking_import');
             }
 
             $this->addFlash('success', 'import.success');

@@ -283,9 +283,10 @@ class BookingManager
      */
     public function importBookings(File $csvFile)
     {
-        if ('txt' !== $csvFile->getExtension()) {
+        if ('txt' !== $csvFile->guessExtension()) {
             throw new \Exception($this->translator->trans('import.error.file_extension'));
         }
+
         $ignoreFirstLine = true;
         $i = 1;
 
