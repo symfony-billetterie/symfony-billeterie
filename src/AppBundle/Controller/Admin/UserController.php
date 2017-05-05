@@ -29,7 +29,9 @@ class UserController extends Controller
      */
     public function indexAction()
     {
-        $users = $this->getDoctrine()->getRepository('AppBundle:User')->findAll();
+        $users = $this->getDoctrine()->getRepository('AppBundle:User')->findBy(
+            ['enabled' => true]
+        );
 
         return $this->render('admin/user/index.html.twig', [
             'users' => $users,
@@ -47,11 +49,14 @@ class UserController extends Controller
     public function deleteAction(User $user)
     {
         $em      = $this->getDoctrine()->getManager();
-        $em->remove($user);
+        $user->setEnabled(false);
+        $em->persist($user);
         try {
             $em->flush();
+            $this->get("app.manager.log")->logAction('log.user.delete.title', 'log.user.delete.message', $this->getUser
+            ());
             $this->addFlash('success', 'flash.admin.user.delete.success');
-        } catch (\Exception $e) {
+        } catch (\Exception $e){
             $this->addFlash('danger', 'flash.admin.user.delete.danger');
         }
 

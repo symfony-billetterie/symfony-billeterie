@@ -160,10 +160,11 @@ admin:
         booked_tickets: Billets réservés
         remaining_tickets: Billets restants
     user:
+        title: Liste des utilisateurs
         firstName: Prénom
         lastName: Nom
         email: Adresse e-mail
-
+        delete_confirm: Etes-vous sûr de vouloir supprimer l'utilisateur selectionnée ?
 app:
     title: Billetterie
     seo:
@@ -238,6 +239,9 @@ log:
         logout:
             title: Déconnexion
             message: S'est déconnecté de la billetterie
+        delete:
+            title: Suppression utilisateur
+            message: Un utilisateur a été supprimé
 
 flash:
     admin:
@@ -302,6 +306,10 @@ flash:
                 danger : Aucun stock n'est prévu pour cet événement et cette catégorie de ticket
             no_tickets:
                 danger : Vous devez au moins créer un ticket pour votre réservation
+        user:
+            delete:
+                success: L'utilisateur a bien été supprimée
+                danger: Erreur, l'utilisateur n'a pas pu être supprimée
 
 export:
     title: Export réservations
@@ -336,7 +344,4 @@ import:
         flush: Les données n\'ont pas pu être sauvegardées
         categ_event: la catégorie de ticket et/ou l'événement sont incorrects
         file_extension: L'extension du fichier est incorrect, veuillez importer un fichier .csv
-        user:
-            delete:
-                success: L'utilisateur a bien été supprimé
-                danger: Erreur, l'utilisateur n'a pas pu être supprimé
+
