@@ -234,6 +234,29 @@ log:
         logout:
             title: Déconnexion
             message: S'est déconnecté de la billetterie
+    article:
+        add:
+            title: Ajout article
+            message: Un article a été ajouté dans la base de données
+        edit:
+            title: Édition article
+            message: Un article a été édité dans la base de données
+        remove:
+            title: Article supprimé
+            message: Un article a été supprimé de la base de données
+    ticket_category:
+        add:
+            title: Ajout catégorie de ticket
+            message: Une catégorie de ticket a été ajoutée dans la base de données
+        edit:
+            title: Édition catégorie de ticket
+            message: Une catégorie de ticket a été éditée dans la base de données
+        remove:
+            title: Catégorie de ticket supprimé
+            message: Une catégorie de ticket a été supprimée de la base de données
+    export:
+        title: Export
+        message: Des réservations ont été exportées
 
 flash:
     admin:

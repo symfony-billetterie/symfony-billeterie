@@ -46,7 +46,6 @@
             Highcharts.chart('chart-{{ object.event.slug }}', {
                 chart: {
                     type: 'column',
-                    maxWidth: width
 
                 },
                 title: {
@@ -103,8 +102,7 @@
                     plotBackgroundColor: null,
                     plotBorderWidth: null,
                     plotShadow: false,
-                    type: 'pie',
-                    width: width
+                    type: 'pie'
                 },
                 title: {
                     text: '{{ 'admin.dashboard.title'|trans }}'

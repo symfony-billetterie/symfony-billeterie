@@ -294,15 +294,9 @@ class BookingManager
         $ignoreFirstLine = true;
         $i               = 1;
 
-<<<<<<< HEAD
         if (($handle = fopen($csvFile->getRealPath(), "r")) !== false) {
             while (($row = fgetcsv($handle)) !== false) {
                 $errorMessage = $this->translator->trans('import.error.default').$i.', ';
-=======
-        if (($handle = fopen($csvFile->getRealPath(), "r")) !== FALSE) {
-            while(($row = fgetcsv($handle)) !== FALSE) {
-                $errorMessage = $this->translator->trans('import.error.default') . ' ' . $i . ', ';
->>>>>>> 2f295560e492d2fbbe7c87338675c84cc93eab0e
 
                 if ($ignoreFirstLine && $i === 1) {
                     $i++;
@@ -328,14 +322,8 @@ class BookingManager
                 $ticketCategorySlug = $data[14];
                 $eventSlug          = $data[15];
 
-<<<<<<< HEAD
-                /** @var User $existantUser */
-                $existantUser = $this->userRepository->findOneBy([
-=======
-
                 /** @var User $existingUser */
                 $existingUser = $this->userRepository->findOneBy([
->>>>>>> 2f295560e492d2fbbe7c87338675c84cc93eab0e
                     'email' => $email,
                 ]);
 
@@ -404,19 +392,10 @@ class BookingManager
 
                 $this->em->persist($booking);
             }
-
-<<<<<<< HEAD
-                try {
-                    $this->em->flush();
-                } catch (\Exception $exception) {
-                    throw new \Exception($errorMessage.$this->translator->trans('import.error.flush'));
-                }
-=======
             try {
                 $this->em->flush();
             } catch (\Exception $exception) {
                 throw new \Exception($this->translator->trans('import.error.flush'));
->>>>>>> 2f295560e492d2fbbe7c87338675c84cc93eab0e
             }
         }
     }
