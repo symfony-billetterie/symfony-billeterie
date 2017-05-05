@@ -13,7 +13,8 @@
             <ul class="nav nav-tabs" role="tablist">
                 {% for object in objects %}
                     <li role="presentation" class="{{ loop.index == 1 ? "active":"" }}">
-                        <a href="#{{ object.event.slug }}" aria-controls="{{ object.event.slug }}" role="tab"
+                        <a href="#{{ object.event.slug }}" class="button-chart" aria-controls="{{ object.event.slug }}"
+                           role="tab"
                            data-toggle="tab">{{ object.event.name }}</a>
                     </li>
                 {% endfor %}
@@ -23,11 +24,11 @@
                     <div role="tabpanel" class="tab-pane {{ loop.index == 1 ? "active":"" }}"
                          id="{{ object.event.slug }}">
                         <div class="col-md-6">
-                            <div id="pie-{{ loop.index }}">
+                            <div id="pie-{{ object.event.slug }}">
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div id="chart-{{ loop.index }}">
+                            <div id="chart-{{ object.event.slug }}">
                             </div>
                         </div>
                     </div>
@@ -40,10 +41,12 @@
 {% block view_js %}
     <script>
         $(document).ready(function () {
+            var width = $('.col-md-6').width();
             {% for object in objects %}
-            Highcharts.chart('chart-{{ loop.index }}', {
+            Highcharts.chart('chart-{{ object.event.slug }}', {
                 chart: {
-                    type: 'column'
+                    type: 'column',
+
                 },
                 title: {
                     text: '{{ 'admin.dashboard.ticket_count'|trans }} ({{ 'admin.dashboard.total_places'|trans }} : {{ object.bookings + object.bookingsDistributed + object.remainingPlaces }})'
@@ -71,10 +74,10 @@
                     enabled: false
                 },
                 tooltip: {
-                    pointFormat: '<strong>{point.y} billets</strong>'
+                    pointFormat: '<strong>{point.y} {{ 'admin.dashboard.ticket_lower'|trans }}</strong>'
                 },
                 series: [{
-                    name: 'Billets',
+                    name: '{{ 'admin.dashboard.ticket'|trans }}',
                     data: [
                         ['{{ 'admin.dashboard.distributed_tickets'|trans }}', {{ object.bookingsDistributed }}],
                         ['{{ 'admin.dashboard.booked_tickets'|trans }}', {{ object.bookings }}],
@@ -94,7 +97,7 @@
                     }
                 }]
             });
-            Highcharts.chart('pie-{{ loop.index }}', {
+            pie = Highcharts.chart('pie-{{ object.event.slug }}', {
                 chart: {
                     plotBackgroundColor: null,
                     plotBorderWidth: null,

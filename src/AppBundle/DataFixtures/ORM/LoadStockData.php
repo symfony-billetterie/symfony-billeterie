@@ -4,6 +4,7 @@ namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Event;
 use AppBundle\Entity\Stock;
+use AppBundle\Entity\TicketCategory;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -21,59 +22,65 @@ class LoadStockData extends AbstractFixture implements OrderedFixtureInterface
     {
         $datas = [
             [
-                'quantity'        => 445,
-                'initialQuantity' => 445,
+                'quantity'        => 10,
+                'initialQuantity' => 10,
                 'event'           => 'Match HandBall',
                 'ticketCategory'  => 'Gradin',
             ],
             [
-                'quantity'        => 1200,
-                'initialQuantity' => 1200,
+                'quantity'        => 20,
+                'initialQuantity' => 20,
                 'event'           => 'Match Tennis',
                 'ticketCategory'  => 'Fosse',
             ],
             [
-                'quantity'        => 4454,
-                'initialQuantity' => 4454,
+                'quantity'        => 15,
+                'initialQuantity' => 15,
                 'event'           => 'Match Football',
                 'ticketCategory'  => 'Gradin',
             ],
             [
-                'quantity'        => 5673,
-                'initialQuantity' => 5673,
+                'quantity'        => 18,
+                'initialQuantity' => 18,
                 'event'           => 'Demi finale Football',
                 'ticketCategory'  => 'Tribune',
             ],
             [
-                'quantity'        => 3400,
-                'initialQuantity' => 3400,
+                'quantity'        => 25,
+                'initialQuantity' => 25,
                 'event'           => 'Match Football',
                 'ticketCategory'  => 'Fosse',
             ],
             [
-                'quantity'        => 1786,
-                'initialQuantity' => 1786,
+                'quantity'        => 30,
+                'initialQuantity' => 30,
                 'event'           => 'Match Tennis',
                 'ticketCategory'  => 'Balcon',
+            ],
+            [
+                'quantity'        => 5,
+                'initialQuantity' => 5,
+                'event'           => 'Match Ping Pong',
+                'ticketCategory'  => 'Tribune',
             ],
         ];
 
         foreach ($datas as $key => $data) {
 
+            /** @var TicketCategory $ticketCategory */
+            $ticketCategory = $this->getReference('ticket-category-'.$data['ticketCategory']);
+
+            /** @var Event $randEvent */
+            $event = $this->getReference('event-'.$data['event']);
+
             /** @var Event $event */
             $stock = new Stock();
-            $stock->setQuantity($data['quantity']);
-            $stock->setInitialQuantity($data['initialQuantity']);
+            $stock->setQuantity($data['quantity'])
+                ->setInitialQuantity($data['initialQuantity'])
+                ->setCategory($ticketCategory)
+                ->setEvent($event);
 
-            /** @var Event $randEvent */
-            $event = $this->getReference('event-' . $data['event']);
-            $stock->setEvent($event);
-
-            /** @var Event $randEvent */
-            $ticketCategory = $this->getReference('ticket-category-' . $data['ticketCategory']);
-            $stock->setCategory($ticketCategory);
-
-            $this->setReference('stock-' . $key, $stock);
+            $this->setReference('stock-'.$key, $stock);
 
             $manager->persist($stock);
         }
