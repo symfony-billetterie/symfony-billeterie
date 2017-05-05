@@ -62,6 +62,8 @@ admin:
         booking:
             title: Réservations
             index : Liste des réservations
+        users:
+            title: Utilisateurs
     log:
         title: Registre
         type: Type
@@ -101,7 +103,7 @@ admin:
         title: Réservations
         user:
             name: Bénéficiaire
-            email: Courriel
+            email: Adresse e-mail
         ticketCategory:
             label: Catégorie de ticket
     form:
@@ -137,6 +139,10 @@ admin:
         total_places: Places totales
         booked_tickets: Billets réservés
         remaining_tickets: Billets restants
+    user:
+        firstName: Prénom
+        lastName: Nom
+        email: Adresse e-mail
 
 app:
     title: Billetterie
@@ -258,3 +264,7 @@ flash:
         booking:
             export:
                 danger: Erreur, l'export d'événement n'a pas fonctionné
+        user:
+            delete:
+                success: L'utilisateur a bien été supprimé
+                danger: Erreur, l'utilisateur n'a pas pu être supprimé
