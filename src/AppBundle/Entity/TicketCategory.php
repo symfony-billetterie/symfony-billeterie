@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -34,6 +35,29 @@ class TicketCategory
      * @ORM\Column(length=255, unique=true)
      */
     private $slug;
+
+    /**
+     * @var Stock[]|ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Stock", mappedBy="category", cascade={"remove"})
+     */
+    private $stocks;
+
+    /**
+     * @var Booking[]|ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Booking", mappedBy="ticketCategory", cascade={"remove"})
+     */
+    private $bookings;
+
+    /**
+     * TicketCategory constructor.
+     */
+    public function __construct()
+    {
+        $this->bookings = new ArrayCollection();
+        $this->stocks   = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -69,5 +93,37 @@ class TicketCategory
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * @return Stock[]|ArrayCollection
+     */
+    public function getStocks()
+    {
+        return $this->stocks;
+    }
+    
+    /**
+     * @param Stock[]|ArrayCollection $stocks
+     */
+    public function setStocks($stocks)
+    {
+        $this->stocks = $stocks;
+    }
+    
+    /**
+     * @return Booking[]|ArrayCollection
+     */
+    public function getBookings()
+    {
+        return $this->bookings;
+    }
+    
+    /**
+     * @param Booking[]|ArrayCollection $bookings
+     */
+    public function setBookings($bookings)
+    {
+        $this->bookings = $bookings;
     }
 }
