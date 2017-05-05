@@ -234,9 +234,6 @@ log:
         logout:
             title: Déconnexion
             message: S'est déconnecté de la billetterie
-    import:
-        title: Import
-        message: Des réservations ont été importées
     article:
         add:
             title: Ajout article
