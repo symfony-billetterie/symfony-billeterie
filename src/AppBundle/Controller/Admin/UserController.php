@@ -41,14 +41,16 @@ class UserController extends Controller
     /**
      * Suppression d'un utilisateur
      *
-     * @Route("/supprimer/{user}", name="admin_user_delete")
      * @param User $user
      *
      * @return RedirectResponse
+     *
+     * @Method({"GET", "POST"})
+     * @Route("/supprimer/{id}", name="admin_user_delete")
      */
     public function deleteAction(User $user)
     {
-        $em      = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
         $user->setEnabled(false);
         $em->persist($user);
         try {
@@ -56,7 +58,7 @@ class UserController extends Controller
             $this->get("app.manager.log")->logAction('log.user.delete.title', 'log.user.delete.message', $this->getUser
             ());
             $this->addFlash('success', 'flash.admin.user.delete.success');
-        } catch (\Exception $e){
+        } catch (\Exception $e) {
             $this->addFlash('danger', 'flash.admin.user.delete.danger');
         }
 
